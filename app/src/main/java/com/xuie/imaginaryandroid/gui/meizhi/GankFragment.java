@@ -3,6 +3,7 @@ package com.xuie.imaginaryandroid.gui.meizhi;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,8 @@ public class GankFragment extends Fragment implements GankContract.View, GZoomSw
                 R.color.colorPrimaryDark,
                 R.color.colorAccent);
         swipeRefresh.setOnBottomRefreshListenrer(this);
+
+        recycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return view;
     }
