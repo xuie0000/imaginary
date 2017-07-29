@@ -2,6 +2,8 @@ package com.xuie.imaginaryandroid.data.source;
 
 import com.xuie.imaginaryandroid.data.MeiZhi;
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -9,5 +11,5 @@ import rx.Observable;
  */
 
 public interface GankSource {
-    Observable<MeiZhi> get福利(int page);
+    Observable<List<MeiZhi>> get福利(int page);
 }
