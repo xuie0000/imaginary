@@ -23,7 +23,7 @@ public class MeiZhiAdapter extends BaseQuickAdapter<MeiZhi, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, MeiZhi item) {
-//        helper.seti
+        helper.setText(R.id.date, item.getDesc());
         Glide.with(mContext).load(item.getUrl())/*.crossFade()*/.into((ImageView) helper.getView(R.id.meizhi));
     }
 }

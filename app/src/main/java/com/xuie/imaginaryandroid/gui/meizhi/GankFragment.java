@@ -80,9 +80,8 @@ public class GankFragment extends Fragment implements GankContract.View, GZoomSw
     public void addList(boolean isRefresh, List<MeiZhi> meiZhis) {
         if (isRefresh)
             meiZhiAdapter.replaceData(new ArrayList<>());
-        Log.d(TAG, meiZhis.toString());
+//        Log.d(TAG, meiZhis.toString());
         meiZhiAdapter.addData(meiZhis);
-        meiZhiAdapter.notifyDataSetChanged();
         cancelRefresh();
     }
 

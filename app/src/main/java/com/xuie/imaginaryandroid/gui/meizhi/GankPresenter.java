@@ -17,7 +17,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 public class GankPresenter implements GankContract.Presenter {
     private GankRepository gankRepository;
     private GankContract.View gankView;
-    private int currentPage = 0;
+    private int currentPage = 1;
 
     public GankPresenter(GankRepository gankRepository, GankContract.View gankView) {
         this.gankRepository = checkNotNull(gankRepository);
@@ -39,11 +39,11 @@ public class GankPresenter implements GankContract.Presenter {
     public void getList(boolean isRefresh) {
         // get local data
         if (isRefresh) {
-            currentPage = 0;
+            currentPage = 1;
         } else {
             currentPage++;
         }
-        gankRepository.get福利(0)
+        gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<MeiZhi>>() {
                     @Override
