@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_gank:
                     viewPager.setCurrentItem(0);
                     return true;
                 case R.id.navigation_dashboard:
@@ -53,12 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
 
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
-
-//        new GankPresenter(GankRepository.getInstance(), );
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return GankFragment.getInstance();
             }
-            return GankFragment.getInstance();
+            return new BlankFragment();
         }
 
         @Override

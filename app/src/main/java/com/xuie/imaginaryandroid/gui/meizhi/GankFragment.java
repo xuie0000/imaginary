@@ -28,7 +28,9 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GankFragment extends Fragment implements GankContract.View, GZoomSwipeRefresh.OnRefreshListener, GZoomSwipeRefresh.OnBottomRefreshListener {
+public class GankFragment extends Fragment implements GankContract.View,
+        GZoomSwipeRefresh.OnRefreshListener,
+        GZoomSwipeRefresh.OnBottomRefreshListener {
     private static final String TAG = "GankFragment";
 
     public static GankFragment getInstance() {
