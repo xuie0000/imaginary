@@ -1,21 +1,24 @@
 package com.xuie.imaginaryandroid.data;
 
+import java.util.List;
+
 /**
  * Created by xuie on 17-8-8.
  */
 
-public class 前端 {
+public class AndroidBean {
 
     /**
-     * _id : 5985387d421aa90ca209c566
-     * createdAt : 2017-08-05T11:16:13.188Z
-     * desc : 一个轻量级模板引擎，可快速实现数据与ui绑定（数据变动，UI自动变动），快速实现事件绑定和处理，不依赖任何第三方库,仅仅8k。
-     * publishedAt : 2017-08-08T11:34:20.37Z
-     * source : web
-     * type : 前端
-     * url : https://github.com/epaii/epii.js
+     * _id : 59818615421aa90ca209c547
+     * createdAt : 2017-08-02T15:58:13.659Z
+     * desc : 垃圾回收算法与 JVM 垃圾回收器综述
+     * publishedAt : 2017-08-15T13:32:36.998Z
+     * source : chrome
+     * type : AndroidBean
+     * url : https://zhuanlan.zhihu.com/p/28258571
      * used : true
-     * who : MrRen
+     * who : 王下邀月熊
+     * images : ["http://img.gank.io/e8529e62-606c-44f3-b10d-963d58a2ef83"]
      */
 
     private String _id;
@@ -27,6 +30,7 @@ public class 前端 {
     private String url;
     private boolean used;
     private String who;
+    private List<String> images;
 
     public String get_id() {
         return _id;
@@ -98,5 +102,29 @@ public class 前端 {
 
     public void setWho(String who) {
         this.who = who;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    @Override
+    public String toString() {
+        return "AndroidBean{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                ", images=" + images +
+                '}';
     }
 }

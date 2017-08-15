@@ -1,21 +1,19 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-8-8.
+ * Created by xuie on 17-8-15.
  */
-
-public class iOS {
-
+public class 福利Bean {
     /**
-     * _id : 59892f30421aa97de5c7ca40
-     * createdAt : 2017-08-08T11:25:36.509Z
-     * desc : iOS 声明式 Layout 布局。
-     * publishedAt : 2017-08-08T11:34:20.37Z
+     * _id : 599237dd421aa96729c57246
+     * createdAt : 2017-08-15T07:53:01.962Z
+     * desc : 8-15
+     * publishedAt : 2017-08-15T13:32:36.998Z
      * source : chrome
-     * type : iOS
-     * url : https://github.com/schibsted/layout
+     * type : 福利
+     * url : https://ws1.sinaimg.cn/large/610dc034ly1fik2q1k3noj20u00u07wh.jpg
      * used : true
-     * who : 代码家
+     * who : daimajia
      */
 
     private String _id;
@@ -98,5 +96,20 @@ public class iOS {
 
     public void setWho(String who) {
         this.who = who;
+    }
+
+    @Override
+    public String toString() {
+        return "福利Bean{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                '}';
     }
 }

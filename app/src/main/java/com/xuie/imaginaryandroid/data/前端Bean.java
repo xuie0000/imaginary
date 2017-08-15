@@ -1,21 +1,22 @@
 package com.xuie.imaginaryandroid.data;
 
+import java.util.List;
+
 /**
- * Created by xuie on 17-8-8.
+ * Created by xuie on 17-8-15.
  */
-
-public class Android {
-
+public class 前端Bean {
     /**
-     * _id : 5985bdb6421aa97de5c7ca30
-     * createdAt : 2017-08-05T20:44:38.849Z
-     * desc : 由于RxJava发布了一个订阅后，由于没有及时取消，会导致内存泄露，本文介绍Rxlifecycle机制
-     * publishedAt : 2017-08-08T11:34:20.37Z
-     * source : web
-     * type : Android
-     * url : http://url.cn/4Es2B0l
+     * _id : 5992691f421aa9672f354dbf
+     * createdAt : 2017-08-15T11:23:11.922Z
+     * desc : URL 友好的随机字符串生成器。
+     * images : ["http://img.gank.io/e0583970-5500-4270-b0b9-a1151943f452"]
+     * publishedAt : 2017-08-15T13:32:36.998Z
+     * source : chrome
+     * type : 前端
+     * url : https://github.com/ai/nanoid
      * used : true
-     * who : Tamic (码小白)
+     * who : 代码家
      */
 
     private String _id;
@@ -27,6 +28,7 @@ public class Android {
     private String url;
     private boolean used;
     private String who;
+    private List<String> images;
 
     public String get_id() {
         return _id;
@@ -98,5 +100,29 @@ public class Android {
 
     public void setWho(String who) {
         this.who = who;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    @Override
+    public String toString() {
+        return "前端Bean{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                ", images=" + images +
+                '}';
     }
 }

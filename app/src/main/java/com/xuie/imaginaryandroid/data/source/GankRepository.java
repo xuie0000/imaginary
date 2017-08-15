@@ -1,8 +1,11 @@
 package com.xuie.imaginaryandroid.data.source;
 
-import com.xuie.imaginaryandroid.data.福利;
+import android.util.Log;
+
+import com.xuie.imaginaryandroid.data.GankBean;
 import com.xuie.imaginaryandroid.data.api.GankApi;
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
+import com.xuie.imaginaryandroid.data.福利Bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class GankRepository implements GankSource {
+    private static final String TAG = "GankRepository";
     private static GankRepository INSTANCE;
     private GankApi gankApi = ServiceGenerator.createService(GankApi.class);
 
@@ -31,13 +35,24 @@ public class GankRepository implements GankSource {
     }
 
     @Override
-    public Observable<List<福利>> get福利(int page) {
+    public Observable<List<福利Bean>> get福利(int page) {
         return gankApi.get福利(page)
                 .subscribeOn(Schedulers.newThread())
-                .map(福利 -> {
-                    if (福利.isError())
-                        return new ArrayList<com.xuie.imaginaryandroid.data.福利>();
-                    return 福利.getResults();
+                .map(福利s -> {
+                    if (福利s.isError())
+                        return new ArrayList<com.xuie.imaginaryandroid.data.福利Bean>();
+                    return 福利s.getResults();
+                });
+    }
+
+    @Override
+    public Observable<GankBean> getDay(String date) {
+        return gankApi.getDay(date)
+                .subscribeOn(Schedulers.newThread())
+                .map(gankBean -> {
+                    if (gankBean == null)
+                        Log.d(TAG, "gank is null");
+                    return gankBean;
                 });
     }
 

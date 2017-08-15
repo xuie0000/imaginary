@@ -1,19 +1,18 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-8-8.
+ * Created by xuie on 17-8-15.
  */
 
-public class 休息视频 {
-
+public class 休息视频Bean {
     /**
-     * _id : 59833107421aa90c9203d46b
-     * createdAt : 2017-08-03T22:19:51.587Z
-     * desc : 大学生历时一年完成的航拍中国
-     * publishedAt : 2017-08-08T11:34:20.37Z
+     * _id : 5991b9d1421aa96729c57245
+     * createdAt : 2017-08-14T22:55:13.926Z
+     * desc : 搞笑GIF锦集101期 ：好喜欢这种污污的女生！
+     * publishedAt : 2017-08-15T13:32:36.998Z
      * source : chrome
      * type : 休息视频
-     * url : http://www.bilibili.com/video/av12902834/
+     * url : http://www.bilibili.com/video/av13356763/
      * used : true
      * who : LHF
      */
@@ -98,5 +97,20 @@ public class 休息视频 {
 
     public void setWho(String who) {
         this.who = who;
+    }
+
+    @Override
+    public String toString() {
+        return "休息视频Bean{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                '}';
     }
 }

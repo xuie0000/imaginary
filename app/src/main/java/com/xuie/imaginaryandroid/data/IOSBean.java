@@ -1,20 +1,23 @@
 package com.xuie.imaginaryandroid.data;
 
+import java.util.List;
+
 /**
- * Created by xuie on 17-7-5.
+ * Created by xuie on 17-8-15.
  */
 
-public class 福利 {
+public class IOSBean {
     /**
-     * _id : 595c2f23421aa90ca209c3f0
-     * createdAt : 2017-07-05T08:13:23.237Z
-     * desc : 2017-07-5
-     * publishedAt : 2017-07-05T11:15:30.556Z
-     * source : chrome
-     * type : 福利
-     * url : https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg
+     * _id : 598c1db2421aa90ca209c58b
+     * createdAt : 2017-08-10T16:47:46.44Z
+     * desc : 用户体验极佳的干货集中营 iOS App
+     * images : ["http://img.gank.io/218bcc4e-8d85-479d-b8ce-0d674eb38ef8"]
+     * publishedAt : 2017-08-15T13:32:36.998Z
+     * source : web
+     * type : iOS
+     * url : https://github.com/yeziahehe/Gank
      * used : true
-     * who : daimajia
+     * who : Fan Ye
      */
 
     private String _id;
@@ -26,6 +29,7 @@ public class 福利 {
     private String url;
     private boolean used;
     private String who;
+    private List<String> images;
 
     public String get_id() {
         return _id;
@@ -99,9 +103,17 @@ public class 福利 {
         this.who = who;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
     @Override
     public String toString() {
-        return "福利{" +
+        return "IOSBean{" +
                 "_id='" + _id + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", desc='" + desc + '\'' +
@@ -111,6 +123,7 @@ public class 福利 {
                 ", url='" + url + '\'' +
                 ", used=" + used +
                 ", who='" + who + '\'' +
+                ", images=" + images +
                 '}';
     }
 }

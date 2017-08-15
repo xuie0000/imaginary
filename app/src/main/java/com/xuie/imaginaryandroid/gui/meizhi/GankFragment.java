@@ -18,7 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
-import com.xuie.imaginaryandroid.data.福利;
+import com.xuie.imaginaryandroid.data.福利Bean;
 import com.xuie.imaginaryandroid.gui.show.MeizhiActivity;
 import com.xuie.imaginaryandroid.util.DateUtils;
 
@@ -81,7 +81,7 @@ public class GankFragment extends Fragment implements GankContract.View,
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Log.d(TAG, "position:" + position);
-                福利 fl = (福利) adapter.getData().get(position);
+                福利Bean fl = (福利Bean) adapter.getData().get(position);
                 Log.d("GankFragment", fl.toString());
                 String dateString = DateUtils.getDate(fl.getPublishedAt());
                 Intent intent = new Intent(getActivity(), MeizhiActivity.class);
@@ -101,7 +101,7 @@ public class GankFragment extends Fragment implements GankContract.View,
     }
 
     @Override
-    public void addList(boolean isRefresh, List<福利> meiZhis) {
+    public void addList(boolean isRefresh, List<福利Bean> meiZhis) {
         if (isRefresh)
             meiZhiAdapter.replaceData(new ArrayList<>());
 //        Log.d(TAG, meiZhis.toString());

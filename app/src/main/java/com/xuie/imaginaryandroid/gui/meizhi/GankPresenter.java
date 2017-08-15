@@ -1,12 +1,8 @@
 package com.xuie.imaginaryandroid.gui.meizhi;
 
-import com.xuie.imaginaryandroid.data.福利;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 
-import java.util.List;
-
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
@@ -45,12 +41,7 @@ public class GankPresenter implements GankContract.Presenter {
         }
         gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<福利>>() {
-                    @Override
-                    public void call(List<福利> meiZhis) {
-                        gankView.addList(isRefresh, meiZhis);
-                    }
-                }, Throwable::printStackTrace);
+                .subscribe(meiZhis -> gankView.addList(isRefresh, meiZhis), Throwable::printStackTrace);
         // get remote data
 
     }

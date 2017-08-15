@@ -1,5 +1,6 @@
 package com.xuie.imaginaryandroid.data.api;
 
+import com.xuie.imaginaryandroid.data.GankBean;
 import com.xuie.imaginaryandroid.data.福利s;
 
 import retrofit2.http.GET;
@@ -16,4 +17,7 @@ public interface GankApi {
 
     @GET("data/福利/10/{page}")
     Observable<福利s> get福利(@Path("page") int page);
+
+    @GET("day/{date}")
+    Observable<GankBean> getDay(@Path("date") String date);
 }

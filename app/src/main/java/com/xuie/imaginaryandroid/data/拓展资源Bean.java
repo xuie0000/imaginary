@@ -1,22 +1,19 @@
 package com.xuie.imaginaryandroid.data;
 
-import java.util.List;
-
 /**
  * Created by xuie on 17-8-8.
  */
 
-public class 瞎推荐 {
+public class 拓展资源Bean {
 
     /**
-     * _id : 59892e7e421aa90ca3bb6bf2
-     * createdAt : 2017-08-08T11:22:38.415Z
-     * desc : 业余项目如何做 Market。
-     * images : ["http://img.gank.io/9722a2f3-a15b-4687-baaf-f6ff6d8bf6cd"]
+     * _id : 5983d448421aa97de5c7ca24
+     * createdAt : 2017-08-04T09:56:24.687Z
+     * desc : exa - A modern replacement for ls，炫彩 ls 列出目录指令。
      * publishedAt : 2017-08-08T11:34:20.37Z
-     * source : chrome
-     * type : 瞎推荐
-     * url : https://github.com/karllhughes/side-project-marketing
+     * source : api
+     * type : 拓展资源Bean
+     * url : https://the.exa.website/
      * used : true
      * who : 代码家
      */
@@ -30,7 +27,6 @@ public class 瞎推荐 {
     private String url;
     private boolean used;
     private String who;
-    private List<String> images;
 
     public String get_id() {
         return _id;
@@ -104,11 +100,18 @@ public class 瞎推荐 {
         this.who = who;
     }
 
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
+    @Override
+    public String toString() {
+        return "拓展资源Bean{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                '}';
     }
 }

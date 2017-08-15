@@ -1,21 +1,19 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-8-8.
+ * Created by xuie on 17-8-15.
  */
-
-public class 拓展资源 {
-
+public class 瞎推荐Bean {
     /**
-     * _id : 5983d448421aa97de5c7ca24
-     * createdAt : 2017-08-04T09:56:24.687Z
-     * desc : exa - A modern replacement for ls，炫彩 ls 列出目录指令。
-     * publishedAt : 2017-08-08T11:34:20.37Z
-     * source : api
-     * type : 拓展资源
-     * url : https://the.exa.website/
+     * _id : 5982c768421aa97de5c7ca1a
+     * createdAt : 2017-08-03T14:49:12.819Z
+     * desc : 今天，距离我从腾讯离职刚好130天了,也许会继续找个朝九晚五的工作，也许会告别职场、换种活法。
+     * publishedAt : 2017-08-15T13:32:36.998Z
+     * source : web
+     * type : 瞎推荐
+     * url : https://community.clouderwork.com/article/view/597fec5795d46.html
      * used : true
-     * who : 代码家
+     * who : null
      */
 
     private String _id;
@@ -26,7 +24,7 @@ public class 拓展资源 {
     private String type;
     private String url;
     private boolean used;
-    private String who;
+    private Object who;
 
     public String get_id() {
         return _id;
@@ -92,11 +90,26 @@ public class 拓展资源 {
         this.used = used;
     }
 
-    public String getWho() {
+    public Object getWho() {
         return who;
     }
 
-    public void setWho(String who) {
+    public void setWho(Object who) {
         this.who = who;
+    }
+
+    @Override
+    public String toString() {
+        return "瞎推荐Bean{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who=" + who +
+                '}';
     }
 }
