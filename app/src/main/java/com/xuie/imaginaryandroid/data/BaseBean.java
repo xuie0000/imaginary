@@ -3,21 +3,22 @@ package com.xuie.imaginaryandroid.data;
 import java.util.List;
 
 /**
- * Created by xuie on 17-8-15.
+ * Created by xuie on 17-8-8.
  */
 
-public class IOSBean {
+public class BaseBean {
+
     /**
-     * _id : 598c1db2421aa90ca209c58b
-     * createdAt : 2017-08-10T16:47:46.44Z
-     * desc : 用户体验极佳的干货集中营 iOS App
-     * images : ["http://img.gank.io/218bcc4e-8d85-479d-b8ce-0d674eb38ef8"]
+     * _id : 59818615421aa90ca209c547
+     * createdAt : 2017-08-02T15:58:13.659Z
+     * desc : 垃圾回收算法与 JVM 垃圾回收器综述
      * publishedAt : 2017-08-15T13:32:36.998Z
-     * source : web
-     * type : iOS
-     * url : https://github.com/yeziahehe/Gank
+     * source : chrome
+     * type : Android
+     * url : https://zhuanlan.zhihu.com/p/28258571
      * used : true
-     * who : Fan Ye
+     * who : 王下邀月熊
+     * images : ["http://img.gank.io/e8529e62-606c-44f3-b10d-963d58a2ef83"]
      */
 
     private String _id;
@@ -113,7 +114,7 @@ public class IOSBean {
 
     @Override
     public String toString() {
-        return "IOSBean{" +
+        return "BaseBean{" +
                 "_id='" + _id + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 ", desc='" + desc + '\'' +

@@ -14,7 +14,7 @@ public class 福利s {
      */
 
     private boolean error;
-    private List<福利Bean> results;
+    private List<BaseBean> results;
 
     public boolean isError() {
         return error;
@@ -24,11 +24,11 @@ public class 福利s {
         this.error = error;
     }
 
-    public List<福利Bean> getResults() {
+    public List<BaseBean> getResults() {
         return results;
     }
 
-    public void setResults(List<福利Bean> results) {
+    public void setResults(List<BaseBean> results) {
         this.results = results;
     }
 

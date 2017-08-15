@@ -2,10 +2,10 @@ package com.xuie.imaginaryandroid.data.source;
 
 import android.util.Log;
 
+import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.GankBean;
 import com.xuie.imaginaryandroid.data.api.GankApi;
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
-import com.xuie.imaginaryandroid.data.福利Bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +35,12 @@ public class GankRepository implements GankSource {
     }
 
     @Override
-    public Observable<List<福利Bean>> get福利(int page) {
+    public Observable<List<BaseBean>> get福利(int page) {
         return gankApi.get福利(page)
                 .subscribeOn(Schedulers.newThread())
                 .map(福利s -> {
                     if (福利s.isError())
-                        return new ArrayList<com.xuie.imaginaryandroid.data.福利Bean>();
+                        return new ArrayList<BaseBean>();
                     return 福利s.getResults();
                 });
     }

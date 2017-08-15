@@ -19,7 +19,7 @@
             android:src="@mipmap/dot_16px"/>
 
         <TextView
-            android:id="@+id/article"
+            android:id="@+id/articleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"

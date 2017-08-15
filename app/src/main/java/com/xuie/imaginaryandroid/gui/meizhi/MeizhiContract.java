@@ -2,7 +2,7 @@ package com.xuie.imaginaryandroid.gui.meizhi;
 
 import com.xuie.imaginaryandroid.BasePresenter;
 import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.福利Bean;
+import com.xuie.imaginaryandroid.data.BaseBean;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface MeizhiContract {
 
     interface View extends BaseView<Presenter> {
 
-        void addList(boolean isRefresh, List<福利Bean> meiZhis);
+        void addList(boolean isRefresh, List<BaseBean> meiZhis);
     }
 
     interface Presenter extends BasePresenter {
