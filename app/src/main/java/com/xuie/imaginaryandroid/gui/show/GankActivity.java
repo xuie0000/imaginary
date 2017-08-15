@@ -15,28 +15,28 @@ import butterknife.ButterKnife;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
-public class MeizhiActivity extends AppCompatActivity implements MeizhiContract.View {
+public class GankActivity extends AppCompatActivity implements GankContract.View {
 
     @BindView(R.id.gank_daily) ImageView gankDaily;
 
-    private MeizhiContract.Presenter mPresenter;
+    private GankContract.Presenter mPresenter;
     private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meizhi);
+        setContentView(R.layout.activity_gank);
         ButterKnife.bind(this);
 
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
         Glide.with(this).load(imageUrl).into(gankDaily);
 
-        new MeizhiPresenter(GankRepository.getInstance(), this);
+        new GankPresenter(GankRepository.getInstance(), this);
     }
 
     @Override
-    public void setPresenter(MeizhiContract.Presenter presenter) {
+    public void setPresenter(GankContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 
@@ -49,6 +49,6 @@ public class MeizhiActivity extends AppCompatActivity implements MeizhiContract.
 
     @Override
     public void refresh(GankBean gb) {
-        Log.d("MeizhiActivity", gb.toString());
+        Log.d("GankActivity", gb.toString());
     }
 }

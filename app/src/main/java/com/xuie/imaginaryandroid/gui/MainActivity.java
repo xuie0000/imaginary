@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.gui.meizhi.GankFragment;
+import com.xuie.imaginaryandroid.gui.meizhi.MeizhiFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return GankFragment.getInstance();
+                    return MeizhiFragment.getInstance();
             }
             return new BlankFragment();
         }

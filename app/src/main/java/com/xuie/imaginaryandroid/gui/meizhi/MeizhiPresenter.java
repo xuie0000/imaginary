@@ -10,12 +10,12 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
  * Created by xuie on 17-7-5.
  */
 
-public class GankPresenter implements GankContract.Presenter {
+public class MeizhiPresenter implements MeizhiContract.Presenter {
     private GankRepository gankRepository;
-    private GankContract.View gankView;
+    private MeizhiContract.View gankView;
     private int currentPage = 1;
 
-    public GankPresenter(GankRepository gankRepository, GankContract.View gankView) {
+    public MeizhiPresenter(GankRepository gankRepository, MeizhiContract.View gankView) {
         this.gankRepository = checkNotNull(gankRepository);
         this.gankView = checkNotNull(gankView);
         this.gankView.setPresenter(this);

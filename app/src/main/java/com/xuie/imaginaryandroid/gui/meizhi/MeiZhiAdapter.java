@@ -18,7 +18,7 @@ public class MeiZhiAdapter extends BaseQuickAdapter<福利Bean, BaseViewHolder> 
     private static final String TAG = "MeiZhiAdapter";
 
     public MeiZhiAdapter(List<福利Bean> meiZhis) {
-        super(R.layout.item_fragment_gank_meizhi, meiZhis);
+        super(R.layout.item_fragment_meizhi, meiZhis);
     }
 
     @Override

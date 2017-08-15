@@ -19,7 +19,7 @@ import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 import com.xuie.imaginaryandroid.data.福利Bean;
-import com.xuie.imaginaryandroid.gui.show.MeizhiActivity;
+import com.xuie.imaginaryandroid.gui.show.GankActivity;
 import com.xuie.imaginaryandroid.util.DateUtils;
 
 import java.util.ArrayList;
@@ -34,16 +34,16 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GankFragment extends Fragment implements GankContract.View,
+public class MeizhiFragment extends Fragment implements MeizhiContract.View,
         GZoomSwipeRefresh.OnRefreshListener,
         GZoomSwipeRefresh.OnBottomRefreshListener {
-    private static final String TAG = "GankFragment";
+    private static final String TAG = "MeizhiFragment";
 
-    public static GankFragment getInstance() {
-        return new GankFragment();
+    public static MeizhiFragment getInstance() {
+        return new MeizhiFragment();
     }
 
-    private GankContract.Presenter mPresenter;
+    private MeizhiContract.Presenter mPresenter;
     @BindView(R.id.recycle_view) RecyclerView recycleView;
     @BindView(R.id.swipe_refresh) GZoomSwipeRefresh swipeRefresh;
     Unbinder unbinder;
@@ -53,12 +53,12 @@ public class GankFragment extends Fragment implements GankContract.View,
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new GankPresenter(GankRepository.getInstance(), this);
+        new MeizhiPresenter(GankRepository.getInstance(), this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_gank, container, false);
+        View view = inflater.inflate(R.layout.fragment_meizhi, container, false);
         unbinder = ButterKnife.bind(this, view);
         Log.d(TAG, "onCreateView");
 
@@ -82,9 +82,9 @@ public class GankFragment extends Fragment implements GankContract.View,
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Log.d(TAG, "position:" + position);
                 福利Bean fl = (福利Bean) adapter.getData().get(position);
-                Log.d("GankFragment", fl.toString());
+                Log.d("MeizhiFragment", fl.toString());
                 String dateString = DateUtils.getDate(fl.getPublishedAt());
-                Intent intent = new Intent(getActivity(), MeizhiActivity.class);
+                Intent intent = new Intent(getActivity(), GankActivity.class);
                 intent.putExtra("date", dateString);
                 intent.putExtra("image", fl.getUrl());
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
@@ -96,7 +96,7 @@ public class GankFragment extends Fragment implements GankContract.View,
     }
 
     @Override
-    public void setPresenter(GankContract.Presenter presenter) {
+    public void setPresenter(MeizhiContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
 

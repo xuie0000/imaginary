@@ -7,7 +7,7 @@ import com.xuie.imaginaryandroid.data.GankBean;
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface MeizhiContract {
+public interface GankContract {
 
     interface View extends BaseView<Presenter> {
 
