@@ -1,8 +1,11 @@
 package com.xuie.imaginaryandroid.gui.meizhi;
 
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
 import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.data.MeiZhi;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
+import com.xuie.imaginaryandroid.data.福利;
+import com.xuie.imaginaryandroid.gui.show.MeizhiActivity;
+import com.xuie.imaginaryandroid.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +62,13 @@ public class GankFragment extends Fragment implements GankContract.View,
         unbinder = ButterKnife.bind(this, view);
         Log.d(TAG, "onCreateView");
 
+        // 设置下拉时旋转的三种颜色
         swipeRefresh.setColorSchemeResources(
                 R.color.colorPrimary,
                 R.color.colorPrimaryDark,
                 R.color.colorAccent);
         swipeRefresh.setOnRefreshListener(this);
+        // 设置底部下拉时的三种颜色
         swipeRefresh.setBottomColorSchemeColors(
                 R.color.colorPrimary,
                 R.color.colorPrimaryDark,
@@ -69,6 +77,20 @@ public class GankFragment extends Fragment implements GankContract.View,
 
         recycleView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recycleView.setAdapter(meiZhiAdapter);
+        meiZhiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.d(TAG, "position:" + position);
+                福利 fl = (福利) adapter.getData().get(position);
+                Log.d("GankFragment", fl.toString());
+                String dateString = DateUtils.getDate(fl.getPublishedAt());
+                Intent intent = new Intent(getActivity(), MeizhiActivity.class);
+                intent.putExtra("date", dateString);
+                intent.putExtra("image", fl.getUrl());
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            }
+        });
 
         return view;
     }
@@ -79,7 +101,7 @@ public class GankFragment extends Fragment implements GankContract.View,
     }
 
     @Override
-    public void addList(boolean isRefresh, List<MeiZhi> meiZhis) {
+    public void addList(boolean isRefresh, List<福利> meiZhis) {
         if (isRefresh)
             meiZhiAdapter.replaceData(new ArrayList<>());
 //        Log.d(TAG, meiZhis.toString());

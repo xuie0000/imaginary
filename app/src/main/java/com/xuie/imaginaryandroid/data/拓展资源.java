@@ -1,20 +1,21 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-7-5.
+ * Created by xuie on 17-8-8.
  */
 
-public class 福利 {
+public class 拓展资源 {
+
     /**
-     * _id : 595c2f23421aa90ca209c3f0
-     * createdAt : 2017-07-05T08:13:23.237Z
-     * desc : 2017-07-5
-     * publishedAt : 2017-07-05T11:15:30.556Z
-     * source : chrome
-     * type : 福利
-     * url : https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg
+     * _id : 5983d448421aa97de5c7ca24
+     * createdAt : 2017-08-04T09:56:24.687Z
+     * desc : exa - A modern replacement for ls，炫彩 ls 列出目录指令。
+     * publishedAt : 2017-08-08T11:34:20.37Z
+     * source : api
+     * type : 拓展资源
+     * url : https://the.exa.website/
      * used : true
-     * who : daimajia
+     * who : 代码家
      */
 
     private String _id;
@@ -97,20 +98,5 @@ public class 福利 {
 
     public void setWho(String who) {
         this.who = who;
-    }
-
-    @Override
-    public String toString() {
-        return "福利{" +
-                "_id='" + _id + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", desc='" + desc + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", used=" + used +
-                ", who='" + who + '\'' +
-                '}';
     }
 }

@@ -1,20 +1,21 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-7-5.
+ * Created by xuie on 17-8-8.
  */
 
-public class 福利 {
+public class 前端 {
+
     /**
-     * _id : 595c2f23421aa90ca209c3f0
-     * createdAt : 2017-07-05T08:13:23.237Z
-     * desc : 2017-07-5
-     * publishedAt : 2017-07-05T11:15:30.556Z
-     * source : chrome
-     * type : 福利
-     * url : https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg
+     * _id : 5985387d421aa90ca209c566
+     * createdAt : 2017-08-05T11:16:13.188Z
+     * desc : 一个轻量级模板引擎，可快速实现数据与ui绑定（数据变动，UI自动变动），快速实现事件绑定和处理，不依赖任何第三方库,仅仅8k。
+     * publishedAt : 2017-08-08T11:34:20.37Z
+     * source : web
+     * type : 前端
+     * url : https://github.com/epaii/epii.js
      * used : true
-     * who : daimajia
+     * who : MrRen
      */
 
     private String _id;
@@ -97,20 +98,5 @@ public class 福利 {
 
     public void setWho(String who) {
         this.who = who;
-    }
-
-    @Override
-    public String toString() {
-        return "福利{" +
-                "_id='" + _id + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", desc='" + desc + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", used=" + used +
-                ", who='" + who + '\'' +
-                '}';
     }
 }

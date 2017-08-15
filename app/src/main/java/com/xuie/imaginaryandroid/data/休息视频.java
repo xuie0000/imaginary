@@ -1,20 +1,21 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-7-5.
+ * Created by xuie on 17-8-8.
  */
 
-public class MeiZhi {
+public class 休息视频 {
+
     /**
-     * _id : 595c2f23421aa90ca209c3f0
-     * createdAt : 2017-07-05T08:13:23.237Z
-     * desc : 2017-07-5
-     * publishedAt : 2017-07-05T11:15:30.556Z
+     * _id : 59833107421aa90c9203d46b
+     * createdAt : 2017-08-03T22:19:51.587Z
+     * desc : 大学生历时一年完成的航拍中国
+     * publishedAt : 2017-08-08T11:34:20.37Z
      * source : chrome
-     * type : 福利
-     * url : https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg
+     * type : 休息视频
+     * url : http://www.bilibili.com/video/av12902834/
      * used : true
-     * who : daimajia
+     * who : LHF
      */
 
     private String _id;
@@ -97,20 +98,5 @@ public class MeiZhi {
 
     public void setWho(String who) {
         this.who = who;
-    }
-
-    @Override
-    public String toString() {
-        return "MeiZhi{" +
-                "_id='" + _id + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", desc='" + desc + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", used=" + used +
-                ", who='" + who + '\'' +
-                '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.xuie.imaginaryandroid.data.api;
 
-import com.xuie.imaginaryandroid.data.福利;
+import com.xuie.imaginaryandroid.data.福利s;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -15,5 +15,5 @@ public interface GankApi {
     String API = "http://gank.io/api/";
 
     @GET("data/福利/10/{page}")
-    Observable<福利> get福利(@Path("page") int page);
+    Observable<福利s> get福利(@Path("page") int page);
 }

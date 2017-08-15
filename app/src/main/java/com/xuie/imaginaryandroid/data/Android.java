@@ -1,20 +1,21 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-7-5.
+ * Created by xuie on 17-8-8.
  */
 
-public class 福利 {
+public class Android {
+
     /**
-     * _id : 595c2f23421aa90ca209c3f0
-     * createdAt : 2017-07-05T08:13:23.237Z
-     * desc : 2017-07-5
-     * publishedAt : 2017-07-05T11:15:30.556Z
-     * source : chrome
-     * type : 福利
-     * url : https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg
+     * _id : 5985bdb6421aa97de5c7ca30
+     * createdAt : 2017-08-05T20:44:38.849Z
+     * desc : 由于RxJava发布了一个订阅后，由于没有及时取消，会导致内存泄露，本文介绍Rxlifecycle机制
+     * publishedAt : 2017-08-08T11:34:20.37Z
+     * source : web
+     * type : Android
+     * url : http://url.cn/4Es2B0l
      * used : true
-     * who : daimajia
+     * who : Tamic (码小白)
      */
 
     private String _id;
@@ -97,20 +98,5 @@ public class 福利 {
 
     public void setWho(String who) {
         this.who = who;
-    }
-
-    @Override
-    public String toString() {
-        return "福利{" +
-                "_id='" + _id + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", desc='" + desc + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", used=" + used +
-                ", who='" + who + '\'' +
-                '}';
     }
 }

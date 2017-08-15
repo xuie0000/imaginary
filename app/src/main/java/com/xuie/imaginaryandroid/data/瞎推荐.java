@@ -1,20 +1,24 @@
 package com.xuie.imaginaryandroid.data;
 
+import java.util.List;
+
 /**
- * Created by xuie on 17-7-5.
+ * Created by xuie on 17-8-8.
  */
 
-public class 福利 {
+public class 瞎推荐 {
+
     /**
-     * _id : 595c2f23421aa90ca209c3f0
-     * createdAt : 2017-07-05T08:13:23.237Z
-     * desc : 2017-07-5
-     * publishedAt : 2017-07-05T11:15:30.556Z
+     * _id : 59892e7e421aa90ca3bb6bf2
+     * createdAt : 2017-08-08T11:22:38.415Z
+     * desc : 业余项目如何做 Market。
+     * images : ["http://img.gank.io/9722a2f3-a15b-4687-baaf-f6ff6d8bf6cd"]
+     * publishedAt : 2017-08-08T11:34:20.37Z
      * source : chrome
-     * type : 福利
-     * url : https://ws1.sinaimg.cn/large/610dc034ly1fh8ox6bmjlj20u00u0mz7.jpg
+     * type : 瞎推荐
+     * url : https://github.com/karllhughes/side-project-marketing
      * used : true
-     * who : daimajia
+     * who : 代码家
      */
 
     private String _id;
@@ -26,6 +30,7 @@ public class 福利 {
     private String url;
     private boolean used;
     private String who;
+    private List<String> images;
 
     public String get_id() {
         return _id;
@@ -99,18 +104,11 @@ public class 福利 {
         this.who = who;
     }
 
-    @Override
-    public String toString() {
-        return "福利{" +
-                "_id='" + _id + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", desc='" + desc + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", source='" + source + '\'' +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", used=" + used +
-                ", who='" + who + '\'' +
-                '}';
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

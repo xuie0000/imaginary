@@ -1,6 +1,6 @@
 package com.xuie.imaginaryandroid.data.source;
 
-import com.xuie.imaginaryandroid.data.MeiZhi;
+import com.xuie.imaginaryandroid.data.福利;
 import com.xuie.imaginaryandroid.data.api.GankApi;
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
 
@@ -31,12 +31,12 @@ public class GankRepository implements GankSource {
     }
 
     @Override
-    public Observable<List<MeiZhi>> get福利(int page) {
+    public Observable<List<福利>> get福利(int page) {
         return gankApi.get福利(page)
                 .subscribeOn(Schedulers.newThread())
                 .map(福利 -> {
                     if (福利.isError())
-                        return new ArrayList<MeiZhi>();
+                        return new ArrayList<com.xuie.imaginaryandroid.data.福利>();
                     return 福利.getResults();
                 });
     }

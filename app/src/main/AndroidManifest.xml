@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".gui.show.MeizhiActivity">
+        <activity android:name=".gui.show.MeizhiActivity"
+            >
         </activity>
     </application>
 
