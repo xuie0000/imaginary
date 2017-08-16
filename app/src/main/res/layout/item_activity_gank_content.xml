@@ -2,8 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,15 +23,16 @@
             android:id="@+id/articleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:maxLines="1"
             tools:text="用户体验极佳的干货集中营 iOS App"/>
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textSize="12sp"
             tools:text="(Fan Ye)"/>
-
     </LinearLayout>
 
     <ImageView

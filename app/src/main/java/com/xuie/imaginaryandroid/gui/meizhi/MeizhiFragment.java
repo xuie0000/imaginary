@@ -92,6 +92,7 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
             }
         });
 
+        mPresenter.subscribe();
         return view;
     }
 
@@ -110,20 +111,9 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mPresenter.subscribe();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mPresenter.unsubscribe();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mPresenter.unsubscribe();
         unbinder.unbind();
     }
 

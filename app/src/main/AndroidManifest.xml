@@ -21,8 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".gui.show.GankActivity"
-            >
+        <activity android:name=".gui.show.GankActivity">
+        </activity>
+        <activity android:name=".gui.web.WebViewActivity">
         </activity>
     </application>
 

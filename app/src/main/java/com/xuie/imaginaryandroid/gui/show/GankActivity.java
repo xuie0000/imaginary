@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -43,7 +42,8 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
 
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.expandAll();
+        recycleView.setNestedScrollingEnabled(false);
+
 
         new GankPresenter(GankRepository.getInstance(), this);
     }
@@ -54,15 +54,15 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         if (date != null)
             mPresenter.getGank(date);
     }
 
     @Override
     public void refresh(GankBean gb) {
-        Log.d("GankActivity", gb.toString());
+//        Log.d("GankActivity", gb.toString());
         List<MultiItemEntity> entities = generateData(gb);
         adapter.replaceData(new ArrayList<>());
         adapter.addData(entities);
@@ -71,7 +71,6 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
 
     private List<MultiItemEntity> generateData(GankBean gb) {
         List<MultiItemEntity> entities = new ArrayList<>();
-        Log.d("GankActivity", "gb.getCategory().size():" + gb.getCategory().size());
         for (String s : gb.getCategory()) {
             Level0Item lv0 = new Level0Item();
             lv0.setType(s);
@@ -85,7 +84,8 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
             } else if (s.equals("休息视频")) {
                 bbs = gb.getResults().get休息视频();
             } else if (s.equals("福利")) {
-                bbs = gb.getResults().get福利();
+//                bbs = gb.getResults().get福利();
+                continue;
             } else if (s.equals("前端")) {
                 bbs = gb.getResults().get前端();
             }
