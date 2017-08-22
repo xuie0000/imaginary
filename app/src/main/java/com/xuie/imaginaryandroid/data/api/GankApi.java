@@ -12,8 +12,9 @@ import rx.Observable;
  * http://gank.io/api
  */
 
-public interface GankApi {
-    String API = "http://gank.io/api/";
+public interface GankApi{
+    // GANK
+    String GANK_API = "http://gank.io/api/";
 
     @GET("data/福利/10/{page}")
     Observable<福利s> get福利(@Path("page") int page);

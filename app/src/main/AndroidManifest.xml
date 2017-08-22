@@ -3,6 +3,7 @@
           package="com.xuie.imaginaryandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".app.App"
@@ -24,6 +25,8 @@
         <activity android:name=".gui.show.GankActivity">
         </activity>
         <activity android:name=".gui.web.WebViewActivity">
+        </activity>
+        <activity android:name=".gui.detail.NetsOneActivity">
         </activity>
     </application>
 

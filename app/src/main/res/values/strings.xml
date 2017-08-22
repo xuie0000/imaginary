@@ -8,4 +8,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="activity_gank_adater_content_link"><![CDATA[<a href=\'%1$s\'> %1$s</a>]]></string>
 
+    <!-- 共享过度动画 -->
+    <string name="transition_photos">transition_animation_news_photos</string>
+
+    <string name="news_from">%1$s %2$s</string>
+
+
 </resources>

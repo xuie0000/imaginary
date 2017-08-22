@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.gui.meizhi.MeizhiFragment;
+import com.xuie.imaginaryandroid.gui.news.NewsListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return MeizhiFragment.getInstance();
+                case 1:
+                    return NewsListFragment.getInstance();
             }
             return new BlankFragment();
         }
