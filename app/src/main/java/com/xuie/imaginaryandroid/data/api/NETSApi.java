@@ -2,6 +2,7 @@ package com.xuie.imaginaryandroid.data.api;
 
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.NetsSummary;
+import com.xuie.imaginaryandroid.data.VideoBean;
 
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,14 @@ import rx.Observable;
 
 public interface NETSApi {
     // NETS
-    String NETS_API = "http://c.m.163.com/nc/article/";
+    String NETS_API = "http://c.m.163.com/";
 
-    @GET("headline/T1348647853363/{start_page}-20.html")
+    @GET("nc/article/headline/T1348647853363/{start_page}-20.html")
     Observable<Map<String, List<NetsSummary>>> getNewsList(
             @Header("Cache-Control") String cacheControl,
             @Path("start_page") int start_page);
 
-    @GET("{postId}/full.html")
+    @GET("nc/article/{postId}/full.html")
     Observable<Map<String, NetsDetail>> getNewDetail(
             @Header("Cache-Control") String cacheControl,
             @Path("postId") String postId);
@@ -37,5 +38,12 @@ public interface NETSApi {
             @Url String photoPath);
     //@Url，它允许我们直接传入一个请求的URL。这样以来我们可以将上一个请求的获得的url直接传入进来，baseUrl将被无视
     // baseUrl 需要符合标准，为空、""、或不合法将会报错
+
+
+    @GET("nc/video/list/{type}/n/{startPage}-10.html")
+    Observable<Map<String, List<VideoBean>>> getVideoList(
+            @Header("Cache-Control") String cacheControl,
+            @Path("type") String type,
+            @Path("startPage") int startPage);
 
 }

@@ -2,6 +2,7 @@ package com.xuie.imaginaryandroid.data.source;
 
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.NetsSummary;
+import com.xuie.imaginaryandroid.data.VideoBean;
 import com.xuie.imaginaryandroid.data.api.NETSApi;
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
 import com.xuie.imaginaryandroid.util.HttpUtils;
@@ -57,5 +58,19 @@ public class NETSRepository implements NETSSource {
         return netsApi.getNewDetail(HttpUtils.getCacheControl(), postId)
                 .subscribeOn(Schedulers.newThread())
                 .map(stringNetsDetailMap -> stringNetsDetailMap.get(postId));
+    }
+
+    @Override
+    public Observable<List<VideoBean>> getVideoList(String type, int page) {
+        return netsApi.getVideoList(HttpUtils.getCacheControl(), type, page)
+                .subscribeOn(Schedulers.newThread())
+                .flatMap(new Func1<Map<String, List<VideoBean>>, Observable<VideoBean>>() {
+                    @Override
+                    public Observable<VideoBean> call(Map<String, List<VideoBean>> stringListMap) {
+                        return Observable.from(stringListMap.get(type));
+                    }
+                })
+                .distinct()
+                .toSortedList((videoBean, videoBean2) -> videoBean2.getPtime().compareTo(videoBean.getPtime()));
     }
 }

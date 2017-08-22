@@ -14,5 +14,6 @@
 
     <string name="news_from">%1$s %2$s</string>
 
+    <string name="video_play_times">%1$s次播放</string>
 
 </resources>

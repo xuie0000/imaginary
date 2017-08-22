@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 public class NewsListAdapter extends BaseQuickAdapter<NetsSummary, BaseViewHolder> {
-    private static final String TAG = "MeiZhiAdapter";
+    private static final String TAG = "NewsListAdapter";
 
     public NewsListAdapter(List<NetsSummary> netsSummaries) {
         super(R.layout.item_fragment_news, netsSummaries);
