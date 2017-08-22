@@ -95,7 +95,11 @@ public class NewsListFragment extends Fragment implements NewsListContract.View,
         newsListAdapter.addData(netsSummaries);
         newsListAdapter.setOnItemClickListener((adapter, view, position) -> {
             NetsSummary ns = netsSummaries.get(position);
-            NetsOneActivity.newIntent(getActivity(), view, ns.getPostid(), ns.getImgsrc());
+            NetsOneActivity.newIntent(getActivity(),
+                    view.findViewById(R.id.img_src),
+                    view.findViewById(R.id.ltitle),
+                    ns.getPostid(),
+                    ns.getImgsrc());
         });
         cancelRefresh();
     }

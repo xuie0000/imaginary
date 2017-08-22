@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -35,6 +36,7 @@ import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
@@ -42,19 +44,23 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
     public static final String POST_ID = "postId";
     public static final String IMG_RES = "image";
 
-    public static void newIntent(Context mContext, View view, String postId, String imgUrl) {
+    public static void newIntent(Context mContext, View imageView, View titleView, String postId, String imgUrl) {
         Intent intent = new Intent(mContext, NetsOneActivity.class);
         intent.putExtra(POST_ID, postId);
         intent.putExtra(IMG_RES, imgUrl);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions
-                    .makeSceneTransitionAnimation((Activity) mContext, view, "transition_animation_news_photos");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext,
+                    // 创建多个共享元素
+                    Pair.create(imageView, mContext.getString(R.string.transition_image)),
+                    Pair.create(titleView, mContext.getString(R.string.transition_title))
+            );
+
             mContext.startActivity(intent, options.toBundle());
         } else {
             ActivityOptionsCompat options = ActivityOptionsCompat
-                    .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
-            ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
+                    .makeScaleUpAnimation(imageView, imageView.getWidth() / 2, imageView.getHeight() / 2, 0, 0);
+            ActivityCompat.startActivity(mContext, intent, options.toBundle());
         }
     }
 
@@ -103,7 +109,31 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         //mNewsDetailTitleTv.setText(newsTitle);
         newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
         setNewsDetailPhotoIv(NewsImgSrc);
-        setNewsDetailBodyTv(netsDetail, newsBody);
+
+        Observable.just(netsDetail)
+                .delay(500, TimeUnit.MILLISECONDS)
+//                .subscribeOn(Schedulers.newThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<NetsDetail>() {
+                    @Override
+                    public void onCompleted() {
+                        progressBar.setVisibility(View.GONE);
+                        fab.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onNext(NetsDetail netsDetail) {
+                        setBody(netsDetail, netsDetail.getBody());
+                    }
+                });
+
     }
 
     private void setToolBarLayout(String newsTitle) {
@@ -119,48 +149,6 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
                 .placeholder(R.mipmap.ic_empty_picture)
                 .error(R.mipmap.ic_empty_picture)
                 .into(newsDetailPhotoIv);
-    }
-
-    private void setNewsDetailBodyTv(final NetsDetail newsDetail, final String newsBody) {
-        Observable/*.just(newsDetail)*/
-                .just(true).delay(500, TimeUnit.MILLISECONDS)
-//                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Action1<Boolean>() {
-//                    @Override
-//                    public void call(Boolean aBoolean) {
-//                        setBody(newsDetail, newsBody);
-//                    }
-//                }, new Action1<Throwable>() {
-//                    @Override
-//                    public void call(Throwable throwable) {
-//                        progressBar.setVisibility(View.GONE);
-//                    }
-//                }, new Action0() {
-//                    @Override
-//                    public void call() {
-//                        progressBar.setVisibility(View.GONE);
-//                        fab.setVisibility(View.VISIBLE);
-//                    }
-//                });
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onCompleted() {
-                        progressBar.setVisibility(View.GONE);
-                        fab.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        progressBar.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onNext(Boolean aBoolean) {
-                        setBody(newsDetail, newsBody);
-                    }
-                });
-//
     }
 
     private void setBody(NetsDetail netsDetail, String newsBody) {

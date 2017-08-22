@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ImaginaryAndroid</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_nets">新闻</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_gank_meizhi">妹子图</string>
 
@@ -9,7 +9,8 @@
     <string name="activity_gank_adater_content_link"><![CDATA[<a href=\'%1$s\'> %1$s</a>]]></string>
 
     <!-- 共享过度动画 -->
-    <string name="transition_photos">transition_animation_news_photos</string>
+    <string name="transition_image">transition_animation_news_image</string>
+    <string name="transition_title">transition_animation_news_title</string>
 
     <string name="news_from">%1$s %2$s</string>
 
