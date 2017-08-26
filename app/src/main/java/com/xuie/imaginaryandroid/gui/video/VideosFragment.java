@@ -29,12 +29,14 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
  */
 public class VideosFragment extends Fragment implements VideosContract.View, GZoomSwipeRefresh.OnRefreshListener, GZoomSwipeRefresh.OnBottomRefreshListener {
 
-    public static final String VIDEO_TYPE = "type";
+    public static final String VIDEO_TYPE_ID = "type";
+    public static final String VIDEO_TYPE_NAME = "name";
 
-    public static VideosFragment getInstance(String type) {
+    public static VideosFragment getInstance(String typeName, String typeId) {
         VideosFragment fragment = new VideosFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(VIDEO_TYPE, type);
+        bundle.putString(VIDEO_TYPE_NAME, typeName);
+        bundle.putString(VIDEO_TYPE_ID, typeId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -50,7 +52,7 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mVideoType = getArguments().getString(VIDEO_TYPE);
+        mVideoType = getArguments().getString(VIDEO_TYPE_ID);
 
         new VideosPresenter(NETSRepository.getInstance(), this);
     }
@@ -59,7 +61,6 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_videos, container, false);
         unbinder = ButterKnife.bind(this, view);
-
 
         // 设置下拉时旋转的三种颜色
         swipeRefresh.setColorSchemeResources(
@@ -76,6 +77,19 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
 
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(videosAdapter);
+        recycleView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+//                if (((ViewGroup) view).indexOfChild(videoPlayer) != -1 && videoPlayer.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
+//                    JCVideoPlayer.releaseAllVideos();
+//                }
+            }
+        });
 
         mPresenter.subscribe();
         mPresenter.getList(mVideoType, true);

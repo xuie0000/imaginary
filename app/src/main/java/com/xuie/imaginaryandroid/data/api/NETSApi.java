@@ -42,8 +42,8 @@ public interface NETSApi {
 
     @GET("nc/video/list/{type}/n/{startPage}-10.html")
     Observable<Map<String, List<VideoBean>>> getVideoList(
-            @Header("Cache-Control") String cacheControl,
+//            @Header("Cache-Control") String cacheControl,
+            @Header("Content-Type") String contentType,
             @Path("type") String type,
             @Path("startPage") int startPage);
-
 }

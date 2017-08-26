@@ -13,17 +13,13 @@ import android.view.MenuItem;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.gui.meizhi.MeizhiFragment;
 import com.xuie.imaginaryandroid.gui.news.NewsListFragment;
+import com.xuie.imaginaryandroid.gui.video.VideoMainFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-
-    protected Fragment currentFragment;
     @BindView(R.id.view_pager) ViewPager viewPager;
-
-
-    private FragmentManager fragmentManager;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        fragmentManager = getSupportFragmentManager();
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
@@ -61,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {
 
-        public MyViewPagerAdapter(FragmentManager fm) {
+        MyViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -72,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     return MeizhiFragment.getInstance();
                 case 1:
                     return NewsListFragment.getInstance();
+                case 2:
+                    return VideoMainFragment.getInstance();
             }
             return new BlankFragment();
         }
