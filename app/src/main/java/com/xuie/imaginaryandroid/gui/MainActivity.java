@@ -13,13 +13,16 @@ import android.view.MenuItem;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.gui.meizhi.MeizhiFragment;
 import com.xuie.imaginaryandroid.gui.news.NewsListFragment;
+import com.xuie.imaginaryandroid.gui.settings.SettingsFragment;
 import com.xuie.imaginaryandroid.gui.video.VideoMainFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     @BindView(R.id.view_pager) ViewPager viewPager;
+    @BindView(R.id.navigation) BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -33,8 +36,11 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_video:
                     viewPager.setCurrentItem(2);
+                    return true;
+                case R.id.navigation_settings:
+                    viewPager.setCurrentItem(3);
                     return true;
             }
             return false;
@@ -48,9 +54,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            boolean isUser = false;
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (isUser) {
+                    int itemId = navigation.getMenu().getItem(position).getItemId();
+                    navigation.setSelectedItemId(itemId);
+                    isUser = false;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == ViewPager.SCROLL_STATE_DRAGGING) {
+                    isUser = true;
+                }
+            }
+        });
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {
@@ -68,13 +96,15 @@ public class MainActivity extends AppCompatActivity {
                     return NewsListFragment.getInstance();
                 case 2:
                     return VideoMainFragment.getInstance();
+                case 3:
+                    return SettingsFragment.getInstance();
             }
             return new BlankFragment();
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
     }
 

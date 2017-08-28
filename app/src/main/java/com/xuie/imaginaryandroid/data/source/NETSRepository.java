@@ -62,7 +62,7 @@ public class NETSRepository implements NETSSource {
 
     @Override
     public Observable<List<VideoBean>> getVideoList(String type, int page) {
-        return netsApi.getVideoList(/* HttpUtils.getCacheControl(), */"application/json;charset=utf-8", type, page)
+        return netsApi.getVideoList(HttpUtils.getCacheControl(), type, page)
                 .subscribeOn(Schedulers.newThread())
                 .flatMap(new Func1<Map<String, List<VideoBean>>, Observable<VideoBean>>() {
                     @Override

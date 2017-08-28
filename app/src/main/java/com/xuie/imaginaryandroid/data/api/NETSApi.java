@@ -10,6 +10,7 @@ import java.util.Map;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -40,10 +41,10 @@ public interface NETSApi {
     // baseUrl 需要符合标准，为空、""、或不合法将会报错
 
 
+    @Headers("Content-Type: application/json;charset=utf-8")
     @GET("nc/video/list/{type}/n/{startPage}-10.html")
     Observable<Map<String, List<VideoBean>>> getVideoList(
-//            @Header("Cache-Control") String cacheControl,
-            @Header("Content-Type") String contentType,
+            @Header("Cache-Control") String cacheControl,
             @Path("type") String type,
             @Path("startPage") int startPage);
 }
