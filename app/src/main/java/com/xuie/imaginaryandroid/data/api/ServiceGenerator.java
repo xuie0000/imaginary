@@ -1,6 +1,7 @@
 package com.xuie.imaginaryandroid.data.api;
 
 import android.text.TextUtils;
+import android.webkit.WebSettings;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -60,6 +61,9 @@ public class ServiceGenerator {
             public Response intercept(Chain chain) throws IOException {
                 Request build = chain.request().newBuilder()
                         .addHeader("Content-Type", "application/json")
+                        // http://www.jianshu.com/p/4132b381f07e
+                        .removeHeader("User-Agent")//移除旧的
+                        .addHeader("User-Agent", WebSettings.getDefaultUserAgent(App.getContext()))//添加真正的头部
                         .build();
                 return chain.proceed(build);
             }
