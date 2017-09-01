@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
@@ -87,6 +88,8 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
             ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         });
+        meiZhiAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+        meiZhiAdapter.isFirstOnly(true);
 
         mPresenter.subscribe();
         return v;

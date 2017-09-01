@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
@@ -43,7 +44,7 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
         recycleView.setNestedScrollingEnabled(false);
-
+        adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 
         new GankPresenter(GankRepository.getInstance(), this);
     }

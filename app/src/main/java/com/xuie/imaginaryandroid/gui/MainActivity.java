@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
+                default:
                     return MeizhiFragment.getInstance();
                 case 1:
                     return NewsListFragment.getInstance();
@@ -99,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     return SettingsFragment.getInstance();
             }
-            return new BlankFragment();
         }
 
         @Override

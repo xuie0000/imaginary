@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsSummary;
@@ -70,6 +71,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View,
 
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(newsListAdapter);
+        newsListAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mPresenter.subscribe();
 
         return view;
