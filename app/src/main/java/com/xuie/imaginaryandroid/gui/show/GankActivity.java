@@ -6,13 +6,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.GankBean;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
+import com.xuie.imaginaryandroid.glide.GlideApp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
 
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        Glide.with(this).load(imageUrl).into(gankDaily);
+        GlideApp.with(this).load(imageUrl).into(gankDaily);
 
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
@@ -89,6 +89,8 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
                 continue;
             } else if (s.equals("前端")) {
                 bbs = gb.getResults().get前端();
+            } else if (s.equals("拓展资源")) {
+                bbs = gb.getResults().get拓展资源();
             }
             for (BaseBean ab : bbs) {
                 Level1Item lv1 = new Level1Item();

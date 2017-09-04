@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.app.App;
+import com.xuie.imaginaryandroid.glide.GlideApp;
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
 
 import java.util.List;
@@ -76,6 +78,11 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                 helper.setText(R.id.author, String.format("(%s)", lv1.getAuthor()));
                 // 添加Child Click，不过无效
 //                helper.addOnClickListener(R.id.articleName);
+
+                if (lv1.getImageUrl() != null)
+                    GlideApp.with(mContext)
+                            .load(lv1.getImageUrl())
+                            .into((ImageView) helper.getView(R.id.thumb));
                 break;
         }
 

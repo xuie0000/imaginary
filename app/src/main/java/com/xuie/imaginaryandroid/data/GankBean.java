@@ -49,6 +49,7 @@ public class GankBean {
         private List<BaseBean> 前端;
         private List<BaseBean> 瞎推荐;
         private List<BaseBean> 福利;
+        private List<BaseBean> 拓展资源;
 
         public List<BaseBean> getAndroid() {
             return Android;
@@ -98,6 +99,14 @@ public class GankBean {
             this.福利 = 福利;
         }
 
+        public List<BaseBean> get拓展资源() {
+            return 拓展资源;
+        }
+
+        public void set拓展资源(List<BaseBean> 拓展资源) {
+            this.拓展资源 = 拓展资源;
+        }
+
         @Override
         public String toString() {
             return "ResultsBean{" +
@@ -107,6 +116,7 @@ public class GankBean {
                     ", 前端=" + 前端 +
                     ", 瞎推荐=" + 瞎推荐 +
                     ", 福利=" + 福利 +
+                    ", 拓展资源=" + 拓展资源 +
                     '}';
         }
     }

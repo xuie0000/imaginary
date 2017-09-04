@@ -3,7 +3,9 @@ package com.xuie.imaginaryandroid.gui.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -13,6 +15,7 @@ import com.xuie.imaginaryandroid.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * https://developer.android.com/guide/topics/ui/settings.html
  */
 public class SettingsFragment extends PreferenceFragmentCompat
         implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -22,7 +25,68 @@ public class SettingsFragment extends PreferenceFragmentCompat
         return new SettingsFragment();
     }
 
+
+    /**
+     * A preference value change listener that updates the preference's summary
+     * to reflect its new value.
+     */
+    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
+        @Override
+        public boolean onPreferenceChange(Preference preference, Object value) {
+            String stringValue = value.toString();
+
+            if (preference instanceof ListPreference) {
+                // For list preferences, look up the correct display value in
+                // the preference's 'entries' list.
+                ListPreference listPreference = (ListPreference) preference;
+                int index = listPreference.findIndexOfValue(stringValue);
+
+                // Set the summary to reflect the new value.
+                preference.setSummary(
+                        index >= 0
+                                ? listPreference.getEntries()[index]
+                                : null);
+            } else {
+                // For all other preferences, set the summary to the value's
+                // simple string representation.
+                preference.setSummary(stringValue);
+            }
+            return true;
+        }
+    };
+
+    /**
+     * Binds a preference's summary to its value. More specifically, when the
+     * preference's value is changed, its summary (line of text below the
+     * preference title) is updated to reflect the value. The summary is also
+     * immediately updated upon calling this method. The exact display format is
+     * dependent on the type of preference.
+     *
+     * @see #sBindPreferenceSummaryToValueListener
+     */
+    private static void bindPreferenceSummaryToValue(Preference preference) {
+        // Set the listener to watch for value changes.
+        preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
+
+        // Trigger the listener immediately with the preference's
+        // current value.
+
+        if (preference instanceof CheckBoxPreference) {
+            ((CheckBoxPreference) preference).setChecked(
+                    PreferenceManager.getDefaultSharedPreferences(
+                            preference.getContext()).getBoolean(preference.getKey(), false));
+            return;
+        }
+
+        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+                PreferenceManager
+                        .getDefaultSharedPreferences(preference.getContext())
+                        .getString(preference.getKey(), ""));
+    }
+
     public static final String KEY_LIST_PRE = "list_preference";
+    public static final String KEY_PET_PRE = "edit_text_preference";
+    public static final String KEY_CACHED_PRE = "checkbox_preference";
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
@@ -40,42 +104,23 @@ public class SettingsFragment extends PreferenceFragmentCompat
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.fragment_settings);
-        // 选项监听 ...
-        // findPreference("child_checkbox_preference").setOnPreferenceClickListener(...);
-        // 选项监听 当 Preference 的值发生改变时触发该事件，true则以新值更新控件的状态，false 则 不保存
-        findPreference("child_checkbox_preference").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                // 返回 false 修改不会生效
-                return false;
-            }
-        });
-        // 获取 Preferences Manager
-//        PreferenceManager manager = getPreferenceManager();
-        // 获取 选项状态
-//        CheckBoxPreference child_checkbox_preference = (CheckBoxPreference) manager.findPreference("child_checkbox_preference");
-        // ...
-//        Toast.makeText(getActivity(), String.valueOf(child_checkbox_preference.isChecked()), Toast.LENGTH_SHORT).show();
-
+        bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE));
+        bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE));
+        bindPreferenceSummaryToValue(findPreference(KEY_CACHED_PRE));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+//        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+//        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
 
 }
