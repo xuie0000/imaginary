@@ -36,7 +36,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View,
         return new NewsListFragment();
     }
 
-    @BindView(R.id.recycle_view) RecyclerView recycleView;
+    @BindView(R.id.recycler_view) RecyclerView recycleView;
     @BindView(R.id.swipe_refresh) GZoomSwipeRefresh swipeRefresh;
     Unbinder unbinder;
 

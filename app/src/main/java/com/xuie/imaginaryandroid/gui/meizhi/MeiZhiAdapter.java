@@ -26,6 +26,7 @@ public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
         helper.setText(R.id.date, item.getDesc());
         GlideApp.with(mContext)
                 .load(item.getUrl())
+                .placeholder(R.mipmap.meizhi_sample)
                 .into((ImageView) helper.getView(R.id.meizhi));
     }
 }

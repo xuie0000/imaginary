@@ -15,7 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
@@ -34,9 +35,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeizhiFragment extends Fragment implements MeizhiContract.View,
-        GZoomSwipeRefresh.OnRefreshListener,
-        GZoomSwipeRefresh.OnBottomRefreshListener {
+public class MeizhiFragment extends Fragment implements MeizhiContract.View {
     private static final String TAG = "MeizhiFragment";
 
     public static MeizhiFragment getInstance() {
@@ -44,8 +43,8 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
     }
 
     private MeizhiContract.Presenter mPresenter;
-    @BindView(R.id.recycle_view) RecyclerView recycleView;
-    @BindView(R.id.swipe_refresh) GZoomSwipeRefresh swipeRefresh;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.material_refresh) MaterialRefreshLayout materialRefresh;
     Unbinder unbinder;
 
     private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(null);
@@ -62,21 +61,9 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
         unbinder = ButterKnife.bind(this, v);
         Log.d(TAG, "onCreateView");
 
-        // 设置下拉时旋转的三种颜色
-        swipeRefresh.setColorSchemeResources(
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.colorAccent);
-        swipeRefresh.setOnRefreshListener(this);
-        // 设置底部下拉时的三种颜色
-        swipeRefresh.setBottomColorSchemeColors(
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.colorAccent);
-        swipeRefresh.setOnBottomRefreshListenrer(this);
-
-        recycleView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        recycleView.setAdapter(meiZhiAdapter);
+        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(meiZhiAdapter);
         meiZhiAdapter.setOnItemClickListener((adapter, view, position) -> {
             Log.d(TAG, "position:" + position);
             BaseBean fl = (BaseBean) adapter.getData().get(position);
@@ -90,6 +77,21 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
         });
         meiZhiAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
         meiZhiAdapter.isFirstOnly(true);
+
+        materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                mPresenter.getList(true);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefresh, 1000);
+            }
+
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                super.onRefreshLoadMore(materialRefreshLayout);
+                mPresenter.getList(false);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
+            }
+        });
 
         mPresenter.subscribe();
         return v;
@@ -106,7 +108,6 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
             meiZhiAdapter.replaceData(new ArrayList<>());
 //        Log.d(TAG, meiZhis.toString());
         meiZhiAdapter.addData(meiZhis);
-        cancelRefresh();
     }
 
     @Override
@@ -114,36 +115,5 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View,
         super.onDestroyView();
         mPresenter.unsubscribe();
         unbinder.unbind();
-    }
-
-    private void cancelRefresh() {
-        // 让子弹飞一会儿.
-        if (swipeRefresh != null) {
-            swipeRefresh.postDelayed(() -> {
-                synchronized (this) {
-                    if (swipeRefresh == null)
-                        return;
-                    if (swipeRefresh.isRefreshing())
-                        swipeRefresh.setRefreshing(false);
-                    swipeRefresh.setBottomRefreshing(false);
-                }
-            }, 1000);
-        }
-    }
-
-    /**
-     * {@link com.xuie.gzoomswiperefresh.GZoomSwipeRefresh.OnRefreshListener}
-     */
-    @Override
-    public void onRefresh() {
-        mPresenter.getList(true);
-    }
-
-    /**
-     * {@link com.xuie.gzoomswiperefresh.GZoomSwipeRefresh.OnBottomRefreshListener}
-     */
-    @Override
-    public void onBottomRefresh() {
-        mPresenter.getList(false);
     }
 }

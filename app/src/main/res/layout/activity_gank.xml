@@ -18,10 +18,11 @@
             android:transitionName="shareObject"/>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_view"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            android:scrollbars="none"/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

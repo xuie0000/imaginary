@@ -25,7 +25,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 public class GankActivity extends AppCompatActivity implements GankContract.View {
 
     @BindView(R.id.gank_daily) ImageView gankDaily;
-    @BindView(R.id.recycle_view) RecyclerView recycleView;
+    @BindView(R.id.recycler_view) RecyclerView recycleView;
 
     private GankContract.Presenter mPresenter;
     private String date;

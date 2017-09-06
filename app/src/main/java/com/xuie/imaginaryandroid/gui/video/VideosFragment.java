@@ -42,7 +42,7 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
         return fragment;
     }
 
-    @BindView(R.id.recycle_view) RecyclerView recycleView;
+    @BindView(R.id.recycler_view) RecyclerView recycleView;
     @BindView(R.id.swipe_refresh) GZoomSwipeRefresh swipeRefresh;
     Unbinder unbinder;
 
