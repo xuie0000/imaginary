@@ -1,5 +1,6 @@
 package com.xuie.imaginaryandroid.gui.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,9 +14,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
+import com.xuie.imaginaryandroid.app.App;
 import com.xuie.imaginaryandroid.data.NetsSummary;
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
 import com.xuie.imaginaryandroid.gui.detail.NetsOneActivity;
+import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +100,16 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
 //        Log.d(TAG, netsSummaries.toString());
         newsListAdapter.addData(netsSummaries);
         newsListAdapter.setOnItemClickListener((adapter, view, position) -> {
-            NetsSummary ns = netsSummaries.get(position);
+            NetsSummary ns = (NetsSummary) adapter.getData().get(position);
+            if (ns.getImgextra() != null) {
+                Intent intent = new Intent(App.getContext(), WebViewActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                String pv = ns.getPhotosetID();
+                pv = pv.replace("|", "/");
+                intent.putExtra("url", "http://news.163.com/photoview/" + pv + ".html");
+                App.getContext().startActivity(intent);
+                return;
+            }
             NetsOneActivity.newIntent(getActivity(),
                     view.findViewById(R.id.img_src),
                     view.findViewById(R.id.ltitle),

@@ -1,12 +1,16 @@
 package com.xuie.imaginaryandroid.data;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 import java.util.List;
 
 /**
  * Created by xuie on 17-8-16.
  */
 
-public class NetsSummary {
+public class NetsSummary implements MultiItemEntity {
+    public static final int IMG_ONE = 1;
+    public static final int IMG_MULTI = 2;
 
     /**
      * imgextra : [{"imgsrc":"http://cms-bucket.nosdn.127.net/e2ab56d95eb342e9b2d851bb3885158720170817074439.jpeg"},{"imgsrc":"http://cms-bucket.nosdn.127.net/9a36161866174b1186077a94db40ac2120170817074439.jpeg"}]
@@ -330,6 +334,11 @@ public class NetsSummary {
 
     public void setAds(List<AdsBean> ads) {
         this.ads = ads;
+    }
+
+    @Override
+    public int getItemType() {
+        return getImgextra() != null ? IMG_MULTI : IMG_ONE;
     }
 
     public static class ImgextraBean {
