@@ -1,2 +1,1 @@
-include ':app', ':gzoomswiperefresh', ':test'
-project(':gzoomswiperefresh').projectDir = new File('library/gzoomswiperefresh')
+include ':app', ':test'

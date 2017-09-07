@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsSummary;
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
@@ -28,8 +29,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsListFragment extends Fragment implements NewsListContract.View,
-        GZoomSwipeRefresh.OnBottomRefreshListener, GZoomSwipeRefresh.OnRefreshListener {
+public class NewsListFragment extends Fragment implements NewsListContract.View {
     private static final String TAG = "NewsListFragment";
 
     public static NewsListFragment getInstance() {
@@ -37,7 +37,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View,
     }
 
     @BindView(R.id.recycler_view) RecyclerView recycleView;
-    @BindView(R.id.swipe_refresh) GZoomSwipeRefresh swipeRefresh;
+    @BindView(R.id.material_refresh) MaterialRefreshLayout materialRefresh;
     Unbinder unbinder;
 
     private NewsListContract.Presenter mPresenter;
@@ -52,27 +52,28 @@ public class NewsListFragment extends Fragment implements NewsListContract.View,
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-
-        // 设置下拉时旋转的三种颜色
-        swipeRefresh.setColorSchemeResources(
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.colorAccent);
-        swipeRefresh.setOnRefreshListener(this);
-        // 设置底部下拉时的三种颜色
-        swipeRefresh.setBottomColorSchemeColors(
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.colorAccent);
-        swipeRefresh.setOnBottomRefreshListenrer(this);
 
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(newsListAdapter);
         newsListAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mPresenter.subscribe();
+
+        materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                mPresenter.getList(true);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefresh, 1000);
+            }
+
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                super.onRefreshLoadMore(materialRefreshLayout);
+                mPresenter.getList(false);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
+            }
+        });
 
         return view;
     }
@@ -103,37 +104,5 @@ public class NewsListFragment extends Fragment implements NewsListContract.View,
                     ns.getPostid(),
                     ns.getImgsrc());
         });
-        cancelRefresh();
-    }
-
-    private void cancelRefresh() {
-        // 让子弹飞一会儿.
-        if (swipeRefresh != null) {
-            swipeRefresh.postDelayed(() -> {
-                synchronized (this) {
-                    if (swipeRefresh == null)
-                        return;
-                    if (swipeRefresh.isRefreshing())
-                        swipeRefresh.setRefreshing(false);
-                    swipeRefresh.setBottomRefreshing(false);
-                }
-            }, 1000);
-        }
-    }
-
-    /**
-     * {@link com.xuie.gzoomswiperefresh.GZoomSwipeRefresh.OnRefreshListener}
-     */
-    @Override
-    public void onRefresh() {
-        mPresenter.getList(true);
-    }
-
-    /**
-     * {@link com.xuie.gzoomswiperefresh.GZoomSwipeRefresh.OnBottomRefreshListener}
-     */
-    @Override
-    public void onBottomRefresh() {
-        mPresenter.getList(false);
     }
 }

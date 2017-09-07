@@ -1,6 +1,5 @@
 package com.xuie.imaginaryandroid.gui.video;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.xuie.gzoomswiperefresh.GZoomSwipeRefresh;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.VideoBean;
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
@@ -28,7 +28,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VideosFragment extends Fragment implements VideosContract.View, GZoomSwipeRefresh.OnRefreshListener, GZoomSwipeRefresh.OnBottomRefreshListener {
+public class VideosFragment extends Fragment implements VideosContract.View {
 
     public static final String VIDEO_TYPE_ID = "type";
     public static final String VIDEO_TYPE_NAME = "name";
@@ -43,7 +43,7 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
     }
 
     @BindView(R.id.recycler_view) RecyclerView recycleView;
-    @BindView(R.id.swipe_refresh) GZoomSwipeRefresh swipeRefresh;
+    @BindView(R.id.material_refresh) MaterialRefreshLayout materialRefresh;
     Unbinder unbinder;
 
     private String mVideoType;
@@ -62,19 +62,6 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_videos, container, false);
         unbinder = ButterKnife.bind(this, view);
-
-        // 设置下拉时旋转的三种颜色
-        swipeRefresh.setColorSchemeResources(
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.colorAccent);
-        swipeRefresh.setOnRefreshListener(this);
-        // 设置底部下拉时的三种颜色
-        swipeRefresh.setBottomColorSchemeColors(
-                R.color.colorPrimary,
-                R.color.colorPrimaryDark,
-                R.color.colorAccent);
-        swipeRefresh.setOnBottomRefreshListenrer(this);
 
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(videosAdapter);
@@ -96,6 +83,22 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
 
         mPresenter.subscribe();
         mPresenter.getList(mVideoType, true);
+
+
+        materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                mPresenter.getList(mVideoType, true);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefresh, 1000);
+            }
+
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                super.onRefreshLoadMore(materialRefreshLayout);
+                mPresenter.getList(mVideoType, false);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
+            }
+        });
         return view;
     }
 
@@ -125,31 +128,5 @@ public class VideosFragment extends Fragment implements VideosContract.View, GZo
 //                    vb.getPostid(),
 //                    vb.getImgsrc());
 //        });
-        cancelRefresh();
-    }
-
-    private void cancelRefresh() {
-        // 让子弹飞一会儿.
-        if (swipeRefresh != null) {
-            swipeRefresh.postDelayed(() -> {
-                synchronized (this) {
-                    if (swipeRefresh == null)
-                        return;
-                    if (swipeRefresh.isRefreshing())
-                        swipeRefresh.setRefreshing(false);
-                    swipeRefresh.setBottomRefreshing(false);
-                }
-            }, 1000);
-        }
-    }
-
-    @Override
-    public void onRefresh() {
-        mPresenter.getList(mVideoType, true);
-    }
-
-    @Override
-    public void onBottomRefresh() {
-        mPresenter.getList(mVideoType, false);
     }
 }
