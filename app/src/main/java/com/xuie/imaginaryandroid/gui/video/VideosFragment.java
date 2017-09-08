@@ -22,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
@@ -65,19 +66,6 @@ public class VideosFragment extends Fragment implements VideosContract.View {
 
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(videosAdapter);
-        recycleView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
-            @Override
-            public void onChildViewAttachedToWindow(View view) {
-
-            }
-
-            @Override
-            public void onChildViewDetachedFromWindow(View view) {
-//                if (((ViewGroup) view).indexOfChild(videoPlayer) != -1 && videoPlayer.currentState == JCVideoPlayer.CURRENT_STATE_PLAYING) {
-//                    JCVideoPlayer.releaseAllVideos();
-//                }
-            }
-        });
 
         videosAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
 
@@ -100,6 +88,12 @@ public class VideosFragment extends Fragment implements VideosContract.View {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
     }
 
     @Override
