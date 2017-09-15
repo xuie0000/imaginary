@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,10 +102,13 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
         newsListAdapter.addData(netsSummaries);
         newsListAdapter.setOnItemClickListener((adapter, view, position) -> {
             NetsSummary ns = (NetsSummary) adapter.getData().get(position);
-            if (ns.getImgextra() != null) {
+            if (ns.getImgextra() != null && ns.getPhotosetID() != null) {
                 Intent intent = new Intent(App.getContext(), WebViewActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 String pv = ns.getPhotosetID();
+                Log.d(TAG, "ns:" + ns.toString());
+                Log.d(TAG, "pv:" + pv);
+
                 pv = pv.replace("|", "/");
                 intent.putExtra("url", "http://news.163.com/photoview/" + pv + ".html");
                 App.getContext().startActivity(intent);

@@ -355,6 +355,13 @@ public class NetsSummary implements MultiItemEntity {
         public void setImgsrc(String imgsrc) {
             this.imgsrc = imgsrc;
         }
+
+        @Override
+        public String toString() {
+            return "ImgextraBean{" +
+                    "imgsrc='" + imgsrc + '\'' +
+                    '}';
+        }
     }
 
     public static class AdsBean {
@@ -431,5 +438,56 @@ public class NetsSummary implements MultiItemEntity {
         public void setUrl(String url) {
             this.url = url;
         }
+
+        @Override
+        public String toString() {
+            return "AdsBean{" +
+                    "subtitle='" + subtitle + '\'' +
+                    ", skipType='" + skipType + '\'' +
+                    ", skipID='" + skipID + '\'' +
+                    ", tag='" + tag + '\'' +
+                    ", title='" + title + '\'' +
+                    ", imgsrc='" + imgsrc + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "NetsSummary{" +
+                "template='" + template + '\'' +
+                ", skipID='" + skipID + '\'' +
+                ", lmodify='" + lmodify + '\'' +
+                ", postid='" + postid + '\'' +
+                ", source='" + source + '\'' +
+                ", title='" + title + '\'' +
+                ", mtime='" + mtime + '\'' +
+                ", hasImg=" + hasImg +
+                ", topic_background='" + topic_background + '\'' +
+                ", digest='" + digest + '\'' +
+                ", photosetID='" + photosetID + '\'' +
+                ", boardid='" + boardid + '\'' +
+                ", alias='" + alias + '\'' +
+                ", hasAD=" + hasAD +
+                ", imgsrc='" + imgsrc + '\'' +
+                ", ptime='" + ptime + '\'' +
+                ", daynum='" + daynum + '\'' +
+                ", hasHead=" + hasHead +
+                ", order=" + order +
+                ", votecount=" + votecount +
+                ", hasCover=" + hasCover +
+                ", docid='" + docid + '\'' +
+                ", tname='" + tname + '\'' +
+                ", priority=" + priority +
+                ", ename='" + ename + '\'' +
+                ", replyCount=" + replyCount +
+                ", imgsum=" + imgsum +
+                ", hasIcon=" + hasIcon +
+                ", skipType='" + skipType + '\'' +
+                ", cid='" + cid + '\'' +
+                ", imgextra=" + imgextra +
+                ", ads=" + ads +
+                '}';
     }
 }

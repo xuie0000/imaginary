@@ -1,10 +1,11 @@
 package com.xuie.imaginaryandroid.gui.news;
 
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -38,16 +39,16 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
         switch (helper.getItemViewType()) {
             case NetsSummary.IMG_ONE:
                 helper.setText(R.id.ltitle, item.getTitle())
-                        .setText(R.id.ptime, item.getPtime())
+                        .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
                 GlideApp.with(mContext).load(item.getImgsrc()).into((ImageView) helper.getView(R.id.img_src));
                 break;
             case NetsSummary.IMG_MULTI:
                 helper.setText(R.id.ltitle, item.getTitle())
-                        .setText(R.id.ptime, item.getPtime())
+                        .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
                 RecyclerView rv = helper.getView(R.id.img_src);
-                rv.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
+                rv.setLayoutManager(new GridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL, false));
                 SimpleAdapter sa = new SimpleAdapter(item.getImgextra());
                 rv.setAdapter(sa);
                 break;
@@ -61,7 +62,10 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
 
         @Override
         protected void convert(BaseViewHolder helper, NetsSummary.ImgextraBean item) {
-            GlideApp.with(mContext).load(item.getImgsrc()).into((ImageView) helper.getView(R.id.iv_image));
+            GlideApp.with(mContext)
+                    .load(item.getImgsrc())
+                    .apply(RequestOptions/*.circleCropTransform()*/.placeholderOf(R.mipmap.ic_launcher_round).optionalCenterInside())
+                    .into((ImageView) helper.getView(R.id.iv_image));
         }
     }
 }
