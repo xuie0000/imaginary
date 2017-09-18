@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.news;
+package com.xuie.imaginaryandroid.gui.nets.video;
 
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
 
@@ -10,20 +10,19 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
  * Created by xuie on 17-7-5.
  */
 
-public class NewsListPresenter implements NewsListContract.Presenter {
+public class VideosPresenter implements VideosContract.Presenter {
     private NETSRepository netsRepository;
-    private NewsListContract.View netsView;
+    private VideosContract.View videosView;
     private int currentPage = 0;
 
-    public NewsListPresenter(NETSRepository netsRepository, NewsListContract.View netsView) {
+    public VideosPresenter(NETSRepository netsRepository, VideosContract.View videosView) {
         this.netsRepository = checkNotNull(netsRepository);
-        this.netsView = checkNotNull(netsView);
-        this.netsView.setPresenter(this);
+        this.videosView = checkNotNull(videosView);
+        this.videosView.setPresenter(this);
     }
 
     @Override
     public void subscribe() {
-        getList(true);
     }
 
     @Override
@@ -32,15 +31,15 @@ public class NewsListPresenter implements NewsListContract.Presenter {
     }
 
     @Override
-    public void getList(boolean isRefresh) {
+    public void getList(String type, boolean isRefresh) {
         if (isRefresh) {
             currentPage = 0;
         } else {
-            currentPage += 20;
+            currentPage += 1;
         }
-        netsRepository.getNews(currentPage)
+        netsRepository.getVideoList(type, currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(netsSummaries -> netsView.addList(isRefresh, netsSummaries)
+                .subscribe(videoBeen -> videosView.addList(isRefresh, videoBeen)
                         , Throwable::printStackTrace);
 
     }

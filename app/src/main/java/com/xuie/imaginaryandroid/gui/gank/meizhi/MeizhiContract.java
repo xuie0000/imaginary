@@ -1,22 +1,22 @@
-package com.xuie.imaginaryandroid.gui.show;
+package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
 import com.xuie.imaginaryandroid.BasePresenter;
 import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.GankBean;
+import com.xuie.imaginaryandroid.data.BaseBean;
+
+import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface GankContract {
+public interface MeizhiContract {
 
     interface View extends BaseView<Presenter> {
 
-        void refresh(GankBean gb);
+        void addList(boolean isRefresh, List<BaseBean> meiZhis);
     }
 
     interface Presenter extends BasePresenter {
-        void getGank(int year, int month, int day);
-
-        void getGank(String date);
+        void getList(boolean isRefresh);
     }
 }

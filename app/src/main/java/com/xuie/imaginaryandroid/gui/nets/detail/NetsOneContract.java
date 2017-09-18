@@ -1,22 +1,19 @@
-package com.xuie.imaginaryandroid.gui.video;
+package com.xuie.imaginaryandroid.gui.nets.detail;
 
 import com.xuie.imaginaryandroid.BasePresenter;
 import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.VideoBean;
-
-import java.util.List;
+import com.xuie.imaginaryandroid.data.NetsDetail;
 
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface VideosContract {
+public interface NetsOneContract {
 
     interface View extends BaseView<Presenter> {
-
-        void addList(boolean isRefresh, List<VideoBean> videoBeen);
+        void refreshNewsOne(NetsDetail netsDetail);
     }
 
     interface Presenter extends BasePresenter {
-        void getList(String type, boolean isRefresh);
+        void getNewsOneRequest(String postId);
     }
 }

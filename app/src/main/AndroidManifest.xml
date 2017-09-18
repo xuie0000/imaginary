@@ -22,11 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".gui.show.GankActivity">
+        <activity android:name=".gui.gank.show.GankActivity">
         </activity>
         <activity android:name=".gui.web.WebViewActivity">
         </activity>
-        <activity android:name=".gui.detail.NetsOneActivity">
+        <activity android:name=".gui.nets.detail.NetsOneActivity">
         </activity>
         <activity
             android:name=".gui.settings.SettingsActivity"

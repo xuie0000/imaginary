@@ -1,13 +1,13 @@
-package com.xuie.imaginaryandroid.gui.show;
+package com.xuie.imaginaryandroid.gui.gank.show;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.GankBean;
@@ -24,8 +24,8 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 public class GankActivity extends AppCompatActivity implements GankContract.View {
 
-    @BindView(R.id.gank_daily) ImageView gankDaily;
-    @BindView(R.id.recycler_view) RecyclerView recycleView;
+    @BindView(R.id.recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.gank_daily) PhotoView gankDaily;
 
     private GankContract.Presenter mPresenter;
     private String date;
@@ -41,9 +41,9 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
         String imageUrl = getIntent().getStringExtra("image");
         GlideApp.with(this).load(imageUrl).into(gankDaily);
 
-        recycleView.setAdapter(adapter);
-        recycleView.setLayoutManager(new LinearLayoutManager(this));
-        recycleView.setNestedScrollingEnabled(false);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setNestedScrollingEnabled(false);
         adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
 
         new GankPresenter(GankRepository.getInstance(), this);

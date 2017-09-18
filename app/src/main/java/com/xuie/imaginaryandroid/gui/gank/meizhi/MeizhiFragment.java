@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.meizhi;
+package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
 
 import android.app.ActivityOptions;
@@ -20,7 +20,7 @@ import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
-import com.xuie.imaginaryandroid.gui.show.GankActivity;
+import com.xuie.imaginaryandroid.gui.gank.show.GankActivity;
 import com.xuie.imaginaryandroid.util.DateUtils;
 
 import java.util.ArrayList;

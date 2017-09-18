@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.show;
+package com.xuie.imaginaryandroid.gui.gank.show;
 
 import android.content.Intent;
 import android.text.Html;

@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.news;
+package com.xuie.imaginaryandroid.gui.nets.news;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.app.App;
 import com.xuie.imaginaryandroid.data.NetsSummary;
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
-import com.xuie.imaginaryandroid.gui.detail.NetsOneActivity;
+import com.xuie.imaginaryandroid.gui.nets.detail.NetsOneActivity;
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
 
 import java.util.ArrayList;

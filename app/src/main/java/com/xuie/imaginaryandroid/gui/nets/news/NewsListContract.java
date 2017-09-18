@@ -1,19 +1,22 @@
-package com.xuie.imaginaryandroid.gui.detail;
+package com.xuie.imaginaryandroid.gui.nets.news;
 
 import com.xuie.imaginaryandroid.BasePresenter;
 import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.NetsDetail;
+import com.xuie.imaginaryandroid.data.NetsSummary;
+
+import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface NetsOneContract {
+public interface NewsListContract {
 
     interface View extends BaseView<Presenter> {
-        void refreshNewsOne(NetsDetail netsDetail);
+
+        void addList(boolean isRefresh, List<NetsSummary> netsSummaries);
     }
 
     interface Presenter extends BasePresenter {
-        void getNewsOneRequest(String postId);
+        void getList(boolean isRefresh);
     }
 }

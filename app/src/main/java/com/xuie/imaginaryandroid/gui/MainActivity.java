@@ -12,10 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.gui.meizhi.MeizhiFragment;
-import com.xuie.imaginaryandroid.gui.news.NewsListFragment;
+import com.xuie.imaginaryandroid.gui.gank.meizhi.MeizhiFragment;
+import com.xuie.imaginaryandroid.gui.nets.news.NewsListFragment;
 import com.xuie.imaginaryandroid.gui.settings.SettingsFragment;
-import com.xuie.imaginaryandroid.gui.video.VideoMainFragment;
+import com.xuie.imaginaryandroid.gui.nets.video.VideoMainFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

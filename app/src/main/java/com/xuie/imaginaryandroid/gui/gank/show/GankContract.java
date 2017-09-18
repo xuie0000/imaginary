@@ -1,22 +1,22 @@
-package com.xuie.imaginaryandroid.gui.news;
+package com.xuie.imaginaryandroid.gui.gank.show;
 
 import com.xuie.imaginaryandroid.BasePresenter;
 import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.NetsSummary;
-
-import java.util.List;
+import com.xuie.imaginaryandroid.data.GankBean;
 
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface NewsListContract {
+public interface GankContract {
 
     interface View extends BaseView<Presenter> {
 
-        void addList(boolean isRefresh, List<NetsSummary> netsSummaries);
+        void refresh(GankBean gb);
     }
 
     interface Presenter extends BasePresenter {
-        void getList(boolean isRefresh);
+        void getGank(int year, int month, int day);
+
+        void getGank(String date);
     }
 }

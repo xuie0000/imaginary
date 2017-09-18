@@ -1,22 +1,22 @@
-package com.xuie.imaginaryandroid.gui.meizhi;
+package com.xuie.imaginaryandroid.gui.nets.video;
 
 import com.xuie.imaginaryandroid.BasePresenter;
 import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.BaseBean;
+import com.xuie.imaginaryandroid.data.VideoBean;
 
 import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
  */
-public interface MeizhiContract {
+public interface VideosContract {
 
     interface View extends BaseView<Presenter> {
 
-        void addList(boolean isRefresh, List<BaseBean> meiZhis);
+        void addList(boolean isRefresh, List<VideoBean> videoBeen);
     }
 
     interface Presenter extends BasePresenter {
-        void getList(boolean isRefresh);
+        void getList(String type, boolean isRefresh);
     }
 }

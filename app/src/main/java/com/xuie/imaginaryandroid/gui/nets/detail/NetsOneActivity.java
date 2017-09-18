@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.detail;
+package com.xuie.imaginaryandroid.gui.nets.detail;
 
 import android.app.Activity;
 import android.app.ActivityOptions;

@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.video;
+package com.xuie.imaginaryandroid.gui.nets.video;
 
 import android.text.TextUtils;
 import android.widget.ImageView;

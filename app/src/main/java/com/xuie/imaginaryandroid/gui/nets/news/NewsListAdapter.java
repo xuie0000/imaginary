@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.news;
+package com.xuie.imaginaryandroid.gui.nets.news;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;

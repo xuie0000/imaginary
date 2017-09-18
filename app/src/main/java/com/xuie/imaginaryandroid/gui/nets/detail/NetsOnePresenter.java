@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.detail;
+package com.xuie.imaginaryandroid.gui.nets.detail;
 
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
 

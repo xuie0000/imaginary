@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.meizhi;
+package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 

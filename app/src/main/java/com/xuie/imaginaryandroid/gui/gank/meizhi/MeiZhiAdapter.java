@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.meizhi;
+package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
 import android.widget.ImageView;
 
