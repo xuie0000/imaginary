@@ -41,7 +41,11 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
                 helper.setText(R.id.ltitle, item.getTitle())
                         .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
-                GlideApp.with(mContext).load(item.getImgsrc()).into((ImageView) helper.getView(R.id.img_src));
+                GlideApp.with(mContext)
+                        .load(item.getImgsrc())
+                        .override(300, 300)
+                        .centerInside()
+                        .into((ImageView) helper.getView(R.id.img_src));
                 break;
             case NetsSummary.IMG_MULTI:
                 helper.setText(R.id.ltitle, item.getTitle())
@@ -64,7 +68,11 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
         protected void convert(BaseViewHolder helper, NetsSummary.ImgextraBean item) {
             GlideApp.with(mContext)
                     .load(item.getImgsrc())
-                    .apply(RequestOptions/*.circleCropTransform()*/.placeholderOf(R.mipmap.ic_launcher_round).optionalCenterInside())
+                    .apply(RequestOptions/*.circleCropTransform()*/
+                            .placeholderOf(R.mipmap.ic_launcher_round)
+                            .override(300, 300)
+                            .centerInside()
+                    )
                     .into((ImageView) helper.getView(R.id.iv_image));
         }
     }

@@ -3,6 +3,7 @@ package com.xuie.imaginaryandroid.gui.web;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -36,9 +37,9 @@ public class WebViewActivity extends AppCompatActivity {
     // Manages the behavior when URLs are loaded
     private class MyBrowser extends WebViewClient {
         @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            view.loadUrl(request.getUrl().toString());
+            return super.shouldOverrideUrlLoading(view, request);
         }
     }
 

@@ -57,6 +57,7 @@
             android:id="@+id/img_src"
             android:layout_width="96dp"
             android:layout_height="96dp"
+            android:adjustViewBounds="true"
             android:transitionName="@string/transition_image"
             tools:src="@mipmap/ic_launcher"/>
     </LinearLayout>
