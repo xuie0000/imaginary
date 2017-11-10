@@ -1,6 +1,7 @@
 package com.xuie.imaginaryandroid.glide;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.annotation.GlideModule;
@@ -24,6 +25,7 @@ public final class MyAppGlideModule extends AppGlideModule {
         builder.setDiskCache(new InternalCacheDiskCacheFactory(context, "com.xuie", 100 * 1024 * 1024));
 //        builder.setDiskCache(new ExternalCacheDiskCacheFactory(context, "com.xuie", 100 * 1024 * 1024));
         builder.setMemoryCache(new LruResourceCache(10 * 1024 * 1024));
+        builder.setLogLevel(Log.ERROR);
     }
 
 }

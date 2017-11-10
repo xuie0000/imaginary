@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_gank"
-        android:icon="@drawable/ic_gank_24dp"
-        android:title="@string/title_gank_meizhi"/>
-
-    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_nets"/>
@@ -15,6 +10,11 @@
         android:id="@+id/navigation_video"
         android:icon="@drawable/ic_video_24dp"
         android:title="@string/title_video"/>
+
+    <item
+        android:id="@+id/navigation_gank"
+        android:icon="@drawable/ic_gank_24dp"
+        android:title="@string/title_gank_meizhi"/>
 
     <item
         android:id="@+id/navigation_settings"

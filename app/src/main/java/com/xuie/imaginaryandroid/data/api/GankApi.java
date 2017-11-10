@@ -16,7 +16,7 @@ public interface GankApi{
     // GANK
     String GANK_API = "http://gank.io/api/";
 
-    @GET("data/福利/10/{page}")
+    @GET("data/福利/20/{page}")
     Observable<福利s> get福利(@Path("page") int page);
 
     @GET("day/{date}")

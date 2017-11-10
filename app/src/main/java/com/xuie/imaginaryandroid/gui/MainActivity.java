@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_gank:
+                case R.id.navigation_dashboard:
                     viewPager.setCurrentItem(0);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_video:
                     viewPager.setCurrentItem(1);
                     return true;
-                case R.id.navigation_video:
+                case R.id.navigation_gank:
                     viewPager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_settings:
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {
@@ -96,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                 default:
-                    return MeizhiFragment.getInstance();
-                case 1:
                     return NewsListFragment.getInstance();
-                case 2:
+                case 1:
                     return VideoMainFragment.getInstance();
+                case 2:
+                    return MeizhiFragment.getInstance();
                 case 3:
                     return SettingsFragment.getInstance();
             }
