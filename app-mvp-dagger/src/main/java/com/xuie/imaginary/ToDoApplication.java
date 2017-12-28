@@ -2,6 +2,7 @@ package com.xuie.imaginary;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.VisibleForTesting;
 
 import com.xuie.imaginary.data.source.GankRepository;
 import com.xuie.imaginary.di.DaggerAppComponent;
@@ -37,12 +38,12 @@ public class ToDoApplication extends DaggerApplication {
         return DaggerAppComponent.builder().application(this).build();
     }
 
-//    /**
-//     * Our Espresso tests need to be able to get an instance of the {@link TasksRepository}
-//     * so that we can delete all tasks before running each test
-//     */
-//    @VisibleForTesting
-//    public TasksRepository getTasksRepository() {
-//        return tasksRepository;
-//    }
+    /**
+     * Our Espresso tests need to be able to get an instance of the {@link GankRepository}
+     * so that we can delete all tasks before running each test
+     */
+    @VisibleForTesting
+    public GankRepository getGankRepository() {
+        return gankRepository;
+    }
 }

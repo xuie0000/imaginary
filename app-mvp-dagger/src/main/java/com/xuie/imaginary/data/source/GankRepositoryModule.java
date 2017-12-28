@@ -1,8 +1,6 @@
 package com.xuie.imaginary.data.source;
 
-import android.app.Application;
-import android.arch.persistence.room.Room;
-
+import com.xuie.imaginary.data.source.remote.GankRemoteSource;
 import com.xuie.imaginary.util.AppExecutors;
 import com.xuie.imaginary.util.DiskIOThreadExecutor;
 
@@ -15,22 +13,22 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * This is used by Dagger to inject the required arguments into the {@link TasksRepository}.
+ * This is used by Dagger to inject the required arguments into the {@link GankRepository}.
  */
 @Module
-abstract public class TasksRepositoryModule {
+abstract public class GankRepositoryModule {
 
     private static final int THREAD_COUNT = 3;
 
 //    @Singleton
 //    @Binds
 //    @Local
-//    abstract TasksDataSource provideTasksLocalDataSource(TasksLocalDataSource dataSource);
-//
-//    @Singleton
-//    @Binds
-//    @Remote
-//    abstract TasksDataSource provideTasksRemoteDataSource(FakeTasksRemoteDataSource dataSource);
+//    abstract GankSource provideGankLocalDataSource(TasksLocalDataSource dataSource);
+
+    @Singleton
+    @Binds
+    @Remote
+    abstract GankSource provideGankRemoteSource(GankRemoteSource remoteSource);
 //
 //    @Singleton
 //    @Provides

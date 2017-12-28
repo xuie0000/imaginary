@@ -3,7 +3,8 @@ package com.xuie.imaginary.di;
 import android.app.Application;
 
 import com.xuie.imaginary.ToDoApplication;
-import com.xuie.imaginary.data.source.TasksRepositoryModule;
+import com.xuie.imaginary.data.source.GankRepository;
+import com.xuie.imaginary.data.source.GankRepositoryModule;
 
 import javax.inject.Singleton;
 
@@ -24,13 +25,13 @@ import dagger.android.support.AndroidSupportInjectionModule;
  * // and location of subcomponents.
  */
 @Singleton
-@Component(modules = {TasksRepositoryModule.class,
+@Component(modules = {GankRepositoryModule.class,
         ApplicationModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<ToDoApplication> {
 
-//    TasksRepository getTasksRepository();
+    GankRepository getGankRepository();
 
     // Gives us syntactic sugar. we can then do DaggerAppComponent.builder().application(this).build().inject(this);
     // never having to instantiate any modules or say which module we are passing the application to.
