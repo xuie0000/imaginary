@@ -1,6 +1,10 @@
 package com.xuie.imaginary.di;
 
+import com.xuie.imaginary.MainActivity;
+import com.xuie.imaginary.gank.MeizhiModule;
+
 import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
 
 /**
  * We want Dagger.Android to create a Subcomponent which has a parent Component of whichever module ActivityBindingModule is on,
@@ -11,16 +15,16 @@ import dagger.Module;
  */
 @Module
 public abstract class ActivityBindingModule {
-//    @ActivityScoped
-//    @ContributesAndroidInjector(modules = TasksModule.class)
-//    abstract TasksActivity tasksActivity();
-//
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = MeizhiModule.class)
+    abstract MainActivity mainActivity();
+
 //    @ActivityScoped
 //    @ContributesAndroidInjector(modules = AddEditTaskModule.class)
 //    abstract AddEditTaskActivity addEditTaskActivity();
 //
 //    @ActivityScoped
-//    @ContributesAndroidInjector(modules = StatisticsModule.class)
+//    @ContributesAndroidInjector(modules = MeizhiModule.class)
 //    abstract StatisticsActivity statisticsActivity();
 //
 //    @ActivityScoped

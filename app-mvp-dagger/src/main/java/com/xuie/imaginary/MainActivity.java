@@ -3,17 +3,13 @@ package com.xuie.imaginary;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 
 import com.xuie.imaginary.gank.MeizhiFragment;
 import com.xuie.imaginary.gank.MeizhiPresenter;
+import com.xuie.imaginary.util.ActivityUtils;
 
 import javax.inject.Inject;
 
@@ -27,81 +23,21 @@ public class MainActivity extends DaggerAppCompatActivity {
     @Inject MeizhiPresenter meizhiPresenter;
     @Inject MeizhiFragment meizhiFragment;
 
-    @BindView(R.id.view_pager) ViewPager viewPager;
     @BindView(R.id.navigation) BottomNavigationView navigation;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_dashboard:
-                    viewPager.setCurrentItem(0);
-                    return true;
-                case R.id.navigation_gank:
-                    viewPager.setCurrentItem(2);
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        MeizhiFragment meizhiFragment = (MeizhiFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.contentFrame);
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            boolean isUser = false;
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (isUser) {
-                    int itemId = navigation.getMenu().getItem(position).getItemId();
-                    navigation.setSelectedItemId(itemId);
-                    isUser = false;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                if (state == ViewPager.SCROLL_STATE_DRAGGING) {
-                    isUser = true;
-                }
-            }
-        });
-        navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
-    }
-
-    private class MyViewPagerAdapter extends FragmentPagerAdapter {
-
-        MyViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                default:
-                case 1:
-                case 2:
-                case 3:
-                    return meizhiFragment;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 4;
+        if (meizhiFragment == null) {
+            meizhiFragment = this.meizhiFragment;
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
+                    meizhiFragment, R.id.contentFrame);
         }
     }
 

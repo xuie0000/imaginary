@@ -42,10 +42,7 @@ public class MeizhiFragment extends DaggerFragment implements MeizhiContract.Vie
     private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(null);
 
     @Inject
-    public MeizhiFragment() {
-        // Required empty public constructor
-    }
-
+    public MeizhiFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
