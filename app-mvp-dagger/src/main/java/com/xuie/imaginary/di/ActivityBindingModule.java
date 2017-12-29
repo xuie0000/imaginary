@@ -1,7 +1,9 @@
 package com.xuie.imaginary.di;
 
-import com.xuie.imaginary.MainActivity;
+import com.xuie.imaginary.gank.MeizhiActivity;
 import com.xuie.imaginary.gank.MeizhiModule;
+import com.xuie.imaginary.gankdate.GankDayActivity;
+import com.xuie.imaginary.gankdate.GankModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -17,17 +19,9 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = MeizhiModule.class)
-    abstract MainActivity mainActivity();
+    abstract MeizhiActivity mainActivity();
 
-//    @ActivityScoped
-//    @ContributesAndroidInjector(modules = AddEditTaskModule.class)
-//    abstract AddEditTaskActivity addEditTaskActivity();
-//
-//    @ActivityScoped
-//    @ContributesAndroidInjector(modules = MeizhiModule.class)
-//    abstract StatisticsActivity statisticsActivity();
-//
-//    @ActivityScoped
-//    @ContributesAndroidInjector(modules = TaskDetailPresenterModule.class)
-//    abstract TaskDetailActivity taskDetailActivity();
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = GankModule.class)
+    abstract GankDayActivity gankDayActivity();
 }

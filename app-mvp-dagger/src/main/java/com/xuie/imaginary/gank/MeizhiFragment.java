@@ -1,7 +1,10 @@
 package com.xuie.imaginary.gank;
 
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -16,6 +19,8 @@ import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.data.BaseBean;
 import com.xuie.imaginary.di.ActivityScoped;
+import com.xuie.imaginary.gankdate.GankDayActivity;
+import com.xuie.imaginary.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,12 +64,12 @@ public class MeizhiFragment extends DaggerFragment implements MeizhiContract.Vie
                 Log.d(TAG, "position:" + position);
                 BaseBean fl = (BaseBean) adapter.getData().get(position);
                 Log.d("MeizhiFragment", fl.toString());
-//                String dateString = DateUtils.getDate(fl.getPublishedAt());
-//                Intent intent = new Intent(getActivity(), GankActivity.class);
-//                intent.putExtra("date", dateString);
-//                intent.putExtra("image", fl.getUrl());
-//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
-//                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                String dateString = DateUtils.getDate(fl.getPublishedAt());
+                Intent intent = new Intent(getActivity(), GankDayActivity.class);
+                intent.putExtra("date", dateString);
+                intent.putExtra("image", fl.getUrl());
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
+                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
             }
         });
         meiZhiAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);

@@ -1,29 +1,24 @@
-package com.xuie.imaginary;
+package com.xuie.imaginary.gank;
 
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.View;
 
-import com.xuie.imaginary.gank.MeizhiFragment;
-import com.xuie.imaginary.gank.MeizhiPresenter;
+import com.xuie.imaginary.R;
 import com.xuie.imaginary.util.ActivityUtils;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class MainActivity extends DaggerAppCompatActivity {
-    private static final String TAG = "MainActivity";
+public class MeizhiActivity extends DaggerAppCompatActivity {
+    private static final String TAG = "MeizhiActivity";
 
     @Inject MeizhiPresenter meizhiPresenter;
     @Inject MeizhiFragment meizhiFragment;
-
-    @BindView(R.id.navigation) BottomNavigationView navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
