@@ -1,1 +1,1 @@
-include ':app-mvp', ':test', ':app-mvp-dagger'
+include ':app-mvp', ':test', ':app-mvp-dagger', ':app-mvp-kotlin'
