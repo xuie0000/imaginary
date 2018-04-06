@@ -19,24 +19,23 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
 
 class VideosAdapter(videoBeen: List<VideoBean>) : BaseQuickAdapter<VideoBean, BaseViewHolder>(R.layout.item_video_list, videoBeen) {
 
-    @Override
-    protected fun convert(helper: BaseViewHolder, item: VideoBean) {
-        helper.setText(R.id.tv_from, item.getTopicName())
+    override fun convert(helper: BaseViewHolder, item: VideoBean) {
+        helper.setText(R.id.tv_from, item.topicName)
         helper.setText(R.id.tv_play_time,
-                String.format(mContext.getResources().getString(R.string.video_play_times),
-                        String.valueOf(item.getPlayCount())
+                String.format(mContext.resources.getString(R.string.video_play_times),
+                        String.valueOf(item.playCount)
                 )
         )
         val jcVideoPlayerStandard = helper.getView(R.id.videoplayer)
         jcVideoPlayerStandard.setUp(
-                item.getMp4_url(), JCVideoPlayer.SCREEN_LAYOUT_LIST,
-                if (TextUtils.isEmpty(item.getDescription())) item.getTitle() + "" else item.getDescription())
-        GlideApp.with(mContext).load(item.getCover())
+                item.mp4_url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
+                if (TextUtils.isEmpty(item.description)) item.title + "" else item.description)
+        GlideApp.with(mContext).load(item.cover)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .error(R.mipmap.ic_empty_picture)
                 .into(jcVideoPlayerStandard.thumbImageView)
-        GlideApp.with(mContext).load(item.getTopicImg())
+        GlideApp.with(mContext).load(item.topicImg)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .error(R.mipmap.ic_empty_picture)
                 .centerCrop()

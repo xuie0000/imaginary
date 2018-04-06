@@ -11,61 +11,47 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.xuie.imaginaryandroid.R
-
-import java.util.Arrays
-
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.Unbinder
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class VideoMainFragment : Fragment() {
 
-    @BindView(R.id.tabs)
-    internal var tabs: TabLayout? = null
-    @BindView(R.id.view_pager)
-    internal var viewPager: ViewPager? = null
-    @BindView(R.id.fab)
-    internal var fab: FloatingActionButton? = null
-    internal var unbinder: Unbinder? = null
+    private lateinit var tabs: TabLayout
+    private lateinit var viewPager: ViewPager
+    private lateinit var fab: FloatingActionButton
 
-    @Override
-    fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_video_main, container, false)
-        unbinder = ButterKnife.bind(this, view)
 
-        viewPager!!.setAdapter(MyPagerAdapter(getChildFragmentManager()))
-        tabs!!.setupWithViewPager(viewPager)
+        with(view) {
+            tabs = findViewById(R.id.tabs)
+            viewPager = findViewById(R.id.view_pager)
+            fab = findViewById(R.id.fab)
+        }
+
+        viewPager.adapter = MyPagerAdapter(childFragmentManager)
+        tabs.setupWithViewPager(viewPager)
         return view
     }
 
     private inner class MyPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        internal var channelName = Arrays.asList(getResources().getStringArray(R.array.video_channel_name))
-        internal var channelId = Arrays.asList(getResources().getStringArray(R.array.video_channel_id))
+        internal var channelName = Arrays.asList(resources.getStringArray(R.array.video_channel_name))
+        internal var channelId = Arrays.asList(resources.getStringArray(R.array.video_channel_id))
 
-        val count: Int
-            @Override
-            get() = channelId.size()
-
-        @Override
-        fun getItem(position: Int): Fragment {
-            return VideosFragment.getInstance(channelName.get(position), channelId.get(position))
+        override fun getCount(): Int {
+            return channelId.size
         }
 
-        @Override
-        fun getPageTitle(position: Int): CharSequence {
-            return channelName.get(position)
+        override fun getItem(position: Int): Fragment {
+            return VideosFragment.getInstance(channelName[position], channelId[position])
         }
-    }
 
-    @Override
-    fun onDestroyView() {
-        super.onDestroyView()
-        unbinder!!.unbind()
+        override fun getPageTitle(position: Int): CharSequence? {
+            return channelName[position].toString()
+        }
     }
 
     companion object {

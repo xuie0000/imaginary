@@ -117,7 +117,7 @@ class VideosFragment : Fragment(), VideosContract.View {
         val VIDEO_TYPE_ID = "type"
         val VIDEO_TYPE_NAME = "name"
 
-        fun getInstance(typeName: String, typeId: String): VideosFragment {
+        fun getInstance(typeName: Array<String>, typeId: Array<String>): VideosFragment {
             val fragment = VideosFragment()
             val bundle = Bundle()
             bundle.putString(VIDEO_TYPE_NAME, typeName)
