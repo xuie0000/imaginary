@@ -11,13 +11,12 @@ import com.xuie.imaginaryandroid.data.VideoBean
 import com.xuie.imaginaryandroid.glide.GlideApp
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
 
 /**
  * Created by xuie on 17-8-22.
  */
 
-class VideosAdapter(videoBeen: List<VideoBean>) : BaseQuickAdapter<VideoBean, BaseViewHolder>(R.layout.item_video_list, videoBeen) {
+class VideosAdapter(videoBeen: List<VideoBean>?) : BaseQuickAdapter<VideoBean, BaseViewHolder>(R.layout.item_video_list, videoBeen) {
 
     override fun convert(helper: BaseViewHolder, item: VideoBean) {
         helper.setText(R.id.tv_from, item.topicName)

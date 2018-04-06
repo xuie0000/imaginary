@@ -22,103 +22,88 @@ import com.xuie.imaginaryandroid.gui.web.WebViewActivity
 
 import java.util.ArrayList
 
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.Unbinder
-
-import com.xuie.imaginaryandroid.util.Utils.checkNotNull
-
 /**
  * A simple [Fragment] subclass.
  */
 class NewsListFragment : Fragment(), NewsListContract.View {
+    override lateinit var presenter: NewsListContract.Presenter
 
-    @BindView(R.id.recycler_view)
-    internal var recycleView: RecyclerView? = null
-    @BindView(R.id.material_refresh)
-    internal var materialRefresh: MaterialRefreshLayout? = null
-    internal var unbinder: Unbinder? = null
+    //    @BindView(R.id.recycler_view)
+    private lateinit var recycleView: RecyclerView
+//    @BindView(R.id.material_refresh)
+    private lateinit var materialRefresh: MaterialRefreshLayout
 
-    private var mPresenter: NewsListContract.Presenter? = null
     private val newsListAdapter = NewsListAdapter(null)
 
 
-    @Override
-    fun onCreate(@Nullable savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NewsListPresenter(NETSRepository.getInstance(), this)
+        NewsListPresenter(NETSRepository.instance, this)
     }
 
-    @Override
-    fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_news_list, container, false)
-        unbinder = ButterKnife.bind(this, view)
 
-        recycleView!!.setLayoutManager(StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL))
-        recycleView!!.setAdapter(newsListAdapter)
+        with(view) {
+            recycleView = findViewById(R.id.recycler_view)
+            materialRefresh = findViewById(R.id.material_refresh)
+        }
+
+        recycleView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        recycleView.adapter = newsListAdapter
         newsListAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
-        mPresenter!!.subscribe()
+        presenter.subscribe()
 
-        materialRefresh!!.setMaterialRefreshListener(object : MaterialRefreshListener() {
-            @Override
-            fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
-                mPresenter!!.getList(true)
-                materialRefreshLayout.postDelayed(???({ materialRefreshLayout.finishRefresh() }), 1000)
+        materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
+            override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
+                presenter.getList(true)
+                materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefresh() }, 1000)
             }
 
-            @Override
-            fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout) {
+            override fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout)
-                mPresenter!!.getList(false)
-                materialRefreshLayout.postDelayed(???({ materialRefreshLayout.finishRefreshLoadMore() }), 1000)
+                presenter.getList(false)
+                materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
             }
         })
 
         return view
     }
 
-    @Override
-    fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
-        mPresenter!!.unsubscribe()
-        unbinder!!.unbind()
+        presenter.unsubscribe()
     }
 
-    @Override
-    fun setPresenter(presenter: NewsListContract.Presenter) {
-        mPresenter = checkNotNull(presenter)
-    }
-
-    @Override
-    fun addList(isRefresh: Boolean, netsSummaries: List<NetsSummary>) {
+    override fun addList(isRefresh: Boolean, netsSummaries: List<NetsSummary>) {
         if (isRefresh)
             newsListAdapter.replaceData(ArrayList())
         //        Log.d(TAG, netsSummaries.toString());
         newsListAdapter.addData(netsSummaries)
         newsListAdapter.setOnItemClickListener({ adapter, view, position ->
-            val ns = adapter.getData().get(position) as NetsSummary
-            if (ns.getImgextra() != null && ns.getPhotosetID() != null) {
-                val intent = Intent(App.getContext(), WebViewActivity::class.java)
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                var pv = ns.getPhotosetID()
+            val ns = adapter.data[position] as NetsSummary
+            if (ns.imgextra != null && ns.photosetID != null) {
+                val intent = Intent(App.context, WebViewActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                var pv = ns.photosetID
                 Log.d(TAG, "ns:" + ns.toString())
                 Log.d(TAG, "pv:$pv")
 
-                pv = pv.replace("|", "/")
+                pv = pv!!.replace("|", "/")
                 intent.putExtra("url", "http://news.163.com/photoview/$pv.html")
-                App.getContext().startActivity(intent)
-                return@newsListAdapter.setOnItemClickListener
+                App.context.startActivity(intent)
+                return@setOnItemClickListener
             }
-            NetsOneActivity.newIntent(getActivity(),
+            NetsOneActivity.newIntent(activity!!,
                     view.findViewById(R.id.img_src),
                     view.findViewById(R.id.ltitle),
-                    ns.getPostid(),
-                    ns.getImgsrc())
+                    ns.postid!!,
+                    ns.imgsrc!!)
         })
     }
 
     companion object {
-        private val TAG = "NewsListFragment"
+        private const val TAG = "NewsListFragment"
 
         val instance: NewsListFragment
             get() = NewsListFragment()

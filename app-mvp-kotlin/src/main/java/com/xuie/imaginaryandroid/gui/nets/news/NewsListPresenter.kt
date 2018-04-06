@@ -5,29 +5,27 @@ import com.xuie.imaginaryandroid.data.source.NETSRepository
 import rx.android.schedulers.AndroidSchedulers
 
 import com.xuie.imaginaryandroid.util.Utils.checkNotNull
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * Created by xuie on 17-7-5.
  */
 
-class NewsListPresenter(netsRepository: NETSRepository, netsView: NewsListContract.View) : NewsListContract.Presenter {
-    private val netsRepository: NETSRepository
-    private val netsView: NewsListContract.View
+class NewsListPresenter(
+        private val netsRepository: NETSRepository,
+        private val netsView: NewsListContract.View
+) : NewsListContract.Presenter {
     private var currentPage = 0
 
     init {
-        this.netsRepository = checkNotNull(netsRepository)
-        this.netsView = checkNotNull(netsView)
-        this.netsView.setPresenter(this)
+        this.netsView.presenter = this
     }
 
-    @Override
-    fun subscribe() {
+    override fun subscribe() {
         getList(true)
     }
 
-    @Override
-    fun unsubscribe() {
+    override fun unsubscribe() {
 
     }
 
@@ -40,7 +38,8 @@ class NewsListPresenter(netsRepository: NETSRepository, netsView: NewsListContra
         }
         netsRepository.getNews(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ netsSummaries -> netsView.addList(isRefresh, netsSummaries) }, ???({ Throwable.printStackTrace() }))
+                .subscribe({ netsSummaries -> netsView.addList(isRefresh, netsSummaries) },
+                        { Throwable.printStackTrace() })
 
     }
 }

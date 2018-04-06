@@ -17,7 +17,6 @@ import com.xuie.imaginaryandroid.data.source.NETSRepository
 
 import java.util.ArrayList
 
-import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
@@ -28,76 +27,64 @@ import com.xuie.imaginaryandroid.util.Utils.checkNotNull
  * A simple [Fragment] subclass.
  */
 class VideosFragment : Fragment(), VideosContract.View {
+    override lateinit var presenter: VideosContract.Presenter
 
-    @BindView(R.id.recycler_view)
-    internal var recycleView: RecyclerView? = null
-    @BindView(R.id.material_refresh)
-    internal var materialRefresh: MaterialRefreshLayout? = null
-    internal var unbinder: Unbinder? = null
+    private lateinit var recycleView: RecyclerView
+    private lateinit var materialRefresh: MaterialRefreshLayout
 
-    private var mVideoType: String? = null
-    private var mPresenter: VideosContract.Presenter? = null
+    private var mVideoType: String? = "name"
     private val videosAdapter = VideosAdapter(null)
 
-    @Override
-    fun onCreate(@Nullable savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mVideoType = getArguments().getString(VIDEO_TYPE_ID)
+        mVideoType = arguments!!.getString(VIDEO_TYPE_ID)
 
-        VideosPresenter(NETSRepository.getInstance(), this)
+        VideosPresenter(NETSRepository.instance, this)
     }
 
-    @Override
-    fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_videos, container, false)
-        unbinder = ButterKnife.bind(this, view)
 
-        recycleView!!.setLayoutManager(LinearLayoutManager(getContext()))
-        recycleView!!.setAdapter(videosAdapter)
+        with(view) {
+            recycleView = findViewById(R.id.recycler_view)
+            materialRefresh = findViewById(R.id.material_refresh)
+        }
+
+        recycleView.layoutManager = LinearLayoutManager(context)
+        recycleView.adapter = videosAdapter
 
         videosAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
 
-        mPresenter!!.subscribe()
-        mPresenter!!.getList(mVideoType, true)
+        presenter.subscribe()
+        presenter.getList(mVideoType, true)
 
 
-        materialRefresh!!.setMaterialRefreshListener(object : MaterialRefreshListener() {
-            @Override
-            fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
-                mPresenter!!.getList(mVideoType, true)
-                materialRefreshLayout.postDelayed(???({ materialRefreshLayout.finishRefresh() }), 1000)
+        materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
+            override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
+                presenter.getList(mVideoType, true)
+                materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefresh() }, 1000)
             }
 
-            @Override
-            fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout) {
+            override fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout)
-                mPresenter!!.getList(mVideoType, false)
-                materialRefreshLayout.postDelayed(???({ materialRefreshLayout.finishRefreshLoadMore() }), 1000)
+                presenter.getList(mVideoType, false)
+                materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
             }
         })
         return view
     }
 
-    @Override
-    fun onPause() {
+    override fun onPause() {
         super.onPause()
         JCVideoPlayer.releaseAllVideos()
     }
 
-    @Override
-    fun onDestroyView() {
+   override fun onDestroyView() {
         super.onDestroyView()
-        mPresenter!!.unsubscribe()
-        unbinder!!.unbind()
+        presenter.unsubscribe()
     }
 
-    @Override
-    fun setPresenter(presenter: VideosContract.Presenter) {
-        mPresenter = checkNotNull(presenter)
-    }
-
-    @Override
-    fun addList(isRefresh: Boolean, videoBeen: List<VideoBean>) {
+    override fun addList(isRefresh: Boolean, videoBeen: List<VideoBean>) {
         if (isRefresh)
             videosAdapter.replaceData(ArrayList())
         //        Log.d(TAG, videoBeen.toString());
@@ -114,15 +101,15 @@ class VideosFragment : Fragment(), VideosContract.View {
 
     companion object {
 
-        val VIDEO_TYPE_ID = "type"
-        val VIDEO_TYPE_NAME = "name"
+        const val VIDEO_TYPE_ID = "type"
+        private const val VIDEO_TYPE_NAME = "name"
 
         fun getInstance(typeName: Array<String>, typeId: Array<String>): VideosFragment {
             val fragment = VideosFragment()
             val bundle = Bundle()
-            bundle.putString(VIDEO_TYPE_NAME, typeName)
-            bundle.putString(VIDEO_TYPE_ID, typeId)
-            fragment.setArguments(bundle)
+            bundle.putString(VIDEO_TYPE_NAME, typeName.toString())
+            bundle.putString(VIDEO_TYPE_ID, typeId.toString())
+            fragment.arguments = bundle
             return fragment
         }
     }

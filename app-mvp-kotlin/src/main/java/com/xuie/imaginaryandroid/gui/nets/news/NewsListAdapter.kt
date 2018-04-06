@@ -23,44 +23,45 @@ class NewsListAdapter
  *
  * @param data A new list is created out of this one to avoid mutable list
  */
-(data: List<NetsSummary>) : BaseMultiItemQuickAdapter<NetsSummary, BaseViewHolder>(data) {
+(data: List<NetsSummary>?) : BaseMultiItemQuickAdapter<NetsSummary, BaseViewHolder>(data) {
 
     init {
         addItemType(NetsSummary.IMG_ONE, R.layout.item_fragment_news)
         addItemType(NetsSummary.IMG_MULTI, R.layout.item_fragment_news_multi)
     }
 
-    @Override
-    protected fun convert(helper: BaseViewHolder, item: NetsSummary) {
-        when (helper.getItemViewType()) {
+    override fun convert(helper: BaseViewHolder, item: NetsSummary) {
+        when (helper.itemViewType) {
             NetsSummary.IMG_ONE -> {
-                helper.setText(R.id.ltitle, item.getTitle())
-                        .setText(R.id.source, item.getSource())
-                        .setText(R.id.digest, item.getDigest())
+                helper.setText(R.id.ltitle, item.title)
+                        .setText(R.id.source, item.source)
+                        .setText(R.id.digest, item.digest)
                 GlideApp.with(mContext)
-                        .load(item.getImgsrc())
+                        .load(item.imgsrc)
                         .override(300, 300)
                         .centerInside()
                         .into(helper.getView(R.id.img_src) as ImageView)
             }
             NetsSummary.IMG_MULTI -> {
-                helper.setText(R.id.ltitle, item.getTitle())
-                        .setText(R.id.source, item.getSource())
-                        .setText(R.id.digest, item.getDigest())
-                val rv = helper.getView(R.id.img_src)
-                rv.setLayoutManager(GridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL, false))
-                val sa = SimpleAdapter(item.getImgextra())
-                rv.setAdapter(sa)
+                helper.setText(R.id.ltitle, item.title)
+                        .setText(R.id.source, item.source)
+                        .setText(R.id.digest, item.digest)
+                val rv = helper.getView<RecyclerView>(R.id.img_src)
+
+                rv.layoutManager = GridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL,
+                        false)
+                val sa = SimpleAdapter(item.imgextra!!)
+                rv.adapter = sa
             }
         }
     }
 
-    private inner class SimpleAdapter(@Nullable data: List<NetsSummary.ImgextraBean>) : BaseQuickAdapter<NetsSummary.ImgextraBean, BaseViewHolder>(R.layout.item_fragment_news_child, data) {
+    private inner class SimpleAdapter(data: List<NetsSummary.ImgextraBean>) :
+            BaseQuickAdapter<NetsSummary.ImgextraBean, BaseViewHolder>(R.layout.item_fragment_news_child, data) {
 
-        @Override
-        protected fun convert(helper: BaseViewHolder, item: NetsSummary.ImgextraBean) {
+        override fun convert(helper: BaseViewHolder, item: NetsSummary.ImgextraBean) {
             GlideApp.with(mContext)
-                    .load(item.getImgsrc())
+                    .load(item.imgsrc)
                     .apply(RequestOptions/*.circleCropTransform()*/
                             .placeholderOf(R.mipmap.ic_launcher_round)
                             .override(300, 300)
