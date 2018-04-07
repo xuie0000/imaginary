@@ -18,12 +18,8 @@ class NewsListPresenter(
         this.netsView.presenter = this
     }
 
-    override fun subscribe() {
+    override fun start() {
         getList(true)
-    }
-
-    override fun unsubscribe() {
-
     }
 
     override fun getList(isRefresh: Boolean) {

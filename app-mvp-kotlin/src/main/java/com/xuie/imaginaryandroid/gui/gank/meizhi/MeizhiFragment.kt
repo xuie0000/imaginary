@@ -77,24 +77,15 @@ class MeizhiFragment : Fragment(), MeizhiContract.View {
             }
         })
 
-        presenter.subscribe()
+        presenter.start()
         return v
     }
-//
-//    override fun setPresenter(presenter: MeizhiContract.Presenter) {
-//        mPresenter = checkNotNull(presenter)
-//    }
 
     override fun addList(isRefresh: Boolean, meiZhis: List<BaseBean>) {
         if (isRefresh)
             meiZhiAdapter.replaceData(ArrayList())
 //        Log.d(TAG, meiZhis.toString());
         meiZhiAdapter.addData(meiZhis)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        presenter.unsubscribe()
     }
 
     companion object {

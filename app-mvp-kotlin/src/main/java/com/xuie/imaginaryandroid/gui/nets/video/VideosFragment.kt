@@ -48,7 +48,7 @@ class VideosFragment : Fragment(), VideosContract.View {
 
         videosAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
 
-        presenter.subscribe()
+        presenter.start()
         presenter.getList(mVideoType!!, true)
 
 
@@ -70,11 +70,6 @@ class VideosFragment : Fragment(), VideosContract.View {
     override fun onPause() {
         super.onPause()
         JCVideoPlayer.releaseAllVideos()
-    }
-
-   override fun onDestroyView() {
-        super.onDestroyView()
-        presenter.unsubscribe()
     }
 
     override fun addList(isRefresh: Boolean, videoBeen: List<VideoBean>) {

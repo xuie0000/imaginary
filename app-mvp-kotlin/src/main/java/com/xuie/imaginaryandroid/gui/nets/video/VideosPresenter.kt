@@ -17,11 +17,7 @@ class VideosPresenter(
         this.videosView.presenter = this
     }
 
-    override fun subscribe() {
-    }
-
-    override fun unsubscribe() {
-
+    override fun start() {
     }
 
     override fun getList(type: String, isRefresh: Boolean) {

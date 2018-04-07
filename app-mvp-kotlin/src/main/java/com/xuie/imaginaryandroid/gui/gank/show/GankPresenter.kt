@@ -18,12 +18,8 @@ class GankPresenter(
         this.meizhiView.presenter = this
     }
 
-    override fun subscribe() {
+    override fun start() {
 //        getList(true);
-    }
-
-    override fun unsubscribe() {
-
     }
 
     override fun getGank(year: Int, month: Int, day: Int) {

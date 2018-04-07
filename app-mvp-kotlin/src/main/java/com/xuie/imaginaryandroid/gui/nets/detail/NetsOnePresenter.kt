@@ -18,11 +18,7 @@ class NetsOnePresenter(
         this.newsOneView.presenter = this
     }
 
-    override fun subscribe() {
-    }
-
-    override fun unsubscribe() {
-
+    override fun start() {
     }
 
     override fun getNewsOneRequest(postId: String) {

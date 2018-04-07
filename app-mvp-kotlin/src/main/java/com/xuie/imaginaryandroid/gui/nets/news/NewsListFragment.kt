@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
@@ -19,8 +18,7 @@ import com.xuie.imaginaryandroid.data.NetsSummary
 import com.xuie.imaginaryandroid.data.source.NETSRepository
 import com.xuie.imaginaryandroid.gui.nets.detail.NetsOneActivity
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -52,7 +50,7 @@ class NewsListFragment : Fragment(), NewsListContract.View {
         recycleView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         recycleView.adapter = newsListAdapter
         newsListAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
-        presenter.subscribe()
+        presenter.start()
 
         materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
             override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
@@ -68,11 +66,6 @@ class NewsListFragment : Fragment(), NewsListContract.View {
         })
 
         return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        presenter.unsubscribe()
     }
 
     override fun addList(isRefresh: Boolean, netsSummaries: List<NetsSummary>) {

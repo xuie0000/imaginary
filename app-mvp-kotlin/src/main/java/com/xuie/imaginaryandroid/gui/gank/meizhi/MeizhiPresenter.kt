@@ -19,11 +19,8 @@ class MeizhiPresenter(
 
     private var currentPage = 1
 
-    override fun subscribe() {
+    override fun start() {
         getList(true)
-    }
-
-    override fun unsubscribe() {
     }
 
     override fun getList(isRefresh: Boolean) {
@@ -36,7 +33,7 @@ class MeizhiPresenter(
         gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ meiZhis -> gankView.addList(isRefresh, meiZhis) },
-                        { e -> e.printStackTrace()})
+                        { e -> e.printStackTrace() })
         // get remote data
 
     }
