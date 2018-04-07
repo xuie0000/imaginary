@@ -1,7 +1,6 @@
 package com.xuie.imaginaryandroid.gui.gank.meizhi
 
 import android.widget.ImageView
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xuie.imaginaryandroid.R

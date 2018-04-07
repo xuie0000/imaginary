@@ -10,8 +10,8 @@ import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by xuie on 17-7-5.

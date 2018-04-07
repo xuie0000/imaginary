@@ -34,12 +34,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * @author 咖枯
@@ -52,7 +52,6 @@ public class URLImageGetter implements Html.ImageGetter {
     private int mPicCount;
     private int mPicTotal;
     private static final String mFilePath = App.getContext().getCacheDir().getAbsolutePath();
-    public Subscription mSubscription;
 
     public URLImageGetter(TextView textView, String newsBody, int picTotal) {
         mTextView = textView;
@@ -93,31 +92,39 @@ public class URLImageGetter implements Html.ImageGetter {
 
     @NonNull
     private Drawable getDrawableFromNet(final String source) {
-        mSubscription = ServiceGenerator.createService(NETSApi.class, NETSApi.NETS_API)
+        ServiceGenerator.createService(NETSApi.class, NETSApi.NETS_API)
                 .getNewsBodyHtmlPhoto(HttpUtils.getCacheControl(), source)
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<ResponseBody, Boolean>() {
+                .map(new Function<ResponseBody, Boolean>() {
                     @Override
-                    public Boolean call(ResponseBody response) {
-                        return WritePicToDisk(response, source);
+                    public Boolean apply(ResponseBody responseBody) throws Exception {
+                        return WritePicToDisk(responseBody, source);
                     }
-                }).subscribe(new Subscriber<Boolean>() {
+                })
+                .subscribe(new Observer<Boolean>() {
                     @Override
-                    public void onCompleted() {
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        mPicCount++;
+                        if (aBoolean && (mPicCount == mPicTotal - 1)) {
+                            mTextView.setText(Html.fromHtml(mNewsBody, URLImageGetter.this, null));
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+
                     }
 
                     @Override
-                    public void onNext(Boolean isLoadSuccess) {
-                        mPicCount++;
-                        if (isLoadSuccess && (mPicCount == mPicTotal - 1)) {
-                            mTextView.setText(Html.fromHtml(mNewsBody, URLImageGetter.this, null));
-                        }
+                    public void onComplete() {
+
                     }
                 });
 

@@ -2,9 +2,6 @@ package com.xuie.imaginaryandroid.gui.nets.news
 
 import com.xuie.imaginaryandroid.data.source.NETSRepository
 
-import rx.android.schedulers.AndroidSchedulers
-
-import com.xuie.imaginaryandroid.util.Utils.checkNotNull
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
@@ -29,8 +26,7 @@ class NewsListPresenter(
 
     }
 
-    @Override
-    fun getList(isRefresh: Boolean) {
+    override fun getList(isRefresh: Boolean) {
         if (isRefresh) {
             currentPage = 0
         } else {
@@ -38,8 +34,8 @@ class NewsListPresenter(
         }
         netsRepository.getNews(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ netsSummaries -> netsView.addList(isRefresh, netsSummaries) },
-                        { Throwable.printStackTrace() })
+                .subscribe({ netsSummaries ->
+                    netsView.addList(isRefresh, netsSummaries) }, { e -> e.printStackTrace()})
 
     }
 }

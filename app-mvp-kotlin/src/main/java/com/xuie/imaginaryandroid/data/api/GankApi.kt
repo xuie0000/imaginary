@@ -2,10 +2,10 @@ package com.xuie.imaginaryandroid.data.api
 
 import com.xuie.imaginaryandroid.data.GankBean
 import com.xuie.imaginaryandroid.data.福利s
+import io.reactivex.Observable
 
 import retrofit2.http.GET
 import retrofit2.http.Path
-import rx.Observable
 
 /**
  * Created by xuie on 17-7-5.

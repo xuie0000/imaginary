@@ -5,8 +5,8 @@ import com.xuie.imaginaryandroid.data.BaseBean
 import com.xuie.imaginaryandroid.data.GankBean
 import com.xuie.imaginaryandroid.data.api.GankApi
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator
-import rx.Observable
-import rx.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by xuie on 17-7-5.

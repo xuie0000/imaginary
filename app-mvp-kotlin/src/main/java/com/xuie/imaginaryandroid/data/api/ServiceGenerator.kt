@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
+
 object ServiceGenerator {
     //读超时长，单位：毫秒
     private const val READ_TIME_OUT = 7676

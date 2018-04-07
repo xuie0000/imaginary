@@ -11,6 +11,7 @@ import com.xuie.imaginaryandroid.data.VideoBean
 import com.xuie.imaginaryandroid.glide.GlideApp
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
 
 /**
  * Created by xuie on 17-8-22.
@@ -22,10 +23,9 @@ class VideosAdapter(videoBeen: List<VideoBean>?) : BaseQuickAdapter<VideoBean, B
         helper.setText(R.id.tv_from, item.topicName)
         helper.setText(R.id.tv_play_time,
                 String.format(mContext.resources.getString(R.string.video_play_times),
-                        String.valueOf(item.playCount)
+                        item.playCount.toString())
                 )
-        )
-        val jcVideoPlayerStandard = helper.getView(R.id.videoplayer)
+        val jcVideoPlayerStandard = helper.getView<JCVideoPlayerStandard>(R.id.videoplayer)
         jcVideoPlayerStandard.setUp(
                 item.mp4_url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 if (TextUtils.isEmpty(item.description)) item.title + "" else item.description)

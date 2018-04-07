@@ -5,12 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
-import android.support.v7.preference.CheckBoxPreference
-import android.support.v7.preference.EditTextPreference
-import android.support.v7.preference.ListPreference
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceFragmentCompat
-
+import android.support.v7.preference.*
 import com.xuie.imaginaryandroid.R
 
 /**
@@ -19,14 +14,13 @@ import com.xuie.imaginaryandroid.R
  */
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    @Override
-    fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         val preference = findPreference(key)
         if (preference is ListPreference) {
             val listPreference = preference as ListPreference
             val prefIndex = listPreference.findIndexOfValue(sharedPreferences.getString(key, ""))
             if (prefIndex >= 0) {
-                preference.setSummary(listPreference.getEntries()[prefIndex])
+                preference.setSummary(listPreference.entries[prefIndex])
             }
         } else if (preference is EditTextPreference) {
             preference.setSummary(sharedPreferences.getString(key, ""))
@@ -34,22 +28,19 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
 
     }
 
-    @Override
-    fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
         addPreferencesFromResource(R.xml.fragment_settings)
         bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE))
         bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE))
         bindPreferenceSummaryToValue(findPreference(KEY_CACHED_PRE))
     }
 
-    @Override
-    fun onResume() {
+    override fun onResume() {
         super.onResume()
         //        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
-    fun onPause() {
+    override fun onPause() {
         super.onPause()
         //        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
@@ -65,30 +56,28 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.
          */
-        private val sBindPreferenceSummaryToValueListener = object : Preference.OnPreferenceChangeListener() {
-            @Override
-            fun onPreferenceChange(preference: Preference, value: Object): Boolean {
-                val stringValue = value.toString()
+        private val sBindPreferenceSummaryToValueListener
+                = Preference.OnPreferenceChangeListener { preference, newValue ->
+            val stringValue = newValue.toString()
 
-                if (preference is ListPreference) {
-                    // For list preferences, look up the correct display value in
-                    // the preference's 'entries' list.
-                    val listPreference = preference as ListPreference
-                    val index = listPreference.findIndexOfValue(stringValue)
+            if (preference is ListPreference) {
+                // For list preferences, look up the correct display value in
+                // the preference's 'entries' list.
+                val listPreference = preference as ListPreference
+                val index = listPreference.findIndexOfValue(stringValue)
 
-                    // Set the summary to reflect the new value.
-                    preference.setSummary(
-                            if (index >= 0)
-                                listPreference.getEntries()[index]
-                            else
-                                null)
-                } else {
-                    // For all other preferences, set the summary to the value's
-                    // simple string representation.
-                    preference.setSummary(stringValue)
-                }
-                return true
+                // Set the summary to reflect the new value.
+                preference.setSummary(
+                        if (index >= 0)
+                            listPreference.entries[index]
+                        else
+                            null)
+            } else {
+                // For all other preferences, set the summary to the value's
+                // simple string representation.
+                preference!!.summary = stringValue
             }
+            true
         }
 
         /**
@@ -102,27 +91,26 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
          */
         private fun bindPreferenceSummaryToValue(preference: Preference) {
             // Set the listener to watch for value changes.
-            preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener)
+            preference.onPreferenceChangeListener = sBindPreferenceSummaryToValueListener
 
             // Trigger the listener immediately with the preference's
             // current value.
 
             if (preference is CheckBoxPreference) {
-                (preference as CheckBoxPreference).setChecked(
-                        PreferenceManager.getDefaultSharedPreferences(
-                                preference.getContext()).getBoolean(preference.getKey(), false))
+                preference.isChecked = PreferenceManager.getDefaultSharedPreferences(
+                        preference.getContext()).getBoolean(preference.getKey(), false)
                 return
             }
 
             sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                     PreferenceManager
-                            .getDefaultSharedPreferences(preference.getContext())
-                            .getString(preference.getKey(), ""))
+                            .getDefaultSharedPreferences(preference.context)
+                            .getString(preference.key, ""))
         }
 
-        val KEY_LIST_PRE = "list_preference"
-        val KEY_PET_PRE = "edit_text_preference"
-        val KEY_CACHED_PRE = "checkbox_preference"
+        const val KEY_LIST_PRE = "list_preference"
+        const val KEY_PET_PRE = "edit_text_preference"
+        const val KEY_CACHED_PRE = "checkbox_preference"
     }
 
 }

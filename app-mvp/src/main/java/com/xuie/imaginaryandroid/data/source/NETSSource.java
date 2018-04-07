@@ -6,16 +6,17 @@ import com.xuie.imaginaryandroid.data.VideoBean;
 
 import java.util.List;
 
-import rx.Observable;
+import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Created by xuie on 17-8-17.
  */
 
 public interface NETSSource {
-    Observable<List<NetsSummary>> getNews(int page);
+    Single<List<NetsSummary>> getNews(int page);
 
     Observable<NetsDetail> getNewDetail(String postId);
 
-    Observable<List<VideoBean>> getVideoList(String type, int page);
+    Single<List<VideoBean>> getVideoList(String type, int page);
 }

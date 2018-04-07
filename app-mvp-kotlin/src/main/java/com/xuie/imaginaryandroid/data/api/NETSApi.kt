@@ -3,9 +3,9 @@ package com.xuie.imaginaryandroid.data.api
 import com.xuie.imaginaryandroid.data.NetsDetail
 import com.xuie.imaginaryandroid.data.NetsSummary
 import com.xuie.imaginaryandroid.data.VideoBean
+import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.*
-import rx.Observable
 
 /**
  * Created by xuie on 17-8-17.

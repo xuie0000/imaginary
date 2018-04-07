@@ -1,113 +1,84 @@
-/*
- * Copyright (c) 2016 咖枯 <kaku201313@163.com | 3772304@qq.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
 package com.xuie.imaginaryandroid.widget
 
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.widget.TextView
-
 import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.app.App
 import com.xuie.imaginaryandroid.data.api.NETSApi
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator
 import com.xuie.imaginaryandroid.util.HttpUtils
-
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
+import org.reactivestreams.Subscription
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.io.InputStream
 
-import okhttp3.ResponseBody
-import rx.Subscriber
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.functions.Func1
-import rx.schedulers.Schedulers
-
-/**
- * @author 咖枯
- * @version 1.0 2016/6/19
- */
-class URLImageGetter(private val mTextView: TextView, private val mNewsBody: String, private val mPicTotal: Int) : Html.ImageGetter {
-    private val mPicWidth: Int
+class URLImageGetter(
+        private val mTextView: TextView,
+        private val mNewsBody: String,
+        private val mPicTotal: Int
+) : Html.ImageGetter {
+    private val mPicWidth: Int = mTextView.width
     private var mPicCount: Int = 0
-    var mSubscription: Subscription
+    private lateinit var mSubscription: Subscription
 
-    init {
-        mPicWidth = mTextView.getWidth()
-    }
-
-    @Override
-    fun getDrawable(source: String): Drawable? {
+    override fun getDrawable(source: String): Drawable? {
         val drawable: Drawable?
         val file = File(mFilePath, source.hashCode().toString() + "")
-        if (file.exists()) {
+        drawable = if (file.exists()) {
             mPicCount++
-            drawable = getDrawableFromDisk(file)
+            getDrawableFromDisk(file)
         } else {
-            drawable = getDrawableFromNet(source)
+            getDrawableFromNet(source)
         }
         return drawable
     }
 
-    @Nullable
     private fun getDrawableFromDisk(file: File): Drawable? {
-        val drawable = Drawable.createFromPath(file.getAbsolutePath())
+        val drawable = Drawable.createFromPath(file.absolutePath)
         if (drawable != null) {
-            val picHeight = calculatePicHeight(drawable!!)
-            drawable!!.setBounds(0, 0, mPicWidth, picHeight)
+            val picHeight = calculatePicHeight(drawable)
+            drawable.setBounds(0, 0, mPicWidth, picHeight)
         }
         return drawable
     }
 
     private fun calculatePicHeight(drawable: Drawable): Int {
-        val imgWidth = drawable.getIntrinsicWidth()
-        val imgHeight = drawable.getIntrinsicHeight()
+        val imgWidth = drawable.intrinsicWidth
+        val imgHeight = drawable.intrinsicHeight
         val rate = imgHeight / imgWidth
-        return (mPicWidth * rate).toInt()
+        return mPicWidth * rate
     }
 
-    @NonNull
     private fun getDrawableFromNet(source: String): Drawable {
-        mSubscription = ServiceGenerator.createService(NETSApi::class.java, NETSApi.NETS_API)
-                .getNewsBodyHtmlPhoto(HttpUtils.getCacheControl(), source)
+        ServiceGenerator.createService(NETSApi::class.java, NETSApi.NETS_API)
+                .getNewsBodyHtmlPhoto(HttpUtils.cacheControl, source)
                 .unsubscribeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(object : Func1<ResponseBody, Boolean>() {
-                    @Override
-                    fun call(response: ResponseBody): Boolean {
-                        return WritePicToDisk(response, source)
-                    }
-                }).subscribe(object : Subscriber<Boolean>() {
-                    @Override
-                    fun onCompleted() {
+                .map { response ->
+                    writePicToDisk(response, source)
+                }
+                .subscribe(object : Observer<Boolean> {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    @Override
-                    fun onError(e: Throwable) {
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
                     }
 
-                    @Override
-                    fun onNext(isLoadSuccess: Boolean) {
+                    override fun onComplete() {
+                    }
+
+                    override fun onNext(isLoadSuccess: Boolean) {
                         mPicCount++
                         if (isLoadSuccess && mPicCount == mPicTotal - 1) {
-                            mTextView.setText(Html.fromHtml(mNewsBody, this@URLImageGetter, null))
+                            mTextView.text = Html.fromHtml(mNewsBody, this@URLImageGetter, null)
                         }
                     }
                 })
@@ -115,49 +86,35 @@ class URLImageGetter(private val mTextView: TextView, private val mNewsBody: Str
         return createPicPlaceholder()
     }
 
-    @NonNull
-    private fun WritePicToDisk(response: ResponseBody, source: String): Boolean {
+    private fun writePicToDisk(response: ResponseBody, source: String): Boolean {
         val file = File(mFilePath, source.hashCode().toString() + "")
-        var `in`: InputStream? = null
-        var out: FileOutputStream? = null
-        try {
-            `in` = response.byteStream()
-            out = FileOutputStream(file)
-            val buffer = ByteArray(1024)
-            var len: Int
-            while ((len = `in`!!.read(buffer)) != -1) {
-                out!!.write(buffer, 0, len)
-            }
-            return true
-        } catch (e: Exception) {
-            return false
-        } finally {
-            try {
-                if (`in` != null) {
-                    `in`!!.close()
-                }
-                if (out != null) {
-                    out!!.close()
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
+        val input: InputStream = response.byteStream()
+        file.copyInputStreamToFile(input)
 
+//        val inputAsString = input.bufferedReader().use { it.readText() }
+        return true
+    }
+
+    private fun File.copyInputStreamToFile(inputStream: InputStream) {
+        inputStream.use { input ->
+            this.outputStream().use { fileOut ->
+                input.copyTo(fileOut)
+            }
         }
     }
 
     @SuppressWarnings("deprecation")
-    @NonNull
     private fun createPicPlaceholder(): Drawable {
         val drawable: Drawable
         val color = R.color.white
-        drawable = ColorDrawable(App.getContext().getResources().getColor(color))
+        drawable = ColorDrawable(App.context.resources.getColor(color))
         drawable.setBounds(0, 0, mPicWidth, mPicWidth / 3)
         return drawable
     }
 
     companion object {
-        private val mFilePath = App.getContext().getCacheDir().getAbsolutePath()
+        private val mFilePath = App.context.cacheDir.absolutePath
+        private const val TAG = "URLImageGetter"
     }
 
 }

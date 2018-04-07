@@ -7,8 +7,9 @@ import com.xuie.imaginaryandroid.data.api.NETSApi
 import com.xuie.imaginaryandroid.data.api.ServiceGenerator
 import com.xuie.imaginaryandroid.util.HttpUtils
 import com.xuie.imaginaryandroid.util.TimeUtils
-import rx.Observable
-import rx.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by xuie on 17-8-17.
@@ -16,30 +17,36 @@ import rx.schedulers.Schedulers
 class NETSRepository private constructor() : NETSSource {
     private val netsApi = ServiceGenerator.createService(NETSApi::class.java, NETSApi.NETS_API)
 
-    override fun getNews(page: Int): Observable<List<NetsSummary>> {
+    override fun getNews(page: Int): Single<MutableList<NetsSummary>> {
         return netsApi.getNewsList(HttpUtils.cacheControl, page)
                 .subscribeOn(Schedulers.newThread())
-                .flatMap { stringListMap -> Observable.from(stringListMap["T1348647853363"]) }
+                .flatMap { stringListMap ->
+                    Observable.fromIterable(stringListMap["T1348647853363"])
+                }
                 .map({ netsSummary ->
                     netsSummary.ptime = TimeUtils.formatDate(netsSummary.ptime!!)
                     netsSummary
                 })
                 .distinct()
-                .toSortedList({ netsSummary, netsSummary2 -> netsSummary2.ptime!!.compareTo(netsSummary.ptime!!) })
+                .toSortedList({ netsSummary, netsSummary2 ->
+                    netsSummary2.ptime!!.compareTo(netsSummary.ptime!!)
+                })
     }
 
     override fun getNewDetail(postId: String): Observable<NetsDetail> {
         return netsApi.getNewDetail(HttpUtils.cacheControl, postId)
                 .subscribeOn(Schedulers.newThread())
-                .map({ stringNetsDetailMap -> stringNetsDetailMap.get(postId) })
+                .map({ stringNetsDetailMap -> stringNetsDetailMap[postId] })
     }
 
-    override fun getVideoList(type: String, page: Int): Observable<List<VideoBean>> {
+    override fun getVideoList(type: String, page: Int): Single<MutableList<VideoBean>> {
         return netsApi.getVideoList(HttpUtils.cacheControl, type, page)
                 .subscribeOn(Schedulers.newThread())
-                .flatMap { stringListMap -> Observable.from(stringListMap[type]) }
+                .flatMap { stringListMap ->
+                    Observable.fromIterable(stringListMap[type]) }
                 .distinct()
-                .toSortedList({ videoBean, videoBean2 -> videoBean2.ptime!!.compareTo(videoBean.ptime!!) })
+                .toSortedList({ videoBean, videoBean2 ->
+                    videoBean2.ptime!!.compareTo(videoBean.ptime!!) })
     }
 
     companion object {

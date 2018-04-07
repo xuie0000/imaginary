@@ -2,9 +2,7 @@ package com.xuie.imaginaryandroid.gui.gank.show
 
 import com.xuie.imaginaryandroid.data.source.GankRepository
 
-import rx.android.schedulers.AndroidSchedulers
-
-import com.xuie.imaginaryandroid.util.Utils.checkNotNull
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
  * Created by xuie on 17-7-5.

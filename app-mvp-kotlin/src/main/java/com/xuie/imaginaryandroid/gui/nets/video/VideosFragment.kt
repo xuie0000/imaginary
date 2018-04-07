@@ -7,21 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
 import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.data.VideoBean
 import com.xuie.imaginaryandroid.data.source.NETSRepository
-
-import java.util.ArrayList
-
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
-
-import com.xuie.imaginaryandroid.util.Utils.checkNotNull
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -56,18 +49,18 @@ class VideosFragment : Fragment(), VideosContract.View {
         videosAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
 
         presenter.subscribe()
-        presenter.getList(mVideoType, true)
+        presenter.getList(mVideoType!!, true)
 
 
         materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
             override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
-                presenter.getList(mVideoType, true)
+                presenter.getList(mVideoType!!, true)
                 materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefresh() }, 1000)
             }
 
             override fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout)
-                presenter.getList(mVideoType, false)
+                presenter.getList(mVideoType!!, false)
                 materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
             }
         })

@@ -23,14 +23,14 @@ import android.widget.TextView
 import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.data.NetsDetail
 import com.xuie.imaginaryandroid.data.source.NETSRepository
+import com.xuie.imaginaryandroid.glide.GlideApp
 import com.xuie.imaginaryandroid.util.TimeUtils
 import com.xuie.imaginaryandroid.widget.URLImageGetter
+import io.reactivex.Observable
+import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
-import rx.Observable
-import rx.Observer
-import rx.android.schedulers.AndroidSchedulers
-import rx.functions.Action1
-import rx.schedulers.Schedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
@@ -74,7 +74,7 @@ class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
         val mShareLink = netsDetail.shareLink
         val mNewsTitle = netsDetail.title
         val newsSource = netsDetail.source
-        val newsTime = TimeUtils.formatDate(netsDetail.ptime)
+        val newsTime = TimeUtils.formatDate(netsDetail.ptime!!)
         val newsBody = netsDetail.body
         val newsImgSrc = getImgSrcs(netsDetail)
 
@@ -91,9 +91,12 @@ class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : Observer<NetsDetail> {
-                    override fun onCompleted() {
+                    override fun onComplete() {
                         progressBar.visibility = View.GONE
                         fab.visibility = View.VISIBLE
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
                     }
 
                     override fun onError(e: Throwable) {
@@ -101,7 +104,7 @@ class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
                     }
 
                     override fun onNext(netsDetail: NetsDetail) {
-                        setBody(netsDetail, netsDetail.body)
+                        setBody(netsDetail, netsDetail.body!!)
                     }
                 })
 
@@ -123,7 +126,7 @@ class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
     }
 
     private fun setBody(netsDetail: NetsDetail, newsBody: String) {
-        val imgTotal = netsDetail.getImg().size()
+        val imgTotal = netsDetail.img!!.size
         if (isShowBody(newsBody, imgTotal)) {
 //            mNewsDetailBodyTv.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效,实测经常卡机崩溃
             val urlImageGetter = URLImageGetter(newsDetailBodyTv, newsBody, imgTotal)

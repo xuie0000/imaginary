@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.github.chrisbanes.photoview.PhotoView
@@ -16,13 +14,7 @@ import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.data.GankBean
 import com.xuie.imaginaryandroid.data.source.GankRepository
 import com.xuie.imaginaryandroid.glide.GlideApp
-
-import java.util.ArrayList
-
-import butterknife.BindView
-import butterknife.ButterKnife
-
-import com.xuie.imaginaryandroid.util.Utils.checkNotNull
+import java.util.*
 
 class GankActivity : AppCompatActivity(), GankContract.View {
     override lateinit var presenter: GankContract.Presenter
@@ -36,7 +28,6 @@ class GankActivity : AppCompatActivity(), GankContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gank)
-        ButterKnife.bind(this)
 
         recyclerView = findViewById(R.id.recycler_view)
         gankDaily = findViewById(R.id.gank_daily)

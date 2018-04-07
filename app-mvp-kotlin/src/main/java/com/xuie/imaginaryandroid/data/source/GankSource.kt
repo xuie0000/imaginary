@@ -2,8 +2,7 @@ package com.xuie.imaginaryandroid.data.source
 
 import com.xuie.imaginaryandroid.data.BaseBean
 import com.xuie.imaginaryandroid.data.GankBean
-
-import rx.Observable
+import io.reactivex.Observable
 
 /**
  * Created by xuie on 17-7-5.

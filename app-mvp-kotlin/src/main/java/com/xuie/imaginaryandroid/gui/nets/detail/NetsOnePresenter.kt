@@ -2,7 +2,6 @@ package com.xuie.imaginaryandroid.gui.nets.detail
 
 import com.xuie.imaginaryandroid.data.source.NETSRepository
 
-import com.xuie.imaginaryandroid.util.Utils.checkNotNull
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 /**
@@ -29,7 +28,6 @@ class NetsOnePresenter(
     override fun getNewsOneRequest(postId: String) {
         netsRepository.getNewDetail(postId)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ netsDetail -> newsOneView.refreshNewsOne(netsDetail) },
-                        { Throwable.printStackTrace() })
+                .subscribe({ netsDetail -> newsOneView.refreshNewsOne(netsDetail) })
     }
 }

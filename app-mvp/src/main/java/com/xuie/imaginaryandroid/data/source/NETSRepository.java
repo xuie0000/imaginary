@@ -11,9 +11,11 @@ import com.xuie.imaginaryandroid.util.TimeUtils;
 import java.util.List;
 import java.util.Map;
 
-import rx.Observable;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Single;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by xuie on 17-8-17.
@@ -36,13 +38,13 @@ public class NETSRepository implements NETSSource {
     }
 
     @Override
-    public Observable<List<NetsSummary>> getNews(int page) {
+    public Single<List<NetsSummary>> getNews(int page) {
         return netsApi.getNewsList(HttpUtils.getCacheControl(), page)
                 .subscribeOn(Schedulers.newThread())
-                .flatMap(new Func1<Map<String, List<NetsSummary>>, Observable<NetsSummary>>() {
+                .flatMap(new Function<Map<String, List<NetsSummary>>, ObservableSource<NetsSummary>>() {
                     @Override
-                    public Observable<NetsSummary> call(Map<String, List<NetsSummary>> stringListMap) {
-                        return Observable.from(stringListMap.get("T1348647853363"));
+                    public ObservableSource<NetsSummary> apply(Map<String, List<NetsSummary>> stringListMap){
+                        return Observable.fromIterable(stringListMap.get("T1348647853363"));
                     }
                 })
                 .map(netsSummary -> {
@@ -61,13 +63,13 @@ public class NETSRepository implements NETSSource {
     }
 
     @Override
-    public Observable<List<VideoBean>> getVideoList(String type, int page) {
+    public Single<List<VideoBean>> getVideoList(String type, int page) {
         return netsApi.getVideoList(HttpUtils.getCacheControl(), type, page)
                 .subscribeOn(Schedulers.newThread())
-                .flatMap(new Func1<Map<String, List<VideoBean>>, Observable<VideoBean>>() {
+                .flatMap(new Function<Map<String, List<VideoBean>>, Observable<VideoBean>>() {
                     @Override
-                    public Observable<VideoBean> call(Map<String, List<VideoBean>> stringListMap) {
-                        return Observable.from(stringListMap.get(type));
+                    public Observable<VideoBean> apply(Map<String, List<VideoBean>> stringListMap) throws Exception {
+                        return Observable.fromIterable(stringListMap.get(type));
                     }
                 })
                 .distinct()

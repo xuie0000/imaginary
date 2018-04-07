@@ -3,14 +3,9 @@ package com.xuie.imaginaryandroid.util
 import android.annotation.SuppressLint
 import android.text.TextUtils
 import android.util.Log
-
-import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.GregorianCalendar
-import java.util.Locale
+import java.util.*
 
 /**
  * 描述：日期处理类.
@@ -30,24 +25,24 @@ class TimeUtils {
     fun getDateByOffset(date: Date, calendarField: Int, offset: Int): Date {
         val c = GregorianCalendar()
         try {
-            c.setTime(date)
+            c.time = date
             c.add(calendarField, offset)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        return c.getTime()
+        return c.time
     }
 
     companion object {
         /**
          * one day millisecond count
          */
-        val ONE_DAY_MILLISECONDS = (1000 * 3600 * 24).toLong()
+        const val ONE_DAY_MILLISECONDS = (1000 * 3600 * 24).toLong()
 
-        val ONE_HOUR_MILLISECONDS = (1000 * 3600).toLong()
+        private const val ONE_HOUR_MILLISECONDS = (1000 * 3600).toLong()
 
-        val ONE_MIN_MILLISECONDS = (1000 * 60).toLong()
+        const val ONE_MIN_MILLISECONDS = (1000 * 60).toLong()
 
         /**
          * 时间日期格式化到年月日时分秒.
@@ -121,16 +116,14 @@ class TimeUtils {
 
         private val dateFormater = object : ThreadLocal<SimpleDateFormat>() {
             @SuppressLint("SimpleDateFormat")
-            @Override
-            protected fun initialValue(): SimpleDateFormat {
+            override fun initialValue(): SimpleDateFormat {
                 return SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
             }
         }
 
         @SuppressLint("SimpleDateFormat")
         private val dateFormater2 = object : ThreadLocal<SimpleDateFormat>() {
-            @Override
-            protected fun initialValue(): SimpleDateFormat {
+            override fun initialValue(): SimpleDateFormat {
                 return SimpleDateFormat("yyyy-MM-dd")
             }
         }
@@ -146,7 +139,7 @@ class TimeUtils {
             if (timeStamp == 0L) {
                 return ""
             }
-            timeStamp = timeStamp * 1000
+            timeStamp *= 1000
             val format = SimpleDateFormat(dataFormat)
             return format.format(Date(timeStamp))
         }
@@ -159,8 +152,8 @@ class TimeUtils {
          */
         fun convertToSecond(time: Long): Int {
             val date = Date()
-            date.setTime(time)
-            return date.getSeconds()
+            date.time = time
+            return date.seconds
         }
 
         /**
@@ -170,7 +163,7 @@ class TimeUtils {
          * @param format  格式化字符串，如："yyyy-MM-dd HH:mm:ss"
          * @return Date Date类型日期时间
          */
-        fun getDateByFormat(strDate: String, format: String): Date? {
+        private fun getDateByFormat(strDate: String, format: String): Date? {
             val mSimpleDateFormat = SimpleDateFormat(format)
             var date: Date? = null
             try {
@@ -196,9 +189,9 @@ class TimeUtils {
             try {
                 val c = GregorianCalendar()
                 val mSimpleDateFormat = SimpleDateFormat(format)
-                c.setTime(mSimpleDateFormat.parse(strDate))
+                c.time = mSimpleDateFormat.parse(strDate)
                 c.add(calendarField, offset)
-                mDateTime = mSimpleDateFormat.format(c.getTime())
+                mDateTime = mSimpleDateFormat.format(c.time)
             } catch (e: ParseException) {
                 e.printStackTrace()
             }
@@ -220,9 +213,9 @@ class TimeUtils {
             try {
                 val c = GregorianCalendar()
                 val mSimpleDateFormat = SimpleDateFormat(format)
-                c.setTime(date)
+                c.time = date
                 c.add(calendarField, offset)
-                strDate = mSimpleDateFormat.format(c.getTime())
+                strDate = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -272,14 +265,14 @@ class TimeUtils {
          * @param format  输出格式化字符串，如："yyyy-MM-dd HH:mm:ss"
          * @return String 转换后的String类型的日期时间
          */
-        fun getStringByFormat(strDate: String, format: String): String? {
+        private fun getStringByFormat(strDate: String, format: String): String? {
             var mDateTime: String? = null
             try {
                 val c = GregorianCalendar()
                 val mSimpleDateFormat = SimpleDateFormat(format)
-                c.setTime(mSimpleDateFormat.parse(strDate))
+                c.time = mSimpleDateFormat.parse(strDate)
                 val mSimpleDateFormat2 = SimpleDateFormat(format)
-                mDateTime = mSimpleDateFormat2.format(c.getTime())
+                mDateTime = mSimpleDateFormat2.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -293,7 +286,7 @@ class TimeUtils {
          * @param format 格式化字符串，如："yyyy-MM-dd HH:mm:ss"
          * @return String 日期时间字符串
          */
-        fun getStringByFormat(milliseconds: Long, format: String): String? {
+        private fun getStringByFormat(milliseconds: Long, format: String): String? {
             var thisDateTime: String? = null
             try {
                 val mSimpleDateFormat = SimpleDateFormat(format)
@@ -311,12 +304,12 @@ class TimeUtils {
          * @param format 格式化字符串，如："yyyy-MM-dd HH:mm:ss"
          * @return String String类型的当前日期时间
          */
-        fun getCurrentDate(format: String): String? {
+        private fun getCurrentDate(format: String): String? {
             var curDateTime: String? = null
             try {
                 val mSimpleDateFormat = SimpleDateFormat(format)
                 val c = GregorianCalendar()
-                curDateTime = mSimpleDateFormat.format(c.getTime())
+                curDateTime = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -334,7 +327,7 @@ class TimeUtils {
                     val mSimpleDateFormat = SimpleDateFormat(dateFormat)
                     val c = GregorianCalendar()
                     c.add(Calendar.DAY_OF_MONTH, 0)
-                    curDateTime = mSimpleDateFormat.format(c.getTime())
+                    curDateTime = mSimpleDateFormat.format(c.time)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -350,7 +343,7 @@ class TimeUtils {
                     val mSimpleDateFormat = SimpleDateFormat(dateFormatYMDHMS)
                     val c = GregorianCalendar()
                     c.add(Calendar.DAY_OF_MONTH, 0)
-                    curDateTime = mSimpleDateFormat.format(c.getTime())
+                    curDateTime = mSimpleDateFormat.format(c.time)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -365,7 +358,7 @@ class TimeUtils {
                 val mSimpleDateFormat = SimpleDateFormat(dateFormat)
                 val c = GregorianCalendar()
                 c.add(Calendar.DAY_OF_MONTH, i)
-                curDateTime = mSimpleDateFormat.format(c.getTime())
+                curDateTime = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -380,7 +373,7 @@ class TimeUtils {
                 val mSimpleDateFormat = SimpleDateFormat(dateFormat)
                 val c = GregorianCalendar()
                 c.add(Calendar.HOUR_OF_DAY, i)
-                curDateTime = mSimpleDateFormat.format(c.getTime())
+                curDateTime = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -402,7 +395,7 @@ class TimeUtils {
                 val mSimpleDateFormat = SimpleDateFormat(format)
                 val c = GregorianCalendar()
                 c.add(calendarField, offset)
-                mDateTime = mSimpleDateFormat.format(c.getTime())
+                mDateTime = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -418,11 +411,11 @@ class TimeUtils {
          * @param date2 第二个时间的毫秒表示
          * @return int 所差的天数
          */
-        fun getOffectDay(date1: Long, date2: Long): Int {
+        private fun getOffsetDay(date1: Long, date2: Long): Int {
             val calendar1 = Calendar.getInstance()
-            calendar1.setTimeInMillis(date1)
+            calendar1.timeInMillis = date1
             val calendar2 = Calendar.getInstance()
-            calendar2.setTimeInMillis(date2)
+            calendar2.timeInMillis = date2
             //先判断是否同年
             val y1 = calendar1.get(Calendar.YEAR)
             val y2 = calendar2.get(Calendar.YEAR)
@@ -449,15 +442,15 @@ class TimeUtils {
          * @param date2 第二个时间的毫秒表示
          * @return int 所差的小时数
          */
-        fun getOffectHour(date1: Long, date2: Long): Int {
+        private fun getOffsetHour(date1: Long, date2: Long): Int {
             val calendar1 = Calendar.getInstance()
-            calendar1.setTimeInMillis(date1)
+            calendar1.timeInMillis = date1
             val calendar2 = Calendar.getInstance()
-            calendar2.setTimeInMillis(date2)
+            calendar2.timeInMillis = date2
             val h1 = calendar1.get(Calendar.HOUR_OF_DAY)
             val h2 = calendar2.get(Calendar.HOUR_OF_DAY)
-            var h = 0
-            val day = getOffectDay(date1, date2)
+            val h: Int
+            val day = getOffsetDay(date1, date2)
             h = h1 - h2 + day * 24
             return h
         }
@@ -469,15 +462,15 @@ class TimeUtils {
          * @param date2 第二个时间的毫秒表示
          * @return int 所差的分钟数
          */
-        fun getOffectMinutes(date1: Long, date2: Long): Int {
+        private fun getOffsetMinutes(date1: Long, date2: Long): Int {
             val calendar1 = Calendar.getInstance()
-            calendar1.setTimeInMillis(date1)
+            calendar1.timeInMillis = date1
             val calendar2 = Calendar.getInstance()
-            calendar2.setTimeInMillis(date2)
+            calendar2.timeInMillis = date2
             val m1 = calendar1.get(Calendar.MINUTE)
             val m2 = calendar2.get(Calendar.MINUTE)
-            val h = getOffectHour(date1, date2)
-            var m = 0
+            val h = getOffsetHour(date1, date2)
+            val m: Int
             m = m1 - m2 + h * 60
             return m
         }
@@ -516,7 +509,7 @@ class TimeUtils {
                 val mSimpleDateFormat = SimpleDateFormat(format)
                 val week = c.get(Calendar.DAY_OF_WEEK)
                 if (week == calendarField) {
-                    strDate = mSimpleDateFormat.format(c.getTime())
+                    strDate = mSimpleDateFormat.format(c.time)
                 } else {
                     var offectDay = calendarField - week
                     if (calendarField == Calendar.SUNDAY) {
@@ -545,7 +538,7 @@ class TimeUtils {
                 val mSimpleDateFormat = SimpleDateFormat(format)
                 //当前月的第一天
                 c.set(GregorianCalendar.DAY_OF_MONTH, 1)
-                strDate = mSimpleDateFormat.format(c.getTime())
+                strDate = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -567,7 +560,7 @@ class TimeUtils {
                 // 当前月的最后一天
                 c.set(Calendar.DATE, 1)
                 c.roll(Calendar.DATE, -1)
-                strDate = mSimpleDateFormat.format(c.getTime())
+                strDate = mSimpleDateFormat.format(c.time)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -587,7 +580,7 @@ class TimeUtils {
                 try {
                     val currentDate = getCurrentDate(dateFormatYMD)
                     date = getDateByFormat(currentDate!! + " 00:00:00", dateFormatYMDHMS)
-                    return date!!.getTime()
+                    return date!!.time
                 } catch (e: Exception) {
                 }
 
@@ -605,7 +598,7 @@ class TimeUtils {
                 try {
                     val currentDate = getCurrentDate(dateFormatYMD)
                     date = getDateByFormat(currentDate!! + " 24:00:00", dateFormatYMDHMS)
-                    return date!!.getTime()
+                    return date!!.time
                 } catch (e: Exception) {
                 }
 
@@ -621,11 +614,7 @@ class TimeUtils {
          * @return boolean 是否为闰年
          */
         fun isLeapYear(year: Int): Boolean {
-            return if (year % 4 == 0 && year % 400 != 0 || year % 400 == 0) {
-                true
-            } else {
-                false
-            }
+            return year % 4 == 0 && year % 400 != 0 || year % 400 == 0
         }
 
         /**
@@ -640,23 +629,21 @@ class TimeUtils {
             val c1 = Calendar.getInstance()
             val c2 = Calendar.getInstance()
             try {
-                c2.setTime(df.parse(strDate))
-                c1.setTime(Date())
-                val d = getOffectDay(c1.getTimeInMillis(), c2.getTimeInMillis())
+                c2.time = df.parse(strDate)
+                c1.time = Date()
+                val d = getOffsetDay(c1.timeInMillis, c2.timeInMillis)
                 if (d == 0) {
-                    val h = getOffectHour(c1.getTimeInMillis(), c2.getTimeInMillis())
+                    val h = getOffsetHour(c1.timeInMillis, c2.timeInMillis)
                     if (h > 0) {
                         return h.toString() + "小时前"
                     } else if (h < 0) {
-                        return Math.abs(h) + "小时后"
+                        return Math.abs(h).toString() + "小时后"
                     } else if (h == 0) {
-                        val m = getOffectMinutes(c1.getTimeInMillis(), c2.getTimeInMillis())
-                        return if (m > 0) {
-                            m.toString() + "分钟前"
-                        } else if (m < 0) {
-                            Math.abs(m) + "分钟后"
-                        } else {
-                            "刚刚"
+                        val m = getOffsetMinutes(c1.timeInMillis, c2.timeInMillis)
+                        return when {
+                            m > 0 -> m.toString() + "分钟前"
+                            m < 0 -> Math.abs(m).toString() + "分钟后"
+                            else -> "刚刚"
                         }
                     }
                 } else if (d > 0) {
@@ -671,7 +658,7 @@ class TimeUtils {
                     } else if (d == -2) {
                         return "后天"
                     }
-                    return Math.abs(d) + "天后"
+                    return Math.abs(d).toString() + "天后"
                 }
 
                 val out = getStringByFormat(strDate, outFormat)
@@ -697,7 +684,7 @@ class TimeUtils {
             val calendar = GregorianCalendar()
             val df = SimpleDateFormat(inFormat)
             try {
-                calendar.setTime(df.parse(strDate))
+                calendar.time = df.parse(strDate)
             } catch (e: Exception) {
                 return "错误"
             }
@@ -722,10 +709,10 @@ class TimeUtils {
          * @return
          */
         private fun toDate(sdate: String): Date? {
-            try {
-                return dateFormater.get().parse(sdate)
+            return try {
+                dateFormater.get().parse(sdate)
             } catch (e: ParseException) {
-                return null
+                null
             }
 
         }
@@ -740,24 +727,21 @@ class TimeUtils {
             if (ms == null) return ""
             //		Date time = toDate(sdate);
             val time = Date()
-            time.setTime(ms)
+            time.time = ms
 
-            if (time == null) {
-                return "Unknown"
-            }
             var ftime = ""
             val cal = Calendar.getInstance()
 
             // 判断是否是同一天
-            val curDate = dateFormater2.get().format(cal.getTime())
+            val curDate = dateFormater2.get().format(cal.time)
             val paramDate = dateFormater2.get().format(time)
-            if (curDate.equals(paramDate)) {
-                val hour = ((cal.getTimeInMillis() - time.getTime()) / 3600000) as Int
+            if (curDate == paramDate) {
+                val hour = ((cal.timeInMillis - time.time) / 3600000) as Int
                 if (hour == 0) {
-                    if ((cal.getTimeInMillis() - time.getTime()) / 60000 < 1) {
+                    if ((cal.timeInMillis - time.time) / 60000 < 1) {
                         ftime = "刚刚"
                     } else {
-                        ftime = Math.max((cal.getTimeInMillis() - time.getTime()) / 60000, 1) + "分钟前"
+                        ftime = Math.max((cal.timeInMillis - time.time) / 60000, 1).toString() + "分钟前"
                     }
                 } else {
                     ftime = hour.toString() + "小时前"
@@ -765,22 +749,21 @@ class TimeUtils {
                 return ftime
             }
 
-            val lt = time.getTime() / 86400000
-            val ct = cal.getTimeInMillis() / 86400000
+            val lt = time.time / 86400000
+            val ct = cal.timeInMillis / 86400000
             val days = (ct - lt).toInt()
             if (days == 0) {
-                val hour = ((cal.getTimeInMillis() - time.getTime()) / 3600000) as Int
-                if (hour == 0)
-                    ftime = Math.max(
-                            (cal.getTimeInMillis() - time.getTime()) / 60000, 1) + "分钟前"
+                val hour = ((cal.timeInMillis - time.time) / 3600000) as Int
+                ftime = if (hour == 0)
+                    Math.max((cal.timeInMillis - time.time) / 60000, 1).toString() + "分钟前"
                 else
-                    ftime = hour.toString() + "小时前"
+                    hour.toString() + "小时前"
             } else if (days == 1) {
                 ftime = "昨天"
             } else if (days == 2) {
                 ftime = "前天"
-            } else if (days > 2 && days <= 10) {
-                ftime = days + "天前"
+            } else if (days in 3..10) {
+                ftime = days.toString() + "天前"
             } else if (days > 10) {
                 ftime = dateFormater2.get().format(time)
             }
@@ -804,11 +787,11 @@ class TimeUtils {
                 date = sdf.parse(dateStr)
                 val dateNow = Date()
 
-                val times = date.getTime() - dateNow.getTime()
-                if (times > 0) {
-                    ret = (times / ONE_HOUR_MILLISECONDS).toInt()
+                val times = date.time - dateNow.time
+                ret = if (times > 0) {
+                    (times / ONE_HOUR_MILLISECONDS).toInt()
                 } else {
-                    ret = -1
+                    -1
                 }
             } catch (e: ParseException) {
                 e.printStackTrace()
@@ -831,11 +814,11 @@ class TimeUtils {
                 sendDate = sdf.parse(dateStr)
                 val dateNow = Date(System.currentTimeMillis())
                 Log.e("JPush", "date=$sendDate")
-                val times = dateNow.getTime() - sendDate.getTime()
-                Log.e("JPush", "date.getTime()=" + sendDate.getTime())
+                val times = dateNow.time - sendDate.time
+                Log.e("JPush", "date.getTime()=" + sendDate.time)
                 if (times > 0) {
                     ret = (times / ONE_HOUR_MILLISECONDS).toInt()
-                    val sdqf = Math.floor(times / ONE_HOUR_MILLISECONDS) as Int
+                    val sdqf = Math.floor((times / ONE_HOUR_MILLISECONDS).toDouble()) as Int
                 } else {
                     ret = -1
                 }
@@ -861,7 +844,7 @@ class TimeUtils {
             if (time != null) {
                 val nowDate = dateFormater2.get().format(today)
                 val timeDate = dateFormater2.get().format(time)
-                if (nowDate.equals(timeDate)) {
+                if (nowDate == timeDate) {
                     b = true
                 }
             }
@@ -874,14 +857,14 @@ class TimeUtils {
          * @param sdate
          * @return boolean
          */
-        fun isToday(sdate: Long): Boolean {
+        private fun isToday(sdate: Long): Boolean {
             var b = false
             val time = Date(sdate)
             val today = Date()
             if (time != null) {
                 val nowDate = dateFormater2.get().format(today)
                 val timeDate = dateFormater2.get().format(time)
-                if (nowDate.equals(timeDate)) {
+                if (nowDate == timeDate) {
                     b = true
                 }
             }
@@ -903,7 +886,7 @@ class TimeUtils {
             val monthNow = cal.get(Calendar.MONTH) + 1
             val dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH)
 
-            cal.setTime(birthday)
+            cal.time = birthday
             val yearBirth = cal.get(Calendar.YEAR)
             val monthBirth = cal.get(Calendar.MONTH) + 1
             val dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH)
@@ -964,7 +947,6 @@ class TimeUtils {
          * 友好的时间间隔2
          *
          * @param duration 秒
-         * @return
          */
         fun getFriendlyDuration2(duration: Long): String {
             var str = ""
@@ -988,13 +970,6 @@ class TimeUtils {
             return str
         }
 
-        /**
-         * 通过日期来确定星座
-         *
-         * @param mouth
-         * @param day
-         * @return
-         */
         fun getStarSeat(mouth: Int, day: Int): String {
             var starSeat: String? = null
             if (mouth == 3 && day >= 21 || mouth == 4 && day <= 19) {
@@ -1049,8 +1024,7 @@ class TimeUtils {
                 e.printStackTrace()
             }
 
-            val longDate = date!!.getTime()
-            return longDate
+            return date!!.time
         }
 
         /**
@@ -1064,7 +1038,7 @@ class TimeUtils {
             try {
                 val dt1 = df.parse(DATE1)
                 val dt2 = df.parse(DATE2)
-                return if (dt1.getTime() - dt2.getTime() > 0) {//date1>date2
+                return if (dt1.time - dt2.time > 0) {//date1>date2
                     1
                 } else {
                     -1

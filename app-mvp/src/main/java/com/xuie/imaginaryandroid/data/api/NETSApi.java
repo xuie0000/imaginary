@@ -7,13 +7,13 @@ import com.xuie.imaginaryandroid.data.VideoBean;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
-import rx.Observable;
 
 /**
  * Created by xuie on 17-8-17.

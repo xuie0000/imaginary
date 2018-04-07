@@ -2,7 +2,7 @@ package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 
-import rx.android.schedulers.AndroidSchedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
