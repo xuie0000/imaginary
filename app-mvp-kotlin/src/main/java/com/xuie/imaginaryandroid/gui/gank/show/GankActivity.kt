@@ -64,7 +64,7 @@ class GankActivity : AppCompatActivity(), GankContract.View {
     }
 
     override fun refresh(gb: GankBean) {
-        Log.d(TAG, gb.toString())
+//        Log.d(TAG, gb.toString())
         val entities = generateData(gb)
         adapter.replaceData(ArrayList())
         adapter.addData(entities)
@@ -73,7 +73,7 @@ class GankActivity : AppCompatActivity(), GankContract.View {
 
     private fun generateData(gb: GankBean): List<MultiItemEntity> {
         val entities = ArrayList<MultiItemEntity>()
-        Log.d(TAG, "category: " + gb.category.toString())
+//        Log.d(TAG, "category: " + gb.category.toString())
         for (s in gb.category!!) {
             val lv0 = Level0Item()
             lv0.type = s

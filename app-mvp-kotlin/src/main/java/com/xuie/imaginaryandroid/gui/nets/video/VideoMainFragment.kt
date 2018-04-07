@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.xuie.imaginaryandroid.R
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -38,8 +37,8 @@ class VideoMainFragment : Fragment() {
     }
 
     private inner class MyPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        internal var channelName = Arrays.asList(resources.getStringArray(R.array.video_channel_name))
-        internal var channelId = Arrays.asList(resources.getStringArray(R.array.video_channel_id))
+        internal var channelName = resources.getStringArray(R.array.video_channel_name)
+        internal var channelId = resources.getStringArray(R.array.video_channel_id)
 
         override fun getCount(): Int {
             return channelId.size
@@ -58,5 +57,6 @@ class VideoMainFragment : Fragment() {
 
         val instance: VideoMainFragment
             get() = VideoMainFragment()
+        const val TAG = "VideoMainFragment"
     }
 }
