@@ -33,6 +33,7 @@ class GankPresenter(
     override fun getGank(date: String) {
         gankRepository.getDay(date)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ gankBean -> meizhiView.refresh(gankBean) })
+                .subscribe({ gankBean -> meizhiView.refresh(gankBean) },
+                        { e -> e.printStackTrace()})
     }
 }

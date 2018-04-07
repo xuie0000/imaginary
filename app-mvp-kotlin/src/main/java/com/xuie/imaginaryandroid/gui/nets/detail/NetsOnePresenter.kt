@@ -28,6 +28,7 @@ class NetsOnePresenter(
     override fun getNewsOneRequest(postId: String) {
         netsRepository.getNewDetail(postId)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ netsDetail -> newsOneView.refreshNewsOne(netsDetail) })
+                .subscribe({ netsDetail -> newsOneView.refreshNewsOne(netsDetail) },
+                        { e -> e.printStackTrace()})
     }
 }

@@ -41,18 +41,29 @@ public class NETSRepository implements NETSSource {
     public Single<List<NetsSummary>> getNews(int page) {
         return netsApi.getNewsList(HttpUtils.getCacheControl(), page)
                 .subscribeOn(Schedulers.newThread())
+//                .map(new Function<Map<String, List<NetsSummary>>, List<NetsSummary>>() {
+//                    @Override
+//                    public List<NetsSummary> apply(Map<String, List<NetsSummary>> stringListMap){
+//                        return stringListMap.get("T1348647853363");
+//                    }
+//                });
                 .flatMap(new Function<Map<String, List<NetsSummary>>, ObservableSource<NetsSummary>>() {
                     @Override
                     public ObservableSource<NetsSummary> apply(Map<String, List<NetsSummary>> stringListMap){
-                        return Observable.fromIterable(stringListMap.get("T1348647853363"));
+                        List<NetsSummary> ns = stringListMap.get("T1348647853363");
+                        return Observable.fromIterable(ns);
                     }
                 })
-                .map(netsSummary -> {
-                    netsSummary.setPtime(TimeUtils.formatDate(netsSummary.getPtime()));
-                    return netsSummary;
+                .map(new Function<NetsSummary, NetsSummary>() {
+                    @Override
+                    public NetsSummary apply(NetsSummary netsSummary){
+                        netsSummary.setPtime(TimeUtils.formatDate(netsSummary.getPtime()));
+                        return netsSummary;
+                    }
                 })
                 .distinct()
-                .toSortedList((netsSummary, netsSummary2) -> netsSummary2.getPtime().compareTo(netsSummary.getPtime()));
+                .toSortedList((netsSummary, netsSummary2) ->
+                        netsSummary2.getPtime().compareTo(netsSummary.getPtime()));
     }
 
     @Override
@@ -66,9 +77,15 @@ public class NETSRepository implements NETSSource {
     public Single<List<VideoBean>> getVideoList(String type, int page) {
         return netsApi.getVideoList(HttpUtils.getCacheControl(), type, page)
                 .subscribeOn(Schedulers.newThread())
+//                .map(new Function<Map<String, List<VideoBean>>, List<VideoBean>>() {
+//                    @Override
+//                    public List<VideoBean> apply(Map<String, List<VideoBean>> stringListMap){
+//                        return stringListMap.get(type);
+//                    }
+//                });
                 .flatMap(new Function<Map<String, List<VideoBean>>, Observable<VideoBean>>() {
                     @Override
-                    public Observable<VideoBean> apply(Map<String, List<VideoBean>> stringListMap) throws Exception {
+                    public Observable<VideoBean> apply(Map<String, List<VideoBean>> stringListMap){
                         return Observable.fromIterable(stringListMap.get(type));
                     }
                 })

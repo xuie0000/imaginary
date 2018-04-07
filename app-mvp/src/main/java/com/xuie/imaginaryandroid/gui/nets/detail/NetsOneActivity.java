@@ -33,10 +33,11 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
@@ -118,9 +119,13 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<NetsDetail>() {
                     @Override
-                    public void onCompleted() {
-                        progressBar.setVisibility(View.GONE);
-                        fab.setVisibility(View.VISIBLE);
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(NetsDetail netsDetail) {
+                        setBody(netsDetail, netsDetail.getBody());
                     }
 
                     @Override
@@ -129,8 +134,9 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
                     }
 
                     @Override
-                    public void onNext(NetsDetail netsDetail) {
-                        setBody(netsDetail, netsDetail.getBody());
+                    public void onComplete() {
+                        progressBar.setVisibility(View.GONE);
+                        fab.setVisibility(View.VISIBLE);
                     }
                 });
 

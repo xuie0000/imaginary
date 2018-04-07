@@ -46,28 +46,27 @@ class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
     private lateinit var progressBar: ProgressBar
     private lateinit var fab: FloatingActionButton
 
-    private lateinit var mPresenter: NetsOneContract.Presenter
     private lateinit var postId: String
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nets_one)
+
         newsDetailPhotoIv = findViewById(R.id.news_detail_photo_iv)
         maskView = findViewById(R.id.mask_view)
         toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         toolbarLayout = findViewById(R.id.toolbar_layout)
         appBar = findViewById(R.id.app_bar)
         newsDetailFromTv = findViewById(R.id.news_detail_from_tv)
         newsDetailBodyTv = findViewById(R.id.news_detail_body_tv)
         progressBar = findViewById(R.id.progress_bar)
         fab = findViewById(R.id.fab)
-
-        setSupportActionBar(toolbar)
-
         postId = intent.getStringExtra(POST_ID)
-        presenter.getNewsOneRequest(postId)
+
         NetsOnePresenter(NETSRepository.instance, this)
+
+        presenter.getNewsOneRequest(postId)
     }
 
     override fun refreshNewsOne(netsDetail: NetsDetail) {

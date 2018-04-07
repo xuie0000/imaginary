@@ -11,7 +11,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -63,7 +63,7 @@ object ServiceGenerator {
     fun <S> createService(serviceClass: Class<S>): S {
         val builder = Retrofit.Builder()
                 .baseUrl(GankApi.GANK_API)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
         return createService(serviceClass, builder, null)
     }
@@ -71,7 +71,7 @@ object ServiceGenerator {
     fun <S> createService(serviceClass: Class<S>, baseUrl: String): S {
         val builder = Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
         return createService(serviceClass, builder, null)
     }

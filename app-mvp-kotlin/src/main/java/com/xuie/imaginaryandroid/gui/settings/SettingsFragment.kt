@@ -28,7 +28,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
 
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.fragment_settings)
         bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE))
         bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE))
@@ -37,12 +37,12 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
 
     override fun onResume() {
         super.onResume()
-        //        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        // getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this)
     }
 
     override fun onPause() {
         super.onPause()
-        //        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        // getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this)
     }
 
     companion object {

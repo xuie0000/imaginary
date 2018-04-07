@@ -35,7 +35,8 @@ class MeizhiPresenter(
         }
         gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ meiZhis -> gankView.addList(isRefresh, meiZhis) })
+                .subscribe({ meiZhis -> gankView.addList(isRefresh, meiZhis) },
+                        { e -> e.printStackTrace()})
         // get remote data
 
     }

@@ -17,23 +17,25 @@ class GankBean {
     var category: List<String>? = null
 
     class ResultsBean {
-        var android: List<BaseBean>? = null
+        var Android: List<BaseBean>? = null
         var iOS: List<BaseBean>? = null
         var 休息视频: List<BaseBean>? = null
         var 前端: List<BaseBean>? = null
         var 瞎推荐: List<BaseBean>? = null
         var 福利: List<BaseBean>? = null
         var 拓展资源: List<BaseBean>? = null
+        var App: List<BaseBean>? = null
 
         override fun toString(): String {
             return "ResultsBean{" +
-                    "Android=" + android +
+                    "Android=" + Android +
                     ", iOS=" + iOS +
                     ", 休息视频=" + 休息视频 +
                     ", 前端=" + 前端 +
                     ", 瞎推荐=" + 瞎推荐 +
                     ", 福利=" + 福利 +
                     ", 拓展资源=" + 拓展资源 +
+                    ", App=" + App +
                     '}'.toString()
         }
     }

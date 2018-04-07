@@ -32,7 +32,8 @@ class VideosPresenter(
         }
         netsRepository.getVideoList(type, currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ videoBeen -> videosView.addList(isRefresh, videoBeen) })
+                .subscribe({ videoBeen -> videosView.addList(isRefresh, videoBeen) },
+                        { e -> e.printStackTrace()})
 
     }
 }
