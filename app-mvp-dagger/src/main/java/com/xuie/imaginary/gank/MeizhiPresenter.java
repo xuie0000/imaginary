@@ -1,16 +1,13 @@
 package com.xuie.imaginary.gank;
 
-import com.xuie.imaginary.data.BaseBean;
+import android.support.annotation.Nullable;
+
 import com.xuie.imaginary.data.source.GankRepository;
 import com.xuie.imaginary.di.ActivityScoped;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by xuie on 17-12-15.
@@ -39,17 +36,7 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
         }
         gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<BaseBean>>() {
-                    @Override
-                    public void call(List<BaseBean> baseBeans) {
-                        meizhiView.addList(isRefresh, baseBeans);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                });
+                .subscribe(baseBeans -> meizhiView.addList(isRefresh, baseBeans), Throwable::printStackTrace);
         // get remote data
 
     }

@@ -5,7 +5,7 @@ import com.xuie.imaginary.data.GankBean;
 
 import java.util.List;
 
-import rx.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by xuie on 17-7-5.

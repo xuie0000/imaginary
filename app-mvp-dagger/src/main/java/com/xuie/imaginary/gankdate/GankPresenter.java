@@ -1,19 +1,16 @@
 package com.xuie.imaginary.gankdate;
 
-import com.xuie.imaginary.data.GankBean;
 import com.xuie.imaginary.data.source.GankRepository;
 import com.xuie.imaginary.di.ActivityScoped;
 
 import javax.inject.Inject;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 @ActivityScoped
 public class GankPresenter implements GankContract.Presenter {
     private GankRepository gankRepository;
@@ -34,17 +31,7 @@ public class GankPresenter implements GankContract.Presenter {
     public void getGank(String date) {
         gankRepository.getDay(date)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<GankBean>() {
-                    @Override
-                    public void call(GankBean gankBean) {
-                        meizhiView.refresh(gankBean);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                });
+                .subscribe(gank -> meizhiView.refresh(gank), Throwable::printStackTrace);
     }
 
     @Override

@@ -8,12 +8,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  * http://gank.io/api
  */
-
-public interface GankApi{
-    // GANK
+public interface GankApi {
     String GANK_API = "http://gank.io/api/";
 
     @GET("data/福利/20/{page}")
