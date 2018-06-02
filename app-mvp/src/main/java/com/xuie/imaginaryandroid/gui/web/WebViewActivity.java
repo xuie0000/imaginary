@@ -14,6 +14,9 @@ import com.xuie.imaginaryandroid.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class WebViewActivity extends AppCompatActivity {
 
     public static final String URL = "url";
@@ -36,7 +39,9 @@ public class WebViewActivity extends AppCompatActivity {
         webView.loadUrl(url);
     }
 
-    // Manages the behavior when URLs are loaded
+    /**
+     * Manages the behavior when URLs are loaded
+     */
     private class MyBrowser extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -64,7 +69,7 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        if (webView.canGoBack()) {
-//            webView.goBack();
+//            webView.goBack()
 //        } else {
         super.onBackPressed();
 //        }

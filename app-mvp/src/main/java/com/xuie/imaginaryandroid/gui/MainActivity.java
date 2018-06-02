@@ -23,6 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
+/**
+ * @author xuie
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @BindView(R.id.view_pager) ViewPager viewPager;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
+                default:
                     viewPager.setCurrentItem(0);
                     return true;
                 case R.id.navigation_video:
@@ -47,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(3);
                     return true;
             }
-            return false;
         }
 
     };

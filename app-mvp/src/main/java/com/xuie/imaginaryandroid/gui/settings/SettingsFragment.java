@@ -16,6 +16,8 @@ import com.xuie.imaginaryandroid.R;
 /**
  * A simple {@link Fragment} subclass.
  * https://developer.android.com/guide/topics/ui/settings.html
+ *
+ * @author xuie
  */
 public class SettingsFragment extends PreferenceFragmentCompat
         implements SharedPreferences.OnSharedPreferenceChangeListener {

@@ -28,6 +28,8 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author xuie
  */
 public class VideosFragment extends Fragment implements VideosContract.View {
 

@@ -16,9 +16,9 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
- * Created by xuie on 17-8-22.
+ * @author xuie
+ * @date 17-8-22
  */
-
 public class VideosAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> {
     private static final String TAG = "VideosAdapter";
 
