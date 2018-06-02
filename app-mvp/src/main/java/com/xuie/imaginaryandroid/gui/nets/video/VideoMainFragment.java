@@ -2,6 +2,7 @@ package com.xuie.imaginaryandroid.gui.nets.video;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
+ * @author xuie
  */
 public class VideoMainFragment extends Fragment {
 
@@ -36,7 +38,7 @@ public class VideoMainFragment extends Fragment {
     Unbinder unbinder;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_video_main, container, false);
         unbinder = ButterKnife.bind(this, view);
 
