@@ -6,6 +6,8 @@ import com.xuie.imaginaryandroid.data.NetsDetail;
 
 /**
  * This specifies the contract between the view and the presenter.
+ *
+ * @author xuie
  */
 public interface NetsOneContract {
 

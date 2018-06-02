@@ -1,7 +1,8 @@
 package com.xuie.imaginaryandroid.data;
 
 /**
- * Created by xuie on 17-8-22.
+ * @author xuie
+ * @date 17-8-22
  */
 
 public class VideoBean {

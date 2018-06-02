@@ -14,9 +14,9 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class GankRepository implements GankSource {
     private static final String TAG = "GankRepository";
     private static GankRepository INSTANCE;
@@ -39,8 +39,9 @@ public class GankRepository implements GankSource {
         return gankApi.get福利(page)
                 .subscribeOn(Schedulers.newThread())
                 .map(福利s -> {
-                    if (福利s.isError())
-                        return new ArrayList<BaseBean>();
+                    if (福利s.isError()) {
+                        return new ArrayList<>();
+                    }
                     return 福利s.getResults();
                 });
     }
@@ -50,8 +51,9 @@ public class GankRepository implements GankSource {
         return gankApi.getDay(date)
                 .subscribeOn(Schedulers.newThread())
                 .map(gankBean -> {
-                    if (gankBean == null)
+                    if (gankBean == null) {
                         Log.d(TAG, "gank is null");
+                    }
                     return gankBean;
                 });
     }

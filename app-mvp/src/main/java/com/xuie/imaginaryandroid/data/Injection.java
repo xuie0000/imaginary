@@ -22,6 +22,8 @@ import com.xuie.imaginaryandroid.data.source.GankRepository;
  * Enables injection of mock implementations for
  * {@link com.xuie.imaginaryandroid.data.source.GankSource} at compile time. This is useful for testing, since it allows us to use
  * a fake instance of the class to isolate the dependencies and run a test hermetically.
+ *
+ * @author xuie
  */
 public class Injection {
 

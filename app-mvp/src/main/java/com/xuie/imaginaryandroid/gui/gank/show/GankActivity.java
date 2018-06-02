@@ -25,6 +25,9 @@ import butterknife.ButterKnife;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
+/**
+ * @author xuie
+ */
 public class GankActivity extends AppCompatActivity implements GankContract.View {
 
     @BindView(R.id.recycler_view) RecyclerView recyclerView;

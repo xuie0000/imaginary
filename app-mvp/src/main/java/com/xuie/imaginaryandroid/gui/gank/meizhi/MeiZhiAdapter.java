@@ -11,9 +11,9 @@ import com.xuie.imaginaryandroid.glide.GlideApp;
 import java.util.List;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
     private static final String TAG = "MeiZhiAdapter";
 

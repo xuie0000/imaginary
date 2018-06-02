@@ -12,10 +12,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-/**
- * 描述：日期处理类.
- *
- */
 @SuppressWarnings("all")
 public class TimeUtils {
     /**
@@ -115,6 +111,7 @@ public class TimeUtils {
 
     /**
      * 时间戳转特定格式时间
+     *
      * @param dataFormat
      * @param timeStamp
      * @return
@@ -355,6 +352,7 @@ public class TimeUtils {
         }
         return curDateTime;
     }
+
     //获取当前系统前后第几小时
     public static String getNextHour(int i) {
         String curDateTime = null;
@@ -804,6 +802,7 @@ public class TimeUtils {
 
     /**
      * 过了多少个小时
+     *
      * @param dateStr
      * @return
      */
@@ -815,19 +814,19 @@ public class TimeUtils {
         try {
             sendDate = sdf.parse(dateStr);
             Date dateNow = new Date(System.currentTimeMillis());
-            Log.e("JPush","date="+sendDate);
+            Log.e("JPush", "date=" + sendDate);
             long times = dateNow.getTime() - sendDate.getTime();
-            Log.e("JPush","date.getTime()="+sendDate.getTime());
+            Log.e("JPush", "date.getTime()=" + sendDate.getTime());
             if (times > 0) {
                 ret = ((int) (times / ONE_HOUR_MILLISECONDS));
-                int sdqf =(int) Math.floor(times /ONE_HOUR_MILLISECONDS);
+                int sdqf = (int) Math.floor(times / ONE_HOUR_MILLISECONDS);
             } else {
                 ret = -1;
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Log.e("JPush","ret="+ret);
+        Log.e("JPush", "ret=" + ret);
         return ret;
     }
 
@@ -945,6 +944,7 @@ public class TimeUtils {
         tmpDuration %= 1;
         return str;
     }
+
     /**
      * 友好的时间间隔2
      *
@@ -954,9 +954,9 @@ public class TimeUtils {
     public static String getFriendlyDuration2(long duration) {
         String str = "";
         long tmpDuration = duration;
-        str += (tmpDuration / 60>0?tmpDuration / 60+"'":"");
+        str += (tmpDuration / 60 > 0 ? tmpDuration / 60 + "'" : "");
         tmpDuration %= 60;
-        str += (tmpDuration / 1>=10?tmpDuration / 1+"''":"0"+tmpDuration / 1+"''");
+        str += (tmpDuration / 1 >= 10 ? tmpDuration / 1 + "''" : "0" + tmpDuration / 1 + "''");
         tmpDuration %= 1;
         return str;
     }
@@ -1012,12 +1012,13 @@ public class TimeUtils {
 
     /**
      * 返回聊天时间
+     *
      * @return
      */
-    public static String getChatTimeForShow(long time){
-        if(TimeUtils.isToday(time)){
+    public static String getChatTimeForShow(long time) {
+        if (TimeUtils.isToday(time)) {
             return TimeUtils.getStringByFormat(time, TimeUtils.dateFormatHMofChinese);
-        }else{
+        } else {
             return TimeUtils.getStringByFormat(time, TimeUtils.dateFormatMDHMofChinese);
         }
     }
@@ -1025,7 +1026,7 @@ public class TimeUtils {
     /**
      * 获取指定时间的毫秒值
      */
-    public static long getDatelongMills(String fomat, String dateStr){
+    public static long getDatelongMills(String fomat, String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat(fomat);
         Date date = null;
         try {
@@ -1039,6 +1040,7 @@ public class TimeUtils {
 
     /**
      * 两个日期比较
+     *
      * @param DATE1
      * @param DATE2
      * @return
@@ -1048,7 +1050,7 @@ public class TimeUtils {
         try {
             Date dt1 = df.parse(DATE1);
             Date dt2 = df.parse(DATE2);
-            if (dt1.getTime() - dt2.getTime()>0) {//date1>date2
+            if (dt1.getTime() - dt2.getTime() > 0) {//date1>date2
                 return 1;
             } else {
                 return -1;

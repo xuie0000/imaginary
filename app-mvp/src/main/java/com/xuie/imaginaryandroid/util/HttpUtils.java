@@ -5,9 +5,9 @@ import android.support.annotation.NonNull;
 import com.xuie.imaginaryandroid.app.App;
 
 /**
- * Created by xuie on 17-8-17.
+ * @author xuie
+ * @date 17-8-17
  */
-
 public class HttpUtils {
     /**
      * 设缓存有效期为两天

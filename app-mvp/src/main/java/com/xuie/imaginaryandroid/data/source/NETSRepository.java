@@ -18,10 +18,10 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by xuie on 17-8-17.
+ * @author xuie
+ * @date 17-8-17
  */
-
-public class NETSRepository implements NETSSource {
+public class NETSRepository implements NetsSource {
     private static NETSRepository INSTANCE;
     private NETSApi netsApi = ServiceGenerator.createService(NETSApi.class, NETSApi.NETS_API);
 
@@ -49,14 +49,14 @@ public class NETSRepository implements NETSSource {
 //                });
                 .flatMap(new Function<Map<String, List<NetsSummary>>, ObservableSource<NetsSummary>>() {
                     @Override
-                    public ObservableSource<NetsSummary> apply(Map<String, List<NetsSummary>> stringListMap){
+                    public ObservableSource<NetsSummary> apply(Map<String, List<NetsSummary>> stringListMap) {
                         List<NetsSummary> ns = stringListMap.get("T1348647853363");
                         return Observable.fromIterable(ns);
                     }
                 })
                 .map(new Function<NetsSummary, NetsSummary>() {
                     @Override
-                    public NetsSummary apply(NetsSummary netsSummary){
+                    public NetsSummary apply(NetsSummary netsSummary) {
                         netsSummary.setPtime(TimeUtils.formatDate(netsSummary.getPtime()));
                         return netsSummary;
                     }
@@ -85,7 +85,7 @@ public class NETSRepository implements NETSSource {
 //                });
                 .flatMap(new Function<Map<String, List<VideoBean>>, Observable<VideoBean>>() {
                     @Override
-                    public Observable<VideoBean> apply(Map<String, List<VideoBean>> stringListMap){
+                    public Observable<VideoBean> apply(Map<String, List<VideoBean>> stringListMap) {
                         return Observable.fromIterable(stringListMap.get(type));
                     }
                 })

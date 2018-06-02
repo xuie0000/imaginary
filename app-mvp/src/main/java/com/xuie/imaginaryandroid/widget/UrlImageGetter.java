@@ -45,7 +45,7 @@ import okhttp3.ResponseBody;
  * @author 咖枯
  * @version 1.0 2016/6/19
  */
-public class URLImageGetter implements Html.ImageGetter {
+public class UrlImageGetter implements Html.ImageGetter {
     private TextView mTextView;
     private int mPicWidth;
     private String mNewsBody;
@@ -53,7 +53,7 @@ public class URLImageGetter implements Html.ImageGetter {
     private int mPicTotal;
     private static final String mFilePath = App.getContext().getCacheDir().getAbsolutePath();
 
-    public URLImageGetter(TextView textView, String newsBody, int picTotal) {
+    public UrlImageGetter(TextView textView, String newsBody, int picTotal) {
         mTextView = textView;
         mPicWidth = mTextView.getWidth();
         mNewsBody = newsBody;
@@ -113,7 +113,7 @@ public class URLImageGetter implements Html.ImageGetter {
                     public void onNext(Boolean aBoolean) {
                         mPicCount++;
                         if (aBoolean && (mPicCount == mPicTotal - 1)) {
-                            mTextView.setText(Html.fromHtml(mNewsBody, URLImageGetter.this, null));
+                            mTextView.setText(Html.fromHtml(mNewsBody, UrlImageGetter.this, null));
                         }
                     }
 

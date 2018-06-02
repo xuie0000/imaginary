@@ -6,6 +6,8 @@ import com.xuie.imaginaryandroid.data.GankBean;
 
 /**
  * This specifies the contract between the view and the presenter.
+ *
+ * @author xuie
  */
 public interface GankContract {
 

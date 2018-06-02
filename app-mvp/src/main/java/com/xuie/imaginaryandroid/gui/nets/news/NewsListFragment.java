@@ -32,6 +32,8 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author xuie
  */
 public class NewsListFragment extends Fragment implements NewsListContract.View {
     private static final String TAG = "NewsListFragment";

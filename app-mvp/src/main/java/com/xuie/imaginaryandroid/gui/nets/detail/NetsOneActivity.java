@@ -26,7 +26,7 @@ import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.source.NETSRepository;
 import com.xuie.imaginaryandroid.glide.GlideApp;
 import com.xuie.imaginaryandroid.util.TimeUtils;
-import com.xuie.imaginaryandroid.widget.URLImageGetter;
+import com.xuie.imaginaryandroid.widget.UrlImageGetter;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -41,6 +41,9 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
+/**
+ * @author xuie
+ */
 public class NetsOneActivity extends AppCompatActivity implements NetsOneContract.View {
     public static final String POST_ID = "postId";
     public static final String IMG_RES = "image";
@@ -161,7 +164,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         int imgTotal = netsDetail.getImg().size();
         if (isShowBody(newsBody, imgTotal)) {
 //              mNewsDetailBodyTv.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效,实测经常卡机崩溃
-            URLImageGetter urlImageGetter = new URLImageGetter(newsDetailBodyTv, newsBody, imgTotal);
+            UrlImageGetter urlImageGetter = new UrlImageGetter(newsDetailBodyTv, newsBody, imgTotal);
             newsDetailBodyTv.setText(Html.fromHtml(newsBody, urlImageGetter, null));
         } else {
             newsDetailBodyTv.setText(Html.fromHtml(newsBody));

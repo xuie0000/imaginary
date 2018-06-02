@@ -16,9 +16,9 @@ import com.xuie.imaginaryandroid.glide.GlideApp;
 import java.util.List;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, BaseViewHolder> {
     private static final String TAG = "NewsListAdapter";
 
@@ -38,6 +38,7 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
     protected void convert(BaseViewHolder helper, NetsSummary item) {
         switch (helper.getItemViewType()) {
             case NetsSummary.IMG_ONE:
+            default:
                 helper.setText(R.id.ltitle, item.getTitle())
                         .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
@@ -68,7 +69,8 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
         protected void convert(BaseViewHolder helper, NetsSummary.ImgextraBean item) {
             GlideApp.with(mContext)
                     .load(item.getImgsrc())
-                    .apply(RequestOptions/*.circleCropTransform()*/
+                    .apply(RequestOptions
+                            /*.circleCropTransform()*/
                             .placeholderOf(R.mipmap.ic_launcher_round)
                             .override(300, 300)
                             .centerInside()

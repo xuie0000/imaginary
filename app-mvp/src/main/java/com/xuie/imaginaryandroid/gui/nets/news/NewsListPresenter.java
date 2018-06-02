@@ -7,9 +7,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class NewsListPresenter implements NewsListContract.Presenter {
     private NETSRepository netsRepository;
     private NewsListContract.View netsView;

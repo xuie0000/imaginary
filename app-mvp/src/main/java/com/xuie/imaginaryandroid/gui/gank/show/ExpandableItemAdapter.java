@@ -17,10 +17,10 @@ import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
 import java.util.List;
 
 /**
- * Created by xuie on 17-8-15.
+ * @author xuie
+ * @date 17-8-15
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/app/src/main/java/com/chad/baserecyclerviewadapterhelper/adapter/ExpandableItemAdapter.java
  */
-
 public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder> {
     private static final String TAG = "ExpandableItemAdapter";
     public static final int TYPE_LEVEL_0 = 0;
@@ -42,6 +42,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
     protected void convert(BaseViewHolder helper, MultiItemEntity item) {
         switch (helper.getItemViewType()) {
             case TYPE_LEVEL_0:
+            default:
                 final Level0Item lv0 = (Level0Item) item;
                 helper.setText(android.R.id.text1, lv0.getType());
                 // 展开与闭合

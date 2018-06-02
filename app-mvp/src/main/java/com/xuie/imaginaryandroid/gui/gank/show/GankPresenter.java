@@ -7,9 +7,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class GankPresenter implements GankContract.Presenter {
     private GankRepository gankRepository;
     private GankContract.View meizhiView;

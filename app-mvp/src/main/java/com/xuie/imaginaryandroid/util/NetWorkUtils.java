@@ -8,9 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by xuie on 17-8-17.
+ * @author xuie
+ * @date 17-8-17
  */
-
 public class NetWorkUtils {
 
     /**

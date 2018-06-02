@@ -5,9 +5,9 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import java.util.List;
 
 /**
- * Created by xuie on 17-8-16.
+ * @author xuie
+ * @date 17-8-16
  */
-
 public class NetsSummary implements MultiItemEntity {
     public static final int IMG_ONE = 1;
     public static final int IMG_MULTI = 2;

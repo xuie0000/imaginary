@@ -1,6 +1,5 @@
 package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +33,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.
+ * @author xuie
  */
 public class MeizhiFragment extends Fragment implements MeizhiContract.View {
     private static final String TAG = "MeizhiFragment";

@@ -10,10 +10,10 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
- * Created by xuie on 17-8-17.
+ * @author xuie
+ * @date 17-8-17
  */
-
-public interface NETSSource {
+public interface NetsSource {
     Single<List<NetsSummary>> getNews(int page);
 
     Observable<NetsDetail> getNewDetail(String postId);

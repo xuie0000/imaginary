@@ -3,9 +3,9 @@ package com.xuie.imaginaryandroid.util;
 import android.support.annotation.Nullable;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class Utils {
     public static <T> T checkNotNull(T reference) {
         if (reference == null) {

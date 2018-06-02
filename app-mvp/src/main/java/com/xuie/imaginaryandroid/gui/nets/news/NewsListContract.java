@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * This specifies the contract between the view and the presenter.
+ *
+ * @author xuie
  */
 public interface NewsListContract {
 
