@@ -42,24 +42,25 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
     protected void convert(BaseViewHolder helper, MultiItemEntity item) {
         switch (helper.getItemViewType()) {
             case TYPE_LEVEL_0:
+            default:
                 final Level0Item lv0 = (Level0Item) item;
                 helper.setText(android.R.id.text1, lv0.getType());
                 // 展开与闭合
 //                helper.itemView.setOnClickListener(v -> {
-//                    int pos = helper.getAdapterPosition();
+//                    int pos = helper.getAdapterPosition()
 //                    if (lv0.isExpanded()) {
-//                        collapse(pos);
+//                        collapse(pos)
 //                    } else {
-//                        expand(pos);
+//                        expand(pos)
 //                    }
-//                });
+//                })
                 break;
             case TYPE_LEVEL_1:
                 final Level1Item lv1 = (Level1Item) item;
                 String webLink = String.format("<a href=\\'%s\\'> %s</a>",
                         lv1.getArticleUrl(), lv1.getArticleName());
-//                helper.setText(R.id.articleName, lv1.getArticleName());
-                helper.setText(R.id.articleName, Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/));
+//                helper.setText(R.id.articleName, lv1.getArticleName())
+                helper.setText(R.id.articleName, Html.fromHtml(webLink));
                 helper.getView(R.id.articleName).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -72,17 +73,18 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                 });
 
                 // 添加TextView自动打开超链接，失败
-//                TextView tvArticle = helper.getView(R.id.articleName);
-//                tvArticle.setText(Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/));
-//                tvArticle.setMovementMethod(LinkMovementMethod.getInstance());
+//                TextView tvArticle = helper.getView(R.id.articleName)
+//                tvArticle.setText(Html.fromHtml(webLink))
+//                tvArticle.setMovementMethod(LinkMovementMethod.getInstance())
                 helper.setText(R.id.author, String.format("(%s)", lv1.getAuthor()));
                 // 添加Child Click，不过无效
-//                helper.addOnClickListener(R.id.articleName);
+//                helper.addOnClickListener(R.id.articleName)
 
-                if (lv1.getImageUrl() != null)
+                if (lv1.getImageUrl() != null) {
                     GlideApp.with(mContext)
                             .load(lv1.getImageUrl())
                             .into((ImageView) helper.getView(R.id.thumb));
+                }
                 break;
         }
 
