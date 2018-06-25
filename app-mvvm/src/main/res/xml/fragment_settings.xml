@@ -1,0 +1,35 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="设置">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="checkbox_preference"
+            android:summary=""
+            android:title="是否使用缓存"/>
+        <EditTextPreference
+            android:defaultValue="猫儿"
+            android:dialogTitle="输入你的宠物"
+            android:key="edit_text_preference"
+            android:summary="猫儿"
+            android:title="猫儿"/>
+        <ListPreference
+            android:defaultValue="-1"
+            android:dialogTitle="Select Me"
+            android:entries="@array/pref_example_list_titles"
+            android:entryValues="@array/pref_example_list_values"
+            android:key="list_preference"
+            android:summary="Never"
+            android:title="喜欢吗"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="关于我">
+        <PreferenceScreen
+            android:summary="http://xuie0000.com"
+            android:title="我的博客">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://xuie0000.com"/>
+        </PreferenceScreen>
+    </PreferenceCategory>
+</PreferenceScreen>

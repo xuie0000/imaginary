@@ -1,1 +1,4 @@
-include ':app-mvp', ':test', ':app-mvp-dagger', ':app-mvp-kotlin'
+include ':app-mvp', ':test'
+include ':app-mvp-dagger'
+include ':app-mvp-kotlin'
+include ':app-mvvm'
