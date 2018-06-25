@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsDetail;
-import com.xuie.imaginaryandroid.data.source.NETSRepository;
+import com.xuie.imaginaryandroid.data.source.NetsRepository;
 import com.xuie.imaginaryandroid.glide.GlideApp;
 import com.xuie.imaginaryandroid.util.TimeUtils;
 import com.xuie.imaginaryandroid.widget.UrlImageGetter;
@@ -91,7 +91,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         setSupportActionBar(toolbar);
 
         postId = getIntent().getStringExtra(POST_ID);
-        new NetsOnePresenter(NETSRepository.getInstance(), this);
+        new NetsOnePresenter(NetsRepository.getInstance(), this);
     }
 
     @Override

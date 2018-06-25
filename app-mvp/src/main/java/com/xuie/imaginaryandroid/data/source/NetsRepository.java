@@ -21,17 +21,17 @@ import io.reactivex.schedulers.Schedulers;
  * @author xuie
  * @date 17-8-17
  */
-public class NETSRepository implements NetsSource {
-    private static NETSRepository INSTANCE;
+public class NetsRepository implements NetsSource {
+    private static NetsRepository INSTANCE;
     private NETSApi netsApi = ServiceGenerator.createService(NETSApi.class, NETSApi.NETS_API);
 
-    private NETSRepository() {
+    private NetsRepository() {
     }
 
-    public static NETSRepository getInstance() {
+    public static NetsRepository getInstance() {
         if (INSTANCE == null) {
             synchronized (GankRepository.class) {
-                INSTANCE = new NETSRepository();
+                INSTANCE = new NetsRepository();
             }
         }
         return INSTANCE;

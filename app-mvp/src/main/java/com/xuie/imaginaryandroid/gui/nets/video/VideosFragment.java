@@ -14,7 +14,7 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.VideoBean;
-import com.xuie.imaginaryandroid.data.source.NETSRepository;
+import com.xuie.imaginaryandroid.data.source.NetsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class VideosFragment extends Fragment implements VideosContract.View {
         super.onCreate(savedInstanceState);
         mVideoType = getArguments().getString(VIDEO_TYPE_ID);
 
-        new VideosPresenter(NETSRepository.getInstance(), this);
+        new VideosPresenter(NetsRepository.getInstance(), this);
     }
 
     @Override

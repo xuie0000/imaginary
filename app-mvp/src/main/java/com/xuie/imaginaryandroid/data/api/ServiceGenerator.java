@@ -23,6 +23,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * @author xuie
+ */
 public class ServiceGenerator {
     //读超时长，单位：毫秒
     private static final int READ_TIME_OUT = 7676;
@@ -54,7 +57,8 @@ public class ServiceGenerator {
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         //缓存
         File cacheFile = new File(App.getContext().getCacheDir(), "cache");
-        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        //100Mb
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
         //增加头部信息
         Interceptor headerInterceptor = new Interceptor() {
             @Override
@@ -62,8 +66,10 @@ public class ServiceGenerator {
                 Request build = chain.request().newBuilder()
                         .addHeader("Content-Type", "application/json")
                         // http://www.jianshu.com/p/4132b381f07e
-                        .removeHeader("User-Agent")//移除旧的
-                        .addHeader("User-Agent", WebSettings.getDefaultUserAgent(App.getContext()))//添加真正的头部
+                        //移除旧的
+                        .removeHeader("User-Agent")
+                        //添加真正的头部
+                        .addHeader("User-Agent", WebSettings.getDefaultUserAgent(App.getContext()))
                         .build();
                 return chain.proceed(build);
             }
@@ -119,7 +125,6 @@ public class ServiceGenerator {
             Response originalResponse = chain.proceed(request);
             if (NetWorkUtils.isNetConnected(App.getContext())) {
                 //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
-
                 return originalResponse.newBuilder()
                         .header("Cache-Control", cacheControl)
                         .removeHeader("Pragma")

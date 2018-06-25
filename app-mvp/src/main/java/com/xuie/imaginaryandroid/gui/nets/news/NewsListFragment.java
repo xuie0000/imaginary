@@ -17,7 +17,7 @@ import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.app.App;
 import com.xuie.imaginaryandroid.data.NetsSummary;
-import com.xuie.imaginaryandroid.data.source.NETSRepository;
+import com.xuie.imaginaryandroid.data.source.NetsRepository;
 import com.xuie.imaginaryandroid.gui.nets.detail.NetsOneActivity;
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
 
@@ -53,7 +53,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new NewsListPresenter(NETSRepository.getInstance(), this);
+        new NewsListPresenter(NetsRepository.getInstance(), this);
     }
 
     @Override

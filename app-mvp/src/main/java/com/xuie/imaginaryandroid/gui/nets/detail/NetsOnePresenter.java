@@ -1,6 +1,6 @@
 package com.xuie.imaginaryandroid.gui.nets.detail;
 
-import com.xuie.imaginaryandroid.data.source.NETSRepository;
+import com.xuie.imaginaryandroid.data.source.NetsRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -11,11 +11,11 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
  * @date 17-7-5
  */
 public class NetsOnePresenter implements NetsOneContract.Presenter {
-    private NETSRepository netsRepository;
+    private NetsRepository netsRepository;
     private NetsOneContract.View newsOneView;
     private int currentPage = 1;
 
-    public NetsOnePresenter(NETSRepository netsRepository, NetsOneContract.View newsOneView) {
+    public NetsOnePresenter(NetsRepository netsRepository, NetsOneContract.View newsOneView) {
         this.netsRepository = checkNotNull(netsRepository);
         this.newsOneView = checkNotNull(newsOneView);
         this.newsOneView.setPresenter(this);

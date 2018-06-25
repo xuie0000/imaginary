@@ -1,6 +1,6 @@
 package com.xuie.imaginaryandroid.gui.nets.video;
 
-import com.xuie.imaginaryandroid.data.source.NETSRepository;
+import com.xuie.imaginaryandroid.data.source.NetsRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -11,11 +11,11 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
  * @date 17-7-5
  */
 public class VideosPresenter implements VideosContract.Presenter {
-    private NETSRepository netsRepository;
+    private NetsRepository netsRepository;
     private VideosContract.View videosView;
     private int currentPage = 0;
 
-    public VideosPresenter(NETSRepository netsRepository, VideosContract.View videosView) {
+    public VideosPresenter(NetsRepository netsRepository, VideosContract.View videosView) {
         this.netsRepository = checkNotNull(netsRepository);
         this.videosView = checkNotNull(videosView);
         this.videosView.setPresenter(this);

@@ -16,17 +16,16 @@ import retrofit2.http.Path;
 import retrofit2.http.Url;
 
 /**
- * Created by xuie on 17-8-17.
+ * @author xuie
+ * @date 17-8-17
  */
-
 public interface NETSApi {
-    // NETS
     String NETS_API = "http://c.m.163.com/";
 
     @GET("nc/article/headline/T1348647853363/{start_page}-20.html")
     Observable<Map<String, List<NetsSummary>>> getNewsList(
             @Header("Cache-Control") String cacheControl,
-            @Path("start_page") int start_page);
+            @Path("start_page") int startPage);
 
     @GET("nc/article/{postId}/full.html")
     Observable<Map<String, NetsDetail>> getNewDetail(
