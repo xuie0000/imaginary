@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
-                default:
                     viewPager.setCurrentItem(0);
                     return true;
                 case R.id.navigation_video:
@@ -49,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_settings:
                     viewPager.setCurrentItem(3);
+                    return true;
+                default:
                     return true;
             }
         }
@@ -99,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                default:
                     return NewsListFragment.getInstance();
                 case 1:
                     return VideoMainFragment.getInstance();
                 case 2:
                     return MeizhiFragment.getInstance();
                 case 3:
+                default:
                     return SettingsFragment.getInstance();
             }
         }
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(option);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
+//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR

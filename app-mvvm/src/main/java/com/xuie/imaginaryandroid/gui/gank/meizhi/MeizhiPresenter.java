@@ -3,6 +3,8 @@ package com.xuie.imaginaryandroid.gui.gank.meizhi;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
@@ -14,11 +16,11 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
     private GankRepository gankRepository;
     private MeizhiContract.View gankView;
     private int currentPage = 1;
+    private CompositeDisposable mSubscriptions = new CompositeDisposable();
 
-    public MeizhiPresenter(GankRepository gankRepository, MeizhiContract.View gankView) {
+    MeizhiPresenter(GankRepository gankRepository, MeizhiContract.View gankView) {
         this.gankRepository = checkNotNull(gankRepository);
         this.gankView = checkNotNull(gankView);
-        this.gankView.setPresenter(this);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
 
     @Override
     public void unsubscribe() {
-
+        mSubscriptions.dispose();
     }
 
     @Override
@@ -39,10 +41,10 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
         } else {
             currentPage++;
         }
-        gankRepository.get福利(currentPage)
+        Disposable disposable = gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(meiZhis -> gankView.addList(isRefresh, meiZhis), Throwable::printStackTrace);
         // get remote data
-
+        mSubscriptions.add(disposable);
     }
 }

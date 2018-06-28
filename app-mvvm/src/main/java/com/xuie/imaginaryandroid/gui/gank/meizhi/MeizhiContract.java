@@ -13,8 +13,7 @@ import java.util.List;
  */
 public interface MeizhiContract {
 
-    interface View extends BaseView<Presenter> {
-
+    interface View extends BaseView {
         void addList(boolean isRefresh, List<BaseBean> meiZhis);
     }
 
