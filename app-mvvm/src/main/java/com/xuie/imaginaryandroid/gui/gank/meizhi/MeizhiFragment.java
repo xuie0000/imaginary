@@ -81,12 +81,17 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
-        mPresenter.subscribe();
     }
 
     @Override
     protected void lazyInitData() {
+        mPresenter.subscribe();
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPresenter.unsubscribe();
     }
 
     @Override
@@ -94,14 +99,8 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
         if (isRefresh) {
             meiZhiAdapter.replaceData(new ArrayList<>());
         }
-//        Log.d(TAG, meiZhis.toString());
+//        Log.d(TAG, meiZhis.toString())
         meiZhiAdapter.addData(meiZhis);
     }
 
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        mPresenter.unsubscribe();
-//        unbinder.unbind();
-//    }
 }
