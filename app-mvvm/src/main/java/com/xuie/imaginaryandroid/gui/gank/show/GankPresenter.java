@@ -18,7 +18,6 @@ public class GankPresenter implements GankContract.Presenter {
     public GankPresenter(GankRepository gankRepository, GankContract.View meizhiView) {
         this.gankRepository = checkNotNull(gankRepository);
         this.meizhiView = checkNotNull(meizhiView);
-        this.meizhiView.setPresenter(this);
     }
 
     @Override

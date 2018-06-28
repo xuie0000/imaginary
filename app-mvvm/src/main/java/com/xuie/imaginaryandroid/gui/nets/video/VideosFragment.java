@@ -50,15 +50,13 @@ public class VideosFragment extends Fragment implements VideosContract.View {
     Unbinder unbinder;
 
     private String mVideoType;
-    private VideosContract.Presenter mPresenter;
+    private VideosContract.Presenter mPresenter = new VideosPresenter(NetsRepository.getInstance(), this);
     private VideosAdapter videosAdapter = new VideosAdapter(null);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mVideoType = getArguments().getString(VIDEO_TYPE_ID);
-
-        new VideosPresenter(NetsRepository.getInstance(), this);
     }
 
     @Override
@@ -106,14 +104,10 @@ public class VideosFragment extends Fragment implements VideosContract.View {
     }
 
     @Override
-    public void setPresenter(VideosContract.Presenter presenter) {
-        mPresenter = checkNotNull(presenter);
-    }
-
-    @Override
     public void addList(boolean isRefresh, List<VideoBean> videoBeen) {
-        if (isRefresh)
+        if (isRefresh) {
             videosAdapter.replaceData(new ArrayList<>());
+        }
 //        Log.d(TAG, videoBeen.toString());
         videosAdapter.addData(videoBeen);
 //        videosAdapter.setOnItemClickListener((adapter, view, position) -> {

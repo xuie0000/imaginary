@@ -18,7 +18,6 @@ public class NetsOnePresenter implements NetsOneContract.Presenter {
     public NetsOnePresenter(NetsRepository netsRepository, NetsOneContract.View newsOneView) {
         this.netsRepository = checkNotNull(netsRepository);
         this.newsOneView = checkNotNull(newsOneView);
-        this.newsOneView.setPresenter(this);
     }
 
     @Override

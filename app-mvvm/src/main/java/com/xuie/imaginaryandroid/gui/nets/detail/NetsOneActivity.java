@@ -21,10 +21,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
-import com.xuie.imaginaryandroid.glide.GlideApp;
 import com.xuie.imaginaryandroid.util.TimeUtils;
 import com.xuie.imaginaryandroid.widget.UrlImageGetter;
 
@@ -38,8 +39,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
  * @author xuie
@@ -79,7 +78,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
     @BindView(R.id.progress_bar) ProgressBar progressBar;
     @BindView(R.id.fab) FloatingActionButton fab;
 
-    private NetsOneContract.Presenter mPresenter;
+    private NetsOneContract.Presenter mPresenter = new NetsOnePresenter(NetsRepository.getInstance(), this);
     private String postId;
 
 
@@ -91,12 +90,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         setSupportActionBar(toolbar);
 
         postId = getIntent().getStringExtra(POST_ID);
-        new NetsOnePresenter(NetsRepository.getInstance(), this);
-    }
 
-    @Override
-    public void setPresenter(NetsOneContract.Presenter presenter) {
-        mPresenter = checkNotNull(presenter);
         mPresenter.getNewsOneRequest(postId);
     }
 
@@ -110,7 +104,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         String NewsImgSrc = getImgSrcs(netsDetail);
 
         setToolBarLayout(mNewsTitle);
-        //mNewsDetailTitleTv.setText(newsTitle);
+        //mNewsDetailTitleTv.setText(newsTitle)
         newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
         setNewsDetailPhotoIv(NewsImgSrc);
 
@@ -152,11 +146,13 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
     }
 
     private void setNewsDetailPhotoIv(String imgSrc) {
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(imgSrc)
-                .centerCrop()
-                .placeholder(R.mipmap.ic_empty_picture)
-                .error(R.mipmap.ic_empty_picture)
+                .apply(new RequestOptions()
+                        .centerCrop()
+                        .placeholder(R.mipmap.ic_empty_picture)
+                        .error(R.mipmap.ic_empty_picture)
+                )
                 .into(newsDetailPhotoIv);
     }
 

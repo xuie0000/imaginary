@@ -11,7 +11,7 @@ import com.xuie.imaginaryandroid.data.NetsDetail;
  */
 public interface NetsOneContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
         void refreshNewsOne(NetsDetail netsDetail);
     }
 

@@ -18,7 +18,6 @@ public class NewsListPresenter implements NewsListContract.Presenter {
     public NewsListPresenter(NetsRepository netsRepository, NewsListContract.View netsView) {
         this.netsRepository = checkNotNull(netsRepository);
         this.netsView = checkNotNull(netsView);
-        this.netsView.setPresenter(this);
     }
 
     @Override

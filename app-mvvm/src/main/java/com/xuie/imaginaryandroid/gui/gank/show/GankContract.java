@@ -11,7 +11,7 @@ import com.xuie.imaginaryandroid.data.GankBean;
  */
 public interface GankContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
         void refresh(GankBean gb);
     }

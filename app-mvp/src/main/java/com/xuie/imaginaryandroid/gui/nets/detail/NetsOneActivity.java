@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
-import com.xuie.imaginaryandroid.glide.GlideApp;
 import com.xuie.imaginaryandroid.util.TimeUtils;
 import com.xuie.imaginaryandroid.widget.UrlImageGetter;
 
@@ -152,12 +151,12 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
     }
 
     private void setNewsDetailPhotoIv(String imgSrc) {
-        GlideApp.with(this)
-                .load(imgSrc)
-                .centerCrop()
-                .placeholder(R.mipmap.ic_empty_picture)
-                .error(R.mipmap.ic_empty_picture)
-                .into(newsDetailPhotoIv);
+//        GlideApp.with(this)
+//                .load(imgSrc)
+//                .centerCrop()
+//                .placeholder(R.mipmap.ic_empty_picture)
+//                .error(R.mipmap.ic_empty_picture)
+//                .into(newsDetailPhotoIv);
     }
 
     private void setBody(NetsDetail netsDetail, String newsBody) {

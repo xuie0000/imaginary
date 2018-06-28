@@ -46,14 +46,14 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
     @BindView(R.id.material_refresh) MaterialRefreshLayout materialRefresh;
     Unbinder unbinder;
 
-    private NewsListContract.Presenter mPresenter;
+    private NewsListContract.Presenter mPresenter = new NewsListPresenter(NetsRepository.getInstance(), this);
     private NewsListAdapter newsListAdapter = new NewsListAdapter(null);
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new NewsListPresenter(NetsRepository.getInstance(), this);
+
     }
 
     @Override
@@ -92,14 +92,10 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
     }
 
     @Override
-    public void setPresenter(NewsListContract.Presenter presenter) {
-        mPresenter = checkNotNull(presenter);
-    }
-
-    @Override
     public void addList(boolean isRefresh, List<NetsSummary> netsSummaries) {
-        if (isRefresh)
+        if (isRefresh) {
             newsListAdapter.replaceData(new ArrayList<>());
+        }
 //        Log.d(TAG, netsSummaries.toString());
         newsListAdapter.addData(netsSummaries);
         newsListAdapter.setOnItemClickListener((adapter, view, position) -> {

@@ -18,7 +18,6 @@ public class VideosPresenter implements VideosContract.Presenter {
     public VideosPresenter(NetsRepository netsRepository, VideosContract.View videosView) {
         this.netsRepository = checkNotNull(netsRepository);
         this.videosView = checkNotNull(videosView);
-        this.videosView.setPresenter(this);
     }
 
     @Override

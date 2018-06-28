@@ -1,12 +1,9 @@
 package com.xuie.imaginary.gank;
 
-import android.widget.ImageView;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.glide.GlideApp;
 
 import java.util.List;
 
@@ -24,10 +21,10 @@ public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, BaseBean item) {
         helper.setText(R.id.date, item.getDesc());
-        GlideApp.with(mContext)
-                .load(item.getUrl())
-                .placeholder(R.mipmap.meizhi_sample)
-                .dontTransform()
-                .into((ImageView) helper.getView(R.id.meizhi));
+//        GlideApp.with(mContext)
+//                .load(item.getUrl())
+//                .placeholder(R.mipmap.meizhi_sample)
+//                .dontTransform()
+//                .into((ImageView) helper.getView(R.id.meizhi));
     }
 }

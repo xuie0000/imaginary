@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface NewsListContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
         void addList(boolean isRefresh, List<NetsSummary> netsSummaries);
     }
