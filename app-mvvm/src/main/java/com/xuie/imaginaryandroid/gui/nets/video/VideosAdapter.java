@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.VideoBean;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 public class VideosAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> {
     private static final String TAG = "VideosAdapter";
 
-    public VideosAdapter(List<VideoBean> videoBeen) {
+    VideosAdapter(List<VideoBean> videoBeen) {
         super(R.layout.item_video_list, videoBeen);
     }
 
@@ -35,16 +36,7 @@ public class VideosAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> {
         jcVideoPlayerStandard.setUp(
                 item.getMp4_url(), JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 TextUtils.isEmpty(item.getDescription()) ? item.getTitle() + "" : item.getDescription());
-//        GlideApp.with(mContext).load(item.getCover())
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .centerCrop()
-//                .error(R.mipmap.ic_empty_picture)
-//                .into(jcVideoPlayerStandard.thumbImageView);
-//        GlideApp.with(mContext).load(item.getTopicImg())
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .error(R.mipmap.ic_empty_picture)
-//                .centerCrop()
-//                /*.transform(new GlideRoundTransformUtil(context))*/
-//                .into((ImageView) helper.getView(R.id.iv_logo));
+        GlideUtils.loadImage(mContext, item.getCover(), jcVideoPlayerStandard.thumbImageView);
+        GlideUtils.loadImage(mContext, item.getTopicImg(), helper.getView(R.id.iv_logo));
     }
 }

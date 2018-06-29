@@ -1,15 +1,11 @@
 package com.xuie.imaginaryandroid.gui.nets.video
 
 import android.text.TextUtils
-import android.widget.ImageView
-
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.data.VideoBean
-import com.xuie.imaginaryandroid.glide.GlideApp
-
+import com.xuie.imaginaryandroid.util.GlideUtils
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
 
@@ -29,17 +25,8 @@ class VideosAdapter(videoBeen: List<VideoBean>?) : BaseQuickAdapter<VideoBean, B
         jcVideoPlayerStandard.setUp(
                 item.mp4_url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 if (TextUtils.isEmpty(item.description)) item.title + "" else item.description)
-        GlideApp.with(mContext).load(item.cover)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .error(R.mipmap.ic_empty_picture)
-                .into(jcVideoPlayerStandard.thumbImageView)
-        GlideApp.with(mContext).load(item.topicImg)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .error(R.mipmap.ic_empty_picture)
-                .centerCrop()
-                /*.transform(new GlideRoundTransformUtil(context))*/
-                .into(helper.getView(R.id.iv_logo) as ImageView)
+        GlideUtils.loadImage(mContext, item.cover, jcVideoPlayerStandard.thumbImageView)
+        GlideUtils.loadImage(mContext, item.topicImg, helper.getView(R.id.iv_logo))
     }
 
     companion object {

@@ -15,7 +15,7 @@ import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.data.BaseBean
 import com.xuie.imaginaryandroid.data.GankBean
 import com.xuie.imaginaryandroid.data.source.GankRepository
-import com.xuie.imaginaryandroid.glide.GlideApp
+import com.xuie.imaginaryandroid.util.GlideUtils
 import java.util.*
 
 class GankActivity : AppCompatActivity(), GankContract.View {
@@ -36,7 +36,7 @@ class GankActivity : AppCompatActivity(), GankContract.View {
 
         date = intent.getStringExtra("date")
         val imageUrl = intent.getStringExtra("image")
-        GlideApp.with(this).load(imageUrl).into(gankDaily)
+        GlideUtils.loadImage(this, imageUrl, gankDaily)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)

@@ -3,16 +3,14 @@ package com.xuie.imaginaryandroid.gui.gank.show
 import android.content.Intent
 import android.text.Html
 import android.util.Log
-import android.widget.ImageView
 import android.widget.TextView
-
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.app.App
-import com.xuie.imaginaryandroid.glide.GlideApp
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity
+import com.xuie.imaginaryandroid.util.GlideUtils
 
 /**
  * Created by xuie on 17-8-15.
@@ -54,13 +52,13 @@ class ExpandableItemAdapter
                         lv1.articleUrl, lv1.articleName)
 //                helper.setText(R.id.articleName, lv1.articleName)
                 helper.setText(R.id.articleName, Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/))
-                helper.getView<TextView>(R.id.articleName).setOnClickListener({
+                helper.getView<TextView>(R.id.articleName).setOnClickListener {
                     Log.d(TAG, "onClick...")
                     val intent = Intent(App.context, WebViewActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     intent.putExtra("url", lv1.articleUrl)
                     App.context.startActivity(intent)
-                })
+                }
 
                 // 添加TextView自动打开超链接，失败
 //                TextView tvArticle = helper . getView (R.id.articleName);
@@ -71,9 +69,8 @@ class ExpandableItemAdapter
 //                helper.addOnClickListener(R.id.articleName);
 
                 if (lv1.imageUrl != null)
-                    GlideApp.with(mContext)
-                            .load(lv1.imageUrl)
-                            .into(helper.getView(R.id.thumb) as ImageView)
+                    GlideUtils.loadImage(mContext, lv1.imageUrl, helper.getView(R.id.thumb))
+
             }
         }
 

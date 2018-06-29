@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.app.App;
-import com.xuie.imaginaryandroid.glide.GlideApp;
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 
 import java.util.List;
 
@@ -73,17 +72,16 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                 });
 
                 // 添加TextView自动打开超链接，失败
-//                TextView tvArticle = helper.getView(R.id.articleName);
-//                tvArticle.setText(Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/));
-//                tvArticle.setMovementMethod(LinkMovementMethod.getInstance());
+//                TextView tvArticle = helper.getView(R.id.articleName)
+//                tvArticle.setText(Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/))
+//                tvArticle.setMovementMethod(LinkMovementMethod.getInstance())
                 helper.setText(R.id.author, String.format("(%s)", lv1.getAuthor()));
                 // 添加Child Click，不过无效
-//                helper.addOnClickListener(R.id.articleName);
+//                helper.addOnClickListener(R.id.articleName)
 
-                if (lv1.getImageUrl() != null)
-                    GlideApp.with(mContext)
-                            .load(lv1.getImageUrl())
-                            .into((ImageView) helper.getView(R.id.thumb));
+                if (lv1.getImageUrl() != null) {
+                    GlideUtils.loadImage(mContext, lv1.getImageUrl(), helper.getView(R.id.thumb));
+                }
                 break;
         }
 

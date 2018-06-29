@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.app.App;
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 
 import java.util.List;
 
@@ -78,10 +79,9 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                 // 添加Child Click，不过无效
 //                helper.addOnClickListener(R.id.articleName);
 
-//                if (lv1.getImageUrl() != null)
-//                    GlideApp.with(mContext)
-//                            .load(lv1.getImageUrl())
-//                            .into((ImageView) helper.getView(R.id.thumb));
+                if (lv1.getImageUrl() != null) {
+                    GlideUtils.loadImage(mContext, lv1.getImageUrl(), helper.getView(R.id.thumb));
+                }
                 break;
         }
 

@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.ToDoApplication;
-import com.xuie.imaginary.glide.GlideApp;
+import com.xuie.imaginary.util.GlideUtils;
 import com.xuie.imaginary.web.WebViewActivity;
 
 import java.util.List;
@@ -81,9 +80,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
 //                helper.addOnClickListener(R.id.articleName)
 
                 if (lv1.getImageUrl() != null) {
-                    GlideApp.with(mContext)
-                            .load(lv1.getImageUrl())
-                            .into((ImageView) helper.getView(R.id.thumb));
+                    GlideUtils.loadImage(mContext, lv1.getImageUrl(), helper.getView(R.id.thumb));
                 }
                 break;
         }

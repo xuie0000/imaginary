@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsSummary;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public NewsListAdapter(List<NetsSummary> data) {
+    NewsListAdapter(List<NetsSummary> data) {
         super(data);
         addItemType(NetsSummary.IMG_ONE, R.layout.item_fragment_news);
         addItemType(NetsSummary.IMG_MULTI, R.layout.item_fragment_news_multi);
@@ -39,11 +40,7 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
                 helper.setText(R.id.ltitle, item.getTitle())
                         .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
-//                GlideApp.with(mContext)
-//                        .load(item.getImgsrc())
-//                        .override(300, 300)
-//                        .centerInside()
-//                        .into((ImageView) helper.getView(R.id.img_src));
+                GlideUtils.loadImage(mContext, item.getImgsrc(), helper.getView(R.id.img_src));
                 break;
             case NetsSummary.IMG_MULTI:
                 helper.setText(R.id.ltitle, item.getTitle())
@@ -58,21 +55,13 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
     }
 
     private class SimpleAdapter extends BaseQuickAdapter<NetsSummary.ImgextraBean, BaseViewHolder> {
-        public SimpleAdapter(@Nullable List<NetsSummary.ImgextraBean> data) {
+        SimpleAdapter(@Nullable List<NetsSummary.ImgextraBean> data) {
             super(R.layout.item_fragment_news_child, data);
         }
 
         @Override
         protected void convert(BaseViewHolder helper, NetsSummary.ImgextraBean item) {
-//            GlideApp.with(mContext)
-//                    .load(item.getImgsrc())
-//                    .apply(RequestOptions
-//                            /*.circleCropTransform()*/
-//                            .placeholderOf(R.mipmap.ic_launcher_round)
-//                            .override(300, 300)
-//                            .centerInside()
-//                    )
-//                    .into((ImageView) helper.getView(R.id.iv_image));
+            GlideUtils.loadImage(mContext, item.getImgsrc(), helper.getView(R.id.iv_image));
         }
     }
 }

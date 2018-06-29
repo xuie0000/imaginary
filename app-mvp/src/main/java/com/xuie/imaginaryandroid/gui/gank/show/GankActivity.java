@@ -15,7 +15,7 @@ import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.GankBean;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
-import com.xuie.imaginaryandroid.glide.GlideApp;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
 
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        GlideApp.with(this).load(imageUrl).into(gankDaily);
+        GlideUtils.loadImage(this, imageUrl, gankDaily);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

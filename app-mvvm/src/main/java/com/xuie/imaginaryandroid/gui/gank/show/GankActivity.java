@@ -15,6 +15,7 @@ import com.xuie.imaginaryandroid.data.BaseBean;
 import com.xuie.imaginaryandroid.data.GankBean;
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 import com.xuie.imaginaryandroid.databinding.ActivityGankBinding;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,31 +25,10 @@ import java.util.List;
  */
 public class GankActivity extends BaseActivity implements GankContract.View {
 
-//    @BindView(R.id.recycler_view) RecyclerView recyclerView;
-//    @BindView(R.id.gank_daily) PhotoView gankDaily;
-
     private ActivityGankBinding mBinding;
     private GankContract.Presenter mPresenter = new GankPresenter(GankRepository.getInstance(), this);;
     private String date;
     private ExpandableItemAdapter adapter = new ExpandableItemAdapter(null);
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-////        ActivityGankBinding b =  DataBindingUtil.setContentView(this, R.layout.activity_gank);
-////        ButterKnife.bind(this);
-//
-//        date = getIntent().getStringExtra("date");
-//        String imageUrl = getIntent().getStringExtra("image");
-////        GlideApp.with(this).load(imageUrl).into(gankDaily)
-//
-////        recyclerView.setAdapter(adapter);
-////        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-////        recyclerView.setNestedScrollingEnabled(false);
-//        adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
-//
-//        new GankPresenter(GankRepository.getInstance(), this);
-//    }
 
     @Override
     protected int getLayoutId() {
@@ -60,7 +40,7 @@ public class GankActivity extends BaseActivity implements GankContract.View {
         mBinding = getDataBinding();
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-//        GlideApp.with(this).load(imageUrl).into(mBinding.gankDaily);
+        GlideUtils.loadImage(this, imageUrl, mBinding.gankDaily);
         mBinding.recyclerView.setAdapter(adapter);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.recyclerView.setNestedScrollingEnabled(false);

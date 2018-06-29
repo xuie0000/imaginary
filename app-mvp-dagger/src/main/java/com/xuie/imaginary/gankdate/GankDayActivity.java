@@ -14,7 +14,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.data.BaseBean;
 import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.glide.GlideApp;
+import com.xuie.imaginary.util.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +42,7 @@ public class GankDayActivity extends DaggerAppCompatActivity implements GankCont
 
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        GlideApp.with(this).load(imageUrl).into(gankDaily);
+        GlideUtils.loadImage(this, imageUrl, gankDaily);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -2,15 +2,12 @@ package com.xuie.imaginaryandroid.gui.nets.news
 
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.ImageView
-
-import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xuie.imaginaryandroid.R
 import com.xuie.imaginaryandroid.data.NetsSummary
-import com.xuie.imaginaryandroid.glide.GlideApp
+import com.xuie.imaginaryandroid.util.GlideUtils
 
 /**
  * Created by xuie on 17-7-5.
@@ -36,11 +33,7 @@ class NewsListAdapter
                 helper.setText(R.id.ltitle, item.title)
                         .setText(R.id.source, item.source)
                         .setText(R.id.digest, item.digest)
-                GlideApp.with(mContext)
-                        .load(item.imgsrc)
-                        .override(300, 300)
-                        .centerInside()
-                        .into(helper.getView(R.id.img_src) as ImageView)
+                GlideUtils.loadImage(mContext, item.imgsrc, helper.getView(R.id.img_src))
             }
             NetsSummary.IMG_MULTI -> {
                 helper.setText(R.id.ltitle, item.title)
@@ -60,14 +53,7 @@ class NewsListAdapter
             BaseQuickAdapter<NetsSummary.ImgextraBean, BaseViewHolder>(R.layout.item_fragment_news_child, data) {
 
         override fun convert(helper: BaseViewHolder, item: NetsSummary.ImgextraBean) {
-            GlideApp.with(mContext)
-                    .load(item.imgsrc)
-                    .apply(RequestOptions/*.circleCropTransform()*/
-                            .placeholderOf(R.mipmap.ic_launcher_round)
-                            .override(300, 300)
-                            .centerInside()
-                    )
-                    .into(helper.getView(R.id.iv_image) as ImageView)
+            GlideUtils.loadImage(mContext, item.imgsrc, helper.getView(R.id.iv_image))
         }
     }
 
