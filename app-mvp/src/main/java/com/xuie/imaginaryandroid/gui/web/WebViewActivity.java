@@ -9,6 +9,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import com.xuie.imaginaryandroid.R;
 
 import butterknife.BindView;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 /**
  * @author xuie
  */
+@ParallaxBack
 public class WebViewActivity extends AppCompatActivity {
 
     public static final String URL = "url";

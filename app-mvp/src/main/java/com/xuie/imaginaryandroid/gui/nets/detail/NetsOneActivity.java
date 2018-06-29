@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
@@ -44,6 +45,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * @author xuie
  */
+@ParallaxBack
 public class NetsOneActivity extends AppCompatActivity implements NetsOneContract.View {
     public static final String POST_ID = "postId";
     public static final String IMG_RES = "image";

@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.data.BaseBean;
@@ -28,6 +29,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 /**
  * @author xuie
  */
+@ParallaxBack
 public class GankActivity extends AppCompatActivity implements GankContract.View {
 
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
