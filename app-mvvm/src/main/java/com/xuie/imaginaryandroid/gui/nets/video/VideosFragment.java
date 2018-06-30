@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +12,22 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
+import com.xuie.imaginaryandroid.base.BaseFragment;
 import com.xuie.imaginaryandroid.data.VideoBean;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
+import com.xuie.imaginaryandroid.databinding.FragmentVideosBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-
-import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */
-public class VideosFragment extends Fragment implements VideosContract.View {
+public class VideosFragment extends BaseFragment implements VideosContract.View {
 
     public static final String VIDEO_TYPE_ID = "type";
     public static final String VIDEO_TYPE_NAME = "name";
@@ -45,10 +41,6 @@ public class VideosFragment extends Fragment implements VideosContract.View {
         return fragment;
     }
 
-    @BindView(R.id.recycler_view) RecyclerView recycleView;
-    @BindView(R.id.material_refresh) MaterialRefreshLayout materialRefresh;
-    Unbinder unbinder;
-
     private String mVideoType;
     private VideosContract.Presenter mPresenter = new VideosPresenter(NetsRepository.getInstance(), this);
     private VideosAdapter videosAdapter = new VideosAdapter(null);
@@ -56,16 +48,28 @@ public class VideosFragment extends Fragment implements VideosContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mVideoType = getArguments().getString(VIDEO_TYPE_ID);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_videos, container, false);
-        unbinder = ButterKnife.bind(this, view);
 
-        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycleView.setAdapter(videosAdapter);
+        return view;
+    }
+
+    private FragmentVideosBinding mBinding;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_videos;
+    }
+
+    @Override
+    protected void onInit(@Nullable Bundle savedInstanceState) {
+        mBinding = getDataBinding();
+        mVideoType = getArguments().getString(VIDEO_TYPE_ID);
+        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.recyclerView.setAdapter(videosAdapter);
 
         videosAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
 
@@ -73,7 +77,7 @@ public class VideosFragment extends Fragment implements VideosContract.View {
         mPresenter.getList(mVideoType, true);
 
 
-        materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+        mBinding.materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
                 mPresenter.getList(mVideoType, true);
@@ -87,7 +91,11 @@ public class VideosFragment extends Fragment implements VideosContract.View {
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
-        return view;
+    }
+
+    @Override
+    protected void lazyInitData() {
+
     }
 
     @Override
@@ -100,7 +108,6 @@ public class VideosFragment extends Fragment implements VideosContract.View {
     public void onDestroyView() {
         super.onDestroyView();
         mPresenter.unsubscribe();
-        unbinder.unbind();
     }
 
     @Override

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'realm-android'
 
 android {
@@ -41,9 +40,6 @@ dependencies {
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:1.1.1"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
-
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.36'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'

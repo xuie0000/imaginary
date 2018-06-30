@@ -1,36 +1,30 @@
 package com.xuie.imaginaryandroid.gui;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.xuie.imaginaryandroid.R;
+import com.xuie.imaginaryandroid.base.BaseActivity;
+import com.xuie.imaginaryandroid.databinding.ActivityMainBinding;
 import com.xuie.imaginaryandroid.gui.gank.meizhi.MeizhiFragment;
 import com.xuie.imaginaryandroid.gui.nets.news.NewsListFragment;
 import com.xuie.imaginaryandroid.gui.nets.video.VideoMainFragment;
 import com.xuie.imaginaryandroid.gui.settings.SettingsFragment;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
  * @author xuie
  */
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
-    @BindView(R.id.view_pager) ViewPager viewPager;
-    @BindView(R.id.navigation) BottomNavigationView navigation;
-
+public class MainActivity extends BaseActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -38,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
-                    viewPager.setCurrentItem(0);
+                    mBinding.viewPager.setCurrentItem(0);
                     return true;
                 case R.id.navigation_video:
-                    viewPager.setCurrentItem(1);
+                    mBinding.viewPager.setCurrentItem(1);
                     return true;
                 case R.id.navigation_gank:
-                    viewPager.setCurrentItem(2);
+                    mBinding.viewPager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_settings:
-                    viewPager.setCurrentItem(3);
+                    mBinding.viewPager.setCurrentItem(3);
                     return true;
                 default:
                     return true;
@@ -57,14 +51,19 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    private ActivityMainBinding mBinding;
+
+    @Override
+    protected void onInit(@Nullable Bundle savedInstanceState) {
+        mBinding = getDataBinding();
+
+        mBinding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        mBinding.viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
+        mBinding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             boolean isUser = false;
 
             @Override
@@ -74,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 if (isUser) {
-                    int itemId = navigation.getMenu().getItem(position).getItemId();
-                    navigation.setSelectedItemId(itemId);
+                    int itemId = mBinding.navigation.getMenu().getItem(position).getItemId();
+                    mBinding.navigation.setSelectedItemId(itemId);
                     isUser = false;
                 }
             }
@@ -87,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        navigation.setSelectedItemId(navigation.getMenu().getItem(1).getItemId());
+        mBinding.navigation.setSelectedItemId(mBinding.navigation.getMenu().getItem(1).getItemId());
+    }
+
+    @Override
+    protected View[] setImmersiveView() {
+        return new View[0];
     }
 
     private class MyViewPagerAdapter extends FragmentPagerAdapter {
@@ -114,22 +118,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return 4;
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(option);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary))
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
         }
     }
 

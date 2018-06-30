@@ -1,39 +1,33 @@
 package com.xuie.imaginaryandroid.gui.nets.detail;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Pair;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.xuie.imaginaryandroid.R;
+import com.xuie.imaginaryandroid.base.BaseActivity;
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
+import com.xuie.imaginaryandroid.databinding.ActivityNetsOneBinding;
 import com.xuie.imaginaryandroid.util.TimeUtils;
 import com.xuie.imaginaryandroid.widget.UrlImageGetter;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -43,10 +37,11 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @author xuie
  */
-public class NetsOneActivity extends AppCompatActivity implements NetsOneContract.View {
+public class NetsOneActivity extends BaseActivity implements NetsOneContract.View {
     public static final String POST_ID = "postId";
     public static final String IMG_RES = "image";
 
+    @SuppressLint("ObsoleteSdkInt")
     public static void newIntent(Context mContext, View imageView, View titleView, String postId, String imgUrl) {
         Intent intent = new Intent(mContext, NetsOneActivity.class);
         intent.putExtra(POST_ID, postId);
@@ -67,31 +62,27 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         }
     }
 
-
-    @BindView(R.id.news_detail_photo_iv) ImageView newsDetailPhotoIv;
-    @BindView(R.id.mask_view) View maskView;
-    @BindView(R.id.toolbar) Toolbar toolbar;
-    @BindView(R.id.toolbar_layout) CollapsingToolbarLayout toolbarLayout;
-    @BindView(R.id.app_bar) AppBarLayout appBar;
-    @BindView(R.id.news_detail_from_tv) TextView newsDetailFromTv;
-    @BindView(R.id.news_detail_body_tv) TextView newsDetailBodyTv;
-    @BindView(R.id.progress_bar) ProgressBar progressBar;
-    @BindView(R.id.fab) FloatingActionButton fab;
-
     private NetsOneContract.Presenter mPresenter = new NetsOnePresenter(NetsRepository.getInstance(), this);
     private String postId;
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_nets_one;
+    }
+
+    private ActivityNetsOneBinding mBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nets_one);
-        ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-
+    protected void onInit(@Nullable Bundle savedInstanceState) {
+        mBinding = getDataBinding();
+        setSupportActionBar(mBinding.toolbar);
         postId = getIntent().getStringExtra(POST_ID);
-
         mPresenter.getNewsOneRequest(postId);
+    }
+
+    @Override
+    protected View[] setImmersiveView() {
+        return new View[0];
     }
 
     @Override
@@ -101,12 +92,11 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         String newsSource = netsDetail.getSource();
         String newsTime = TimeUtils.formatDate(netsDetail.getPtime());
         String newsBody = netsDetail.getBody();
-        String NewsImgSrc = getImgSrcs(netsDetail);
+        String newsImgSrc = getImgSrcs(netsDetail);
 
         setToolBarLayout(mNewsTitle);
-        //mNewsDetailTitleTv.setText(newsTitle)
-        newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
-        setNewsDetailPhotoIv(NewsImgSrc);
+        mBinding.content.newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
+        setNewsDetailPhotoIv(newsImgSrc);
 
         Observable.just(netsDetail)
                 .delay(500, TimeUnit.MILLISECONDS)
@@ -127,22 +117,22 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
 
                     @Override
                     public void onError(Throwable e) {
-                        progressBar.setVisibility(View.GONE);
+                        mBinding.content.progressBar.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onComplete() {
-                        progressBar.setVisibility(View.GONE);
-                        fab.setVisibility(View.VISIBLE);
+                        mBinding.content.progressBar.setVisibility(View.GONE);
+                        mBinding.fab.setVisibility(View.VISIBLE);
                     }
                 });
 
     }
 
     private void setToolBarLayout(String newsTitle) {
-        toolbarLayout.setTitle(newsTitle);
-        toolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, R.color.white));
-        toolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this, R.color.white));
+        mBinding.toolbarLayout.setTitle(newsTitle);
+        mBinding.toolbarLayout.setExpandedTitleColor(ContextCompat.getColor(this, R.color.white));
+        mBinding.toolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
     private void setNewsDetailPhotoIv(String imgSrc) {
@@ -153,17 +143,17 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
                         .placeholder(R.mipmap.ic_empty_picture)
                         .error(R.mipmap.ic_empty_picture)
                 )
-                .into(newsDetailPhotoIv);
+                .into(mBinding.newsDetailPhotoIv);
     }
 
     private void setBody(NetsDetail netsDetail, String newsBody) {
         int imgTotal = netsDetail.getImg().size();
         if (isShowBody(newsBody, imgTotal)) {
 //              mNewsDetailBodyTv.setMovementMethod(LinkMovementMethod.getInstance());//加这句才能让里面的超链接生效,实测经常卡机崩溃
-            UrlImageGetter urlImageGetter = new UrlImageGetter(newsDetailBodyTv, newsBody, imgTotal);
-            newsDetailBodyTv.setText(Html.fromHtml(newsBody, urlImageGetter, null));
+            UrlImageGetter urlImageGetter = new UrlImageGetter(mBinding.content.newsDetailBodyTv, newsBody, imgTotal);
+            mBinding.content.newsDetailBodyTv.setText(Html.fromHtml(newsBody, urlImageGetter, null));
         } else {
-            newsDetailBodyTv.setText(Html.fromHtml(newsBody));
+            mBinding.content.newsDetailBodyTv.setText(Html.fromHtml(newsBody));
         }
     }
 

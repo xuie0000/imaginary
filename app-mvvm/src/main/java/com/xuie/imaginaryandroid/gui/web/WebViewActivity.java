@@ -3,40 +3,46 @@ package com.xuie.imaginaryandroid.gui.web;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.xuie.imaginaryandroid.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.xuie.imaginaryandroid.base.BaseActivity;
+import com.xuie.imaginaryandroid.databinding.ActivityWebviewBinding;
 
 /**
  * @author xuie
  */
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends BaseActivity {
 
     public static final String URL = "url";
-    @BindView(R.id.web_view) WebView webView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
-        ButterKnife.bind(this);
+    protected int getLayoutId() {
+        return R.layout.activity_webview;
+    }
+
+    @Override
+    protected void onInit(@Nullable Bundle savedInstanceState) {
+        ActivityWebviewBinding binding = getDataBinding();
         String url = getIntent().getStringExtra(URL);
 
         // Configure related browser settings
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        binding.webView.getSettings().setLoadsImagesAutomatically(true);
+        binding.webView.getSettings().setJavaScriptEnabled(true);
+        binding.webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         // Configure the client to use when opening URLs
-        webView.setWebViewClient(new MyBrowser());
+        binding.webView.setWebViewClient(new MyBrowser());
         // Load the initial URL
-        webView.loadUrl(url);
+        binding.webView.loadUrl(url);
+    }
+
+    @Override
+    protected View[] setImmersiveView() {
+        return new View[0];
     }
 
     /**
@@ -47,22 +53,6 @@ public class WebViewActivity extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             view.loadUrl(request.getUrl().toString());
             return super.shouldOverrideUrlLoading(view, request);
-        }
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(option);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
         }
     }
 

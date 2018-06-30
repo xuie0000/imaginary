@@ -4,69 +4,55 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.app.App;
+import com.xuie.imaginaryandroid.base.BaseFragment;
 import com.xuie.imaginaryandroid.data.NetsSummary;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
+import com.xuie.imaginaryandroid.databinding.FragmentNewsListBinding;
 import com.xuie.imaginaryandroid.gui.nets.detail.NetsOneActivity;
 import com.xuie.imaginaryandroid.gui.web.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
-import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
-
 /**
  * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */
-public class NewsListFragment extends Fragment implements NewsListContract.View {
+public class NewsListFragment extends BaseFragment implements NewsListContract.View {
     private static final String TAG = "NewsListFragment";
 
     public static NewsListFragment getInstance() {
         return new NewsListFragment();
     }
 
-    @BindView(R.id.recycler_view) RecyclerView recycleView;
-    @BindView(R.id.material_refresh) MaterialRefreshLayout materialRefresh;
-    Unbinder unbinder;
-
     private NewsListContract.Presenter mPresenter = new NewsListPresenter(NetsRepository.getInstance(), this);
     private NewsListAdapter newsListAdapter = new NewsListAdapter(null);
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    protected int getLayoutId() {
+        return R.layout.fragment_news_list;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news_list, container, false);
-        unbinder = ButterKnife.bind(this, view);
+    private FragmentNewsListBinding mBinding;
 
-        recycleView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        recycleView.setAdapter(newsListAdapter);
+    @Override
+    protected void onInit(@Nullable Bundle savedInstanceState) {
+        mBinding = getDataBinding();
+        mBinding.recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        mBinding.recyclerView.setAdapter(newsListAdapter);
         newsListAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mPresenter.subscribe();
 
-        materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
+        mBinding.materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
                 mPresenter.getList(true);
@@ -80,15 +66,17 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
+    }
 
-        return view;
+    @Override
+    protected void lazyInitData() {
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         mPresenter.unsubscribe();
-        unbinder.unbind();
     }
 
     @Override
@@ -96,7 +84,7 @@ public class NewsListFragment extends Fragment implements NewsListContract.View 
         if (isRefresh) {
             newsListAdapter.replaceData(new ArrayList<>());
         }
-//        Log.d(TAG, netsSummaries.toString());
+//        Log.d(TAG, netsSummaries.toString())
         newsListAdapter.addData(netsSummaries);
         newsListAdapter.setOnItemClickListener((adapter, view, position) -> {
             NetsSummary ns = (NetsSummary) adapter.getData().get(position);
