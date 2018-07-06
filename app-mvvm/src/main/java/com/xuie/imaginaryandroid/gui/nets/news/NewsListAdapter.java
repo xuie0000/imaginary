@@ -61,7 +61,7 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
 
         @Override
         protected void convert(BaseViewHolder helper, NetsSummary.ImgextraBean item) {
-            GlideUtils.loadImage(mContext, item.getImgsrc(), helper.getView(R.id.iv_image));
+            GlideUtils.loadImageNetsList(mContext, item.getImgsrc(), helper.getView(R.id.iv_image));
         }
     }
 }

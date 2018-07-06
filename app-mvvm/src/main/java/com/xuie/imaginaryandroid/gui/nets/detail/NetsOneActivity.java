@@ -22,6 +22,7 @@ import com.xuie.imaginaryandroid.base.BaseActivity;
 import com.xuie.imaginaryandroid.data.NetsDetail;
 import com.xuie.imaginaryandroid.data.source.NetsRepository;
 import com.xuie.imaginaryandroid.databinding.ActivityNetsOneBinding;
+import com.xuie.imaginaryandroid.util.GlideUtils;
 import com.xuie.imaginaryandroid.util.TimeUtils;
 import com.xuie.imaginaryandroid.widget.UrlImageGetter;
 
@@ -136,14 +137,7 @@ public class NetsOneActivity extends BaseActivity implements NetsOneContract.Vie
     }
 
     private void setNewsDetailPhotoIv(String imgSrc) {
-        Glide.with(this)
-                .load(imgSrc)
-                .apply(new RequestOptions()
-                        .centerCrop()
-                        .placeholder(R.mipmap.ic_empty_picture)
-                        .error(R.mipmap.ic_empty_picture)
-                )
-                .into(mBinding.newsDetailPhotoIv);
+        GlideUtils.loadImageNetsPhone(this, imgSrc, mBinding.newsDetailPhotoIv);
     }
 
     private void setBody(NetsDetail netsDetail, String newsBody) {

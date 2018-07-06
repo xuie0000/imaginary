@@ -20,6 +20,58 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  */
 public class GlideUtils {
 
+    public static void loadImageNetsVideo(final Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .apply(new RequestOptions().fitCenter()
+                        .placeholder(R.mipmap.ic_empty_picture)
+                        .error(R.mipmap.ic_empty_picture)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .centerCrop()
+                )
+                .transition(withCrossFade())
+                .into(imageView);
+    }
+
+    public static void loadImageNetsList(final Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .apply(new RequestOptions().fitCenter()
+                        .placeholder(R.mipmap.ic_empty_picture)
+                        .error(R.mipmap.ic_empty_picture)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .override(300, 300)
+                        .centerInside()
+                )
+                .transition(withCrossFade())
+                .into(imageView);
+    }
+
+    public static void loadImageNetsPhone(final Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .apply(new RequestOptions().fitCenter()
+                        .placeholder(R.mipmap.ic_empty_picture)
+                        .error(R.mipmap.ic_empty_picture)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                        .centerCrop()
+                )
+                .transition(withCrossFade())
+                .into(imageView);
+    }
+
+    public static void loadImageMeizhi(final Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .apply(new RequestOptions().fitCenter()
+                        .placeholder(R.mipmap.meizhi_sample)
+                        .error(R.mipmap.meizhi_sample)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                )
+                .transition(withCrossFade())
+                .into(imageView);
+    }
+
     public static void loadImage(final Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
