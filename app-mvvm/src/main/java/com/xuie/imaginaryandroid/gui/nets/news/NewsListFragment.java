@@ -35,7 +35,7 @@ public class NewsListFragment extends BaseFragment implements NewsListContract.V
     }
 
     private NewsListContract.Presenter mPresenter = new NewsListPresenter(NetsRepository.getInstance(), this);
-    private NewsListAdapter newsListAdapter = new NewsListAdapter(null);
+    private NewsListAdapter newsListAdapter = new NewsListAdapter(new ArrayList<>());
 
     @Override
     protected int getLayoutId() {

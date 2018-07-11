@@ -40,7 +40,7 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
                 helper.setText(R.id.ltitle, item.getTitle())
                         .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
-                GlideUtils.loadImage(mContext, item.getImgsrc(), helper.getView(R.id.img_src));
+                GlideUtils.loadImageNetsList(mContext, item.getImgsrc(), helper.getView(R.id.img_src));
                 break;
             case NetsSummary.IMG_MULTI:
                 helper.setText(R.id.ltitle, item.getTitle())

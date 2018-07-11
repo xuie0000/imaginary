@@ -40,7 +40,7 @@ public class GankActivity extends BaseActivity implements GankContract.View {
         mBinding = getDataBinding();
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        GlideUtils.loadImage(this, imageUrl, mBinding.gankDaily);
+        GlideUtils.loadImageMeizhiDetail(this, imageUrl, mBinding.gankDaily);
         mBinding.recyclerView.setAdapter(adapter);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.recyclerView.setNestedScrollingEnabled(false);

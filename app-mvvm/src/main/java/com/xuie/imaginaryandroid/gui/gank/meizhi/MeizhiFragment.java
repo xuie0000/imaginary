@@ -37,7 +37,7 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
 
     private MeizhiContract.Presenter mPresenter = new MeizhiPresenter(GankRepository.getInstance(), this);
 
-    private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(null);
+    private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(new ArrayList<>());
     private FragmentMeizhiBinding binding;
 
 
@@ -48,6 +48,7 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
 
     @Override
     protected void onInit(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onInit: ...");
         binding = getDataBinding();
 
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -99,7 +100,7 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
         if (isRefresh) {
             meiZhiAdapter.replaceData(new ArrayList<>());
         }
-//        Log.d(TAG, meiZhis.toString())
+        Log.d(TAG, meiZhis.toString());
         meiZhiAdapter.addData(meiZhis);
     }
 

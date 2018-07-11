@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * @author xuie
  */
 public class VideosFragment extends BaseFragment implements VideosContract.View {
-
+    private static final String TAG = "VideosFragment";
     public static final String VIDEO_TYPE_ID = "type";
     public static final String VIDEO_TYPE_NAME = "name";
 
@@ -43,19 +44,7 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
 
     private String mVideoType;
     private VideosContract.Presenter mPresenter = new VideosPresenter(NetsRepository.getInstance(), this);
-    private VideosAdapter videosAdapter = new VideosAdapter(null);
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_videos, container, false);
-
-        return view;
-    }
+    private VideosAdapter videosAdapter = new VideosAdapter(new ArrayList<>());
 
     private FragmentVideosBinding mBinding;
 
@@ -66,6 +55,7 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
 
     @Override
     protected void onInit(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onInit: ..");
         mBinding = getDataBinding();
         mVideoType = getArguments().getString(VIDEO_TYPE_ID);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

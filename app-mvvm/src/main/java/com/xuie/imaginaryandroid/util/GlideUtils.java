@@ -36,7 +36,7 @@ public class GlideUtils {
     public static void loadImageNetsList(final Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
-                .apply(new RequestOptions().fitCenter()
+                .apply(new RequestOptions()
                         .placeholder(R.mipmap.ic_empty_picture)
                         .error(R.mipmap.ic_empty_picture)
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
@@ -55,6 +55,17 @@ public class GlideUtils {
                         .error(R.mipmap.ic_empty_picture)
                         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .centerCrop()
+                )
+                .transition(withCrossFade())
+                .into(imageView);
+    }
+    public static void loadImageMeizhiDetail(final Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
+                .apply(new RequestOptions()
+                        .placeholder(R.mipmap.meizhi_sample)
+                        .error(R.mipmap.meizhi_sample)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                 )
                 .transition(withCrossFade())
                 .into(imageView);

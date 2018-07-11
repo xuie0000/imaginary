@@ -1,5 +1,7 @@
 package com.xuie.imaginaryandroid.gui.gank.meizhi;
 
+import android.util.Log;
+
 import com.xuie.imaginaryandroid.data.source.GankRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -13,6 +15,7 @@ import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
  * @date 17-7-5
  */
 public class MeizhiPresenter implements MeizhiContract.Presenter {
+    private static final String TAG = "MeizhiPresenter";
     private GankRepository gankRepository;
     private MeizhiContract.View gankView;
     private int currentPage = 1;
@@ -35,6 +38,7 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
 
     @Override
     public void getList(boolean isRefresh) {
+        Log.d(TAG, "getList: ..." + isRefresh);
         // get local data
         if (isRefresh) {
             currentPage = 1;
