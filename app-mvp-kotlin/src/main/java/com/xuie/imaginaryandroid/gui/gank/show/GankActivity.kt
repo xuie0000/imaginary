@@ -36,7 +36,7 @@ class GankActivity : AppCompatActivity(), GankContract.View {
 
         date = intent.getStringExtra("date")
         val imageUrl = intent.getStringExtra("image")
-        GlideUtils.loadImage(this, imageUrl, gankDaily)
+        GlideUtils.loadImageMeizhiDetail(this, imageUrl, gankDaily)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)

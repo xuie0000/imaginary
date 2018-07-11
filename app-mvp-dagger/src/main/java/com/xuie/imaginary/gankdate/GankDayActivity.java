@@ -42,7 +42,7 @@ public class GankDayActivity extends DaggerAppCompatActivity implements GankCont
 
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        GlideUtils.loadImage(this, imageUrl, gankDaily);
+        GlideUtils.loadImageMeizhiDetail(this, imageUrl, gankDaily);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

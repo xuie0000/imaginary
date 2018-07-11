@@ -80,7 +80,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
 //                helper.addOnClickListener(R.id.articleName)
 
                 if (lv1.getImageUrl() != null) {
-                    GlideUtils.loadImage(mContext, lv1.getImageUrl(), helper.getView(R.id.thumb));
+                    GlideUtils.loadImageMeizhiDetail(mContext, lv1.getImageUrl(), helper.getView(R.id.thumb));
                 }
                 break;
         }

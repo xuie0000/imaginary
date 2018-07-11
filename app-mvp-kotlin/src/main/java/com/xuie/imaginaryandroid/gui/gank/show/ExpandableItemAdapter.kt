@@ -69,7 +69,7 @@ class ExpandableItemAdapter
 //                helper.addOnClickListener(R.id.articleName);
 
                 if (lv1.imageUrl != null)
-                    GlideUtils.loadImage(mContext, lv1.imageUrl, helper.getView(R.id.thumb))
+                    GlideUtils.loadImageMeizhiDetail(mContext, lv1.imageUrl, helper.getView(R.id.thumb))
 
             }
         }

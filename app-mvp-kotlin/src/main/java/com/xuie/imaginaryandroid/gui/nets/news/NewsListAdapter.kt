@@ -33,7 +33,7 @@ class NewsListAdapter
                 helper.setText(R.id.ltitle, item.title)
                         .setText(R.id.source, item.source)
                         .setText(R.id.digest, item.digest)
-                GlideUtils.loadImage(mContext, item.imgsrc, helper.getView(R.id.img_src))
+                GlideUtils.loadImageNetsList(mContext, item.imgsrc, helper.getView(R.id.img_src))
             }
             NetsSummary.IMG_MULTI -> {
                 helper.setText(R.id.ltitle, item.title)
@@ -53,7 +53,7 @@ class NewsListAdapter
             BaseQuickAdapter<NetsSummary.ImgextraBean, BaseViewHolder>(R.layout.item_fragment_news_child, data) {
 
         override fun convert(helper: BaseViewHolder, item: NetsSummary.ImgextraBean) {
-            GlideUtils.loadImage(mContext, item.imgsrc, helper.getView(R.id.iv_image))
+            GlideUtils.loadImageNetsList(mContext, item.imgsrc, helper.getView(R.id.iv_image))
         }
     }
 

@@ -14,7 +14,7 @@ class MeiZhiAdapter(meiZhis: List<BaseBean>?) : BaseQuickAdapter<BaseBean, BaseV
 
     override fun convert(helper: BaseViewHolder, item: BaseBean) {
         helper.setText(R.id.date, item.desc)
-        GlideUtils.loadImage(mContext, item.url, helper.getView(R.id.meizhi))
+        GlideUtils.loadImageMeizhi(mContext, item.url, helper.getView(R.id.meizhi))
     }
 
     companion object {

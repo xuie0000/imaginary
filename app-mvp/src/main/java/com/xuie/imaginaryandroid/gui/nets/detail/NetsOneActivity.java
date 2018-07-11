@@ -154,7 +154,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
     }
 
     private void setNewsDetailPhotoIv(String imgSrc) {
-        GlideUtils.loadImage(this, imgSrc, newsDetailPhotoIv);
+        GlideUtils.loadImageNetsPhone(this, imgSrc, newsDetailPhotoIv);
     }
 
     private void setBody(NetsDetail netsDetail, String newsBody) {

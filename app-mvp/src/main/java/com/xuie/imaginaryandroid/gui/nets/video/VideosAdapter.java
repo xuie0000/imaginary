@@ -36,7 +36,7 @@ public class VideosAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> {
         jcVideoPlayerStandard.setUp(
                 item.getMp4_url(), JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 TextUtils.isEmpty(item.getDescription()) ? item.getTitle() + "" : item.getDescription());
-        GlideUtils.loadImage(mContext, item.getCover(), jcVideoPlayerStandard.thumbImageView);
-        GlideUtils.loadImage(mContext, item.getTopicImg(), helper.getView(R.id.iv_logo));
+        GlideUtils.loadImageNetsVideo(mContext, item.getCover(), jcVideoPlayerStandard.thumbImageView);
+        GlideUtils.loadImageNetsVideo(mContext, item.getTopicImg(), helper.getView(R.id.iv_logo));
     }
 }

@@ -116,7 +116,7 @@ class NetsOneActivity : AppCompatActivity(), NetsOneContract.View {
     }
 
     private fun setNewsDetailPhotoIv(imgSrc: String) {
-        GlideUtils.loadImage(this, imgSrc, newsDetailPhotoIv)
+        GlideUtils.loadImageNetsPhone(this, imgSrc, newsDetailPhotoIv)
     }
 
     private fun setBody(netsDetail: NetsDetail, newsBody: String) {

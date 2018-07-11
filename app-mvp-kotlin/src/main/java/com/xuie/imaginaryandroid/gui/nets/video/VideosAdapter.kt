@@ -25,8 +25,8 @@ class VideosAdapter(videoBeen: List<VideoBean>?) : BaseQuickAdapter<VideoBean, B
         jcVideoPlayerStandard.setUp(
                 item.mp4_url, JCVideoPlayer.SCREEN_LAYOUT_LIST,
                 if (TextUtils.isEmpty(item.description)) item.title + "" else item.description)
-        GlideUtils.loadImage(mContext, item.cover, jcVideoPlayerStandard.thumbImageView)
-        GlideUtils.loadImage(mContext, item.topicImg, helper.getView(R.id.iv_logo))
+        GlideUtils.loadImageNetsVideo(mContext, item.cover, jcVideoPlayerStandard.thumbImageView)
+        GlideUtils.loadImageNetsVideo(mContext, item.topicImg, helper.getView(R.id.iv_logo))
     }
 
     companion object {

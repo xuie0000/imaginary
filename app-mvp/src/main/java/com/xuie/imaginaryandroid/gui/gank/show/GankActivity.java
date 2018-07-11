@@ -47,7 +47,7 @@ public class GankActivity extends AppCompatActivity implements GankContract.View
 
         date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        GlideUtils.loadImage(this, imageUrl, gankDaily);
+        GlideUtils.loadImageMeizhiDetail(this, imageUrl, gankDaily);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -9,9 +9,9 @@ import com.xuie.imaginary.util.GlideUtils;
 import java.util.List;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
     private static final String TAG = "MeiZhiAdapter";
 
@@ -22,6 +22,6 @@ public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, BaseBean item) {
         helper.setText(R.id.date, item.getDesc());
-        GlideUtils.loadImage(mContext, item.getUrl(), helper.getView(R.id.meizhi));
+        GlideUtils.loadImageMeizhi(mContext, item.getUrl(), helper.getView(R.id.meizhi));
     }
 }
