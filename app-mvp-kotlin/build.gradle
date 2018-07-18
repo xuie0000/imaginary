@@ -15,6 +15,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
+    kapt { generateStubs = true }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -48,7 +51,7 @@ dependencies {
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     kapt "android.arch.lifecycle:compiler:1.1.1"
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'fm.jiecao:jiecaovideoplayer:5.8.1'
     implementation 'com.android.support:preference-v7:27.1.1'
     implementation 'com.cjj.materialrefeshlayout:library:1.3.0'

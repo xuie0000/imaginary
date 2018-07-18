@@ -1,15 +1,15 @@
 package com.xuie.imaginaryandroid.util
 
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable
+import android.content.Context
+import android.graphics.Bitmap
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
-
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.xuie.imaginaryandroid.R
-
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 
 /**
  * @author xuie
@@ -17,7 +17,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
  */
 object GlideUtils {
 
-    fun loadImageNetsVideo(context: Context, url: String, imageView: ImageView) {
+    fun loadImageNetsVideo(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions().fitCenter()
@@ -30,7 +30,7 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadImageNetsList(context: Context, url: String, imageView: ImageView) {
+    fun loadImageNetsList(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions()
@@ -44,7 +44,7 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadImageNetsPhone(context: Context, url: String, imageView: ImageView) {
+    fun loadImageNetsPhone(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions().fitCenter()
@@ -57,7 +57,7 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadImageMeizhiDetail(context: Context, url: String, imageView: ImageView) {
+    fun loadImageMeizhiDetail(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions()
@@ -69,7 +69,7 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadImageMeizhi(context: Context, url: String, imageView: ImageView) {
+    fun loadImageMeizhi(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions().fitCenter()
@@ -81,7 +81,7 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadImage(context: Context, url: String, imageView: ImageView) {
+    fun loadImage(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .load(url)
                 .apply(RequestOptions().fitCenter()
@@ -94,7 +94,7 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadRoundImage(context: Context, url: String, imageView: ImageView) {
+    fun loadRoundImage(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
@@ -102,26 +102,26 @@ object GlideUtils {
                         .error(R.mipmap.ic_empty_picture)
                 )
                 .into(object : BitmapImageViewTarget(imageView) {
-                    @Override
-                    protected fun setResource(resource: Bitmap) {
+                    override fun setResource(resource: Bitmap?) {
+                        super.setResource(resource)
                         val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource)
-                        circularBitmapDrawable.setCircular(true)
+                        circularBitmapDrawable.isCircular = true
                         imageView.setImageDrawable(circularBitmapDrawable)
                     }
                 })
 
     }
 
-    fun loadAvatar(context: Context, url: String, imageView: ImageView) {
+    fun loadAvatar(context: Context, url: String?, imageView: ImageView) {
         Glide.with(context)
                 .asBitmap()
                 .load(url)
                 .apply(RequestOptions().centerCrop().skipMemoryCache(true).error(R.mipmap.ic_empty_picture))
                 .into(object : BitmapImageViewTarget(imageView) {
-                    @Override
-                    protected fun setResource(resource: Bitmap) {
-                        val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource)
-                        circularBitmapDrawable.setCircular(true)
+                    override fun setResource(resource: Bitmap?) {
+                        super.setResource(resource)
+                        val circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.resources, resource)
+                        circularBitmapDrawable.isCircular = true
                         imageView.setImageDrawable(circularBitmapDrawable)
                     }
                 })
