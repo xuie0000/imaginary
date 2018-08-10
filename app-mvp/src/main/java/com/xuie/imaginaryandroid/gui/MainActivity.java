@@ -1,7 +1,5 @@
 package com.xuie.imaginaryandroid.gui;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,9 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.xuie.imaginaryandroid.R;
 import com.xuie.imaginaryandroid.gui.gank.meizhi.MeizhiFragment;
@@ -26,7 +23,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 /**
  * @author xuie
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     @BindView(R.id.view_pager) ViewPager viewPager;
     @BindView(R.id.navigation) BottomNavigationView navigation;
@@ -47,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_settings:
-                    viewPager.setCurrentItem(3);
-                    return true;
                 default:
+                    viewPager.setCurrentItem(3);
                     return true;
             }
         }
@@ -61,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        Log.d(TAG, "onCreate");
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
@@ -114,22 +112,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return 4;
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(option);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
         }
     }
 

@@ -27,9 +27,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author xuie
  */
 public class ServiceGenerator {
-    //读超时长，单位：毫秒
+    /**
+     * 读超时长，单位：毫秒
+     */
     private static final int READ_TIME_OUT = 7676;
-    //连接时长，单位：毫秒
+    /**
+     * 连接时长，单位：毫秒
+     */
     private static final int CONNECT_TIME_OUT = 7676;
 
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
@@ -60,19 +64,16 @@ public class ServiceGenerator {
         //100Mb
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
         //增加头部信息
-        Interceptor headerInterceptor = new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request build = chain.request().newBuilder()
-                        .addHeader("Content-Type", "application/json")
-                        // http://www.jianshu.com/p/4132b381f07e
-                        //移除旧的
-                        .removeHeader("User-Agent")
-                        //添加真正的头部
-                        .addHeader("User-Agent", WebSettings.getDefaultUserAgent(App.getContext()))
-                        .build();
-                return chain.proceed(build);
-            }
+        Interceptor headerInterceptor = chain -> {
+            Request build = chain.request().newBuilder()
+                    .addHeader("Content-Type", "application/json")
+                    // http://www.jianshu.com/p/4132b381f07e
+                    //移除旧的
+                    .removeHeader("User-Agent")
+                    //添加真正的头部
+                    .addHeader("User-Agent", WebSettings.getDefaultUserAgent(App.getContext()))
+                    .build();
+            return chain.proceed(build);
         };
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -112,29 +113,26 @@ public class ServiceGenerator {
      * 云端响应头拦截器，用来配置缓存策略
      * Dangerous interceptor that rewrites the server's cache-control header.
      */
-    private static final Interceptor mRewriteCacheControlInterceptor = new Interceptor() {
-        @Override
-        public Response intercept(Chain chain) throws IOException {
-            Request request = chain.request();
-            String cacheControl = request.cacheControl().toString();
-            if (!NetWorkUtils.isNetConnected(App.getContext())) {
-                request = request.newBuilder()
-                        .cacheControl(TextUtils.isEmpty(cacheControl) ? CacheControl.FORCE_NETWORK : CacheControl.FORCE_CACHE)
-                        .build();
-            }
-            Response originalResponse = chain.proceed(request);
-            if (NetWorkUtils.isNetConnected(App.getContext())) {
-                //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
-                return originalResponse.newBuilder()
-                        .header("Cache-Control", cacheControl)
-                        .removeHeader("Pragma")
-                        .build();
-            } else {
-                return originalResponse.newBuilder()
-                        .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC)
-                        .removeHeader("Pragma")
-                        .build();
-            }
+    private static Interceptor mRewriteCacheControlInterceptor = chain -> {
+        Request request = chain.request();
+        String cacheControl = request.cacheControl().toString();
+        if (!NetWorkUtils.isNetConnected(App.getContext())) {
+            request = request.newBuilder()
+                    .cacheControl(TextUtils.isEmpty(cacheControl) ? CacheControl.FORCE_NETWORK : CacheControl.FORCE_CACHE)
+                    .build();
+        }
+        Response originalResponse = chain.proceed(request);
+        if (NetWorkUtils.isNetConnected(App.getContext())) {
+            //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", cacheControl)
+                    .removeHeader("Pragma")
+                    .build();
+        } else {
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", "public, only-if-cached, max-stale=" + CACHE_STALE_SEC)
+                    .removeHeader("Pragma")
+                    .build();
         }
     };
 

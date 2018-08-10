@@ -15,9 +15,6 @@ public class NetWorkUtils {
 
     /**
      * 检查网络是否可用
-     *
-     * @param paramContext
-     * @return
      */
     public static boolean isNetConnected(Context paramContext) {
         boolean i = false;

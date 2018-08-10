@@ -1,9 +1,6 @@
 package com.xuie.imaginaryandroid.gui.web;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -11,6 +8,7 @@ import android.webkit.WebViewClient;
 
 import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import com.xuie.imaginaryandroid.R;
+import com.xuie.imaginaryandroid.gui.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +17,7 @@ import butterknife.ButterKnife;
  * @author xuie
  */
 @ParallaxBack
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends BaseActivity {
 
     public static final String URL = "url";
     @BindView(R.id.web_view) WebView webView;
@@ -49,22 +47,6 @@ public class WebViewActivity extends AppCompatActivity {
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             view.loadUrl(request.getUrl().toString());
             return super.shouldOverrideUrlLoading(view, request);
-        }
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(option);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            );
         }
     }
 

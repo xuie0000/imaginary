@@ -1,5 +1,6 @@
 package com.xuie.imaginaryandroid.gui.nets.detail;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
@@ -50,6 +51,7 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
     public static final String POST_ID = "postId";
     public static final String IMG_RES = "image";
 
+    @SuppressLint("ObsoleteSdkInt")
     public static void newIntent(Context mContext, View imageView, View titleView, String postId, String imgUrl) {
         Intent intent = new Intent(mContext, NetsOneActivity.class);
         intent.putExtra(POST_ID, postId);
@@ -109,10 +111,10 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         String newsSource = netsDetail.getSource();
         String newsTime = TimeUtils.formatDate(netsDetail.getPtime());
         String newsBody = netsDetail.getBody();
-        String NewsImgSrc = getImgSrcs(netsDetail);
+        String NewsImgSrc = getImgSrcList(netsDetail);
 
         setToolBarLayout(mNewsTitle);
-        //mNewsDetailTitleTv.setText(newsTitle);
+        //mNewsDetailTitleTv.setText(newsTitle)
         newsDetailFromTv.setText(getString(R.string.news_from, newsSource, newsTime));
         setNewsDetailPhotoIv(NewsImgSrc);
 
@@ -173,11 +175,11 @@ public class NetsOneActivity extends AppCompatActivity implements NetsOneContrac
         return imgTotal >= 2 && newsBody != null;
     }
 
-    private String getImgSrcs(NetsDetail netsDetail) {
-        List<NetsDetail.ImgBean> imgSrcs = netsDetail.getImg();
+    private String getImgSrcList(NetsDetail netsDetail) {
+        List<NetsDetail.ImgBean> imgSrcList = netsDetail.getImg();
         String imgSrc;
-        if (imgSrcs != null && imgSrcs.size() > 0) {
-            imgSrc = imgSrcs.get(0).getSrc();
+        if (imgSrcList != null && imgSrcList.size() > 0) {
+            imgSrc = imgSrcList.get(0).getSrc();
         } else {
             imgSrc = getIntent().getStringExtra(IMG_RES);
         }

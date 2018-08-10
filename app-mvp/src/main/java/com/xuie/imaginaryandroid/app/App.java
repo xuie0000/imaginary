@@ -13,7 +13,6 @@ import com.xuie.imaginaryandroid.R;
  */
 
 public class App extends Application {
-    private static final String TAG = "App";
     @SuppressLint("StaticFieldLeak")
     private static Context context;
 
