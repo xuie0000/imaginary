@@ -9,7 +9,6 @@ import com.xuie.imaginaryandroid.app.App;
 import com.xuie.imaginaryandroid.util.NetWorkUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;

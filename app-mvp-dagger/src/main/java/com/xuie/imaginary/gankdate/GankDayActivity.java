@@ -25,6 +25,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
+/**
+ * @author xuie
+ */
 public class GankDayActivity extends DaggerAppCompatActivity implements GankContract.View {
     private static final String TAG = "GankDayActivity";
     @BindView(R.id.gank_daily) PhotoView gankDaily;
@@ -84,7 +87,7 @@ public class GankDayActivity extends DaggerAppCompatActivity implements GankCont
     public void refresh(GankBean gb) {
         Log.d(TAG, gb.toString());
         List<MultiItemEntity> entities = generateData(gb);
-        adapter.replaceData(new ArrayList<MultiItemEntity>());
+        adapter.replaceData(new ArrayList<>());
         adapter.addData(entities);
         adapter.expandAll();
     }
@@ -95,21 +98,30 @@ public class GankDayActivity extends DaggerAppCompatActivity implements GankCont
             Level0Item lv0 = new Level0Item();
             lv0.setType(s);
             List<BaseBean> bbs = gb.getResults().getAndroid();
-            if (s.equals("Android")) {
-                bbs = gb.getResults().getAndroid();
-            } else if (s.equals("瞎推荐")) {
-                bbs = gb.getResults().get瞎推荐();
-            } else if (s.equals("iOS")) {
-                bbs = gb.getResults().getiOS();
-            } else if (s.equals("休息视频")) {
-                bbs = gb.getResults().get休息视频();
-            } else if (s.equals("福利")) {
-//                bbs = gb.getResults().get福利();
-                continue;
-            } else if (s.equals("前端")) {
-                bbs = gb.getResults().get前端();
-            } else if (s.equals("拓展资源")) {
-                bbs = gb.getResults().get拓展资源();
+            switch (s) {
+                case "Android":
+                    bbs = gb.getResults().getAndroid();
+                    break;
+                case "瞎推荐":
+                    bbs = gb.getResults().get瞎推荐();
+                    break;
+                case "iOS":
+                    bbs = gb.getResults().getiOS();
+                    break;
+                case "休息视频":
+                    bbs = gb.getResults().get休息视频();
+                    break;
+                case "福利":
+//                bbs = gb.getResults().get福利()
+                    continue;
+                case "前端":
+                    bbs = gb.getResults().get前端();
+                    break;
+                case "拓展资源":
+                    bbs = gb.getResults().get拓展资源();
+                    break;
+                default:
+                    break;
             }
             for (BaseBean ab : bbs) {
                 Level1Item lv1 = new Level1Item();

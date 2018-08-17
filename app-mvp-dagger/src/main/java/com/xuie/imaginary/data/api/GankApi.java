@@ -11,9 +11,7 @@ import retrofit2.http.Path;
  * Created by xuie on 17-12-15.
  * http://gank.io/api
  */
-
 public interface GankApi {
-    // GANK
     String GANK_API = "http://gank.io/api/";
 
     @GET("data/福利/20/{page}")

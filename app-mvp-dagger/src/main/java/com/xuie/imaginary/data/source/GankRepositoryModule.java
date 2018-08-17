@@ -14,6 +14,8 @@ import dagger.Provides;
 
 /**
  * This is used by Dagger to inject the required arguments into the {@link GankRepository}.
+ *
+ * @author google
  */
 @Module
 abstract public class GankRepositoryModule {

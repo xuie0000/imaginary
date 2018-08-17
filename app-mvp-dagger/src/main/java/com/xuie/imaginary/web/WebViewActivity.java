@@ -14,6 +14,9 @@ import com.xuie.imaginary.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * @author xuie
+ */
 public class WebViewActivity extends AppCompatActivity {
 
     public static final String URL = "url";

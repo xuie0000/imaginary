@@ -3,9 +3,9 @@ package com.xuie.imaginary.data;
 import java.util.List;
 
 /**
- * Created by xuie on 17-8-8.
+ * @author xuie
+ * @date 17-8-8
  */
-
 public class BaseBean {
 
     /**

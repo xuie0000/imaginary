@@ -14,6 +14,9 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import dagger.android.support.DaggerAppCompatActivity;
 
+/**
+ * @author xuie
+ */
 public class MeizhiActivity extends DaggerAppCompatActivity {
     private static final String TAG = "MeizhiActivity";
 
@@ -44,7 +47,7 @@ public class MeizhiActivity extends DaggerAppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         decorView.setSystemUiVisibility(option);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary));
+//        getWindow().setStatusBarColor(getColor(R.color.colorPrimary))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR

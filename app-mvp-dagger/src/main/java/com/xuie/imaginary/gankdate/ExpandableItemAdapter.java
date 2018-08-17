@@ -16,10 +16,10 @@ import com.xuie.imaginary.web.WebViewActivity;
 import java.util.List;
 
 /**
- * Created by xuie on 17-8-15.
+ * @author xuie
+ * @date 17-8-15
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper/blob/master/app/src/main/java/com/chad/baserecyclerviewadapterhelper/adapter/ExpandableItemAdapter.java
  */
-
 public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder> {
     private static final String TAG = "ExpandableItemAdapter";
     public static final int TYPE_LEVEL_0 = 0;

@@ -10,9 +10,9 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
- * Created by xuie on 17-12-15.
+ * @author xuie
+ * @date 17-12-15
  */
-
 @ActivityScoped
 public class MeizhiPresenter implements MeizhiContract.Presenter {
 

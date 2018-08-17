@@ -1,9 +1,9 @@
 package com.xuie.imaginary.gank;
 
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +24,7 @@ import com.xuie.imaginary.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -34,6 +35,8 @@ import dagger.android.support.DaggerFragment;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * @author xuie
  */
 @ActivityScoped
 public class MeizhiFragment extends DaggerFragment implements MeizhiContract.View {
@@ -47,10 +50,11 @@ public class MeizhiFragment extends DaggerFragment implements MeizhiContract.Vie
     private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(null);
 
     @Inject
-    public MeizhiFragment() {}
+    public MeizhiFragment() {
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meizhi, container, false);
         unbinder = ButterKnife.bind(this, view);
         Log.d(TAG, "onCreateView");
@@ -58,19 +62,16 @@ public class MeizhiFragment extends DaggerFragment implements MeizhiContract.Vie
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(meiZhiAdapter);
-        meiZhiAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Log.d(TAG, "position:" + position);
-                BaseBean fl = (BaseBean) adapter.getData().get(position);
-                Log.d("MeizhiFragment", fl.toString());
-                String dateString = DateUtils.getDate(fl.getPublishedAt());
-                Intent intent = new Intent(getActivity(), GankDayActivity.class);
-                intent.putExtra("date", dateString);
-                intent.putExtra("image", fl.getUrl());
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
-                ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-            }
+        meiZhiAdapter.setOnItemClickListener((adapter, view1, position) -> {
+            Log.d(TAG, "position:" + position);
+            BaseBean fl = (BaseBean) adapter.getData().get(position);
+            Log.d("MeizhiFragment", fl.toString());
+            String dateString = DateUtils.getDate(fl.getPublishedAt());
+            Intent intent = new Intent(getActivity(), GankDayActivity.class);
+            intent.putExtra("date", dateString);
+            intent.putExtra("image", fl.getUrl());
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view1, "shareObject");
+            ActivityCompat.startActivity(Objects.requireNonNull(getActivity()), intent, options.toBundle());
         });
         meiZhiAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
         meiZhiAdapter.isFirstOnly(true);
@@ -79,24 +80,14 @@ public class MeizhiFragment extends DaggerFragment implements MeizhiContract.Vie
             @Override
             public void onRefresh(final MaterialRefreshLayout materialRefreshLayout) {
                 mPresenter.getList(true);
-                materialRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        materialRefreshLayout.finishRefresh();
-                    }
-                }, 1000);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefresh, 1000);
             }
 
             @Override
             public void onRefreshLoadMore(final MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
                 mPresenter.getList(false);
-                materialRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        materialRefreshLayout.finishRefreshLoadMore();
-                    }
-                }, 1000);
+                materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
 
@@ -123,9 +114,10 @@ public class MeizhiFragment extends DaggerFragment implements MeizhiContract.Vie
 
     @Override
     public void addList(boolean isRefresh, List<BaseBean> meiZhis) {
-        if (isRefresh)
-            meiZhiAdapter.replaceData(new ArrayList<BaseBean>());
-//        Log.d(TAG, meiZhis.toString());
+        if (isRefresh) {
+            meiZhiAdapter.replaceData(new ArrayList<>());
+        }
+//        Log.d(TAG, meiZhis.toString())
         meiZhiAdapter.addData(meiZhis);
     }
 }

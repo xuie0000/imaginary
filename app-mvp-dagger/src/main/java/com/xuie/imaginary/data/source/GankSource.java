@@ -8,9 +8,9 @@ import java.util.List;
 import io.reactivex.Observable;
 
 /**
- * Created by xuie on 17-7-5.
+ * @author xuie
+ * @date 17-7-5
  */
-
 public interface GankSource {
     Observable<List<BaseBean>> get福利(int page);
 

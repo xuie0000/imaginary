@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by xuie on 17-8-15.
+ * @author xuie
+ * @date 17-8-15
  */
-
 public class DateUtils {
     private static final String MATCH_REGEX = "(\\d+)-(\\d+)-(\\d+)T(\\S+)Z";
 

@@ -4,9 +4,9 @@ import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 /**
- * Created by xuie on 17-8-15.
+ * @author xuie
+ * @date 17-8-15
  */
-
 public class Level1Item extends AbstractExpandableItem<Level1Item> implements MultiItemEntity {
     private String articleName;
     private String articleUrl;

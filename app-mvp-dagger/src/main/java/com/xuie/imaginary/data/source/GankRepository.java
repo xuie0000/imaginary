@@ -11,9 +11,9 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 
 /**
- * Created by xuie on 17-12-15.
+ * @author xuie
+ * @date 17-12-15
  */
-
 @Singleton
 public class GankRepository implements GankSource {
     private static final String TAG = "GankRepository";
