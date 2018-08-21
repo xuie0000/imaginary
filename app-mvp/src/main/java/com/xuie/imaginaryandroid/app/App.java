@@ -11,7 +11,6 @@ import com.xuie.imaginaryandroid.R;
  * @author xuie
  * @date 17-7-5
  */
-
 public class App extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;

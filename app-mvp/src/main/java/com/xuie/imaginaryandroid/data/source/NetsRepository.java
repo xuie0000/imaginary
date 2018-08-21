@@ -18,8 +18,10 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * The type Nets repository.
+ *
  * @author xuie
- * @date 17-8-17
+ * @date 17 -8-17
  */
 public class NetsRepository implements NetsSource {
     private static NetsRepository INSTANCE;
@@ -28,6 +30,11 @@ public class NetsRepository implements NetsSource {
     private NetsRepository() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static NetsRepository getInstance() {
         if (INSTANCE == null) {
             synchronized (GankRepository.class) {

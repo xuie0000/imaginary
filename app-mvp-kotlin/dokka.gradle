@@ -1,0 +1,105 @@
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+dokka {
+    moduleName = 'data'
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+
+    // These tasks will be used to determine source directories and classpath
+    kotlinTasks {
+        defaultKotlinTasks() + [':some:otherCompileKotlin', project("another").compileKotlin]
+    }
+
+    // List of files with module and package documentation
+    // http://kotlinlang.org/docs/reference/kotlin-doc.html#module-and-package-documentation
+    includes = ['packages.md', 'extra.md']
+
+    // The list of files or directories containing sample code (referenced with @sample tags)
+    samples = ['samples/basic.kt', 'samples/advanced.kt']
+
+    jdkVersion = 6 // Used for linking to JDK
+
+    // Use default or set to custom path to cache directory
+    // to enable package-list caching
+    // When set to default, caches stored in $USER_HOME/.cache/dokka
+    cacheRoot = 'default'
+
+    // Use to include or exclude non public members.
+    includeNonPublic = false
+
+    // Do not output deprecated members. Applies globally, can be overridden by packageOptions
+    skipDeprecated = false
+
+    // Emit warnings about not documented members. Applies globally, also can be overridden by packageOptions
+    reportUndocumented = true
+
+    skipEmptyPackages = true // Do not create index pages for empty packages
+
+    impliedPlatforms = ["JVM"] // See platforms section of documentation
+
+    // Manual adding files to classpath
+    // This property not overrides classpath collected from kotlinTasks but appends to it
+    classpath = [new File("$buildDir/other.jar")]
+
+    // By default, sourceRoots is taken from kotlinTasks, following roots will be appended to it
+    // Short form sourceRoots
+    sourceDirs = files('src/main/kotlin')
+
+    // By default, sourceRoots is taken from kotlinTasks, following roots will be appended to it
+    // Full form sourceRoot declaration
+    // Repeat for multiple sourceRoots
+    sourceRoot {
+        // Path to source root
+        path = "src"
+        // See platforms section of documentation
+        platforms = ["JVM"]
+    }
+
+    // Specifies the location of the project source code on the Web.
+    // If provided, Dokka generates "source" links for each declaration.
+    // Repeat for multiple mappings
+    linkMapping {
+        // Source directory
+        dir = "src/main/kotlin"
+
+        // URL showing where the source code can be accessed through the web browser
+        url = "https://github.com/cy6erGn0m/vertx3-lang-kotlin/blob/master/src/main/kotlin"
+
+        // Suffix which is used to append the line number to the URL. Use #L for GitHub
+        suffix = "#L"
+    }
+
+    // No default documentation link to kotlin-stdlib
+    noStdlibLink = false
+
+    // Allows linking to documentation of the project's dependencies (generated with Javadoc or Dokka)
+    // Repeat for multiple links
+    externalDocumentationLink {
+        // Root URL of the generated documentation to link with. The trailing slash is required!
+        url = new URL("https://example.com/docs/")
+
+        // If package-list file located in non-standard location
+        // packageListUrl = new URL("file:///home/user/localdocs/package-list")
+    }
+
+    // Allows to customize documentation generation options on a per-package basis
+    // Repeat for multiple packageOptions
+    packageOptions {
+        prefix = "kotlin" // will match kotlin and all sub-packages of it
+        // All options are optional, default values are below:
+        skipDeprecated = false
+        reportUndocumented = true // Emit warnings about not documented members
+        includeNonPublic = false
+    }
+    // Suppress a package
+    packageOptions {
+        prefix = "kotlin.internal" // will match kotlin.internal and all sub-packages of it
+        suppress = true
+    }
+}
+
+//apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'org.jetbrains.dokka-android'

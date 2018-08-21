@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ImaginaryAndroid</string>
+    <string name="app_name">imaginary</string>
     <string name="title_home">Home</string>
     <string name="title_nets">新闻</string>
     <string name="title_video">视频</string>

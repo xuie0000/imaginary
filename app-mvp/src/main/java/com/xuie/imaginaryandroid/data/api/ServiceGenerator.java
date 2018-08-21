@@ -23,6 +23,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
+ * The type Service generator.
+ *
  * @author xuie
  */
 public class ServiceGenerator {
@@ -37,6 +39,13 @@ public class ServiceGenerator {
 
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
 
+    /**
+     * Create service s.
+     *
+     * @param <S>          the type parameter
+     * @param serviceClass the service class
+     * @return the s
+     */
     public static <S> S createService(Class<S> serviceClass) {
         Retrofit.Builder builder =
                 new Retrofit.Builder()
@@ -46,6 +55,14 @@ public class ServiceGenerator {
         return createService(serviceClass, builder, null);
     }
 
+    /**
+     * Create service s.
+     *
+     * @param <S>          the type parameter
+     * @param serviceClass the service class
+     * @param baseUrl      the base url
+     * @return the s
+     */
     public static <S> S createService(Class<S> serviceClass, String baseUrl) {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -54,6 +71,15 @@ public class ServiceGenerator {
         return createService(serviceClass, builder, null);
     }
 
+    /**
+     * Create service s.
+     *
+     * @param <S>          the type parameter
+     * @param serviceClass the service class
+     * @param builder      the builder
+     * @param authToken    the auth token
+     * @return the s
+     */
     public static <S> S createService(Class<S> serviceClass, Retrofit.Builder builder, final String authToken) {
         //开启Log
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();

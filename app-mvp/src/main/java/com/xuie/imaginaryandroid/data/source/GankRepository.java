@@ -14,8 +14,10 @@ import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * The type Gank repository.
+ *
  * @author xuie
- * @date 17-7-5
+ * @date 17 -7-5
  */
 public class GankRepository implements GankSource {
     private static final String TAG = "GankRepository";
@@ -25,6 +27,11 @@ public class GankRepository implements GankSource {
     private GankRepository() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static GankRepository getInstance() {
         if (INSTANCE == null) {
             synchronized (GankRepository.class) {
