@@ -1,5 +1,6 @@
 package com.xuie.imaginary;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.VisibleForTesting;
@@ -21,12 +22,13 @@ public class ToDoApplication extends DaggerApplication {
     @Inject
     GankRepository gankRepository;
 
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     @Override
     public void onCreate() {
-        super.onCreate();
         context = this;
+        super.onCreate();
     }
 
     public static Context getContext() {
