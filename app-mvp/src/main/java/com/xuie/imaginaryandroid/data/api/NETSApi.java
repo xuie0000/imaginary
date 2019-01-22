@@ -1,8 +1,8 @@
-package com.xuie.imaginaryandroid.data.api;
+package com.xuie.imaginary.data.api;
 
-import com.xuie.imaginaryandroid.data.NetsDetail;
-import com.xuie.imaginaryandroid.data.NetsSummary;
-import com.xuie.imaginaryandroid.data.VideoBean;
+import com.xuie.imaginary.data.NetsDetail;
+import com.xuie.imaginary.data.NetsSummary;
+import com.xuie.imaginary.data.VideoBean;
 
 import java.util.List;
 import java.util.Map;

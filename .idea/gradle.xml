@@ -11,7 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app-mvp-dagger" />
+            <option value="$PROJECT_DIR$/app-mvvm" />
             <option value="$PROJECT_DIR$/test" />
           </set>
         </option>

@@ -1,7 +1,7 @@
-package com.xuie.imaginaryandroid.data.source;
+package com.xuie.imaginary.data.source;
 
-import com.xuie.imaginaryandroid.data.BaseBean;
-import com.xuie.imaginaryandroid.data.GankBean;
+import com.xuie.imaginary.data.BaseBean;
+import com.xuie.imaginary.data.GankBean;
 
 import java.util.List;
 

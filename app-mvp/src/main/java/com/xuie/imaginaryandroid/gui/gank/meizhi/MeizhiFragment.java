@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.gank.meizhi;
+package com.xuie.imaginary.gui.gank.meizhi;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.data.BaseBean;
-import com.xuie.imaginaryandroid.data.source.GankRepository;
-import com.xuie.imaginaryandroid.gui.gank.show.GankActivity;
-import com.xuie.imaginaryandroid.util.DateUtils;
+import com.xuie.imaginary.R;
+import com.xuie.imaginary.data.BaseBean;
+import com.xuie.imaginary.data.source.GankRepository;
+import com.xuie.imaginary.gui.gank.show.GankActivity;
+import com.xuie.imaginary.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
+import static com.xuie.imaginary.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,8 +1,8 @@
-package com.xuie.imaginaryandroid.gui.gank.meizhi;
+package com.xuie.imaginary.gui.gank.meizhi;
 
-import com.xuie.imaginaryandroid.BasePresenter;
-import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.BaseBean;
+import com.xuie.imaginary.BasePresenter;
+import com.xuie.imaginary.BaseView;
+import com.xuie.imaginary.data.BaseBean;
 
 import java.util.List;
 

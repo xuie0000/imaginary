@@ -49,7 +49,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_arrow_upward_24dp"
             app:backgroundTint="@color/main_color"
-            app:layout_behavior="com.xuie.imaginaryandroid.widget.ScrollAwareFabBehavior" />
+            app:layout_behavior="com.xuie.imaginary.widget.ScrollAwareFabBehavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 

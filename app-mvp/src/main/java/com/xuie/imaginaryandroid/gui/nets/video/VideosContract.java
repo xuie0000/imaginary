@@ -1,8 +1,8 @@
-package com.xuie.imaginaryandroid.gui.nets.video;
+package com.xuie.imaginary.gui.nets.video;
 
-import com.xuie.imaginaryandroid.BasePresenter;
-import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.VideoBean;
+import com.xuie.imaginary.BasePresenter;
+import com.xuie.imaginary.BaseView;
+import com.xuie.imaginary.data.VideoBean;
 
 import java.util.List;
 

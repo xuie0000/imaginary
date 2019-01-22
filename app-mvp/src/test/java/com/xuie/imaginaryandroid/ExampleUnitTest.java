@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid;
+package com.xuie.imaginary;
 
 import org.junit.Test;
 

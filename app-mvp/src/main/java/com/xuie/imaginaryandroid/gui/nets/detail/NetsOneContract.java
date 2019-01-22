@@ -1,8 +1,8 @@
-package com.xuie.imaginaryandroid.gui.nets.detail;
+package com.xuie.imaginary.gui.nets.detail;
 
-import com.xuie.imaginaryandroid.BasePresenter;
-import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.NetsDetail;
+import com.xuie.imaginary.BasePresenter;
+import com.xuie.imaginary.BaseView;
+import com.xuie.imaginary.data.NetsDetail;
 
 /**
  * This specifies the contract between the view and the presenter.

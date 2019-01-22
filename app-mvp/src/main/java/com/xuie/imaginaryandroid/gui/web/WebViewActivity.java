@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.web;
+package com.xuie.imaginary.gui.web;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +7,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.anzewei.parallaxbacklayout.ParallaxBack;
-import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.gui.BaseActivity;
+import com.xuie.imaginary.R;
+import com.xuie.imaginary.gui.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

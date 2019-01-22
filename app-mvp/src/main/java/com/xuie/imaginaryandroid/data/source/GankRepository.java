@@ -1,11 +1,11 @@
-package com.xuie.imaginaryandroid.data.source;
+package com.xuie.imaginary.data.source;
 
 import android.util.Log;
 
-import com.xuie.imaginaryandroid.data.BaseBean;
-import com.xuie.imaginaryandroid.data.GankBean;
-import com.xuie.imaginaryandroid.data.api.GankApi;
-import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
+import com.xuie.imaginary.data.BaseBean;
+import com.xuie.imaginary.data.GankBean;
+import com.xuie.imaginary.data.api.GankApi;
+import com.xuie.imaginary.data.api.ServiceGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

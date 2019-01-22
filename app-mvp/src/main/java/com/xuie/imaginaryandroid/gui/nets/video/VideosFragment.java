@@ -1,4 +1,4 @@
-package com.xuie.imaginaryandroid.gui.nets.video;
+package com.xuie.imaginary.gui.nets.video;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.data.VideoBean;
-import com.xuie.imaginaryandroid.data.source.NetsRepository;
+import com.xuie.imaginary.R;
+import com.xuie.imaginary.data.VideoBean;
+import com.xuie.imaginary.data.source.NetsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
-import static com.xuie.imaginaryandroid.util.Utils.checkNotNull;
+import static com.xuie.imaginary.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.

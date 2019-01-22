@@ -1,8 +1,8 @@
-package com.xuie.imaginaryandroid.gui.gank.show;
+package com.xuie.imaginary.gui.gank.show;
 
-import com.xuie.imaginaryandroid.BasePresenter;
-import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.GankBean;
+import com.xuie.imaginary.BasePresenter;
+import com.xuie.imaginary.BaseView;
+import com.xuie.imaginary.data.GankBean;
 
 /**
  * This specifies the contract between the view and the presenter.

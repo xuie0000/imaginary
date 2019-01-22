@@ -1,12 +1,12 @@
-package com.xuie.imaginaryandroid.data.api;
+package com.xuie.imaginary.data.api;
 
 import android.text.TextUtils;
 import android.webkit.WebSettings;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.xuie.imaginaryandroid.app.App;
-import com.xuie.imaginaryandroid.util.NetWorkUtils;
+import com.xuie.imaginary.app.App;
+import com.xuie.imaginary.util.NetWorkUtils;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

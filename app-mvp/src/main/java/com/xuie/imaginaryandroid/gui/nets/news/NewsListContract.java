@@ -1,8 +1,8 @@
-package com.xuie.imaginaryandroid.gui.nets.news;
+package com.xuie.imaginary.gui.nets.news;
 
-import com.xuie.imaginaryandroid.BasePresenter;
-import com.xuie.imaginaryandroid.BaseView;
-import com.xuie.imaginaryandroid.data.NetsSummary;
+import com.xuie.imaginary.BasePresenter;
+import com.xuie.imaginary.BaseView;
+import com.xuie.imaginary.data.NetsSummary;
 
 import java.util.List;
 

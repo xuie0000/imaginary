@@ -1,10 +1,10 @@
-package com.xuie.imaginaryandroid.gui.gank.meizhi;
+package com.xuie.imaginary.gui.gank.meizhi;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.xuie.imaginaryandroid.R;
-import com.xuie.imaginaryandroid.data.BaseBean;
-import com.xuie.imaginaryandroid.util.GlideUtils;
+import com.xuie.imaginary.R;
+import com.xuie.imaginary.data.BaseBean;
+import com.xuie.imaginary.util.GlideUtils;
 
 import java.util.List;
 

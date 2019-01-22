@@ -1,12 +1,12 @@
-package com.xuie.imaginaryandroid.data.source;
+package com.xuie.imaginary.data.source;
 
-import com.xuie.imaginaryandroid.data.NetsDetail;
-import com.xuie.imaginaryandroid.data.NetsSummary;
-import com.xuie.imaginaryandroid.data.VideoBean;
-import com.xuie.imaginaryandroid.data.api.NETSApi;
-import com.xuie.imaginaryandroid.data.api.ServiceGenerator;
-import com.xuie.imaginaryandroid.util.HttpUtils;
-import com.xuie.imaginaryandroid.util.TimeUtils;
+import com.xuie.imaginary.data.NetsDetail;
+import com.xuie.imaginary.data.NetsSummary;
+import com.xuie.imaginary.data.VideoBean;
+import com.xuie.imaginary.data.api.NETSApi;
+import com.xuie.imaginary.data.api.ServiceGenerator;
+import com.xuie.imaginary.util.HttpUtils;
+import com.xuie.imaginary.util.TimeUtils;
 
 import java.util.List;
 import java.util.Map;
