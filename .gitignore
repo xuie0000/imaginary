@@ -2,6 +2,7 @@
 .gradle
 gradlew.bat
 /.idea/vcs.xml
+/.idea/caches
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
