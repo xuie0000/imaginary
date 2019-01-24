@@ -1,8 +1,8 @@
 package com.xuie.imaginary.gui.nets.news;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -18,7 +18,6 @@ import java.util.List;
  * @date 17-7-5
  */
 public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, BaseViewHolder> {
-    private static final String TAG = "NewsListAdapter";
 
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
@@ -37,17 +36,17 @@ public class NewsListAdapter extends BaseMultiItemQuickAdapter<NetsSummary, Base
         switch (helper.getItemViewType()) {
             case NetsSummary.IMG_ONE:
             default:
-                helper.setText(R.id.ltitle, item.getTitle())
+                helper.setText(R.id.title, item.getTitle())
                         .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
                 GlideUtils.loadImageNetsList(mContext, item.getImgsrc(), helper.getView(R.id.img_src));
                 break;
             case NetsSummary.IMG_MULTI:
-                helper.setText(R.id.ltitle, item.getTitle())
+                helper.setText(R.id.title, item.getTitle())
                         .setText(R.id.source, item.getSource())
                         .setText(R.id.digest, item.getDigest());
                 RecyclerView rv = helper.getView(R.id.img_src);
-                rv.setLayoutManager(new GridLayoutManager(mContext, 2, GridLayoutManager.VERTICAL, false));
+                rv.setLayoutManager(new GridLayoutManager(mContext, 2, RecyclerView.VERTICAL, false));
                 SimpleAdapter sa = new SimpleAdapter(item.getImgextra());
                 rv.setAdapter(sa);
                 break;

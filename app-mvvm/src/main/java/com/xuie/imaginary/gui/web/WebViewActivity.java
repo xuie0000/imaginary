@@ -1,11 +1,12 @@
 package com.xuie.imaginary.gui.web;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.annotation.Nullable;
 
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.base.BaseActivity;

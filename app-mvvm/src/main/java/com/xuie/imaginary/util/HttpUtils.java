@@ -1,6 +1,6 @@
 package com.xuie.imaginary.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.xuie.imaginary.app.App;
 

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.support.v7.preference.PreferenceManager;
+import android.preference.PreferenceManager;
 
 import com.xuie.imaginary.R;
 

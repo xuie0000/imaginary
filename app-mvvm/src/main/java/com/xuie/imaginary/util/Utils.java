@@ -1,6 +1,6 @@
 package com.xuie.imaginary.util;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * @author xuie

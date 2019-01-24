@@ -27,9 +27,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author xuie
  */
 public class ServiceGenerator {
-    //读超时长，单位：毫秒
+    /**
+     * 读超时长，单位：毫秒
+     */
     private static final int READ_TIME_OUT = 7676;
-    //连接时长，单位：毫秒
+    /**
+     * 连接时长，单位：毫秒
+     */
     private static final int CONNECT_TIME_OUT = 7676;
 
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();

@@ -2,16 +2,12 @@ package com.xuie.imaginary.gui.settings;
 
 
 import android.content.SharedPreferences;
-import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.preference.CheckBoxPreference;
-import android.support.v7.preference.EditTextPreference;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
-
-import com.xuie.imaginary.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +15,7 @@ import com.xuie.imaginary.R;
  *
  * @author xuie
  */
-public class SettingsFragment extends PreferenceFragmentCompat
+public class SettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "SettingsFragment";
 
@@ -105,13 +101,13 @@ public class SettingsFragment extends PreferenceFragmentCompat
 
     }
 
-    @Override
-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        addPreferencesFromResource(R.xml.fragment_settings);
-        bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE));
-        bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE));
-        bindPreferenceSummaryToValue(findPreference(KEY_CACHED_PRE));
-    }
+//    @Override
+//    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+//        addPreferencesFromResource(R.xml.fragment_settings);
+//        bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE));
+//        bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE));
+//        bindPreferenceSummaryToValue(findPreference(KEY_CACHED_PRE));
+//    }
 
     @Override
     public void onResume() {

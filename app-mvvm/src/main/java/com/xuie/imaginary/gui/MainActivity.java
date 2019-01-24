@@ -1,23 +1,23 @@
 package com.xuie.imaginary.gui;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.base.BaseActivity;
 import com.xuie.imaginary.databinding.ActivityMainBinding;
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment;
 import com.xuie.imaginary.gui.nets.news.NewsListFragment;
 import com.xuie.imaginary.gui.nets.video.VideoMainFragment;
-import com.xuie.imaginary.gui.settings.SettingsFragment;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
                     mBinding.viewPager.setCurrentItem(2);
                     return true;
                 case R.id.navigation_settings:
-                    mBinding.viewPager.setCurrentItem(3);
+//                    mBinding.viewPager.setCurrentItem(3)
                     return true;
                 default:
                     return true;
@@ -108,16 +108,16 @@ public class MainActivity extends BaseActivity {
                 case 1:
                     return VideoMainFragment.getInstance();
                 case 2:
-                    return MeizhiFragment.getInstance();
-                case 3:
                 default:
-                    return SettingsFragment.getInstance();
+                    return MeizhiFragment.getInstance();
+//                case 3:
+//                    return SettingsFragment.getInstance();
             }
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return 3;
         }
     }
 

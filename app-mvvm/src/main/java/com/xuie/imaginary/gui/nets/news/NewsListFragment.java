@@ -2,10 +2,10 @@ package com.xuie.imaginary.gui.nets.news;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link BaseFragment} subclass.
  *
  * @author xuie
  */
@@ -102,7 +102,7 @@ public class NewsListFragment extends BaseFragment implements NewsListContract.V
             }
             NetsOneActivity.newIntent(getActivity(),
                     view.findViewById(R.id.img_src),
-                    view.findViewById(R.id.ltitle),
+                    view.findViewById(R.id.title),
                     ns.getPostid(),
                     ns.getImgsrc());
         });
