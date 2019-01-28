@@ -4,57 +4,66 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.base.BaseFragment;
 import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.source.GankRepository;
 import com.xuie.imaginary.databinding.FragmentMeizhiBinding;
+import com.xuie.imaginary.gui.MainActivity;
 import com.xuie.imaginary.gui.gank.show.GankActivity;
 import com.xuie.imaginary.util.DateUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */
-public class MeizhiFragment extends BaseFragment implements MeizhiContract.View {
+public class MeizhiFragment extends Fragment {
     private static final String TAG = "MeizhiFragment";
 
     public static MeizhiFragment getInstance() {
         return new MeizhiFragment();
     }
 
-    private MeizhiContract.Presenter mPresenter = new MeizhiPresenter(GankRepository.getInstance(), this);
-
     private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(new ArrayList<>());
     private FragmentMeizhiBinding binding;
+    private MeiZhiViewModule meiZhiViewModule;
 
-
+    @Nullable
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_meizhi;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentMeizhiBinding.inflate(inflater, container, false);
+        meiZhiViewModule = MainActivity.obtainViewModel(getActivity());
+        binding.setViewmodule(meiZhiViewModule);
+        return binding.getRoot();
     }
 
     @Override
-    protected void onInit(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onInit: ...");
-        binding = getDataBinding();
+    public void onResume() {
+        super.onResume();
+        meiZhiViewModule.start();
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(meiZhiAdapter);
-        meiZhiAdapter.setOnItemClickListener((adapter, view, position) -> {
+
+        meiZhiAdapter.setOnItemClickListener((adapter, v, position) -> {
             Log.d(TAG, "position:" + position);
             BaseBean fl = (BaseBean) adapter.getData().get(position);
             Log.d("MeizhiFragment", fl.toString());
@@ -62,7 +71,7 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
             Intent intent = new Intent(getActivity(), GankActivity.class);
             intent.putExtra("date", dateString);
             intent.putExtra("image", fl.getUrl());
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "shareObject");
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), v, "shareObject");
             ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
         });
         meiZhiAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
@@ -71,37 +80,23 @@ public class MeizhiFragment extends BaseFragment implements MeizhiContract.View 
         binding.materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-                mPresenter.getList(true);
+                meiZhiViewModule.getList(true);
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefresh, 1000);
             }
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
-                mPresenter.getList(false);
+                meiZhiViewModule.getList(false);
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
     }
 
     @Override
-    protected void lazyInitData() {
-        mPresenter.subscribe();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPresenter.unsubscribe();
-    }
-
-    @Override
-    public void addList(boolean isRefresh, List<BaseBean> meiZhis) {
-        if (isRefresh) {
-            meiZhiAdapter.replaceData(new ArrayList<>());
-        }
-        Log.d(TAG, meiZhis.toString());
-        meiZhiAdapter.addData(meiZhis);
+        meiZhiViewModule.end();
     }
 
 }

@@ -7,14 +7,18 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuie.imaginary.R;
+import com.xuie.imaginary.ViewModelFactory;
 import com.xuie.imaginary.base.BaseActivity;
 import com.xuie.imaginary.databinding.ActivityMainBinding;
+import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment;
 import com.xuie.imaginary.gui.nets.news.NewsListFragment;
 import com.xuie.imaginary.gui.nets.video.VideoMainFragment;
@@ -49,6 +53,16 @@ public class MainActivity extends BaseActivity {
         }
 
     };
+
+    public static MeiZhiViewModule obtainViewModel(FragmentActivity activity) {
+        // Use a Factory to inject dependencies into the ViewModel
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+
+        MeiZhiViewModule viewModel =
+                ViewModelProviders.of(activity, factory).get(MeiZhiViewModule.class);
+
+        return viewModel;
+    }
 
     @Override
     protected int getLayoutId() {

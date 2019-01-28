@@ -1,10 +1,9 @@
 package com.xuie.imaginary.gui.gank.meizhi;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.xuie.imaginary.R;
+import com.xuie.imaginary.base.BaseDataBindingAdapter;
 import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.util.GlideUtils;
+import com.xuie.imaginary.databinding.ItemFragmentMeizhiBinding;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * @author xuie
  * @date 17-7-5
  */
-public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
+public class MeiZhiAdapter extends BaseDataBindingAdapter<BaseBean, ItemFragmentMeizhiBinding> {
     private static final String TAG = "MeiZhiAdapter";
 
     MeiZhiAdapter(List<BaseBean> meiZhis) {
@@ -20,8 +19,13 @@ public class MeiZhiAdapter extends BaseQuickAdapter<BaseBean, BaseViewHolder> {
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseBean item) {
-        helper.setText(R.id.date, item.getDesc());
-        GlideUtils.loadImageMeizhi(mContext, item.getUrl(), helper.getView(R.id.meizhi));
+    protected void convert(ItemFragmentMeizhiBinding binding, BaseBean item) {
+        binding.setData(item);
     }
+
+//    @Override
+//    protected void convert(BaseViewHolder helper, BaseBean item) {
+//        helper.setText(R.id.date, item.getDesc());
+//        GlideUtils.loadImageMeizhi(mContext, item.getUrl(), helper.getView(R.id.meizhi));
+//    }
 }
