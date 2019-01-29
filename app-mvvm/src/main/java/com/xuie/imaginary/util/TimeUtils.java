@@ -16,6 +16,7 @@ import kotlin.jvm.JvmStatic;
 
 @SuppressWarnings("all")
 public class TimeUtils {
+    private static final String TAG = "TimeUtils";
     /**
      * one day millisecond count
      */
@@ -225,8 +226,12 @@ public class TimeUtils {
     /**
      * from yyyy-MM-dd HH:mm:ss to MM-dd HH:mm
      */
-    @JvmStatic
     public static String formatDate(String before) {
+        if (TextUtils.isEmpty(before)) {
+            Log.e(TAG, "formatDate: null");
+            return "";
+        }
+        Log.d(TAG, "formatDate: " + before);
         String after;
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())

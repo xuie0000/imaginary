@@ -2,10 +2,11 @@ package com.xuie.imaginary.gui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -16,20 +17,22 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.ViewModelFactory;
-import com.xuie.imaginary.base.BaseActivity;
 import com.xuie.imaginary.databinding.ActivityMainBinding;
 import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment;
 import com.xuie.imaginary.gui.nets.news.NewsListFragment;
 import com.xuie.imaginary.gui.nets.news.NewsListViewModule;
 import com.xuie.imaginary.gui.nets.video.VideoMainFragment;
+import com.xuie.imaginary.gui.nets.video.VideosViewModule;
+
+import org.jetbrains.annotations.NotNull;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
  * @author xuie
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -66,17 +69,17 @@ public class MainActivity extends BaseActivity {
         return ViewModelProviders.of(activity, factory).get(NewsListViewModule.class);
     }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
+    public static VideosViewModule obtainVideosViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(VideosViewModule.class);
     }
 
     private ActivityMainBinding mBinding;
 
     @Override
-    protected void onInit(@Nullable Bundle savedInstanceState) {
-        mBinding = getDataBinding();
-
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mBinding.viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
         mBinding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -105,17 +108,13 @@ public class MainActivity extends BaseActivity {
         mBinding.navigation.setSelectedItemId(mBinding.navigation.getMenu().getItem(1).getItemId());
     }
 
-    @Override
-    protected View[] setImmersiveView() {
-        return new View[0];
-    }
-
     private class MyViewPagerAdapter extends FragmentPagerAdapter {
 
         MyViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
+        @NotNull
         @Override
         public Fragment getItem(int position) {
             switch (position) {

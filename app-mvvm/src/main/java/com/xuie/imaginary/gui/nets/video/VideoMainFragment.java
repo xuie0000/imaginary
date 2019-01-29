@@ -1,16 +1,20 @@
 package com.xuie.imaginary.gui.nets.video;
 
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.xuie.imaginary.R;
-import com.xuie.imaginary.base.BaseFragment;
 import com.xuie.imaginary.databinding.FragmentVideoMainBinding;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,30 +24,19 @@ import java.util.List;
  *
  * @author xuie
  */
-public class VideoMainFragment extends BaseFragment {
+public class VideoMainFragment extends Fragment {
 
     public static VideoMainFragment getInstance() {
         return new VideoMainFragment();
     }
 
-    private FragmentVideoMainBinding mBinding;
-
+    @Nullable
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_video_main;
-    }
-
-    @Override
-    protected void onInit(@Nullable Bundle savedInstanceState) {
-        mBinding = getDataBinding();
-
-        mBinding.viewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
-        mBinding.tabs.setupWithViewPager(mBinding.viewPager);
-    }
-
-    @Override
-    protected void lazyInitData() {
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        FragmentVideoMainBinding binding = FragmentVideoMainBinding.inflate(inflater, container, false);
+        binding.viewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
+        binding.tabs.setupWithViewPager(binding.viewPager);
+        return binding.getRoot();
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
@@ -54,6 +47,7 @@ public class VideoMainFragment extends BaseFragment {
             super(fm);
         }
 
+        @NotNull
         @Override
         public Fragment getItem(int position) {
             return VideosFragment.getInstance(channelName.get(position), channelId.get(position));

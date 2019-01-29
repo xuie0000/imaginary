@@ -16,9 +16,9 @@
         android:icon="@drawable/ic_gank_24dp"
         android:title="@string/title_gank_meizhi"/>
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_settings_24dp"
-        android:title="@string/title_settings"/>
+    <!--<item-->
+        <!--android:id="@+id/navigation_settings"-->
+        <!--android:icon="@drawable/ic_settings_24dp"-->
+        <!--android:title="@string/title_settings"/>-->
 
 </menu>

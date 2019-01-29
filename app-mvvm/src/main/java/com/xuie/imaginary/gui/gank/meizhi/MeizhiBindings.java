@@ -1,6 +1,7 @@
 package com.xuie.imaginary.gui.gank.meizhi;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.ImageView;
@@ -12,10 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginary.BuildConfig;
 import com.xuie.imaginary.data.BaseBean;
+import com.xuie.imaginary.data.NetsDetail;
 import com.xuie.imaginary.data.NetsSummary;
+import com.xuie.imaginary.data.VideoBean;
 import com.xuie.imaginary.gui.gank.show.ExpandableItemAdapter;
 import com.xuie.imaginary.gui.nets.news.NewsListAdapter;
+import com.xuie.imaginary.gui.nets.video.VideosAdapter;
 import com.xuie.imaginary.util.GlideUtils;
+import com.xuie.imaginary.widget.UrlImageGetter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +61,14 @@ public class MeizhiBindings {
         }
     }
 
+    @BindingAdapter("videosItems")
+    public static void setVideosItems(RecyclerView recyclerView, List<VideoBean> items) {
+        VideosAdapter adapter = (VideosAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.replaceData(items);
+        }
+    }
+
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView view, String url) {
         Context context = view.getContext();
@@ -69,6 +82,26 @@ public class MeizhiBindings {
         }
 
         GlideUtils.loadImageMeizhi(context, url, view);
+    }
+
+    @BindingAdapter({"showNetsBody"})
+    public static void showNetsDetailBody(TextView view, NetsDetail netsDetail) {
+        if (netsDetail == null || netsDetail.getImg() == null) {
+            Log.e(TAG, "showNetsDetailBody: null");
+            return;
+        }
+        int imgTotal = netsDetail.getImg().size();
+        String body = netsDetail.getBody();
+        if (isShowBody(netsDetail.getBody(), imgTotal)) {
+            UrlImageGetter urlImageGetter = new UrlImageGetter(view, body, imgTotal);
+            view.setText(Html.fromHtml(body, urlImageGetter, null));
+        } else {
+            view.setText(Html.fromHtml(body));
+        }
+    }
+
+    private static boolean isShowBody(String newsBody, int imgTotal) {
+        return imgTotal >= 2 && newsBody != null;
     }
 
     @BindingAdapter({"netsFormat", "text1", "text2"})

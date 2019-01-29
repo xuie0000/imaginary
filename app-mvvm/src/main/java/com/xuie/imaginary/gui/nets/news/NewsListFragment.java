@@ -17,7 +17,6 @@ import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.app.App;
-import com.xuie.imaginary.base.BaseFragment;
 import com.xuie.imaginary.data.NetsSummary;
 import com.xuie.imaginary.databinding.FragmentNewsListBinding;
 import com.xuie.imaginary.gui.MainActivity;
@@ -27,7 +26,7 @@ import com.xuie.imaginary.gui.web.WebViewActivity;
 import java.util.ArrayList;
 
 /**
- * A simple {@link BaseFragment} subclass.
+ * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */

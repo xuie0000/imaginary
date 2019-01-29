@@ -1,31 +1,31 @@
 package com.xuie.imaginary.gui.nets.video;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.base.BaseFragment;
-import com.xuie.imaginary.data.VideoBean;
-import com.xuie.imaginary.data.source.NetsRepository;
 import com.xuie.imaginary.databinding.FragmentVideosBinding;
+import com.xuie.imaginary.gui.MainActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
- * A simple {@link BaseFragment} subclass.
+ * A simple {@link Fragment} subclass.
  *
  * @author xuie
  */
-public class VideosFragment extends BaseFragment implements VideosContract.View {
+public class VideosFragment extends Fragment {
     private static final String TAG = "VideosFragment";
     public static final String VIDEO_TYPE_ID = "type";
     public static final String VIDEO_TYPE_NAME = "name";
@@ -40,77 +40,49 @@ public class VideosFragment extends BaseFragment implements VideosContract.View 
     }
 
     private String mVideoType;
-    private VideosContract.Presenter mPresenter = new VideosPresenter(NetsRepository.getInstance(), this);
     private VideosAdapter videosAdapter = new VideosAdapter(new ArrayList<>());
-
     private FragmentVideosBinding mBinding;
+    private VideosViewModule videosViewModule;
 
+    @Nullable
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_videos;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mBinding = FragmentVideosBinding.inflate(inflater, container, false);
+        videosViewModule = MainActivity.obtainVideosViewModel(getActivity());
+        mBinding.setViewModule(videosViewModule);
+        return mBinding.getRoot();
     }
 
     @Override
-    protected void onInit(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onInit: ..");
-        mBinding = getDataBinding();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mVideoType = getArguments().getString(VIDEO_TYPE_ID);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.recyclerView.setAdapter(videosAdapter);
 
         videosAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
 
-        mPresenter.subscribe();
-        mPresenter.getList(mVideoType, true);
-
+        videosViewModule.getList(mVideoType, true);
 
         mBinding.materialRefresh.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
-                mPresenter.getList(mVideoType, true);
+                videosViewModule.getList(mVideoType, true);
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefresh, 1000);
             }
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
                 super.onRefreshLoadMore(materialRefreshLayout);
-                mPresenter.getList(mVideoType, false);
+                videosViewModule.getList(mVideoType, false);
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
     }
 
     @Override
-    protected void lazyInitData() {
-
-    }
-
-    @Override
     public void onPause() {
         super.onPause();
         JCVideoPlayer.releaseAllVideos();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mPresenter.unsubscribe();
-    }
-
-    @Override
-    public void addList(boolean isRefresh, List<VideoBean> videoBeen) {
-        if (isRefresh) {
-            videosAdapter.replaceData(new ArrayList<>());
-        }
-//        Log.d(TAG, videoBeen.toString());
-        videosAdapter.addData(videoBeen);
-//        videosAdapter.setOnItemClickListener((adapter, view, position) -> {
-//            VideoBean vb = videoBeen.get(position);
-//            NetsOneActivity.newIntent(getActivity(),
-//                    view.findViewById(R.id.img_src),
-//                    view.findViewById(R.id.ltitle),
-//                    vb.getPostid(),
-//                    vb.getImgsrc());
-//        });
     }
 }

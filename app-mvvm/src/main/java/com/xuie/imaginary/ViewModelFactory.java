@@ -30,6 +30,7 @@ import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
 import com.xuie.imaginary.gui.gank.show.GankViewModule;
 import com.xuie.imaginary.gui.nets.detail.NetsOneViewModule;
 import com.xuie.imaginary.gui.nets.news.NewsListViewModule;
+import com.xuie.imaginary.gui.nets.video.VideosViewModule;
 
 /**
  * A creator is used to inject the product ID into the ViewModel
@@ -88,6 +89,9 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         } else if (modelClass.isAssignableFrom(NetsOneViewModule.class)) {
             //noinspection unchecked
             return (T) new NetsOneViewModule(mApplication, mNetsRepository);
+        } else if (modelClass.isAssignableFrom(VideosViewModule.class)) {
+            //noinspection unchecked
+            return (T) new VideosViewModule(mApplication, mNetsRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

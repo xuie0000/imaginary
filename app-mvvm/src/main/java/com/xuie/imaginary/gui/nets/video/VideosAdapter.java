@@ -18,7 +18,6 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  * @date 17-8-22
  */
 public class VideosAdapter extends BaseQuickAdapter<VideoBean, BaseViewHolder> {
-    private static final String TAG = "VideosAdapter";
 
     VideosAdapter(List<VideoBean> videoBeen) {
         super(R.layout.item_video_list, videoBeen);
