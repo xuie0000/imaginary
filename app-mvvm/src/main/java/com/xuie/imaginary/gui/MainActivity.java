@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_gank:
                     mBinding.viewPager.setCurrentItem(2);
                     return true;
-                case R.id.navigation_settings:
+//                case R.id.navigation_settings:
 //                    mBinding.viewPager.setCurrentItem(3)
-                    return true;
+//                    return true;
                 default:
                     return true;
             }
