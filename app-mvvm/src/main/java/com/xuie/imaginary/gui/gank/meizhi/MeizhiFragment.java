@@ -64,9 +64,8 @@ public class MeizhiFragment extends Fragment {
         binding.recyclerView.setAdapter(meiZhiAdapter);
 
         meiZhiAdapter.setOnItemClickListener((adapter, v, position) -> {
-            Log.d(TAG, "position:" + position);
             BaseBean fl = (BaseBean) adapter.getData().get(position);
-            Log.d("MeizhiFragment", fl.toString());
+            Log.d(TAG, "position:" + position + ", data:" + fl.toString());
             String dateString = DateUtils.getDate(fl.getPublishedAt());
             Intent intent = new Intent(getActivity(), GankActivity.class);
             intent.putExtra("date", dateString);

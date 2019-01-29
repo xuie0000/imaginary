@@ -17,6 +17,7 @@
 package com.xuie.imaginary.data;
 
 import com.xuie.imaginary.data.source.GankRepository;
+import com.xuie.imaginary.data.source.NetsRepository;
 
 /**
  * Enables injection of mock implementations for
@@ -35,6 +36,10 @@ public class Injection {
 
     public static GankRepository provideGankRepository() {
         return GankRepository.getInstance();
+    }
+
+    public static NetsRepository provideNetsRepository() {
+        return NetsRepository.getInstance();
     }
 
 }

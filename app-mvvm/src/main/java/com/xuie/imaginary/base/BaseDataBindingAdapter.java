@@ -13,11 +13,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 /**
- * Created by tysheng
  * Date: 2017/5/11 14:39.
  * Email: tyshengsx@gmail.com
+ *
+ * @author tysheng
  */
-
 public abstract class BaseDataBindingAdapter<T, Binding extends ViewDataBinding>
         extends BaseQuickAdapter<T, BaseBindingViewHolder<Binding>> {
 

@@ -7,26 +7,24 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.xuie.imaginary.R;
-import com.xuie.imaginary.base.BaseActivity;
 import com.xuie.imaginary.databinding.ActivityWebviewBinding;
 
 /**
  * @author xuie
  */
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends AppCompatActivity {
 
     public static final String URL = "url";
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_webview;
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityWebviewBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
 
-    @Override
-    protected void onInit(@Nullable Bundle savedInstanceState) {
-        ActivityWebviewBinding binding = getDataBinding();
         String url = getIntent().getStringExtra(URL);
 
         // Configure related browser settings
@@ -37,11 +35,6 @@ public class WebViewActivity extends BaseActivity {
         binding.webView.setWebViewClient(new MyBrowser());
         // Load the initial URL
         binding.webView.loadUrl(url);
-    }
-
-    @Override
-    protected View[] setImmersiveView() {
-        return new View[0];
     }
 
     /**

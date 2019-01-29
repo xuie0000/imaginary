@@ -21,6 +21,7 @@ import com.xuie.imaginary.databinding.ActivityMainBinding;
 import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment;
 import com.xuie.imaginary.gui.nets.news.NewsListFragment;
+import com.xuie.imaginary.gui.nets.news.NewsListViewModule;
 import com.xuie.imaginary.gui.nets.video.VideoMainFragment;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
@@ -57,11 +58,12 @@ public class MainActivity extends BaseActivity {
     public static MeiZhiViewModule obtainViewModel(FragmentActivity activity) {
         // Use a Factory to inject dependencies into the ViewModel
         ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(MeiZhiViewModule.class);
+    }
 
-        MeiZhiViewModule viewModel =
-                ViewModelProviders.of(activity, factory).get(MeiZhiViewModule.class);
-
-        return viewModel;
+    public static NewsListViewModule obtainNewsViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(NewsListViewModule.class);
     }
 
     @Override

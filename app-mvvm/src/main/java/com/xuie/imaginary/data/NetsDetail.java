@@ -72,6 +72,11 @@ public class NetsDetail {
     private List<?> votes;
     private List<TopiclistBean> topiclist;
 
+    /**
+     * 自己添加的一个变量
+     */
+    private String imageUrl;
+
     public String getTemplate() {
         return template;
     }
@@ -310,6 +315,14 @@ public class NetsDetail {
 
     public void setTopiclist(List<TopiclistBean> topiclist) {
         this.topiclist = topiclist;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public static class SourceinfoBean {

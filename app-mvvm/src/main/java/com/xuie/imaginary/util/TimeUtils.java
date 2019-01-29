@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import kotlin.jvm.JvmStatic;
+
 @SuppressWarnings("all")
 public class TimeUtils {
     /**
@@ -223,6 +225,7 @@ public class TimeUtils {
     /**
      * from yyyy-MM-dd HH:mm:ss to MM-dd HH:mm
      */
+    @JvmStatic
     public static String formatDate(String before) {
         String after;
         try {

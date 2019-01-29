@@ -25,13 +25,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.xuie.imaginary.data.Injection;
 import com.xuie.imaginary.data.source.GankRepository;
+import com.xuie.imaginary.data.source.NetsRepository;
 import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
+import com.xuie.imaginary.gui.gank.show.GankViewModule;
+import com.xuie.imaginary.gui.nets.detail.NetsOneViewModule;
+import com.xuie.imaginary.gui.nets.news.NewsListViewModule;
 
 /**
  * A creator is used to inject the product ID into the ViewModel
  * <p>
  * This creator is to showcase how to inject dependencies into ViewModels. It's not
  * actually necessary in this case, as the product ID can be passed in a public method.
+ *
+ * @author google
  */
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
@@ -40,7 +46,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final Application mApplication;
 
-    private final GankRepository mTasksRepository;
+    private final GankRepository mGankRepository;
+    private final NetsRepository mNetsRepository;
 
     public static ViewModelFactory getInstance(Application application) {
 
@@ -48,7 +55,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             synchronized (ViewModelFactory.class) {
                 if (INSTANCE == null) {
                     INSTANCE = new ViewModelFactory(application,
-                            Injection.provideGankRepository());
+                            Injection.provideGankRepository(),
+                            Injection.provideNetsRepository());
                 }
             }
         }
@@ -60,19 +68,26 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         INSTANCE = null;
     }
 
-    private ViewModelFactory(Application application, GankRepository repository) {
+    private ViewModelFactory(Application application, GankRepository gankRepository, NetsRepository netsRepository) {
         mApplication = application;
-        mTasksRepository = repository;
+        mGankRepository = gankRepository;
+        mNetsRepository = netsRepository;
     }
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(MeiZhiViewModule.class)) {
             //noinspection unchecked
-            return (T) new MeiZhiViewModule(mApplication, mTasksRepository);
-//        } else if (modelClass.isAssignableFrom(TaskDetailViewModel.class)) {
-//            //noinspection unchecked
-//            return (T) new TaskDetailViewModel(mApplication, mTasksRepository);
+            return (T) new MeiZhiViewModule(mApplication, mGankRepository);
+        } else if (modelClass.isAssignableFrom(GankViewModule.class)) {
+            //noinspection unchecked
+            return (T) new GankViewModule(mApplication, mGankRepository);
+        } else if (modelClass.isAssignableFrom(NewsListViewModule.class)) {
+            //noinspection unchecked
+            return (T) new NewsListViewModule(mApplication, mNetsRepository);
+        } else if (modelClass.isAssignableFrom(NetsOneViewModule.class)) {
+            //noinspection unchecked
+            return (T) new NetsOneViewModule(mApplication, mNetsRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

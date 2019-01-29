@@ -3,7 +3,6 @@ package com.xuie.imaginary.gui.gank.show;
 import android.content.Intent;
 import android.text.Html;
 import android.util.Log;
-import android.view.View;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -22,8 +21,8 @@ import java.util.List;
  */
 public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder> {
     private static final String TAG = "ExpandableItemAdapter";
-    public static final int TYPE_LEVEL_0 = 0;
-    public static final int TYPE_LEVEL_1 = 1;
+    static final int TYPE_LEVEL_0 = 0;
+    static final int TYPE_LEVEL_1 = 1;
 
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
@@ -31,7 +30,7 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
-    public ExpandableItemAdapter(List<MultiItemEntity> data) {
+    ExpandableItemAdapter(List<MultiItemEntity> data) {
         super(data);
         addItemType(TYPE_LEVEL_0, android.R.layout.test_list_item);
         addItemType(TYPE_LEVEL_1, R.layout.item_activity_gank_content);
@@ -58,26 +57,17 @@ public class ExpandableItemAdapter extends BaseMultiItemQuickAdapter<MultiItemEn
                 final Level1Item lv1 = (Level1Item) item;
                 String webLink = String.format("<a href=\\'%s\\'> %s</a>",
                         lv1.getArticleUrl(), lv1.getArticleName());
-//                helper.setText(R.id.articleName, lv1.getArticleName());
-                helper.setText(R.id.articleName, Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/));
-                helper.getView(R.id.articleName).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(TAG, "onClick...");
-                        Intent intent = new Intent(App.getContext(), WebViewActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("url", lv1.getArticleUrl());
-                        App.getContext().startActivity(intent);
-                    }
+//                helper.setText(R.id.articleName, lv1.getArticleName())
+                helper.setText(R.id.articleName, Html.fromHtml(webLink));
+                helper.getView(R.id.articleName).setOnClickListener(v -> {
+                    Log.d(TAG, "onClick...");
+                    Intent intent = new Intent(App.getContext(), WebViewActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("url", lv1.getArticleUrl());
+                    App.getContext().startActivity(intent);
                 });
 
-                // 添加TextView自动打开超链接，失败
-//                TextView tvArticle = helper.getView(R.id.articleName);
-//                tvArticle.setText(Html.fromHtml(webLink/*, Html.FROM_HTML_MODE_LEGACY*/));
-//                tvArticle.setMovementMethod(LinkMovementMethod.getInstance());
                 helper.setText(R.id.author, String.format("(%s)", lv1.getAuthor()));
-                // 添加Child Click，不过无效
-//                helper.addOnClickListener(R.id.articleName);
 
                 if (lv1.getImageUrl() != null) {
                     GlideUtils.loadImageMeizhiDetail(mContext, lv1.getImageUrl(), helper.getView(R.id.thumb));

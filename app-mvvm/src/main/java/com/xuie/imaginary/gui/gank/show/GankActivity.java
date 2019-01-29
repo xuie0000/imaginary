@@ -3,64 +3,53 @@ package com.xuie.imaginary.gui.gank.show;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.xuie.imaginary.R;
-import com.xuie.imaginary.base.BaseActivity;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.data.source.GankRepository;
+import com.xuie.imaginary.ViewModelFactory;
 import com.xuie.imaginary.databinding.ActivityGankBinding;
-import com.xuie.imaginary.util.GlideUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author xuie
  */
-public class GankActivity extends BaseActivity implements GankContract.View {
+public class GankActivity extends AppCompatActivity {
+    private static final String TAG = "GankActivity";
 
-    private ActivityGankBinding mBinding;
-    private GankContract.Presenter mPresenter = new GankPresenter(GankRepository.getInstance(), this);;
-    private String date;
-    private ExpandableItemAdapter adapter = new ExpandableItemAdapter(null);
+    private ExpandableItemAdapter adapter = new ExpandableItemAdapter(new ArrayList<>());
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_gank;
-    }
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActivityGankBinding mBinding = DataBindingUtil.setContentView(this, R.layout.activity_gank);
 
-    @Override
-    protected void onInit(@Nullable Bundle savedInstanceState) {
-        mBinding = getDataBinding();
-        date = getIntent().getStringExtra("date");
+        String date = getIntent().getStringExtra("date");
         String imageUrl = getIntent().getStringExtra("image");
-        GlideUtils.loadImageMeizhiDetail(this, imageUrl, mBinding.gankDaily);
+
+        Log.d(TAG, "onCreate: data - " + date + ", image - " + imageUrl);
+
+        GankViewModule gankViewModule = obtainViewModel(this);
+        gankViewModule.dateString.set(date);
+        gankViewModule.imageUrl.set(imageUrl);
+        mBinding.setViewmodule(gankViewModule);
+
         mBinding.recyclerView.setAdapter(adapter);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.recyclerView.setNestedScrollingEnabled(false);
         adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
-    }
 
-    @Override
-    protected View[] setImmersiveView() {
-        return new View[0];
+        gankViewModule.getGank(date);
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (date != null) {
-            mPresenter.getGank(date);
-        }
-    }
-
 
     @Override
     protected void onResume() {
@@ -77,58 +66,8 @@ public class GankActivity extends BaseActivity implements GankContract.View {
         }
     }
 
-    @Override
-    public void refresh(GankBean gb) {
-//        Log.d("GankActivity", gb.toString())
-        List<MultiItemEntity> entities = generateData(gb);
-        adapter.replaceData(new ArrayList<>());
-        adapter.addData(entities);
-        adapter.expandAll();
-    }
-
-    private List<MultiItemEntity> generateData(GankBean gb) {
-        List<MultiItemEntity> entities = new ArrayList<>();
-        for (String s : gb.getCategory()) {
-            Level0Item lv0 = new Level0Item();
-            lv0.setType(s);
-            List<BaseBean> bbs = gb.getResults().getAndroid();
-            switch (s) {
-                case "Android":
-                    bbs = gb.getResults().getAndroid();
-                    break;
-                case "瞎推荐":
-                    bbs = gb.getResults().get瞎推荐();
-                    break;
-                case "iOS":
-                    bbs = gb.getResults().getiOS();
-                    break;
-                case "休息视频":
-                    bbs = gb.getResults().get休息视频();
-                    break;
-                case "福利":
-//                bbs = gb.getResults().get福利()
-                    continue;
-                case "前端":
-                    bbs = gb.getResults().get前端();
-                    break;
-                case "拓展资源":
-                    bbs = gb.getResults().get拓展资源();
-                    break;
-                default:
-                    break;
-            }
-            for (BaseBean ab : bbs) {
-                Level1Item lv1 = new Level1Item();
-                lv1.setArticleName(ab.getDesc());
-                lv1.setArticleUrl(ab.getUrl());
-                lv1.setAuthor(ab.getWho());
-                if (ab.getImages() != null && ab.getImages().size() > 0) {
-                    lv1.setImageUrl(ab.getImages().get(0));
-                }
-                lv0.addSubItem(lv1);
-            }
-            entities.add(lv0);
-        }
-        return entities;
+    public static GankViewModule obtainViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+        return ViewModelProviders.of(activity, factory).get(GankViewModule.class);
     }
 }
