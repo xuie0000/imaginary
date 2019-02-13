@@ -32,6 +32,8 @@ import com.xuie.imaginary.gui.nets.detail.NetsOneViewModule;
 import com.xuie.imaginary.gui.nets.news.NewsListViewModule;
 import com.xuie.imaginary.gui.nets.video.VideosViewModule;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * A creator is used to inject the product ID into the ViewModel
  * <p>
@@ -75,8 +77,9 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         mNetsRepository = netsRepository;
     }
 
+    @NotNull
     @Override
-    public <T extends ViewModel> T create(Class<T> modelClass) {
+    public <T extends ViewModel> T create(@NotNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(MeiZhiViewModule.class)) {
             //noinspection unchecked
             return (T) new MeiZhiViewModule(mApplication, mGankRepository);
