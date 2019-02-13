@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.gank.meizhi;
+package com.xuie.imaginary;
 
 import android.content.Context;
 import android.text.Html;
@@ -16,6 +16,7 @@ import com.xuie.imaginary.data.BaseBean;
 import com.xuie.imaginary.data.NetsDetail;
 import com.xuie.imaginary.data.NetsSummary;
 import com.xuie.imaginary.data.VideoBean;
+import com.xuie.imaginary.gui.gank.meizhi.MeiZhiAdapter;
 import com.xuie.imaginary.gui.gank.show.ExpandableItemAdapter;
 import com.xuie.imaginary.gui.nets.news.NewsListAdapter;
 import com.xuie.imaginary.gui.nets.video.VideosAdapter;
@@ -29,8 +30,8 @@ import java.util.List;
  * @author xuie
  * @date 2019/1/28
  */
-public class MeizhiBindings {
-    private static final String TAG = "MeizhiBindings";
+public class ImaginaryBindings {
+    private static final String TAG = "ImaginaryBindings";
 
     @BindingAdapter("items")
     public static void setItems(RecyclerView recyclerView, List<BaseBean> items) {

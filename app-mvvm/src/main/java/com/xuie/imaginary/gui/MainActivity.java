@@ -5,7 +5,6 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -17,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.xuie.imaginary.R;
 import com.xuie.imaginary.ViewModelFactory;
+import com.xuie.imaginary.base.BaseActivity;
 import com.xuie.imaginary.databinding.ActivityMainBinding;
 import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment;
@@ -32,7 +32,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 /**
  * @author xuie
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

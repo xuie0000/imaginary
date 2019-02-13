@@ -44,6 +44,7 @@ public class MeizhiFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView");
         binding = FragmentMeizhiBinding.inflate(inflater, container, false);
         meiZhiViewModule = MainActivity.obtainViewModel(getActivity());
         binding.setViewmodule(meiZhiViewModule);
@@ -51,14 +52,9 @@ public class MeizhiFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        meiZhiViewModule.start();
-    }
-
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated");
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(meiZhiAdapter);
@@ -90,6 +86,7 @@ public class MeizhiFragment extends Fragment {
                 materialRefreshLayout.postDelayed(materialRefreshLayout::finishRefreshLoadMore, 1000);
             }
         });
+        meiZhiViewModule.start();
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.xuie.imaginary.data.source.GankRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * @author xuie
@@ -24,6 +25,8 @@ public class MeiZhiViewModule extends AndroidViewModel {
     public final ObservableList<BaseBean> items = new ObservableArrayList<>();
     private int currentPage = 1;
     private Disposable disposable;
+    private boolean isRefresh = true;
+    private boolean isRequesting = false;
 
     private GankRepository gankRepository;
 
@@ -32,28 +35,38 @@ public class MeiZhiViewModule extends AndroidViewModel {
         this.gankRepository = gankRepository;
     }
 
-    public void start() {
-        getList(true);
+    void start() {
+        getList(isRefresh);
+        isRefresh = false;
     }
 
-    public void getList(final boolean isRefresh) {
-        Log.d(TAG, "getList: ..." + isRefresh);
+    void getList(final boolean isRefresh) {
+        Log.d(TAG, "getList: ..." + isRefresh + ", " + isRequesting);
         // get local data
+        if (isRequesting) {
+            Log.d(TAG, "getList: requesting");
+            return;
+        }
         if (isRefresh) {
             currentPage = 1;
         } else {
             currentPage++;
         }
 
+        isRequesting = true;
         clear();
         disposable = gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(meiZhis -> {
+                .subscribe(meiZhiList -> {
+                    isRequesting = false;
                     if (isRefresh) {
                         items.clear();
                     }
-                    items.addAll(meiZhis);
-                }, Throwable::printStackTrace);
+                    items.addAll(meiZhiList);
+                }, throwable -> {
+                    isRequesting = false;
+                    throwable.printStackTrace();
+                });
         // get remote data
     }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.xuie.imaginary">
+    package="com.xuie.imaginary">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="com.xuie.imaginary.app.App"
@@ -17,17 +17,21 @@
             android:name="com.xuie.imaginary.gui.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.xuie.imaginary.gui.gank.show.GankActivity">
-        </activity>
-        <activity android:name="com.xuie.imaginary.gui.web.WebViewActivity">
-        </activity>
-        <activity android:name="com.xuie.imaginary.gui.nets.detail.NetsOneActivity">
-        </activity>
+        <activity
+            android:name="com.xuie.imaginary.gui.gank.show.GankActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.xuie.imaginary.gui.web.WebViewActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.xuie.imaginary.gui.nets.detail.NetsOneActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

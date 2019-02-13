@@ -54,7 +54,6 @@ public class NewsListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        newsListViewModule.getList(true);
     }
 
     @Override
@@ -99,6 +98,7 @@ public class NewsListFragment extends Fragment {
                     ns.getPostid(),
                     ns.getImgsrc());
         });
+        newsListViewModule.getList(true);
     }
 
 }
