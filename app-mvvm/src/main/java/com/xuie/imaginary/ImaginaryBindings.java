@@ -11,7 +11,6 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.xuie.imaginary.BuildConfig;
 import com.xuie.imaginary.data.BaseBean;
 import com.xuie.imaginary.data.NetsDetail;
 import com.xuie.imaginary.data.NetsSummary;
