@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">imaginary</string>
+    <string name="title_home">Home</string>
+    <string name="title_nets">新闻</string>
+    <string name="title_video">视频</string>
+    <string name="title_gank_meizhi">妹子图</string>
+    <string name="title_settings">设置</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activity_gank_adater_content_link"><![CDATA[<a href=\'%1$s\'> %1$s</a>]]></string>
+
+    <!-- 共享过度动画 -->
+    <string name="transition_image">transition_animation_news_image</string>
+    <string name="transition_title">transition_animation_news_title</string>
+
+    <string name="news_from">%1$s %2$s</string>
+
+    <string name="video_play_times">%1$s次播放</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+</resources>

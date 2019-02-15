@@ -5,6 +5,9 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * @author xujie
+ */
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
