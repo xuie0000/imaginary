@@ -41,26 +41,18 @@ import com.xuie.imaginary.gui.nets.video.VideosViewModule
  *
  * @author google
  */
+@Suppress("UNCHECKED_CAST")
 class ViewModelFactory private constructor(private val mApplication: Application, private val mGankRepository: GankRepository, private val mNetsRepository: NetsRepository) : ViewModelProvider.NewInstanceFactory() {
 
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
-    if (modelClass.isAssignableFrom(MeiZhiViewModule::class.java)) {
-
-      return MeiZhiViewModule(mApplication, mGankRepository) as T
-    } else if (modelClass.isAssignableFrom(GankViewModule::class.java)) {
-
-      return GankViewModule(mApplication, mGankRepository) as T
-    } else if (modelClass.isAssignableFrom(NewsListViewModule::class.java)) {
-
-      return NewsListViewModule(mApplication, mNetsRepository) as T
-    } else if (modelClass.isAssignableFrom(NetsOneViewModule::class.java)) {
-
-      return NetsOneViewModule(mApplication, mNetsRepository) as T
-    } else if (modelClass.isAssignableFrom(VideosViewModule::class.java)) {
-
-      return VideosViewModule(mApplication, mNetsRepository) as T
+    return when {
+      modelClass.isAssignableFrom(MeiZhiViewModule::class.java) -> MeiZhiViewModule(mApplication, mGankRepository) as T
+      modelClass.isAssignableFrom(GankViewModule::class.java) -> GankViewModule(mApplication, mGankRepository) as T
+      modelClass.isAssignableFrom(NewsListViewModule::class.java) -> NewsListViewModule(mApplication, mNetsRepository) as T
+      modelClass.isAssignableFrom(NetsOneViewModule::class.java) -> NetsOneViewModule(mApplication, mNetsRepository) as T
+      modelClass.isAssignableFrom(VideosViewModule::class.java) -> VideosViewModule(mApplication, mNetsRepository) as T
+      else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
-    throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
   }
 
   companion object {
@@ -70,17 +62,9 @@ class ViewModelFactory private constructor(private val mApplication: Application
     private var INSTANCE: ViewModelFactory? = null
 
     fun getInstance(application: Application): ViewModelFactory? {
-
-      if (INSTANCE == null) {
-        synchronized(ViewModelFactory::class.java) {
-          if (INSTANCE == null) {
-            INSTANCE = ViewModelFactory(application,
-                Injection.provideGankRepository(),
-                Injection.provideNetsRepository())
-          }
-        }
-      }
-      return INSTANCE
+      return INSTANCE ?: ViewModelFactory(application,
+          Injection.provideGankRepository(),
+          Injection.provideNetsRepository()).apply { INSTANCE = this }
     }
 
     @VisibleForTesting

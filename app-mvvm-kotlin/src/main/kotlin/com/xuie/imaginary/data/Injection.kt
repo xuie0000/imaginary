@@ -35,11 +35,11 @@ object Injection {
   //    }
 
   fun provideGankRepository(): GankRepository {
-    return GankRepository.instance
+    return GankRepository.getInstance()
   }
 
   fun provideNetsRepository(): NetsRepository {
-    return NetsRepository.instance
+    return NetsRepository.getInstance()
   }
 
 }

@@ -1,5 +1,6 @@
 package com.xuie.imaginary.gui.web
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
@@ -16,6 +17,7 @@ import com.xuie.imaginary.databinding.ActivityWebviewBinding
  */
 class WebViewActivity : AppCompatActivity() {
 
+  @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val binding = DataBindingUtil.setContentView<ActivityWebviewBinding>(this, R.layout.activity_webview)
@@ -23,11 +25,11 @@ class WebViewActivity : AppCompatActivity() {
     val url = intent.getStringExtra(URL)
 
     // Configure related browser settings
-    binding.webView.getSettings().setLoadsImagesAutomatically(true)
-    binding.webView.getSettings().setJavaScriptEnabled(true)
-    binding.webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY)
+    binding.webView.settings.loadsImagesAutomatically = true
+    binding.webView.settings.javaScriptEnabled = true
+    binding.webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
     // Configure the client to use when opening URLs
-    binding.webView.setWebViewClient(MyBrowser())
+    binding.webView.webViewClient = MyBrowser()
     // Load the initial URL
     binding.webView.loadUrl(url)
   }
@@ -42,16 +44,7 @@ class WebViewActivity : AppCompatActivity() {
     }
   }
 
-  override fun onBackPressed() {
-    //        if (webView.canGoBack()) {
-    //            webView.goBack()
-    //        } else {
-    super.onBackPressed()
-    //        }
-  }
-
   companion object {
-
-    val URL = "url"
+    const val URL = "url"
   }
 }

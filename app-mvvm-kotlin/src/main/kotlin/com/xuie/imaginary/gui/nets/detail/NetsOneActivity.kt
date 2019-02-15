@@ -38,8 +38,8 @@ class NetsOneActivity : AppCompatActivity() {
   }
 
   companion object {
-    val POST_ID = "postId"
-    val IMG_RES = "image"
+    const val POST_ID = "postId"
+    const val IMG_RES = "image"
 
     @SuppressLint("ObsoleteSdkInt")
     fun newIntent(mContext: Context, imageView: View, titleView: View, postId: String, imgUrl: String) {

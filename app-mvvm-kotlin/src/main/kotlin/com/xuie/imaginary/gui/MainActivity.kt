@@ -28,15 +28,15 @@ class MainActivity : BaseActivity() {
   private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
     when (item.itemId) {
       R.id.navigation_dashboard -> {
-        mBinding!!.viewPager.setCurrentItem(0)
+        mBinding.viewPager.currentItem = 0
         true
       }
       R.id.navigation_video -> {
-        mBinding!!.viewPager.setCurrentItem(1)
+        mBinding.viewPager.currentItem = 1
         true
       }
       R.id.navigation_gank -> {
-        mBinding!!.viewPager.setCurrentItem(2)
+        mBinding.viewPager.currentItem = 2
         true
       }
       //                case R.id.navigation_settings:
@@ -46,22 +46,22 @@ class MainActivity : BaseActivity() {
     }
   }
 
-  private var mBinding: ActivityMainBinding? = null
+  private lateinit var mBinding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    mBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-    mBinding!!.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-    mBinding!!.viewPager.setAdapter(MyViewPagerAdapter(supportFragmentManager))
-    mBinding!!.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-      internal var isUser = false
+    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+    mBinding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    mBinding.viewPager.adapter = MyViewPagerAdapter(supportFragmentManager)
+    mBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+      var isUser = false
 
       override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
       override fun onPageSelected(position: Int) {
         if (isUser) {
-          val itemId = mBinding!!.navigation.getMenu().getItem(position).getItemId()
-          mBinding!!.navigation.setSelectedItemId(itemId)
+          val itemId = mBinding.navigation.menu.getItem(position).itemId
+          mBinding.navigation.selectedItemId = itemId
           isUser = false
         }
       }
@@ -72,18 +72,19 @@ class MainActivity : BaseActivity() {
         }
       }
     })
-    mBinding!!.navigation.setSelectedItemId(mBinding!!.navigation.getMenu().getItem(1).getItemId())
+    mBinding.navigation.selectedItemId = mBinding.navigation.menu.getItem(1).itemId
   }
 
   private inner class MyViewPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-      when (position) {
-        0 -> return NewsListFragment.instance
-        1 -> return VideoMainFragment.instance
-        2 -> return MeizhiFragment.instance
-        else -> return MeizhiFragment.instance
-      }//                case 3:
+      return when (position) {
+        0 -> NewsListFragment.instance
+        1 -> VideoMainFragment.instance
+        2 -> MeizhiFragment.instance
+        else -> MeizhiFragment.instance
+      }
+      //                case 3:
       //                    return SettingsFragment.getInstance();
     }
 

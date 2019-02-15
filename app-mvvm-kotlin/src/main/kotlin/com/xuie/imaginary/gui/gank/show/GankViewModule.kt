@@ -17,7 +17,8 @@ import java.util.*
  * @author Jie Xu
  * @date 2019/1/28
  */
-class GankViewModule(application: Application, private val gankRepository: GankRepository) : AndroidViewModel(application) {
+class GankViewModule(application: Application, private val gankRepository: GankRepository)
+  : AndroidViewModel(application) {
 
   val imageUrl = ObservableField<String>()
   val dateString = ObservableField<String>()
@@ -47,30 +48,30 @@ class GankViewModule(application: Application, private val gankRepository: GankR
 
   private fun generateData(gb: GankBean): List<MultiItemEntity> {
     val entities = ArrayList<MultiItemEntity>()
-    loop@ for (s in gb.category!!) {
+    loop@ for (s in gb.category) {
       val lv0 = Level0Item()
       lv0.type = s
-      var bbs = gb.results!!.android
+      var bbs = gb.results.Android
       when (s) {
-        "Android" -> bbs = gb.results!!.android
-        "瞎推荐" -> bbs = gb.results!!.瞎推荐
-        "iOS" -> bbs = gb.results!!.getiOS()
-        "休息视频" -> bbs = gb.results!!.休息视频
+        "Android" -> bbs = gb.results.Android
+        "瞎推荐" -> bbs = gb.results.瞎推荐
+        "iOS" -> bbs = gb.results.iOS
+        "休息视频" -> bbs = gb.results.休息视频
         "福利" ->
           //                bbs = gb.getResults().get福利()
           continue@loop
-        "前端" -> bbs = gb.results!!.前端
-        "拓展资源" -> bbs = gb.results!!.拓展资源
+        "前端" -> bbs = gb.results.前端
+        "拓展资源" -> bbs = gb.results.拓展资源
         else -> {
         }
       }
-      for (ab in bbs!!) {
+      for (ab in bbs) {
         val lv1 = Level1Item()
         lv1.articleName = ab.desc
         lv1.articleUrl = ab.url
         lv1.author = ab.who
-        if (ab.images != null && ab.images!!.isNotEmpty()) {
-          lv1.imageUrl = ab.images!![0]
+        if (ab.images.isNotEmpty()) {
+          lv1.imageUrl = ab.images[0]
         }
         lv0.addSubItem(lv1)
       }

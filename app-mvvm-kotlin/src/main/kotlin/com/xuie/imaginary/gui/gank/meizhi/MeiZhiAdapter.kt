@@ -9,7 +9,8 @@ import com.xuie.imaginary.databinding.ItemFragmentMeizhiBinding
  * @author Jie Xu
  * @date 17-7-5
  */
-class MeiZhiAdapter internal constructor(meiZhis: List<BaseBean>) : BaseDataBindingAdapter<BaseBean, ItemFragmentMeizhiBinding>(R.layout.item_fragment_meizhi, meiZhis) {
+class MeiZhiAdapter internal constructor(meiZhis: List<BaseBean>) :
+    BaseDataBindingAdapter<BaseBean, ItemFragmentMeizhiBinding>(R.layout.item_fragment_meizhi, meiZhis) {
 
   override fun convert(binding: ItemFragmentMeizhiBinding?, item: BaseBean) {
     binding!!.data = item
