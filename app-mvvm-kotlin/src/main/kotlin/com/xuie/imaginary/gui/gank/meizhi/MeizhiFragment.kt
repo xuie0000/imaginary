@@ -10,17 +10,14 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
 import com.xuie.imaginary.data.BaseBean
-import com.xuie.imaginary.databinding.FragmentMeizhiBinding
 import com.xuie.imaginary.gui.MainActivity
 import com.xuie.imaginary.gui.gank.show.GankActivity
 import com.xuie.imaginary.util.DateUtils
-
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -30,7 +27,7 @@ import java.util.ArrayList
 class MeizhiFragment : Fragment() {
 
   private val meiZhiAdapter = MeiZhiAdapter(ArrayList())
-  private lateinit var binding: FragmentMeizhiBinding
+  private lateinit var binding: com.xuie.imaginary.databinding.FragmentMeizhiBinding
   private lateinit var meiZhiViewModule: MeiZhiViewModule
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,13 +42,16 @@ class MeizhiFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     Log.d(TAG, "onViewCreated")
     val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+//    val layoutManager = FlexboxLayoutManager(context)
+//    layoutManager.flexDirection = FlexDirection.COLUMN
+//    layoutManager.justifyContent = JustifyContent.FLEX_END
     binding.recyclerView.layoutManager = layoutManager
     binding.recyclerView.adapter = meiZhiAdapter
 
     meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
       val fl = adapter.data[position] as BaseBean
-      Log.d(TAG, "position:" + position + ", data:" + fl.toString())
-      val dateString = DateUtils.getDate(fl.publishedAt!!)
+      Log.d(TAG, "position:$position, data:$fl")
+      val dateString = DateUtils.getDate(fl.publishedAt)
       val intent = Intent(activity, GankActivity::class.java)
       intent.putExtra("date", dateString)
       intent.putExtra("image", fl.url)
