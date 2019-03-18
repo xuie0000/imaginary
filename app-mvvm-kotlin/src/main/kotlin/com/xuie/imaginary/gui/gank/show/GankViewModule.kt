@@ -70,8 +70,8 @@ class GankViewModule(application: Application, private val gankRepository: GankR
         lv1.articleName = ab.desc
         lv1.articleUrl = ab.url
         lv1.author = ab.who
-        if (ab.images.isNotEmpty()) {
-          lv1.imageUrl = ab.images[0]
+        if (ab.images != null && ab.images!!.isNotEmpty()) {
+          lv1.imageUrl = ab.images!![0]
         }
         lv0.addSubItem(lv1)
       }

@@ -27,5 +27,5 @@ data class BaseBean(
     var url: String,
     var isUsed: Boolean = false,
     var who: String,
-    var images: List<String>
+    var images: List<String>? = null
 )

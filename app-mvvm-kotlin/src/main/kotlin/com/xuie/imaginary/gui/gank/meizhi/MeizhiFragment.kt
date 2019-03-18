@@ -9,14 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
+import com.google.android.flexbox.*
 import com.xuie.imaginary.data.BaseBean
+import com.xuie.imaginary.databinding.FragmentMeizhiBinding
 import com.xuie.imaginary.gui.MainActivity
 import com.xuie.imaginary.gui.gank.show.GankActivity
-import com.xuie.imaginary.databinding.FragmentMeizhiBinding
 import com.xuie.imaginary.util.DateUtils
 import java.util.*
 
@@ -42,10 +42,12 @@ class MeizhiFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     Log.d(TAG, "onViewCreated")
-    val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-//    val layoutManager = FlexboxLayoutManager(context)
-//    layoutManager.flexDirection = FlexDirection.COLUMN
-//    layoutManager.justifyContent = JustifyContent.FLEX_END
+    val layoutManager = FlexboxLayoutManager(context).apply {
+      flexDirection = FlexDirection.ROW
+      flexWrap = FlexWrap.WRAP
+//      justifyContent = JustifyContent.FLEX_END
+      alignItems = AlignItems.FLEX_START
+    }
     binding.recyclerView.layoutManager = layoutManager
     binding.recyclerView.adapter = meiZhiAdapter
 

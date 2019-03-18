@@ -28,12 +28,14 @@ object ImaginaryBindings {
   private const val TAG = "ImaginaryBindings"
 
   @BindingAdapter("items")
+  @JvmStatic
   fun setItems(recyclerView: RecyclerView, items: List<BaseBean>) {
     val adapter = recyclerView.adapter as MeiZhiAdapter?
     adapter?.replaceData(items)
   }
 
   @BindingAdapter("multiItems")
+  @JvmStatic
   fun setMultiItems(recyclerView: RecyclerView, items: List<MultiItemEntity>?) {
     val adapter = recyclerView.adapter as ExpandableItemAdapter?
     if (adapter != null) {
@@ -47,18 +49,21 @@ object ImaginaryBindings {
   }
 
   @BindingAdapter("netsItems")
+  @JvmStatic
   fun setNetsItems(recyclerView: RecyclerView, items: List<NetsSummary>) {
     val adapter = recyclerView.adapter as NewsListAdapter?
     adapter?.replaceData(items)
   }
 
   @BindingAdapter("videosItems")
+  @JvmStatic
   fun setVideosItems(recyclerView: RecyclerView, items: List<VideoBean>) {
     val adapter = recyclerView.adapter as VideosAdapter?
     adapter?.replaceData(items)
   }
 
   @BindingAdapter("imageUrl")
+  @JvmStatic
   fun loadImage(view: ImageView, url: String) {
     val context = view.context
     if (TextUtils.isEmpty(url)) {
@@ -73,7 +78,25 @@ object ImaginaryBindings {
     GlideUtils.loadImageMeizhi(context, url, view)
   }
 
+  @BindingAdapter("imageUrlSmallWidth")
+  @JvmStatic
+  fun loadImageSmallWidth(view: ImageView, url: String) {
+    val context = view.context
+    if (TextUtils.isEmpty(url)) {
+      Log.d(TAG, "loadImage: url is null")
+      return
+    }
+//    view.width = view.parent.
+
+    if (BuildConfig.DEBUG) {
+      Log.d(TAG, url)
+    }
+
+    GlideUtils.loadImageMeizhi(context, url, view)
+  }
+
   @BindingAdapter("showNetsBody")
+  @JvmStatic
   fun showNetsDetailBody(view: TextView, netsDetail: NetsDetail?) {
     if (netsDetail?.img == null) {
       Log.e(TAG, "showNetsDetailBody: null")
@@ -94,6 +117,7 @@ object ImaginaryBindings {
   }
 
   @BindingAdapter("netsFormat", "text1", "text2")
+  @JvmStatic
   fun setFormattedText(textView: TextView, netsFormat: String, text1: String, text2: String) {
     textView.text = String.format(netsFormat, text1, text2)
   }
