@@ -34,7 +34,12 @@ data class NetsDetail(
     var ydbaike: List<*>,
     var askbar: List<AskbarBean>,
     var votes: List<*>,
-    var topiclist: List<TopiclistBean>
+    var topiclist: List<TopiclistBean>,
+
+    /**
+     * 自己添加的一个变量
+     */
+    var imageUrl: String? = null
 )
 
 class SourceinfoBean(

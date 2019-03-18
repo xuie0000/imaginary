@@ -16,6 +16,7 @@ import com.cjj.MaterialRefreshListener
 import com.xuie.imaginary.data.BaseBean
 import com.xuie.imaginary.gui.MainActivity
 import com.xuie.imaginary.gui.gank.show.GankActivity
+import com.xuie.imaginary.databinding.FragmentMeizhiBinding
 import com.xuie.imaginary.util.DateUtils
 import java.util.*
 
@@ -27,7 +28,7 @@ import java.util.*
 class MeizhiFragment : Fragment() {
 
   private val meiZhiAdapter = MeiZhiAdapter(ArrayList())
-  private lateinit var binding: com.xuie.imaginary.databinding.FragmentMeizhiBinding
+  private lateinit var binding: FragmentMeizhiBinding
   private lateinit var meiZhiViewModule: MeiZhiViewModule
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

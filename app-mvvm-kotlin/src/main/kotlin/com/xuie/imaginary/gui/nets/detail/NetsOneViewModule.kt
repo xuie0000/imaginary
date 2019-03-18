@@ -26,6 +26,7 @@ class NetsOneViewModule(application: Application, private val netsRepository: Ne
           if (TextUtils.isEmpty(res)) {
             res = imgRes
           }
+          // TODO
           netsDetail.imageUrl = res
           detail.set(netsDetail)
         }, { e -> e.printStackTrace() })
