@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                app:imageUrlSmallWidth="@{data.url}" />
+                app:imageUrl="@{data.url}" />
 
             <TextView
                 android:id="@+id/date"
@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
+                android:singleLine="true"
                 android:text="@{data.desc}" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

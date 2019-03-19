@@ -43,9 +43,13 @@ class MeizhiFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     Log.d(TAG, "onViewCreated")
     val layoutManager = FlexboxLayoutManager(context).apply {
+      // http://shinelw.com/2017/04/13/flexbox-layout-analysis/
+      // 水平
       flexDirection = FlexDirection.ROW
+      // 自动换行
       flexWrap = FlexWrap.WRAP
 //      justifyContent = JustifyContent.FLEX_END
+      // 主轴起点对齐
       alignItems = AlignItems.FLEX_START
     }
     binding.recyclerView.layoutManager = layoutManager

@@ -1,8 +1,10 @@
 package com.xuie.imaginary
 
+import android.content.res.Resources
 import android.text.Html
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -78,6 +80,8 @@ object ImaginaryBindings {
     GlideUtils.loadImageMeizhi(context, url, view)
   }
 
+  val r = Random(9)
+
   @BindingAdapter("imageUrlSmallWidth")
   @JvmStatic
   fun loadImageSmallWidth(view: ImageView, url: String) {
@@ -86,12 +90,13 @@ object ImaginaryBindings {
       Log.d(TAG, "loadImage: url is null")
       return
     }
-//    view.width = view.parent.
 
     if (BuildConfig.DEBUG) {
       Log.d(TAG, url)
     }
 
+    val width = Resources.getSystem().displayMetrics.widthPixels / ((Math.random() * 10).toInt() % 4 + 1)
+    view.layoutParams.width = width
     GlideUtils.loadImageMeizhi(context, url, view)
   }
 
