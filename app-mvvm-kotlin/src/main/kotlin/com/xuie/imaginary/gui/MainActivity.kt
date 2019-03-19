@@ -39,9 +39,10 @@ class MainActivity : BaseActivity() {
         mBinding.viewPager.currentItem = 2
         true
       }
-      //                case R.id.navigation_settings:
-      //                    mBinding.viewPager.setCurrentItem(3)
-      //                    return true;
+//      R.id.navigation_settings -> {
+//        mBinding.viewPager.currentItem = 3
+//        true
+//      }
       else -> true
     }
   }
@@ -82,10 +83,9 @@ class MainActivity : BaseActivity() {
         0 -> NewsListFragment.instance
         1 -> VideoMainFragment.instance
         2 -> MeizhiFragment.instance
+//        3 -> SettingsFragment.instance
         else -> MeizhiFragment.instance
       }
-      //                case 3:
-      //                    return SettingsFragment.getInstance();
     }
 
     override fun getCount(): Int {

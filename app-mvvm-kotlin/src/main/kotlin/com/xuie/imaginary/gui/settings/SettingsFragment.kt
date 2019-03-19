@@ -1,13 +1,8 @@
 package com.xuie.imaginary.gui.settings
 
-
 import android.content.SharedPreferences
-import android.preference.CheckBoxPreference
-import android.preference.EditTextPreference
-import android.preference.ListPreference
-import android.preference.Preference
-import android.preference.PreferenceFragment
-import android.preference.PreferenceManager
+import android.preference.*
+
 
 /**
  * A simple [Fragment] subclass.
@@ -20,10 +15,9 @@ class SettingsFragment : PreferenceFragment(), SharedPreferences.OnSharedPrefere
   override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
     val preference = findPreference(key)
     if (preference is ListPreference) {
-      val listPreference = preference
-      val prefIndex = listPreference.findIndexOfValue(sharedPreferences.getString(key, ""))
+      val prefIndex = preference.findIndexOfValue(sharedPreferences.getString(key, ""))
       if (prefIndex >= 0) {
-        preference.setSummary(listPreference.entries[prefIndex])
+        preference.setSummary(preference.entries[prefIndex])
       }
     } else if (preference is EditTextPreference) {
       preference.setSummary(sharedPreferences.getString(key, ""))
@@ -66,13 +60,12 @@ class SettingsFragment : PreferenceFragment(), SharedPreferences.OnSharedPrefere
       if (preference is ListPreference) {
         // For list preferences, look up the correct display value in
         // the preference's 'entries' list.
-        val listPreference = preference
-        val index = listPreference.findIndexOfValue(stringValue)
+        val index = preference.findIndexOfValue(stringValue)
 
         // Set the summary to reflect the new value.
         preference.setSummary(
             if (index >= 0)
-              listPreference.entries[index]
+              preference.entries[index]
             else
               null)
       } else {
