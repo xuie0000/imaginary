@@ -12,7 +12,10 @@ import androidx.fragment.app.Fragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
-import com.google.android.flexbox.*
+import com.google.android.flexbox.AlignItems
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.xuie.imaginary.data.BaseBean
 import com.xuie.imaginary.databinding.FragmentMeizhiBinding
 import com.xuie.imaginary.gui.MainActivity
@@ -27,7 +30,6 @@ import java.util.*
  */
 class MeizhiFragment : Fragment() {
 
-  private val meiZhiAdapter = MeiZhiAdapter(ArrayList())
   private lateinit var binding: FragmentMeizhiBinding
   private lateinit var meiZhiViewModule: MeiZhiViewModule
 
@@ -53,6 +55,11 @@ class MeizhiFragment : Fragment() {
       alignItems = AlignItems.FLEX_START
     }
     binding.recyclerView.layoutManager = layoutManager
+
+    val meiZhiAdapter = MeiZhiAdapter(ArrayList()).apply {
+      openLoadAnimation(BaseQuickAdapter.ALPHAIN)
+      isFirstOnly(true)
+    }
     binding.recyclerView.adapter = meiZhiAdapter
 
     meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
@@ -65,8 +72,6 @@ class MeizhiFragment : Fragment() {
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, v, "shareObject")
       ActivityCompat.startActivity(activity!!, intent, options.toBundle())
     }
-    meiZhiAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
-    meiZhiAdapter.isFirstOnly(true)
 
     binding.materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
       override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {

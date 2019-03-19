@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-
 import com.xuie.imaginary.R
 import com.xuie.imaginary.databinding.FragmentVideoMainBinding
-
-import java.util.Arrays
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -22,9 +20,9 @@ class VideoMainFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val binding = FragmentVideoMainBinding.inflate(inflater, container, false)
-    binding.viewPager.setAdapter(MyPagerAdapter(childFragmentManager))
+    binding.viewPager.adapter = MyPagerAdapter(childFragmentManager)
     binding.tabs.setupWithViewPager(binding.viewPager)
-    return binding.getRoot()
+    return binding.root
   }
 
   private inner class MyPagerAdapter internal constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {

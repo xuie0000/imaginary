@@ -9,7 +9,7 @@ import android.preference.PreferenceManager
 import com.xuie.imaginary.R
 
 /**
- * @author xuie
+ * @author Jie Xu
  * @date 17-7-5
  */
 class App : Application() {
