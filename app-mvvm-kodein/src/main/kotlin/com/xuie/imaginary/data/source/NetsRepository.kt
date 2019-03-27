@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
  * @author Jie Xu
  * @date 17-8-17
  */
-class NetsRepository private constructor() : NetsSource {
+class NetsRepository : NetsSource {
   private val netsApi = ServiceGenerator.createService(NETSApi::class.java, NETSApi.NETS_API)
 
   override fun getNews(page: Int): Single<List<NetsSummary>> {

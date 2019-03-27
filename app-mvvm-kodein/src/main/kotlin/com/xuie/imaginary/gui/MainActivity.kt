@@ -12,6 +12,8 @@ import com.xuie.imaginary.base.BaseActivity
 import com.xuie.imaginary.databinding.ActivityMainBinding
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment
 import com.xuie.imaginary.gui.gank.meizhi.meizhiKodeinModel
+import com.xuie.imaginary.gui.gank.show.gankKodeinModel
+import com.xuie.imaginary.gui.nets.detail.netsOneKodeinModel
 import com.xuie.imaginary.gui.nets.news.NewsListFragment
 import com.xuie.imaginary.gui.nets.news.newsListKodeinModel
 import com.xuie.imaginary.gui.nets.video.VideoMainFragment
@@ -30,6 +32,8 @@ class MainActivity : BaseActivity(), KodeinAware {
     import(meizhiKodeinModel)
     import(newsListKodeinModel)
     import(videosKodeinModel)
+    import(gankKodeinModel)
+    import(netsOneKodeinModel)
   }
 
   private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

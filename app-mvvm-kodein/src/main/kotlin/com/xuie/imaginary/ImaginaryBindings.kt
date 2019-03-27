@@ -2,9 +2,7 @@ package com.xuie.imaginary
 
 import android.content.res.Resources
 import android.text.Html
-import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -66,9 +64,9 @@ object ImaginaryBindings {
 
   @BindingAdapter("imageUrl")
   @JvmStatic
-  fun loadImage(view: ImageView, url: String) {
+  fun loadImage(view: ImageView, url: String?) {
     val context = view.context
-    if (TextUtils.isEmpty(url)) {
+    if (url.isNullOrEmpty()) {
       Log.d(TAG, "loadImage: url is null")
       return
     }
@@ -84,9 +82,9 @@ object ImaginaryBindings {
 
   @BindingAdapter("imageUrlSmallWidth")
   @JvmStatic
-  fun loadImageSmallWidth(view: ImageView, url: String) {
+  fun loadImageSmallWidth(view: ImageView, url: String?) {
     val context = view.context
-    if (TextUtils.isEmpty(url)) {
+    if (url.isNullOrEmpty()) {
       Log.d(TAG, "loadImage: url is null")
       return
     }

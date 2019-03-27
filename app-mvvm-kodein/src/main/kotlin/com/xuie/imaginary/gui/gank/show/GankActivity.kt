@@ -8,9 +8,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xuie.imaginary.R
 import com.xuie.imaginary.base.BaseActivity
 import com.xuie.imaginary.databinding.ActivityGankBinding
+import com.xuie.imaginary.gui.nets.detail.netsOneKodeinModel
 import org.kodein.di.Copy
 import org.kodein.di.KodeinAware
+import org.kodein.di.android.closestKodein
 import org.kodein.di.android.kodein
+import org.kodein.di.android.retainedKodein
 import org.kodein.di.android.retainedSubKodein
 import org.kodein.di.generic.instance
 import java.util.*

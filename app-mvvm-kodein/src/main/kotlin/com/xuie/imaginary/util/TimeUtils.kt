@@ -226,8 +226,8 @@ object TimeUtils {
    * from yyyy-MM-dd HH:mm:ss to MM-dd HH:mm
    */
   @JvmStatic
-  fun formatDate(before: String): String {
-    if (TextUtils.isEmpty(before)) {
+  fun formatDate(before: String?): String {
+    if (before.isNullOrEmpty()) {
       Log.e(TAG, "formatDate: null")
       return ""
     }

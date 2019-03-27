@@ -7,11 +7,14 @@ import java.util.regex.Pattern
  * @date 17-8-15
  */
 object DateUtils {
-  private val MATCH_REGEX = "(\\d+)-(\\d+)-(\\d+)T(\\S+)Z"
+  private const val MATCH_REGEX = "(\\d+)-(\\d+)-(\\d+)T(\\S+)Z"
 
-  fun getDate(s: String): String {
+  fun getDate(s: String?): String {
+    if (s.isNullOrEmpty()) {
+      return ""
+    }
     val m = Pattern.compile(MATCH_REGEX).matcher(s)
-    return if (!m.matches() || m.groupCount() < 4) {
+    return if (m == null || !m.matches() || m.groupCount() < 4) {
       ""
     } else m.group(1) + "/" + m.group(2) + "/" + m.group(3)
   }

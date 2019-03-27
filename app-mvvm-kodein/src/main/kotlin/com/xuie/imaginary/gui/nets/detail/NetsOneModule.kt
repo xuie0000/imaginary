@@ -1,6 +1,6 @@
 package com.xuie.imaginary.gui.nets.detail
 
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import org.kodein.di.Kodein
 import org.kodein.di.android.x.AndroidLifecycleScope
@@ -16,8 +16,8 @@ import org.kodein.di.generic.singleton
 const val NETS_ONE_MODULE_TAG = "NETS_ONE_MODULE"
 
 val netsOneKodeinModel = Kodein.Module(NETS_ONE_MODULE_TAG) {
-  bind<NetsOneViewModule>() with scoped<Fragment>(AndroidLifecycleScope).singleton {
-    ViewModelProviders.of((context).activity!!, NetsOneViewModuleFactory.getInstance(instance()))
+  bind<NetsOneViewModule>() with scoped<FragmentActivity>(AndroidLifecycleScope).singleton {
+    ViewModelProviders.of(context, NetsOneViewModuleFactory.getInstance(instance()))
         .get(NetsOneViewModule::class.java)
   }
 }

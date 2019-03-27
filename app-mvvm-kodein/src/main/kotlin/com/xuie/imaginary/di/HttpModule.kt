@@ -1,6 +1,7 @@
 package com.xuie.imaginary.di
 
 import com.xuie.imaginary.data.source.GankRepository
+import com.xuie.imaginary.data.source.NetsRepository
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
@@ -16,6 +17,10 @@ val httpKodeinModule = Kodein.Module(HTTP_MODULE_TAT) {
 
   bind<GankRepository>() with singleton {
     GankRepository()
+  }
+
+  bind<NetsRepository>() with singleton {
+    NetsRepository()
   }
 
 }
