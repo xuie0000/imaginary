@@ -7,12 +7,26 @@ import android.content.Context
 import android.preference.PreferenceManager
 
 import com.xuie.imaginary.R
+import com.xuie.imaginary.di.baseKodeinModule
+import com.xuie.imaginary.di.dbKodeinModule
+import com.xuie.imaginary.di.httpKodeinModule
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.androidModule
+import org.kodein.di.android.x.androidXModule
 
 /**
  * @author Jie Xu
  * @date 17-7-5
  */
-class App : Application() {
+class App : Application(), KodeinAware {
+  override val kodein by Kodein.lazy {
+    /* bindings */
+    import(androidXModule(this@App))
+    import(baseKodeinModule)
+    import(httpKodeinModule)
+    import(dbKodeinModule)
+  }
 
   override fun onCreate() {
     super.onCreate()

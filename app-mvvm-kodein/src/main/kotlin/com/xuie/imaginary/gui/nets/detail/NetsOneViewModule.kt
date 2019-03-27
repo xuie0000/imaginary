@@ -1,11 +1,12 @@
 package com.xuie.imaginary.gui.nets.detail
 
-import android.app.Application
 import android.text.TextUtils
 import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.xuie.imaginary.data.NetsDetail
 import com.xuie.imaginary.data.source.NetsRepository
+import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 
@@ -13,7 +14,7 @@ import io.reactivex.disposables.Disposable
  * @author Jie Xu
  * @date 2019/1/28
  */
-class NetsOneViewModule(application: Application, private val netsRepository: NetsRepository) : AndroidViewModel(application) {
+class NetsOneViewModule(private val netsRepository: NetsRepository) : ViewModel() {
   val detail = ObservableField<NetsDetail>()
   private var disposable: Disposable? = null
 
@@ -48,4 +49,14 @@ class NetsOneViewModule(application: Application, private val netsRepository: Ne
     }
   }
 
+}
+
+
+class NetsOneViewModuleFactory(private val repo: NetsRepository)
+  : ViewModelProvider.Factory {
+  @Suppress("UNCHECKED_CAST")
+  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+      NetsOneViewModule(repo) as T
+
+  companion object : SingletonHolderSingleArg<NetsOneViewModuleFactory, NetsRepository>(::NetsOneViewModuleFactory)
 }

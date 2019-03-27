@@ -3,28 +3,35 @@ package com.xuie.imaginary.gui
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.xuie.imaginary.R
-import com.xuie.imaginary.ViewModelFactory
 import com.xuie.imaginary.base.BaseActivity
 import com.xuie.imaginary.databinding.ActivityMainBinding
-import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule
 import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment
+import com.xuie.imaginary.gui.gank.meizhi.meizhiKodeinModel
 import com.xuie.imaginary.gui.nets.news.NewsListFragment
-import com.xuie.imaginary.gui.nets.news.NewsListViewModule
+import com.xuie.imaginary.gui.nets.news.newsListKodeinModel
 import com.xuie.imaginary.gui.nets.video.VideoMainFragment
-import com.xuie.imaginary.gui.nets.video.VideosViewModule
+import com.xuie.imaginary.gui.nets.video.videosKodeinModel
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+import org.kodein.di.Copy
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.android.retainedSubKodein
 
 /**
  * @author Jie Xu
  */
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), KodeinAware {
+  override val kodein by retainedSubKodein(kodein(), copy = Copy.All) {
+    import(meizhiKodeinModel)
+    import(newsListKodeinModel)
+    import(videosKodeinModel)
+  }
+
   private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
     when (item.itemId) {
       R.id.navigation_dashboard -> {
@@ -98,24 +105,5 @@ class MainActivity : BaseActivity() {
       return
     }
     super.onBackPressed()
-  }
-
-  companion object {
-
-    fun obtainViewModel(activity: FragmentActivity): MeiZhiViewModule {
-      // Use a Factory to inject dependencies into the ViewModel
-      val factory = ViewModelFactory.getInstance(activity.application)
-      return ViewModelProviders.of(activity, factory).get(MeiZhiViewModule::class.java)
-    }
-
-    fun obtainNewsViewModel(activity: FragmentActivity): NewsListViewModule {
-      val factory = ViewModelFactory.getInstance(activity.application)
-      return ViewModelProviders.of(activity, factory).get(NewsListViewModule::class.java)
-    }
-
-    fun obtainVideosViewModel(activity: FragmentActivity): VideosViewModule {
-      val factory = ViewModelFactory.getInstance(activity.application)
-      return ViewModelProviders.of(activity, factory).get(VideosViewModule::class.java)
-    }
   }
 }

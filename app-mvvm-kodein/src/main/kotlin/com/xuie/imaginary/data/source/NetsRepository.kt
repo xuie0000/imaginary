@@ -21,12 +21,6 @@ class NetsRepository private constructor() : NetsSource {
   override fun getNews(page: Int): Single<List<NetsSummary>> {
     return netsApi.getNewsList(HttpUtils.cacheControl, page)
         .subscribeOn(Schedulers.newThread())
-        //                .map(new Function<Map<String, List<NetsSummary>>, List<NetsSummary>>() {
-        //                    @Override
-        //                    public List<NetsSummary> apply(Map<String, List<NetsSummary>> stringListMap){
-        //                        return stringListMap.get("T1348647853363");
-        //                    }
-        //                });
         .flatMap { stringListMap ->
           val ns = stringListMap["T1348647853363"]
           Observable.fromIterable(ns!!)
@@ -48,22 +42,12 @@ class NetsRepository private constructor() : NetsSource {
   override fun getVideoList(type: String, page: Int): Single<List<VideoBean>> {
     return netsApi.getVideoList(HttpUtils.cacheControl, type, page)
         .subscribeOn(Schedulers.newThread())
-        //                .map(new Function<Map<String, List<VideoBean>>, List<VideoBean>>() {
-        //                    @Override
-        //                    public List<VideoBean> apply(Map<String, List<VideoBean>> stringListMap){
-        //                        return stringListMap.get(type);
-        //                    }
-        //                });
-        .flatMap { stringListMap -> Observable.fromIterable(stringListMap[type]!!) }
+        .flatMap { stringListMap ->
+          Observable.fromIterable(stringListMap.getValue(type))
+        }
         .distinct()
-        .toSortedList { videoBean, videoBean2 -> videoBean2.ptime!!.compareTo(videoBean.ptime!!) }
-  }
-
-  companion object {
-    private var INSTANCE: NetsRepository? = null
-
-    fun getInstance(): NetsRepository {
-      return INSTANCE ?: NetsRepository().apply { INSTANCE = this }
-    }
+        .toSortedList { videoBean, videoBean2 ->
+          videoBean2.ptime!!.compareTo(videoBean.ptime!!)
+        }
   }
 }

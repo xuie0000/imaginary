@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.xuie.imaginary.R
 import com.xuie.imaginary.databinding.FragmentVideoMainBinding
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
 import java.util.*
 
 /**
@@ -16,7 +18,8 @@ import java.util.*
  *
  * @author Jie Xu
  */
-class VideoMainFragment : Fragment() {
+class VideoMainFragment : Fragment(), KodeinAware {
+  override val kodein by kodein()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val binding = FragmentVideoMainBinding.inflate(inflater, container, false)

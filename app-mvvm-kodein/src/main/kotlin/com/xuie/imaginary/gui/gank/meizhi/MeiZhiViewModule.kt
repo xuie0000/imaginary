@@ -1,12 +1,13 @@
 package com.xuie.imaginary.gui.gank.meizhi
 
-import android.app.Application
 import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.xuie.imaginary.data.BaseBean
 import com.xuie.imaginary.data.source.GankRepository
+import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 
@@ -14,7 +15,7 @@ import io.reactivex.disposables.Disposable
  * @author Jie Xu
  * @date 2019/1/28
  */
-class MeiZhiViewModule(application: Application, private val gankRepository: GankRepository) : AndroidViewModel(application) {
+class MeiZhiViewModule(private val gankRepository: GankRepository) : ViewModel() {
 
   val items: ObservableList<BaseBean> = ObservableArrayList()
   private var currentPage = 1
@@ -72,4 +73,13 @@ class MeiZhiViewModule(application: Application, private val gankRepository: Gan
     private const val TAG = "MeiZhiViewModule"
   }
 
+}
+
+class MeiZhiViewModuleFactory(private val repo: GankRepository)
+  : ViewModelProvider.Factory {
+  @Suppress("UNCHECKED_CAST")
+  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+      MeiZhiViewModule(repo) as T
+
+  companion object : SingletonHolderSingleArg<MeiZhiViewModuleFactory, GankRepository>(::MeiZhiViewModuleFactory)
 }

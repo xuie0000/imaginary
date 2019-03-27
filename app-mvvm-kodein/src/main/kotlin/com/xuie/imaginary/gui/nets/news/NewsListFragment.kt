@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
@@ -16,27 +15,29 @@ import com.xuie.imaginary.R
 import com.xuie.imaginary.app.App
 import com.xuie.imaginary.data.NetsSummary
 import com.xuie.imaginary.databinding.FragmentNewsListBinding
-import com.xuie.imaginary.gui.MainActivity
 import com.xuie.imaginary.gui.nets.detail.NetsOneActivity
 import com.xuie.imaginary.gui.web.WebViewActivity
-
-import java.util.ArrayList
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
  *
  * @author Jie Xu
  */
-class NewsListFragment : Fragment() {
+class NewsListFragment : Fragment(), KodeinAware {
+
+  override val kodein by kodein()
 
   private val newsListAdapter = NewsListAdapter(ArrayList())
 
   private lateinit var mBinding: FragmentNewsListBinding
-  private lateinit var newsListViewModule: NewsListViewModule
+  private val newsListViewModule: NewsListViewModule by instance()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     mBinding = FragmentNewsListBinding.inflate(inflater, container, false)
-    newsListViewModule = MainActivity.obtainNewsViewModel(activity!!)
     mBinding.viewmodule = newsListViewModule
     return mBinding.root
   }

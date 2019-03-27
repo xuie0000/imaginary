@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
  * @author Jie Xu
  * @date 17-7-5
  */
-class GankRepository private constructor() : GankSource {
+class GankRepository : GankSource {
   private val gankApi = ServiceGenerator.createService(GankApi::class.java)
 
   override fun get福利(page: Int): Observable<List<BaseBean>> {
@@ -32,14 +32,5 @@ class GankRepository private constructor() : GankSource {
           gankBean
         }
   }
-
-  companion object {
-    private var INSTANCE: GankRepository? = null
-
-    fun getInstance(): GankRepository {
-      return INSTANCE ?: GankRepository().apply { INSTANCE = this }
-    }
-  }
-
 
 }

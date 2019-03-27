@@ -13,22 +13,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProviders
-
 import com.xuie.imaginary.R
-import com.xuie.imaginary.ViewModelFactory
 import com.xuie.imaginary.databinding.ActivityNetsOneBinding
+import org.kodein.di.Copy
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.android.retainedSubKodein
+import org.kodein.di.generic.instance
 
 /**
  * @author Jie Xu
  */
-class NetsOneActivity : AppCompatActivity() {
+class NetsOneActivity : AppCompatActivity(), KodeinAware {
+
+  override val kodein by retainedSubKodein(kodein(), copy = Copy.All) {
+    import(netsOneKodeinModel)
+  }
+
+  private val netsOneViewModule: NetsOneViewModule by instance()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val mBinding = DataBindingUtil.setContentView<ActivityNetsOneBinding>(this, R.layout.activity_nets_one)
-    val netsOneViewModule = obtainViewModel(this)
 
     setSupportActionBar(mBinding.toolbar)
     val postId = intent.getStringExtra(POST_ID)
@@ -60,11 +66,6 @@ class NetsOneActivity : AppCompatActivity() {
             .makeScaleUpAnimation(imageView, imageView.width / 2, imageView.height / 2, 0, 0)
         ActivityCompat.startActivity(mContext, intent, options.toBundle())
       }
-    }
-
-    fun obtainViewModel(activity: FragmentActivity): NetsOneViewModule {
-      val factory = ViewModelFactory.getInstance(activity.application)
-      return ViewModelProviders.of(activity, factory).get(NetsOneViewModule::class.java)
     }
   }
 

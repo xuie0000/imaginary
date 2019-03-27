@@ -18,9 +18,11 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.xuie.imaginary.data.BaseBean
 import com.xuie.imaginary.databinding.FragmentMeizhiBinding
-import com.xuie.imaginary.gui.MainActivity
 import com.xuie.imaginary.gui.gank.show.GankActivity
 import com.xuie.imaginary.util.DateUtils
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.kodein
+import org.kodein.di.generic.instance
 import java.util.*
 
 /**
@@ -28,15 +30,16 @@ import java.util.*
  *
  * @author Jie Xu
  */
-class MeizhiFragment : Fragment() {
+class MeizhiFragment : Fragment(), KodeinAware {
+
+  override val kodein by kodein()
 
   private lateinit var binding: FragmentMeizhiBinding
-  private lateinit var meiZhiViewModule: MeiZhiViewModule
+  private val meiZhiViewModule: MeiZhiViewModule by instance()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     Log.d(TAG, "onCreateView")
     binding = FragmentMeizhiBinding.inflate(inflater, container, false)
-    meiZhiViewModule = MainActivity.obtainViewModel(activity!!)
     binding.viewmodule = meiZhiViewModule
     return binding.root
   }

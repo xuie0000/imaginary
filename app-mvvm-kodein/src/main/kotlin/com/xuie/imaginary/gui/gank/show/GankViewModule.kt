@@ -1,14 +1,15 @@
 package com.xuie.imaginary.gui.gank.show
 
-import android.app.Application
 import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableList
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.xuie.imaginary.data.GankBean
 import com.xuie.imaginary.data.source.GankRepository
+import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.*
@@ -17,8 +18,8 @@ import java.util.*
  * @author Jie Xu
  * @date 2019/1/28
  */
-class GankViewModule(application: Application, private val gankRepository: GankRepository)
-  : AndroidViewModel(application) {
+class GankViewModule(private val gankRepository: GankRepository)
+  : ViewModel() {
 
   val imageUrl = ObservableField<String>()
   val dateString = ObservableField<String>()
@@ -84,4 +85,13 @@ class GankViewModule(application: Application, private val gankRepository: GankR
     private const val TAG = "GankViewModule"
   }
 
+}
+
+class GankViewModuleFactory(private val repo: GankRepository)
+  : ViewModelProvider.Factory {
+  @Suppress("UNCHECKED_CAST")
+  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+      GankViewModule(repo) as T
+
+  companion object : SingletonHolderSingleArg<GankViewModuleFactory, GankRepository>(::GankViewModuleFactory)
 }
