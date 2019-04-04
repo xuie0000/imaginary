@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/nets"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_nets"/>
+        android:title="@string/title_nets" />
 
     <item
-        android:id="@+id/navigation_video"
+        android:id="@+id/videos"
         android:icon="@drawable/ic_video_24dp"
-        android:title="@string/title_video"/>
+        android:title="@string/title_video" />
 
     <item
-        android:id="@+id/navigation_gank"
+        android:id="@+id/gank"
         android:icon="@drawable/ic_gank_24dp"
-        android:title="@string/title_gank_meizhi"/>
+        android:title="@string/title_gank_meizhi" />
 
     <!--<item-->
-        <!--android:id="@+id/navigation_settings"-->
-        <!--android:icon="@drawable/ic_settings_24dp"-->
-        <!--android:title="@string/title_settings"/>-->
+    <!--android:id="@+id/navigation_settings"-->
+    <!--android:icon="@drawable/ic_settings_24dp"-->
+    <!--android:title="@string/title_settings"/>-->
 
 </menu>

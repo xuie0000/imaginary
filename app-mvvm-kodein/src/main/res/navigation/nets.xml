@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nets"
+    app:startDestination="@id/news">
+    <fragment
+        android:id="@+id/news"
+        android:name="com.xuie.imaginary.gui.nets.news.NewsListFragment"
+        android:label="nets fragment"
+        tools:layout="@layout/fragment_news_list">
+        <!--
+                <action
+                    android:id="@+id/action_register_to_registered"
+                    app:destination="@id/registered"/>
+        -->
+    </fragment>
+</navigation>
