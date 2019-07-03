@@ -15,6 +15,7 @@ import com.xuie.imaginary.R
 import com.xuie.imaginary.app.App
 import com.xuie.imaginary.data.NetsSummary
 import com.xuie.imaginary.databinding.FragmentNewsListBinding
+import com.xuie.imaginary.di.viewModel
 import com.xuie.imaginary.gui.nets.detail.NetsOneActivity
 import com.xuie.imaginary.gui.web.WebViewActivity
 import org.kodein.di.KodeinAware
@@ -34,7 +35,7 @@ class NewsListFragment : Fragment(), KodeinAware {
   private val newsListAdapter = NewsListAdapter(ArrayList())
 
   private lateinit var mBinding: FragmentNewsListBinding
-  private val newsListViewModule: NewsListViewModule by instance()
+  private val newsListViewModule: NewsListViewModule by viewModel()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     mBinding = FragmentNewsListBinding.inflate(inflater, container, false)

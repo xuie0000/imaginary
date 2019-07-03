@@ -72,14 +72,5 @@ class MeiZhiViewModule(private val gankRepository: GankRepository) : ViewModel()
   companion object {
     private const val TAG = "MeiZhiViewModule"
   }
-
 }
 
-class MeiZhiViewModuleFactory(private val repo: GankRepository)
-  : ViewModelProvider.Factory {
-  @Suppress("UNCHECKED_CAST")
-  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-      MeiZhiViewModule(repo) as T
-
-  companion object : SingletonHolderSingleArg<MeiZhiViewModuleFactory, GankRepository>(::MeiZhiViewModuleFactory)
-}

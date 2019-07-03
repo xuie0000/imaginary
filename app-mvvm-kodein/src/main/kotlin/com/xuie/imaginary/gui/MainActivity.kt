@@ -5,14 +5,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.xuie.imaginary.R
 import com.xuie.imaginary.base.BaseActivity
 import com.xuie.imaginary.databinding.ActivityMainBinding
-import com.xuie.imaginary.gui.gank.meizhi.meizhiKodeinModel
-import com.xuie.imaginary.gui.gank.show.gankKodeinModel
+import com.xuie.imaginary.gui.gank.meizhi.meiZhiModel
+import com.xuie.imaginary.gui.gank.show.gankModel
 import com.xuie.imaginary.gui.nets.detail.netsOneKodeinModel
-import com.xuie.imaginary.gui.nets.news.newsListKodeinModel
+import com.xuie.imaginary.gui.nets.news.newsListModel
 import com.xuie.imaginary.gui.nets.video.videosKodeinModel
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import org.kodein.di.Copy
@@ -25,10 +24,10 @@ import org.kodein.di.android.retainedSubKodein
  */
 class MainActivity : BaseActivity(), KodeinAware {
   override val kodein by retainedSubKodein(kodein(), copy = Copy.All) {
-    import(meizhiKodeinModel)
-    import(newsListKodeinModel)
+    import(meiZhiModel)
+    import(newsListModel)
     import(videosKodeinModel)
-    import(gankKodeinModel)
+    import(gankModel)
     import(netsOneKodeinModel)
   }
 

@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
 import com.xuie.imaginary.databinding.FragmentVideosBinding
+import com.xuie.imaginary.di.viewModel
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -28,7 +29,7 @@ class VideosFragment : Fragment(), KodeinAware {
   private lateinit var mVideoType: String
   private val videosAdapter = VideosAdapter(ArrayList())
   private lateinit var mBinding: FragmentVideosBinding
-  private val videosViewModule: VideosViewModule by instance()
+  private val videosViewModule: VideosViewModule by viewModel()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     mBinding = FragmentVideosBinding.inflate(inflater, container, false)

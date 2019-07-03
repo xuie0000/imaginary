@@ -42,15 +42,4 @@ class NewsListViewModule(private val netsRepository: NetsRepository) : ViewModel
     disposable?.dispose()
     disposable = null
   }
-
-}
-
-
-class NewsListViewModuleFactory(private val repo: NetsRepository)
-  : ViewModelProvider.Factory {
-  @Suppress("UNCHECKED_CAST")
-  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-      NewsListViewModule(repo) as T
-
-  companion object : SingletonHolderSingleArg<NewsListViewModuleFactory, NetsRepository>(::NewsListViewModuleFactory)
 }

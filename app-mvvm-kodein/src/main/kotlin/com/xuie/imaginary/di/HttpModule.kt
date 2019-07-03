@@ -13,7 +13,7 @@ import org.kodein.di.generic.singleton
 
 const val HTTP_MODULE_TAT = "HTTP_MODULE"
 
-val httpKodeinModule = Kodein.Module(HTTP_MODULE_TAT) {
+val httpModule = Kodein.Module(HTTP_MODULE_TAT) {
 
   bind<GankRepository>() with singleton {
     GankRepository()

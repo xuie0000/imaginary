@@ -43,15 +43,5 @@ class VideosViewModule(private val netsRepository: NetsRepository) : ViewModel()
       disposable = null
     }
   }
-
 }
 
-
-class VideosViewModuleFactory(private val repo: NetsRepository)
-  : ViewModelProvider.Factory {
-  @Suppress("UNCHECKED_CAST")
-  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-      VideosViewModule(repo) as T
-
-  companion object : SingletonHolderSingleArg<VideosViewModuleFactory, NetsRepository>(::VideosViewModuleFactory)
-}

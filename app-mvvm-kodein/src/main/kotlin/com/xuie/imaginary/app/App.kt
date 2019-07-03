@@ -5,15 +5,16 @@ import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.preference.PreferenceManager
-
 import com.xuie.imaginary.R
-import com.xuie.imaginary.di.baseKodeinModule
-import com.xuie.imaginary.di.dbKodeinModule
-import com.xuie.imaginary.di.httpKodeinModule
+import com.xuie.imaginary.di.KodeinViewModelFactory
+import com.xuie.imaginary.di.baseModule
+import com.xuie.imaginary.di.dbModule
+import com.xuie.imaginary.di.httpModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.androidModule
 import org.kodein.di.android.x.androidXModule
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.singleton
 
 /**
  * @author Jie Xu
@@ -21,11 +22,13 @@ import org.kodein.di.android.x.androidXModule
  */
 class App : Application(), KodeinAware {
   override val kodein by Kodein.lazy {
-    /* bindings */
     import(androidXModule(this@App))
-    import(baseKodeinModule)
-    import(httpKodeinModule)
-    import(dbKodeinModule)
+
+    bind() from singleton { KodeinViewModelFactory(kodein) }
+
+    import(baseModule)
+    import(httpModule)
+    import(dbModule)
   }
 
   override fun onCreate() {

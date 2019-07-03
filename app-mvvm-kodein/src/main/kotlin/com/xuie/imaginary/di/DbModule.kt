@@ -8,7 +8,7 @@ import org.kodein.di.Kodein
  */
 const val DB_MODULE_TAG = "DB_MODULE"
 
-val dbKodeinModule = Kodein.Module(DB_MODULE_TAG) {
+val dbModule = Kodein.Module(DB_MODULE_TAG) {
 
 //  bind<WeatherDao>() with singleton {
 //    Room.databaseBuilder(App.context, WeatherDatabase::class.java, "weather").build().weatherDao()

@@ -105,10 +105,10 @@ object ImaginaryBindings {
       Log.e(TAG, "showNetsDetailBody: null")
       return
     }
-    val imgTotal = netsDetail.img!!.size
+    val imgTotal = netsDetail.img.size
     val body = netsDetail.body
     if (isShowBody(netsDetail.body, imgTotal)) {
-      val urlImageGetter = UrlImageGetter(view, body!!, imgTotal)
+      val urlImageGetter = UrlImageGetter(view, body, imgTotal)
       view.text = Html.fromHtml(body, urlImageGetter, null)
     } else {
       view.text = Html.fromHtml(body)
