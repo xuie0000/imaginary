@@ -48,7 +48,7 @@ internal constructor(data: List<MultiItemEntity>) : BaseMultiItemQuickAdapter<Mu
           val intent = Intent(App.context, WebViewActivity::class.java)
           intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
           intent.putExtra("url", lv1.articleUrl)
-          App.context!!.startActivity(intent)
+          App.context.startActivity(intent)
         }
 
         helper.setText(R.id.author, String.format("(%s)", lv1.author))

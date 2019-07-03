@@ -68,12 +68,12 @@ class NewsListFragment : Fragment(), KodeinAware {
         val intent = Intent(App.context, WebViewActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         var pv = ns.photosetID
-        Log.d(TAG, "ns:" + ns.toString())
+        Log.d(TAG, "ns:$ns")
         Log.d(TAG, "pv:" + pv!!)
 
         pv = pv.replace("|", "/")
         intent.putExtra("url", "http://news.163.com/photoview/$pv.html")
-        App.context!!.startActivity(intent)
+        App.context.startActivity(intent)
       }
       NetsOneActivity.newIntent(this.activity!!,
           v.findViewById(R.id.img_src),

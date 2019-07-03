@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
-import android.preference.PreferenceManager
-import com.xuie.imaginary.R
 import com.xuie.imaginary.di.KodeinViewModelFactory
 import com.xuie.imaginary.di.baseModule
 import com.xuie.imaginary.di.dbModule
@@ -35,15 +33,12 @@ class App : Application(), KodeinAware {
     super.onCreate()
     if (isMainProcess(this)) {
       context = this
-      PreferenceManager.setDefaultValues(this, R.xml.fragment_settings, false)
     }
   }
 
   companion object {
-
     @SuppressLint("StaticFieldLeak")
-    var context: Context? = null
-      private set
+    lateinit var context: Context
 
     fun isMainProcess(context: Context): Boolean {
       val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager

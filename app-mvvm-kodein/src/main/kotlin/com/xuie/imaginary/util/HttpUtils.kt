@@ -27,5 +27,5 @@ object HttpUtils {
    * 根据网络状况获取缓存的策略
    */
   val cacheControl: String
-    get() = if (NetWorkUtils.isNetConnected(App.context!!)) CACHE_CONTROL_AGE else CACHE_CONTROL_CACHE
+    get() = if (NetWorkUtils.isNetConnected(App.context)) CACHE_CONTROL_AGE else CACHE_CONTROL_CACHE
 }

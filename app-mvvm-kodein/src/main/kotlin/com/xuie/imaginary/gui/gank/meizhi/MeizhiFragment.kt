@@ -23,7 +23,6 @@ import com.xuie.imaginary.gui.gank.show.GankActivity
 import com.xuie.imaginary.util.DateUtils
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import java.util.*
 
 /**

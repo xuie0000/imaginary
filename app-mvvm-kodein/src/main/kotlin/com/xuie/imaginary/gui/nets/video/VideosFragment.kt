@@ -14,7 +14,6 @@ import com.xuie.imaginary.di.viewModel
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import java.util.*
 
 /**

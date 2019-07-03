@@ -120,13 +120,13 @@ class UrlImageGetter(private val mTextView: TextView, private val mNewsBody: Str
   private fun createPicPlaceholder(): Drawable {
     val drawable: Drawable
     val color = R.color.white
-    drawable = ColorDrawable(App.context!!.resources.getColor(color))
+    drawable = ColorDrawable(App.context.resources.getColor(color))
     drawable.setBounds(0, 0, mPicWidth, mPicWidth / 3)
     return drawable
   }
 
   companion object {
-    private val mFilePath = App.context!!.cacheDir.absolutePath
+    private val mFilePath = App.context.cacheDir.absolutePath
   }
 
 }

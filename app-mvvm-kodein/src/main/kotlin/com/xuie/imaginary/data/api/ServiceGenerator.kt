@@ -43,13 +43,13 @@ object ServiceGenerator {
   private val mRewriteCacheControlInterceptor = Interceptor { chain ->
     var request = chain.request()
     val cacheControl = request.cacheControl().toString()
-    if (!NetWorkUtils.isNetConnected(App.context!!)) {
+    if (!NetWorkUtils.isNetConnected(App.context)) {
       request = request.newBuilder()
           .cacheControl(if (TextUtils.isEmpty(cacheControl)) CacheControl.FORCE_NETWORK else CacheControl.FORCE_CACHE)
           .build()
     }
     val originalResponse = chain.proceed(request)
-    if (NetWorkUtils.isNetConnected(App.context!!)) {
+    if (NetWorkUtils.isNetConnected(App.context)) {
       //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置
       originalResponse.newBuilder()
           .header("Cache-Control", cacheControl)
@@ -84,7 +84,7 @@ object ServiceGenerator {
     val logInterceptor = HttpLoggingInterceptor()
     logInterceptor.level = HttpLoggingInterceptor.Level.BODY
     //缓存
-    val cacheFile = File(App.context!!.cacheDir, "cache")
+    val cacheFile = File(App.context.cacheDir, "cache")
     //100Mb
     val cache = Cache(cacheFile, (1024 * 1024 * 100).toLong())
     //增加头部信息

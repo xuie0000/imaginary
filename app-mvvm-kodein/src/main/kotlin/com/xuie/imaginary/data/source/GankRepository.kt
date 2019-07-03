@@ -16,7 +16,7 @@ class GankRepository : GankSource {
 
   override fun get福利(page: Int): Observable<List<BaseBean>> {
     return gankApi.get福利(page)
-        .subscribeOn(Schedulers.newThread())
+        .subscribeOn(Schedulers.io())
         .map { 福利s ->
           if (福利s.isError) {
             return@map ArrayList<BaseBean>()
@@ -28,9 +28,6 @@ class GankRepository : GankSource {
   override fun getDay(date: String): Observable<GankBean> {
     return gankApi.getDay(date)
         .subscribeOn(Schedulers.newThread())
-        .map { gankBean ->
-          gankBean
-        }
   }
 
 }
