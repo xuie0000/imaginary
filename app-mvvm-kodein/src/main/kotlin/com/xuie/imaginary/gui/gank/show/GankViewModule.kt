@@ -12,6 +12,10 @@ import com.xuie.imaginary.data.source.GankRepository
 import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 import java.util.*
 
 /**
@@ -84,4 +88,10 @@ class GankViewModule(private val gankRepository: GankRepository)
   companion object {
     private const val TAG = "GankViewModule"
   }
+}
+
+const val GANK_MODULE_TAG = "GANK_MODULE"
+
+val gankModel = Kodein.Module(GANK_MODULE_TAG) {
+  bind() from singleton { GankViewModule(instance()) }
 }

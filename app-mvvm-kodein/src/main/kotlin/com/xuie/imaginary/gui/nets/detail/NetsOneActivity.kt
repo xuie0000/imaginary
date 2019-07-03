@@ -15,11 +15,11 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import com.xuie.imaginary.R
 import com.xuie.imaginary.databinding.ActivityNetsOneBinding
+import com.xuie.imaginary.di.viewModel
 import org.kodein.di.Copy
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.android.retainedSubKodein
-import org.kodein.di.generic.instance
 
 /**
  * @author Jie Xu
@@ -27,10 +27,10 @@ import org.kodein.di.generic.instance
 class NetsOneActivity : AppCompatActivity(), KodeinAware {
 
   override val kodein by retainedSubKodein(kodein(), copy = Copy.All) {
-    import(netsOneKodeinModel)
+    import(netsOneModel)
   }
 
-  private val netsOneViewModule: NetsOneViewModule by instance()
+  private val netsOneViewModule: NetsOneViewModule by viewModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

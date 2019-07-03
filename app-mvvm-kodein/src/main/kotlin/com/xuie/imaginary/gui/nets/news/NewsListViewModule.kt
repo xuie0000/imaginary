@@ -9,6 +9,10 @@ import com.xuie.imaginary.data.source.NetsRepository
 import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 
 /**
  * @author Jie Xu
@@ -42,4 +46,11 @@ class NewsListViewModule(private val netsRepository: NetsRepository) : ViewModel
     disposable?.dispose()
     disposable = null
   }
+}
+
+const val NEWS_LIST_MODULE_TAG = "NEWS_LIST_MODULE"
+
+val newsListModel = Kodein.Module(NEWS_LIST_MODULE_TAG) {
+  bind() from singleton { NewsListViewModule(instance()) }
+
 }

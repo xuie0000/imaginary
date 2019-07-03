@@ -10,9 +10,9 @@ import com.xuie.imaginary.base.BaseActivity
 import com.xuie.imaginary.databinding.ActivityMainBinding
 import com.xuie.imaginary.gui.gank.meizhi.meiZhiModel
 import com.xuie.imaginary.gui.gank.show.gankModel
-import com.xuie.imaginary.gui.nets.detail.netsOneKodeinModel
+import com.xuie.imaginary.gui.nets.detail.netsOneModel
 import com.xuie.imaginary.gui.nets.news.newsListModel
-import com.xuie.imaginary.gui.nets.video.videosKodeinModel
+import com.xuie.imaginary.gui.nets.video.videosModel
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import org.kodein.di.Copy
 import org.kodein.di.KodeinAware
@@ -26,9 +26,9 @@ class MainActivity : BaseActivity(), KodeinAware {
   override val kodein by retainedSubKodein(kodein(), copy = Copy.All) {
     import(meiZhiModel)
     import(newsListModel)
-    import(videosKodeinModel)
+    import(videosModel)
     import(gankModel)
-    import(netsOneKodeinModel)
+    import(netsOneModel)
   }
 
   private lateinit var mBinding: ActivityMainBinding
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity(), KodeinAware {
     )
     // Whenever the selected controller changes, setup the action bar.
     controller.observe(this, Observer { navController ->
-//      setupActionBarWithNavController(navController)
+      //      setupActionBarWithNavController(navController)
     })
     currentNavController = controller
   }

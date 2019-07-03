@@ -3,12 +3,14 @@ package com.xuie.imaginary.gui.nets.detail
 import android.text.TextUtils
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.xuie.imaginary.data.NetsDetail
 import com.xuie.imaginary.data.source.NetsRepository
-import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 
 /**
  * @author Jie Xu
@@ -51,12 +53,8 @@ class NetsOneViewModule(private val netsRepository: NetsRepository) : ViewModel(
 
 }
 
+const val NETS_ONE_MODULE_TAG = "NETS_ONE_MODULE"
 
-class NetsOneViewModuleFactory(private val repo: NetsRepository)
-  : ViewModelProvider.Factory {
-  @Suppress("UNCHECKED_CAST")
-  override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-      NetsOneViewModule(repo) as T
-
-  companion object : SingletonHolderSingleArg<NetsOneViewModuleFactory, NetsRepository>(::NetsOneViewModuleFactory)
+val netsOneModel = Kodein.Module(NETS_ONE_MODULE_TAG) {
+  bind() from singleton { NetsOneViewModule(instance()) }
 }

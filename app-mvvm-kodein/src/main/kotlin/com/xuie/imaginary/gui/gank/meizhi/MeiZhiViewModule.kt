@@ -4,12 +4,14 @@ import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.xuie.imaginary.data.BaseBean
 import com.xuie.imaginary.data.source.GankRepository
-import com.xuie.imaginary.util.SingletonHolderSingleArg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 
 /**
  * @author Jie Xu
@@ -72,5 +74,11 @@ class MeiZhiViewModule(private val gankRepository: GankRepository) : ViewModel()
   companion object {
     private const val TAG = "MeiZhiViewModule"
   }
+}
+
+const val MEI_ZHI_MODULE_TAG = "MEI_ZHI_MODULE"
+
+val meiZhiModel = Kodein.Module(MEI_ZHI_MODULE_TAG) {
+  bind() from singleton { MeiZhiViewModule(instance()) }
 }
 
