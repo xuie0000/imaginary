@@ -1,8 +1,8 @@
-package com.xuie.imaginary.gui.nets.news;
+package xuk.imaginary.gui.nets.news;
 
-import com.xuie.imaginary.BasePresenter;
-import com.xuie.imaginary.BaseView;
-import com.xuie.imaginary.data.NetsSummary;
+import xuk.imaginary.BasePresenter;
+import xuk.imaginary.BaseView;
+import xuk.imaginary.data.NetsSummary;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

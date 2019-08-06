@@ -1,4 +1,4 @@
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 import org.junit.Test;
 

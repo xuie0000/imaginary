@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package com.xuie.imaginary.widget;
+package xuk.imaginary.widget;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,11 +23,11 @@ import android.support.annotation.Nullable;
 import android.text.Html;
 import android.widget.TextView;
 
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.app.App;
-import com.xuie.imaginary.data.api.NETSApi;
-import com.xuie.imaginary.data.api.ServiceGenerator;
-import com.xuie.imaginary.util.HttpUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.app.App;
+import xuk.imaginary.data.api.NETSApi;
+import xuk.imaginary.data.api.ServiceGenerator;
+import xuk.imaginary.util.HttpUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

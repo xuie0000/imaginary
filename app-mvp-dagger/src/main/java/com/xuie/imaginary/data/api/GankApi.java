@@ -1,7 +1,7 @@
-package com.xuie.imaginary.data.api;
+package xuk.imaginary.data.api;
 
-import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.data.福利s;
+import xuk.imaginary.data.GankBean;
+import xuk.imaginary.data.福利s;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

@@ -1,12 +1,12 @@
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.VisibleForTesting;
 
-import com.xuie.imaginary.data.source.GankRepository;
-import com.xuie.imaginary.di.DaggerAppComponent;
+import xuk.imaginary.data.source.GankRepository;
+import xuk.imaginary.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 

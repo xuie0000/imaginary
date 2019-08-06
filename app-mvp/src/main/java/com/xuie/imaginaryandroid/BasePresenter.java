@@ -1,4 +1,4 @@
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 /**
  * @author xuie

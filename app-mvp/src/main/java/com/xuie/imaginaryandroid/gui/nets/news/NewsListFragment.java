@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.news;
+package xuk.imaginary.gui.nets.news;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.app.App;
-import com.xuie.imaginary.data.NetsSummary;
-import com.xuie.imaginary.data.source.NetsRepository;
-import com.xuie.imaginary.gui.nets.detail.NetsOneActivity;
-import com.xuie.imaginary.gui.web.WebViewActivity;
+import xuk.imaginary.R;
+import xuk.imaginary.app.App;
+import xuk.imaginary.data.NetsSummary;
+import xuk.imaginary.data.source.NetsRepository;
+import xuk.imaginary.gui.nets.detail.NetsOneActivity;
+import xuk.imaginary.gui.web.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static com.xuie.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.util.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.

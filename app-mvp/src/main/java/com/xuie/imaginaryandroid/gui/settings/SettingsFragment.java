@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.settings;
+package xuk.imaginary.gui.settings;
 
 
 import android.content.SharedPreferences;
@@ -11,7 +11,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
-import com.xuie.imaginary.R;
+import xuk.imaginary.R;
 
 /**
  * A simple {@link Fragment} subclass.

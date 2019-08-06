@@ -1,7 +1,7 @@
-package com.xuie.imaginary.gankdate;
+package xuk.imaginary.gankdate;
 
-import com.xuie.imaginary.di.ActivityScoped;
-import com.xuie.imaginary.gank.MeizhiPresenter;
+import xuk.imaginary.di.ActivityScoped;
+import xuk.imaginary.gank.MeizhiPresenter;
 
 import dagger.Binds;
 import dagger.Module;

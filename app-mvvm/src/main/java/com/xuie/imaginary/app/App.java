@@ -1,4 +1,4 @@
-package com.xuie.imaginary.app;
+package xuk.imaginary.app;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -6,7 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.preference.PreferenceManager;
 
-import com.xuie.imaginary.R;
+import xuk.imaginary.R;
 
 import java.util.List;
 

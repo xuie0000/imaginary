@@ -1,4 +1,4 @@
-package com.xuie.imaginary.di;
+package xuk.imaginary.di;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

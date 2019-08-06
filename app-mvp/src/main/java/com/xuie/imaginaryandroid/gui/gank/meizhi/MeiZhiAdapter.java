@@ -1,10 +1,10 @@
-package com.xuie.imaginary.gui.gank.meizhi;
+package xuk.imaginary.gui.gank.meizhi;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.util.GlideUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.util.GlideUtils;
 
 import java.util.List;
 

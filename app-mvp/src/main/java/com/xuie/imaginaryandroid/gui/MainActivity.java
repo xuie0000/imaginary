@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui;
+package xuk.imaginary.gui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +10,11 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment;
-import com.xuie.imaginary.gui.nets.news.NewsListFragment;
-import com.xuie.imaginary.gui.nets.video.VideoMainFragment;
-import com.xuie.imaginary.gui.settings.SettingsFragment;
+import xuk.imaginary.R;
+import xuk.imaginary.gui.gank.meizhi.MeizhiFragment;
+import xuk.imaginary.gui.nets.news.NewsListFragment;
+import xuk.imaginary.gui.nets.video.VideoMainFragment;
+import xuk.imaginary.gui.settings.SettingsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

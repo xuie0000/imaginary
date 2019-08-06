@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-package com.xuie.imaginary.widget;
+package xuk.imaginary.widget;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

@@ -1,4 +1,4 @@
-package com.xuie.imaginary.util;
+package xuk.imaginary.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

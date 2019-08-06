@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.xuie.imaginary.data.source;
+package xuk.imaginary.data.source;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

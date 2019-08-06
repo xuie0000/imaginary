@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.news;
+package xuk.imaginary.gui.nets.news;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,13 +15,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.app.App;
-import com.xuie.imaginary.data.NetsSummary;
-import com.xuie.imaginary.databinding.FragmentNewsListBinding;
-import com.xuie.imaginary.gui.MainActivity;
-import com.xuie.imaginary.gui.nets.detail.NetsOneActivity;
-import com.xuie.imaginary.gui.web.WebViewActivity;
+import xuk.imaginary.R;
+import xuk.imaginary.app.App;
+import xuk.imaginary.data.NetsSummary;
+import xuk.imaginary.databinding.FragmentNewsListBinding;
+import xuk.imaginary.gui.MainActivity;
+import xuk.imaginary.gui.nets.detail.NetsOneActivity;
+import xuk.imaginary.gui.web.WebViewActivity;
 
 import java.util.ArrayList;
 

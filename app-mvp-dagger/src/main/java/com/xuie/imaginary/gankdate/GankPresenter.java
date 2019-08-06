@@ -1,7 +1,7 @@
-package com.xuie.imaginary.gankdate;
+package xuk.imaginary.gankdate;
 
-import com.xuie.imaginary.data.source.GankRepository;
-import com.xuie.imaginary.di.ActivityScoped;
+import xuk.imaginary.data.source.GankRepository;
+import xuk.imaginary.di.ActivityScoped;
 
 import javax.inject.Inject;
 

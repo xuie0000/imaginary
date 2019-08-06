@@ -1,8 +1,8 @@
-package com.xuie.imaginary.gank;
+package xuk.imaginary.gank;
 
-import com.xuie.imaginary.BasePresenter;
-import com.xuie.imaginary.BaseView;
-import com.xuie.imaginary.data.BaseBean;
+import xuk.imaginary.BasePresenter;
+import xuk.imaginary.BaseView;
+import xuk.imaginary.data.BaseBean;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package com.xuie.imaginary.util;
+package xuk.imaginary.util;
 
 import androidx.annotation.NonNull;
 
-import com.xuie.imaginary.app.App;
+import xuk.imaginary.app.App;
 
 /**
  * @author xuie

@@ -1,12 +1,12 @@
-package com.xuie.imaginary.data.api;
+package xuk.imaginary.data.api;
 
 import android.text.TextUtils;
 import android.webkit.WebSettings;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.xuie.imaginary.app.App;
-import com.xuie.imaginary.util.NetWorkUtils;
+import xuk.imaginary.app.App;
+import xuk.imaginary.util.NetWorkUtils;
 
 import java.io.File;
 import java.io.IOException;

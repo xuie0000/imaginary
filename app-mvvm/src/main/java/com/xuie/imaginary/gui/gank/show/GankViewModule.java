@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.gank.show;
+package xuk.imaginary.gui.gank.show;
 
 import android.app.Application;
 import android.util.Log;
@@ -10,9 +10,9 @@ import androidx.databinding.ObservableList;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.data.source.GankRepository;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.data.GankBean;
+import xuk.imaginary.data.source.GankRepository;
 
 import java.util.ArrayList;
 import java.util.List;

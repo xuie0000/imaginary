@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -23,14 +23,14 @@ import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.xuie.imaginary.data.Injection;
-import com.xuie.imaginary.data.source.GankRepository;
-import com.xuie.imaginary.data.source.NetsRepository;
-import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule;
-import com.xuie.imaginary.gui.gank.show.GankViewModule;
-import com.xuie.imaginary.gui.nets.detail.NetsOneViewModule;
-import com.xuie.imaginary.gui.nets.news.NewsListViewModule;
-import com.xuie.imaginary.gui.nets.video.VideosViewModule;
+import xuk.imaginary.data.Injection;
+import xuk.imaginary.data.source.GankRepository;
+import xuk.imaginary.data.source.NetsRepository;
+import xuk.imaginary.gui.gank.meizhi.MeiZhiViewModule;
+import xuk.imaginary.gui.gank.show.GankViewModule;
+import xuk.imaginary.gui.nets.detail.NetsOneViewModule;
+import xuk.imaginary.gui.nets.news.NewsListViewModule;
+import xuk.imaginary.gui.nets.video.VideosViewModule;
 
 import org.jetbrains.annotations.NotNull;
 

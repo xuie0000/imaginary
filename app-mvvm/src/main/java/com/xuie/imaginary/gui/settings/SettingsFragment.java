@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.settings;
+package xuk.imaginary.gui.settings;
 
 
 import android.content.SharedPreferences;

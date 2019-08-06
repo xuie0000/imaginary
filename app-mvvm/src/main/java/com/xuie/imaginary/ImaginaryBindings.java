@@ -1,4 +1,4 @@
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 import android.content.Context;
 import android.text.Html;
@@ -11,16 +11,16 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.NetsDetail;
-import com.xuie.imaginary.data.NetsSummary;
-import com.xuie.imaginary.data.VideoBean;
-import com.xuie.imaginary.gui.gank.meizhi.MeiZhiAdapter;
-import com.xuie.imaginary.gui.gank.show.ExpandableItemAdapter;
-import com.xuie.imaginary.gui.nets.news.NewsListAdapter;
-import com.xuie.imaginary.gui.nets.video.VideosAdapter;
-import com.xuie.imaginary.util.GlideUtils;
-import com.xuie.imaginary.widget.UrlImageGetter;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.data.NetsDetail;
+import xuk.imaginary.data.NetsSummary;
+import xuk.imaginary.data.VideoBean;
+import xuk.imaginary.gui.gank.meizhi.MeiZhiAdapter;
+import xuk.imaginary.gui.gank.show.ExpandableItemAdapter;
+import xuk.imaginary.gui.nets.news.NewsListAdapter;
+import xuk.imaginary.gui.nets.video.VideosAdapter;
+import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.widget.UrlImageGetter;
 
 import java.util.ArrayList;
 import java.util.List;

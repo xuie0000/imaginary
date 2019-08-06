@@ -1,10 +1,10 @@
-package com.xuie.imaginary.di;
+package xuk.imaginary.di;
 
 import android.app.Application;
 
-import com.xuie.imaginary.ToDoApplication;
-import com.xuie.imaginary.data.source.GankRepository;
-import com.xuie.imaginary.data.source.GankRepositoryModule;
+import xuk.imaginary.ToDoApplication;
+import xuk.imaginary.data.source.GankRepository;
+import xuk.imaginary.data.source.GankRepositoryModule;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.gank.meizhi;
+package xuk.imaginary.gui.gank.meizhi;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.databinding.FragmentMeizhiBinding;
-import com.xuie.imaginary.gui.MainActivity;
-import com.xuie.imaginary.gui.gank.show.GankActivity;
-import com.xuie.imaginary.util.DateUtils;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.databinding.FragmentMeizhiBinding;
+import xuk.imaginary.gui.MainActivity;
+import xuk.imaginary.gui.gank.show.GankActivity;
+import xuk.imaginary.util.DateUtils;
 
 import java.util.ArrayList;
 

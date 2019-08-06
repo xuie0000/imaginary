@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.video;
+package xuk.imaginary.gui.nets.video;
 
 import android.app.Application;
 
@@ -7,8 +7,8 @@ import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.xuie.imaginary.data.VideoBean;
-import com.xuie.imaginary.data.source.NetsRepository;
+import xuk.imaginary.data.VideoBean;
+import xuk.imaginary.data.source.NetsRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

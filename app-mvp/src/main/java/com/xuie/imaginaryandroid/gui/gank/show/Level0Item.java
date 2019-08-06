@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.gank.show;
+package xuk.imaginary.gui.gank.show;
 
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;

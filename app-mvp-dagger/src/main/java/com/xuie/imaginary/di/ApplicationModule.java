@@ -1,4 +1,4 @@
-package com.xuie.imaginary.di;
+package xuk.imaginary.di;
 
 import android.app.Application;
 import android.content.Context;

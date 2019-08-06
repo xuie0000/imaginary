@@ -1,4 +1,4 @@
-package com.xuie.imaginary.base;
+package xuk.imaginary.base;
 
 import android.os.Build;
 import android.view.View;

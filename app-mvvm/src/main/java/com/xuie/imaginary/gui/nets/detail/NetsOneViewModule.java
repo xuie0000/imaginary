@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.detail;
+package xuk.imaginary.gui.nets.detail;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.xuie.imaginary.data.NetsDetail;
-import com.xuie.imaginary.data.source.NetsRepository;
+import xuk.imaginary.data.NetsDetail;
+import xuk.imaginary.data.source.NetsRepository;
 
 import java.util.List;
 

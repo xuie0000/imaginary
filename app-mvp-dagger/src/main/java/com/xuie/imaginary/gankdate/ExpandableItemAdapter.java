@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gankdate;
+package xuk.imaginary.gankdate;
 
 import android.content.Intent;
 import android.text.Html;
@@ -8,10 +8,10 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.ToDoApplication;
-import com.xuie.imaginary.util.GlideUtils;
-import com.xuie.imaginary.web.WebViewActivity;
+import xuk.imaginary.R;
+import xuk.imaginary.ToDoApplication;
+import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.web.WebViewActivity;
 
 import java.util.List;
 

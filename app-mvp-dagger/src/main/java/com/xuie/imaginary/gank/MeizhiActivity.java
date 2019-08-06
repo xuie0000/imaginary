@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gank;
+package xuk.imaginary.gank;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.util.ActivityUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.util.ActivityUtils;
 
 import javax.inject.Inject;
 

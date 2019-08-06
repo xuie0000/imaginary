@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.news;
+package xuk.imaginary.gui.nets.news;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.NetsSummary;
-import com.xuie.imaginary.util.GlideUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.data.NetsSummary;
+import xuk.imaginary.util.GlideUtils;
 
 import java.util.List;
 

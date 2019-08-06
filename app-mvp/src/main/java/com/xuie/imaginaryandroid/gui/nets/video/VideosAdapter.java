@@ -1,12 +1,12 @@
-package com.xuie.imaginary.gui.nets.video;
+package xuk.imaginary.gui.nets.video;
 
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.VideoBean;
-import com.xuie.imaginary.util.GlideUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.data.VideoBean;
+import xuk.imaginary.util.GlideUtils;
 
 import java.util.List;
 

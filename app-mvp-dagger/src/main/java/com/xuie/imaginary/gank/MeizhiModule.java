@@ -1,7 +1,7 @@
-package com.xuie.imaginary.gank;
+package xuk.imaginary.gank;
 
-import com.xuie.imaginary.di.ActivityScoped;
-import com.xuie.imaginary.di.FragmentScoped;
+import xuk.imaginary.di.ActivityScoped;
+import xuk.imaginary.di.FragmentScoped;
 
 import dagger.Binds;
 import dagger.Module;

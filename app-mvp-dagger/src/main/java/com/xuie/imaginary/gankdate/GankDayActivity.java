@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gankdate;
+package xuk.imaginary.gankdate;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -11,10 +11,10 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.util.GlideUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.data.GankBean;
+import xuk.imaginary.util.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;

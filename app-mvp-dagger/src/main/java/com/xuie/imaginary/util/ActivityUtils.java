@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xuie.imaginary.util;
+package xuk.imaginary.util;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

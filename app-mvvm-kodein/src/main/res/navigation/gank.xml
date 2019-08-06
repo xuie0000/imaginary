@@ -6,7 +6,7 @@
     app:startDestination="@id/meizhi">
     <fragment
         android:id="@+id/meizhi"
-        android:name="com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment"
+        android:name="xuk.imaginary.gui.gank.meizhi.MeizhiFragment"
         android:label="meizhi fragment"
         tools:layout="@layout/fragment_meizhi">
         <!--

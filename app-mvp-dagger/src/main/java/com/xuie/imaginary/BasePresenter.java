@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xuie.imaginary;
+package xuk.imaginary;
 
 public interface BasePresenter<T> {
 

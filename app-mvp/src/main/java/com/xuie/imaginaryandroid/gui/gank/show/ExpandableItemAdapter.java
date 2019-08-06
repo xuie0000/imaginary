@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.gank.show;
+package xuk.imaginary.gui.gank.show;
 
 import android.content.Intent;
 import android.text.Html;
@@ -8,10 +8,10 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.app.App;
-import com.xuie.imaginary.gui.web.WebViewActivity;
-import com.xuie.imaginary.util.GlideUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.app.App;
+import xuk.imaginary.gui.web.WebViewActivity;
+import xuk.imaginary.util.GlideUtils;
 
 import java.util.List;
 

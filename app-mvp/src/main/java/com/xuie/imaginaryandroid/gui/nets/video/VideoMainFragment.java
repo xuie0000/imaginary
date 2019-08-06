@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.video;
+package xuk.imaginary.gui.nets.video;
 
 
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.xuie.imaginary.R;
+import xuk.imaginary.R;
 
 import java.util.Arrays;
 import java.util.List;

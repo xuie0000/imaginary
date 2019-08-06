@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gank;
+package xuk.imaginary.gank;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.di.ActivityScoped;
-import com.xuie.imaginary.gankdate.GankDayActivity;
-import com.xuie.imaginary.util.DateUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.di.ActivityScoped;
+import xuk.imaginary.gankdate.GankDayActivity;
+import xuk.imaginary.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;

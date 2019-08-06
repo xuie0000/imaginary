@@ -1,10 +1,10 @@
-package com.xuie.imaginary.gui.gank.show;
+package xuk.imaginary.gui.gank.show;
 
-import com.xuie.imaginary.data.source.GankRepository;
+import xuk.imaginary.data.source.GankRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-import static com.xuie.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.util.Utils.checkNotNull;
 
 /**
  * @author xuie

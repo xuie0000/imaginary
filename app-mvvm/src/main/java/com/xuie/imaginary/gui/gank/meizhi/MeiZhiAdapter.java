@@ -1,9 +1,9 @@
-package com.xuie.imaginary.gui.gank.meizhi;
+package xuk.imaginary.gui.gank.meizhi;
 
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.base.BaseDataBindingAdapter;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.databinding.ItemFragmentMeizhiBinding;
+import xuk.imaginary.R;
+import xuk.imaginary.base.BaseDataBindingAdapter;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.databinding.ItemFragmentMeizhiBinding;
 
 import java.util.List;
 

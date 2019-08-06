@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.xuie.imaginary.data;
+package xuk.imaginary.data;
 
-import com.xuie.imaginary.data.source.GankRepository;
+import xuk.imaginary.data.source.GankRepository;
 
 /**
  * Enables injection of mock implementations for
- * {@link com.xuie.imaginary.data.source.GankSource} at compile time. This is useful for testing, since it allows us to use
+ * {@link xuk.imaginary.data.source.GankSource} at compile time. This is useful for testing, since it allows us to use
  * a fake instance of the class to isolate the dependencies and run a test hermetically.
  *
  * @author xuie

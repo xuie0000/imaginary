@@ -1,13 +1,13 @@
-package com.xuie.imaginary.data.source.remote;
+package xuk.imaginary.data.source.remote;
 
 import android.util.Log;
 
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.data.api.GankApi;
-import com.xuie.imaginary.data.api.ServiceGenerator;
-import com.xuie.imaginary.data.source.GankSource;
-import com.xuie.imaginary.data.福利s;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.data.GankBean;
+import xuk.imaginary.data.api.GankApi;
+import xuk.imaginary.data.api.ServiceGenerator;
+import xuk.imaginary.data.source.GankSource;
+import xuk.imaginary.data.福利s;
 
 import java.util.ArrayList;
 import java.util.List;

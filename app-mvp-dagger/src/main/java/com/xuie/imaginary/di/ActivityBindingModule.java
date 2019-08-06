@@ -1,9 +1,9 @@
-package com.xuie.imaginary.di;
+package xuk.imaginary.di;
 
-import com.xuie.imaginary.gank.MeizhiActivity;
-import com.xuie.imaginary.gank.MeizhiModule;
-import com.xuie.imaginary.gankdate.GankDayActivity;
-import com.xuie.imaginary.gankdate.GankModule;
+import xuk.imaginary.gank.MeizhiActivity;
+import xuk.imaginary.gank.MeizhiModule;
+import xuk.imaginary.gankdate.GankDayActivity;
+import xuk.imaginary.gankdate.GankModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

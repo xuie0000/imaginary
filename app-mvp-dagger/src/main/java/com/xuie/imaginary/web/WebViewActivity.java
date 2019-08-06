@@ -1,4 +1,4 @@
-package com.xuie.imaginary.web;
+package xuk.imaginary.web;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -9,7 +9,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.xuie.imaginary.R;
+import xuk.imaginary.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

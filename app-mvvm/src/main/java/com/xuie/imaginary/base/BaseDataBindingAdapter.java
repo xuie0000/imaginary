@@ -1,4 +1,4 @@
-package com.xuie.imaginary.base;
+package xuk.imaginary.base;
 
 import android.view.View;
 import android.view.ViewGroup;

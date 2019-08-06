@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.web;
+package xuk.imaginary.gui.web;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.databinding.ActivityWebviewBinding;
+import xuk.imaginary.R;
+import xuk.imaginary.databinding.ActivityWebviewBinding;
 
 /**
  * @author xuie

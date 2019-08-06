@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.gank.show;
+package xuk.imaginary.gui.gank.show;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,12 +8,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.BaseBean;
-import com.xuie.imaginary.data.GankBean;
-import com.xuie.imaginary.data.source.GankRepository;
-import com.xuie.imaginary.gui.BaseActivity;
-import com.xuie.imaginary.util.GlideUtils;
+import xuk.imaginary.R;
+import xuk.imaginary.data.BaseBean;
+import xuk.imaginary.data.GankBean;
+import xuk.imaginary.data.source.GankRepository;
+import xuk.imaginary.gui.BaseActivity;
+import xuk.imaginary.util.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.xuie.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.util.Utils.checkNotNull;
 
 /**
  * @author xuie

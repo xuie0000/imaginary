@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui;
+package xuk.imaginary.gui;
 
 import android.graphics.Color;
 import android.os.Build;

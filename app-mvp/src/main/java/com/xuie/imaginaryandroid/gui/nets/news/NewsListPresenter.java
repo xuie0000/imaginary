@@ -1,10 +1,10 @@
-package com.xuie.imaginary.gui.nets.news;
+package xuk.imaginary.gui.nets.news;
 
-import com.xuie.imaginary.data.source.NetsRepository;
+import xuk.imaginary.data.source.NetsRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-import static com.xuie.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.util.Utils.checkNotNull;
 
 /**
  * @author xuie

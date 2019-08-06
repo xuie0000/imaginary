@@ -1,4 +1,4 @@
-package com.xuie.imaginary.util;
+package xuk.imaginary.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

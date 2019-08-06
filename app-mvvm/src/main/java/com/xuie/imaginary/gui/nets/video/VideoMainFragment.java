@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.video;
+package xuk.imaginary.gui.nets.video;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.databinding.FragmentVideoMainBinding;
+import xuk.imaginary.R;
+import xuk.imaginary.databinding.FragmentVideoMainBinding;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.detail;
+package xuk.imaginary.gui.nets.detail;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,12 +23,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.anzewei.parallaxbacklayout.ParallaxBack;
-import com.xuie.imaginary.R;
-import com.xuie.imaginary.data.NetsDetail;
-import com.xuie.imaginary.data.source.NetsRepository;
-import com.xuie.imaginary.util.GlideUtils;
-import com.xuie.imaginary.util.TimeUtils;
-import com.xuie.imaginary.widget.UrlImageGetter;
+import xuk.imaginary.R;
+import xuk.imaginary.data.NetsDetail;
+import xuk.imaginary.data.source.NetsRepository;
+import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.util.TimeUtils;
+import xuk.imaginary.widget.UrlImageGetter;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +41,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.xuie.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.util.Utils.checkNotNull;
 
 /**
  * @author xuie

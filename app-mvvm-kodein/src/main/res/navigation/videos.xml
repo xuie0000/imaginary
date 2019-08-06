@@ -6,7 +6,7 @@
     app:startDestination="@id/video">
     <fragment
         android:id="@+id/video"
-        android:name="com.xuie.imaginary.gui.nets.video.VideoMainFragment"
+        android:name="xuk.imaginary.gui.nets.video.VideoMainFragment"
         android:label="video fragment"
         tools:layout="@layout/fragment_video_main">
         <!--

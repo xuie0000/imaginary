@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gui.nets.video;
+package xuk.imaginary.gui.nets.video;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
-import com.xuie.imaginary.databinding.FragmentVideosBinding;
-import com.xuie.imaginary.gui.MainActivity;
+import xuk.imaginary.databinding.FragmentVideosBinding;
+import xuk.imaginary.gui.MainActivity;
 
 import java.util.ArrayList;
 

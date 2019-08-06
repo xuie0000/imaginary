@@ -1,9 +1,9 @@
-package com.xuie.imaginary.gank;
+package xuk.imaginary.gank;
 
 import android.support.annotation.Nullable;
 
-import com.xuie.imaginary.data.source.GankRepository;
-import com.xuie.imaginary.di.ActivityScoped;
+import xuk.imaginary.data.source.GankRepository;
+import xuk.imaginary.di.ActivityScoped;
 
 import javax.inject.Inject;
 

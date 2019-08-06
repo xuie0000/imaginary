@@ -1,8 +1,8 @@
-package com.xuie.imaginary.gui.nets.video;
+package xuk.imaginary.gui.nets.video;
 
-import com.xuie.imaginary.BasePresenter;
-import com.xuie.imaginary.BaseView;
-import com.xuie.imaginary.data.VideoBean;
+import xuk.imaginary.BasePresenter;
+import xuk.imaginary.BaseView;
+import xuk.imaginary.data.VideoBean;
 
 import java.util.List;
 

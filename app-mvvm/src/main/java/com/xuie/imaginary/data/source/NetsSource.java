@@ -1,8 +1,8 @@
-package com.xuie.imaginary.data.source;
+package xuk.imaginary.data.source;
 
-import com.xuie.imaginary.data.NetsDetail;
-import com.xuie.imaginary.data.NetsSummary;
-import com.xuie.imaginary.data.VideoBean;
+import xuk.imaginary.data.NetsDetail;
+import xuk.imaginary.data.NetsSummary;
+import xuk.imaginary.data.VideoBean;
 
 import java.util.List;
 

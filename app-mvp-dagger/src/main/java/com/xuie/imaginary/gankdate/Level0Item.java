@@ -1,4 +1,4 @@
-package com.xuie.imaginary.gankdate;
+package xuk.imaginary.gankdate;
 
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
