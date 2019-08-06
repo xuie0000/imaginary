@@ -16,8 +16,9 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import kotlinx.android.synthetic.main.fragment_meizhi.*
+import xuk.imaginary.R
 import xuk.imaginary.data.BaseBean
-import xuk.imaginary.databinding.FragmentMeizhiBinding
 import xuk.imaginary.gui.MainActivity
 import xuk.imaginary.gui.gank.show.GankActivity
 import xuk.imaginary.util.DateUtils
@@ -30,20 +31,22 @@ import java.util.*
  */
 class MeizhiFragment : Fragment() {
 
-  private lateinit var binding: FragmentMeizhiBinding
   private lateinit var meiZhiViewModule: MeiZhiViewModule
 
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
     Log.d(TAG, "onCreateView")
-    binding = FragmentMeizhiBinding.inflate(inflater, container, false)
-    meiZhiViewModule = MainActivity.obtainViewModel(activity!!)
-    binding.viewmodule = meiZhiViewModule
-    return binding.root
+    return inflater.inflate(R.layout.fragment_meizhi, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     Log.d(TAG, "onViewCreated")
+    meiZhiViewModule = MainActivity.obtainViewModel(activity!!)
+
     val layoutManager = FlexboxLayoutManager(context).apply {
       // http://shinelw.com/2017/04/13/flexbox-layout-analysis/
       // 水平
@@ -54,13 +57,16 @@ class MeizhiFragment : Fragment() {
       // 主轴起点对齐
       alignItems = AlignItems.FLEX_START
     }
-    binding.recyclerView.layoutManager = layoutManager
+    recyclerView.layoutManager = layoutManager
 
     val meiZhiAdapter = MeiZhiAdapter(ArrayList()).apply {
       openLoadAnimation(BaseQuickAdapter.ALPHAIN)
       isFirstOnly(true)
     }
-    binding.recyclerView.adapter = meiZhiAdapter
+    recyclerView.adapter = meiZhiAdapter
+    meiZhiViewModule.items.observe(this, androidx.lifecycle.Observer {
+      meiZhiAdapter.replaceData(it)
+    })
 
     meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
       val fl = adapter.data[position] as BaseBean
@@ -73,7 +79,7 @@ class MeizhiFragment : Fragment() {
       ActivityCompat.startActivity(activity!!, intent, options.toBundle())
     }
 
-    binding.materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
+    materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
       override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
         meiZhiViewModule.getList(true)
         materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefresh() }, 1000)
@@ -82,7 +88,7 @@ class MeizhiFragment : Fragment() {
       override fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout?) {
         super.onRefreshLoadMore(materialRefreshLayout)
         meiZhiViewModule.getList(false)
-        materialRefreshLayout!!.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
+        materialRefreshLayout?.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
       }
     })
     meiZhiViewModule.start()

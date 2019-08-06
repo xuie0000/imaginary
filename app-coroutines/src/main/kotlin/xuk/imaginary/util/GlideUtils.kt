@@ -17,46 +17,6 @@ import xuk.imaginary.R
  */
 object GlideUtils {
 
-  fun loadImageNetsVideo(context: Context, url: String, imageView: ImageView) {
-    Glide.with(context)
-        .load(url)
-        .apply(RequestOptions().fitCenter()
-            .placeholder(R.mipmap.ic_empty_picture)
-            .error(R.mipmap.ic_empty_picture)
-            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-            .centerCrop()
-        )
-        .transition(withCrossFade())
-        .into(imageView)
-  }
-
-  fun loadImageNetsList(context: Context, url: String, imageView: ImageView) {
-    Glide.with(context)
-        .load(url)
-        .apply(RequestOptions()
-            .placeholder(R.mipmap.ic_empty_picture)
-            .error(R.mipmap.ic_empty_picture)
-            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-            .override(300, 300)
-            .centerInside()
-        )
-        .transition(withCrossFade())
-        .into(imageView)
-  }
-
-  fun loadImageNetsPhone(context: Context, url: String, imageView: ImageView) {
-    Glide.with(context)
-        .load(url)
-        .apply(RequestOptions().fitCenter()
-            .placeholder(R.mipmap.ic_empty_picture)
-            .error(R.mipmap.ic_empty_picture)
-            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-            .centerCrop()
-        )
-        .transition(withCrossFade())
-        .into(imageView)
-  }
-
   fun loadImageMeizhiDetail(context: Context, url: String, imageView: ImageView) {
     Glide.with(context)
         .load(url)

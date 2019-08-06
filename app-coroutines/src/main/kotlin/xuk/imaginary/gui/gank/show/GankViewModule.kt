@@ -2,15 +2,13 @@ package xuk.imaginary.gui.gank.show
 
 import android.app.Application
 import android.util.Log
-import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableField
-import androidx.databinding.ObservableList
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import xuk.imaginary.data.GankBean
-import xuk.imaginary.data.source.GankRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import xuk.imaginary.data.GankBean
+import xuk.imaginary.data.source.GankRepository
 import java.util.*
 
 /**
@@ -20,29 +18,23 @@ import java.util.*
 class GankViewModule(application: Application, private val gankRepository: GankRepository)
   : AndroidViewModel(application) {
 
-  val imageUrl = ObservableField<String>()
-  val dateString = ObservableField<String>()
-
-  val multiItems: ObservableList<MultiItemEntity> = ObservableArrayList()
+  val multiItems: MutableLiveData<List<MultiItemEntity>> = MutableLiveData()
   private var disposable: Disposable? = null
 
-  fun getGank(date: String) {
+  fun requestGank(date: String) {
     clear()
     disposable = gankRepository.getDay(date)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({ gb ->
           val entities = generateData(gb)
-          multiItems.clear()
-          multiItems.addAll(entities)
+          multiItems.value = entities
           Log.d(TAG, "entities.size():" + entities.size)
         }, { e -> e.printStackTrace() })
   }
 
   private fun clear() {
-    if (disposable != null) {
-      disposable!!.dispose()
-      disposable = null
-    }
+    disposable?.dispose()
+    disposable = null
   }
 
 

@@ -2,13 +2,12 @@ package xuk.imaginary.gui.gank.meizhi
 
 import android.app.Application
 import android.util.Log
-import androidx.databinding.ObservableArrayList
-import androidx.databinding.ObservableList
 import androidx.lifecycle.AndroidViewModel
-import xuk.imaginary.data.BaseBean
-import xuk.imaginary.data.source.GankRepository
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import xuk.imaginary.data.BaseBean
+import xuk.imaginary.data.source.GankRepository
 
 /**
  * @author Jie Xu
@@ -16,7 +15,7 @@ import io.reactivex.disposables.Disposable
  */
 class MeiZhiViewModule(application: Application, private val gankRepository: GankRepository) : AndroidViewModel(application) {
 
-  val items: ObservableList<BaseBean> = ObservableArrayList()
+  val items: MutableLiveData<List<BaseBean>> = MutableLiveData()
   private var currentPage = 1
   private var disposable: Disposable? = null
   private var isRefresh = true
@@ -47,9 +46,9 @@ class MeiZhiViewModule(application: Application, private val gankRepository: Gan
         .subscribe({ meiZhiList ->
           isRequesting = false
           if (isRefresh) {
-            items.clear()
+            items.value = null
           }
-          items.addAll(meiZhiList)
+          items.value = meiZhiList
         }, { throwable ->
           isRequesting = false
           throwable.printStackTrace()

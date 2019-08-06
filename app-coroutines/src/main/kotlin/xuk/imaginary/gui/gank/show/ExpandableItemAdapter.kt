@@ -61,16 +61,7 @@ internal constructor(data: List<MultiItemEntity>) : BaseMultiItemQuickAdapter<Mu
         val lv0 = item as Level0Item
         helper.setText(android.R.id.text1, lv0.type)
       }
-    }// 展开与闭合
-    //                helper.itemView.setOnClickListener(v -> {
-    //                    int pos = helper.getAdapterPosition();
-    //                    if (lv0.isExpanded()) {
-    //                        collapse(pos);
-    //                    } else {
-    //                        expand(pos);
-    //                    }
-    //                });
-
+    }
   }
 
   companion object {

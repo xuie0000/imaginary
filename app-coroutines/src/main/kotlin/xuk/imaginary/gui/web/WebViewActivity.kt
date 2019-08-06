@@ -7,10 +7,8 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-
+import kotlinx.android.synthetic.main.activity_webview.*
 import xuk.imaginary.R
-import xuk.imaginary.databinding.ActivityWebviewBinding
 
 /**
  * @author Jie Xu
@@ -20,18 +18,18 @@ class WebViewActivity : AppCompatActivity() {
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val binding = DataBindingUtil.setContentView<ActivityWebviewBinding>(this, R.layout.activity_webview)
+    setContentView(R.layout.activity_webview)
 
     val url = intent.getStringExtra(URL)
 
     // Configure related browser settings
-    binding.webView.settings.loadsImagesAutomatically = true
-    binding.webView.settings.javaScriptEnabled = true
-    binding.webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+    webView.settings.loadsImagesAutomatically = true
+    webView.settings.javaScriptEnabled = true
+    webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
     // Configure the client to use when opening URLs
-    binding.webView.webViewClient = MyBrowser()
+    webView.webViewClient = MyBrowser()
     // Load the initial URL
-    binding.webView.loadUrl(url)
+    webView.loadUrl(url)
   }
 
   /**

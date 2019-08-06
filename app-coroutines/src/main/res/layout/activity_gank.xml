@@ -1,42 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gui.gank.show.GankActivity">
 
-    <data>
-
-        <variable
-            name="viewmodule"
-            type="xuk.imaginary.gui.gank.show.GankViewModule" />
-    </data>
-
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".gui.gank.show.GankActivity">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/gkDaily"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:transitionName="shareObject"
+            tools:imageUrl="@{viewmodule.imageUrl}" />
 
-            <com.github.chrisbanes.photoview.PhotoView
-                android:id="@+id/gank_daily"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:transitionName="shareObject"
-                app:imageUrl="@{viewmodule.imageUrl}" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:scrollbars="none"
+            tools:multiItems="@{viewmodule.multiItems}" />
+    </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:scrollbars="none"
-                app:multiItems="@{viewmodule.multiItems}" />
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</layout>
+</androidx.core.widget.NestedScrollView>
 

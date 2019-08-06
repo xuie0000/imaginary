@@ -28,9 +28,6 @@ import xuk.imaginary.data.source.GankRepository
 import xuk.imaginary.data.source.NetsRepository
 import xuk.imaginary.gui.gank.meizhi.MeiZhiViewModule
 import xuk.imaginary.gui.gank.show.GankViewModule
-import xuk.imaginary.gui.nets.detail.NetsOneViewModule
-import xuk.imaginary.gui.nets.news.NewsListViewModule
-import xuk.imaginary.gui.nets.video.VideosViewModule
 
 /**
  * A creator is used to inject the product ID into the ViewModel
@@ -48,9 +45,6 @@ class ViewModelFactory private constructor(private val mApplication: Application
     return when {
       modelClass.isAssignableFrom(MeiZhiViewModule::class.java) -> MeiZhiViewModule(mApplication, mGankRepository) as T
       modelClass.isAssignableFrom(GankViewModule::class.java) -> GankViewModule(mApplication, mGankRepository) as T
-      modelClass.isAssignableFrom(NewsListViewModule::class.java) -> NewsListViewModule(mApplication, mNetsRepository) as T
-      modelClass.isAssignableFrom(NetsOneViewModule::class.java) -> NetsOneViewModule(mApplication, mNetsRepository) as T
-      modelClass.isAssignableFrom(VideosViewModule::class.java) -> VideosViewModule(mApplication, mNetsRepository) as T
       else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
   }
