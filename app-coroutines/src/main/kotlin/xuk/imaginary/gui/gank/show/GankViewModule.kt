@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.chad.library.adapter.base.entity.MultiItemEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import xuk.imaginary.data.GankBean
@@ -18,7 +17,7 @@ import java.util.*
 class GankViewModule(application: Application, private val gankRepository: GankRepository)
   : AndroidViewModel(application) {
 
-  val multiItems: MutableLiveData<List<MultiItemEntity>> = MutableLiveData()
+  val multiItems: MutableLiveData<List<MulItem>> = MutableLiveData()
   private var disposable: Disposable? = null
 
   fun requestGank(date: String) {
@@ -29,6 +28,9 @@ class GankViewModule(application: Application, private val gankRepository: GankR
           val entities = generateData(gb)
           multiItems.value = entities
           Log.d(TAG, "entities.size():" + entities.size)
+          for (tt in entities) {
+            Log.d(TAG, "desc:${tt.subItems[0].articleName}")
+          }
         }, { e -> e.printStackTrace() })
   }
 
@@ -38,8 +40,8 @@ class GankViewModule(application: Application, private val gankRepository: GankR
   }
 
 
-  private fun generateData(gb: GankBean): List<MultiItemEntity> {
-    val entities = ArrayList<MultiItemEntity>()
+  private fun generateData(gb: GankBean): List<MulItem> {
+    val entities = ArrayList<MulItem>()
     loop@ for (s in gb.category) {
       val lv0 = Level0Item()
       lv0.type = s
@@ -50,16 +52,18 @@ class GankViewModule(application: Application, private val gankRepository: GankR
         "iOS" -> bbs = gb.results.iOS
         "休息视频" -> bbs = gb.results.休息视频
         "福利" ->
-          //                bbs = gb.getResults().get福利()
+          // bbs = gb.getResults().get福利()
           continue@loop
         "前端" -> bbs = gb.results.前端
         "拓展资源" -> bbs = gb.results.拓展资源
         else -> {
         }
       }
+      Log.d(TAG, "V0:$s")
       for (ab in bbs) {
         val lv1 = Level1Item()
         lv1.articleName = ab.desc
+        Log.d(TAG, "  V1: " + ab.desc)
         lv1.articleUrl = ab.url
         lv1.author = ab.who
         if (ab.images != null && ab.images!!.isNotEmpty()) {

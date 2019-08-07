@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.chad.library.adapter.base.entity.MultiItemEntity
 import xuk.imaginary.R
 import xuk.imaginary.app.App
 import xuk.imaginary.gui.web.WebViewActivity
@@ -24,21 +23,33 @@ class ExpandableItemAdapter
  *
  * @param data A new list is created out of this one to avoid mutable list
  */
-internal constructor(data: List<MultiItemEntity>) : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(data) {
+internal constructor(data: List<MulItem>) : BaseMultiItemQuickAdapter<MulItem, BaseViewHolder>(data) {
 
   init {
     addItemType(TYPE_LEVEL_0, android.R.layout.test_list_item)
     addItemType(TYPE_LEVEL_1, R.layout.item_activity_gank_content)
   }
 
-  override fun convert(helper: BaseViewHolder, item: MultiItemEntity) {
+  override fun convert(helper: BaseViewHolder, item: MulItem) {
     when (helper.itemViewType) {
       TYPE_LEVEL_0 -> {
         val lv0 = item as Level0Item
         helper.setText(android.R.id.text1, lv0.type)
+//        expand(helper.adapterPosition)
+        Log.d(TAG, "v0: ${lv0.type}")
+        helper.itemView.setOnClickListener {
+          val pos = helper.adapterPosition
+          Log.d(TAG, "Level 0 item pos: $pos , ${lv0.isExpanded}")
+          if (lv0.isExpanded) {
+            collapse(pos)
+          } else {
+            expand(pos)
+          }
+        }
       }
       TYPE_LEVEL_1 -> {
         val lv1 = item as Level1Item
+        Log.d(TAG, "v1:" + lv1.articleName)
         val webLink = String.format("<a href=\\'%s\\'> %s</a>",
             lv1.articleUrl, lv1.articleName)
         //                helper.setText(R.id.articleName, lv1.getArticleName())
@@ -59,6 +70,7 @@ internal constructor(data: List<MultiItemEntity>) : BaseMultiItemQuickAdapter<Mu
       }
       else -> {
         val lv0 = item as Level0Item
+        Log.d(TAG, "vx: ${lv0.type}")
         helper.setText(android.R.id.text1, lv0.type)
       }
     }

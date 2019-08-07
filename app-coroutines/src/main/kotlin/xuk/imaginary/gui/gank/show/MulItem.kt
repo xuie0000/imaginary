@@ -7,7 +7,23 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
  * @author Jie Xu
  * @date 17-8-15
  */
-class Level1Item : AbstractExpandableItem<Level1Item>(), MultiItemEntity {
+class Level0Item : MulItem() {
+  var type: String? = null
+
+  override fun getLevel(): Int {
+    return 0
+  }
+
+  override fun getItemType(): Int {
+    return ExpandableItemAdapter.TYPE_LEVEL_0
+  }
+
+  override fun isExpanded(): Boolean {
+    return true
+  }
+}
+
+class Level1Item : MulItem() {
   var articleName: String? = null
   var articleUrl: String? = null
   var author: String? = null
@@ -20,4 +36,10 @@ class Level1Item : AbstractExpandableItem<Level1Item>(), MultiItemEntity {
   override fun getItemType(): Int {
     return ExpandableItemAdapter.TYPE_LEVEL_1
   }
+
+  override fun isExpanded(): Boolean {
+    return true
+  }
 }
+
+abstract class MulItem : AbstractExpandableItem<Level1Item>(), MultiItemEntity

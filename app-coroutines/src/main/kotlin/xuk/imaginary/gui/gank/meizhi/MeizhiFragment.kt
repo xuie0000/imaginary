@@ -65,7 +65,9 @@ class MeizhiFragment : Fragment() {
     }
     recyclerView.adapter = meiZhiAdapter
     meiZhiViewModule.items.observe(this, androidx.lifecycle.Observer {
-      meiZhiAdapter.replaceData(it)
+      it?.apply {
+        meiZhiAdapter.replaceData(it)
+      }
     })
 
     meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
