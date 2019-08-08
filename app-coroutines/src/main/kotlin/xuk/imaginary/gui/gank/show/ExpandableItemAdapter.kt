@@ -1,6 +1,7 @@
 package xuk.imaginary.gui.gank.show
 
 import android.content.Intent
+import android.os.Handler
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -35,11 +36,10 @@ internal constructor(data: List<MulItem>) : BaseMultiItemQuickAdapter<MulItem, B
       TYPE_LEVEL_0 -> {
         val lv0 = item as Level0Item
         helper.setText(android.R.id.text1, lv0.type)
-//        expand(helper.adapterPosition)
-        Log.d(TAG, "v0: ${lv0.type}")
+        // 默认展开二级 https://github.com/CymChad/BaseRecyclerViewAdapterHelper/issues/2174
+        Handler().post { expand(helper.adapterPosition) }
         helper.itemView.setOnClickListener {
           val pos = helper.adapterPosition
-          Log.d(TAG, "Level 0 item pos: $pos , ${lv0.isExpanded}")
           if (lv0.isExpanded) {
             collapse(pos)
           } else {
@@ -52,10 +52,9 @@ internal constructor(data: List<MulItem>) : BaseMultiItemQuickAdapter<MulItem, B
         Log.d(TAG, "v1:" + lv1.articleName)
         val webLink = String.format("<a href=\\'%s\\'> %s</a>",
             lv1.articleUrl, lv1.articleName)
-        //                helper.setText(R.id.articleName, lv1.getArticleName())
+        //helper.setText(R.id.articleName, lv1.getArticleName())
         helper.setText(R.id.articleName, Html.fromHtml(webLink))
         helper.getView<View>(R.id.articleName).setOnClickListener {
-          Log.d(TAG, "onClick...")
           val intent = Intent(App.context, WebViewActivity::class.java)
           intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
           intent.putExtra("url", lv1.articleUrl)

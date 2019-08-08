@@ -18,14 +18,11 @@ package xuk.imaginary
 
 import android.annotation.SuppressLint
 import android.app.Application
-
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-
 import xuk.imaginary.data.Injection
 import xuk.imaginary.data.source.GankRepository
-import xuk.imaginary.data.source.NetsRepository
 import xuk.imaginary.gui.gank.meizhi.MeiZhiViewModule
 import xuk.imaginary.gui.gank.show.GankViewModule
 
@@ -39,7 +36,7 @@ import xuk.imaginary.gui.gank.show.GankViewModule
  * @author google
  */
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory private constructor(private val mApplication: Application, private val mGankRepository: GankRepository, private val mNetsRepository: NetsRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val mApplication: Application, private val mGankRepository: GankRepository) : ViewModelProvider.NewInstanceFactory() {
 
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     return when {
@@ -57,8 +54,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
 
     fun getInstance(application: Application): ViewModelFactory? {
       return INSTANCE ?: ViewModelFactory(application,
-          Injection.provideGankRepository(),
-          Injection.provideNetsRepository()).apply { INSTANCE = this }
+          Injection.provideGankRepository()).apply { INSTANCE = this }
     }
 
     @VisibleForTesting

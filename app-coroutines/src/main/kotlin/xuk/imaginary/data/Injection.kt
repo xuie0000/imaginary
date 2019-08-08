@@ -17,7 +17,6 @@
 package xuk.imaginary.data
 
 import xuk.imaginary.data.source.GankRepository
-import xuk.imaginary.data.source.NetsRepository
 
 /**
  * Enables injection of mock implementations for
@@ -36,10 +35,6 @@ object Injection {
 
   fun provideGankRepository(): GankRepository {
     return GankRepository.getInstance()
-  }
-
-  fun provideNetsRepository(): NetsRepository {
-    return NetsRepository.getInstance()
   }
 
 }

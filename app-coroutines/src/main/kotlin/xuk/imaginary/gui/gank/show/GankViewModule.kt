@@ -27,10 +27,6 @@ class GankViewModule(application: Application, private val gankRepository: GankR
         .subscribe({ gb ->
           val entities = generateData(gb)
           multiItems.value = entities
-          Log.d(TAG, "entities.size():" + entities.size)
-          for (tt in entities) {
-            Log.d(TAG, "desc:${tt.subItems[0].articleName}")
-          }
         }, { e -> e.printStackTrace() })
   }
 
