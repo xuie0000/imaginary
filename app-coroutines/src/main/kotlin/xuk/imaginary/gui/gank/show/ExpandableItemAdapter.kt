@@ -37,7 +37,6 @@ internal constructor(data: List<MulItem>) : BaseMultiItemQuickAdapter<MulItem, B
         val lv0 = item as Level0Item
         helper.setText(android.R.id.text1, lv0.type)
         // 默认展开二级 https://github.com/CymChad/BaseRecyclerViewAdapterHelper/issues/2174
-        Handler().post { expand(helper.adapterPosition) }
         helper.itemView.setOnClickListener {
           val pos = helper.adapterPosition
           if (lv0.isExpanded) {
