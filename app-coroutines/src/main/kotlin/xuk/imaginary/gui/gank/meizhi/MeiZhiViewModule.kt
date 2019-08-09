@@ -72,9 +72,6 @@ class MeiZhiViewModule : ViewModel() {
     actor.close()
   }
 
-  fun end() {
-  }
-
   companion object {
     private const val TAG = "MeiZhiViewModule"
   }

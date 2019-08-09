@@ -48,7 +48,7 @@ class MeizhiFragment : Fragment() {
     Log.d(TAG, "onViewCreated")
     meiZhiViewModule = ViewModelProviders.of(this).get(MeiZhiViewModule::class.java)
 
-    val layoutManager = FlexboxLayoutManager(context).apply {
+    val flexLayoutManager = FlexboxLayoutManager(context).apply {
       // http://shinelw.com/2017/04/13/flexbox-layout-analysis/
       // 水平
       flexDirection = FlexDirection.ROW
@@ -58,13 +58,17 @@ class MeizhiFragment : Fragment() {
       // 主轴起点对齐
       alignItems = AlignItems.FLEX_START
     }
-    recyclerView.layoutManager = layoutManager
 
     val meiZhiAdapter = MeiZhiAdapter(ArrayList()).apply {
       openLoadAnimation(BaseQuickAdapter.ALPHAIN)
       isFirstOnly(true)
     }
-    recyclerView.adapter = meiZhiAdapter
+
+    recyclerView.apply {
+      adapter = meiZhiAdapter
+      layoutManager = flexLayoutManager
+    }
+
     meiZhiViewModule.items.observe(this, androidx.lifecycle.Observer {
       it?.apply {
         meiZhiAdapter.replaceData(it)
@@ -94,19 +98,12 @@ class MeizhiFragment : Fragment() {
         materialRefreshLayout?.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
       }
     })
-    meiZhiViewModule.start()
-  }
 
-  override fun onDestroyView() {
-    super.onDestroyView()
-    meiZhiViewModule.end()
+    meiZhiViewModule.start()
   }
 
   companion object {
     private const val TAG = "MeizhiFragment"
-
-    val instance: MeizhiFragment
-      get() = MeizhiFragment()
   }
 
 }
