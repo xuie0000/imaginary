@@ -1,42 +1,50 @@
 package xuk.imaginary.gui.gank.show
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import xuk.imaginary.data.GankBean
-import xuk.imaginary.data.source.GankRepository
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.actor
+import xuk.imaginary.data.Action
+import xuk.imaginary.data.GankIo
+import xuk.imaginary.data.Repository
+import xuk.imaginary.data.SelectDate
 import java.util.*
 
 /**
  * @author Jie Xu
  * @date 2019/1/28
  */
-class GankViewModule(application: Application, private val gankRepository: GankRepository)
-  : AndroidViewModel(application) {
+@ObsoleteCoroutinesApi
+class GankViewModule : ViewModel() {
 
-  val multiItems: MutableLiveData<List<MulItem>> = MutableLiveData()
-  private var disposable: Disposable? = null
+  private val mutableItems: MutableLiveData<List<MulItem>> = MutableLiveData()
+  val items: LiveData<List<MulItem>> = mutableItems
+
+  private val actor = GlobalScope.actor<Action>(Dispatchers.Main, Channel.CONFLATED) {
+    for (action in this) when (action) {
+      is SelectDate -> {
+        mutableItems.value = generateData(getDay(action.date))
+      }
+    }
+  }
 
   fun requestGank(date: String) {
-    clear()
-    disposable = gankRepository.getDay(date)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ gb ->
-          val entities = generateData(gb)
-          multiItems.value = entities
-        }, { e -> e.printStackTrace() })
+    action(SelectDate(date))
   }
 
-  private fun clear() {
-    disposable?.dispose()
-    disposable = null
+  fun action(action: Action) = actor.offer(action)
+
+  override fun onCleared() {
+    actor.close()
   }
 
 
-  private fun generateData(gb: GankBean): List<MulItem> {
+  private fun generateData(gb: GankIo.GankBean): List<MulItem> {
     val entities = ArrayList<MulItem>()
     loop@ for (s in gb.category) {
       val lv0 = Level0Item()
@@ -71,6 +79,8 @@ class GankViewModule(application: Application, private val gankRepository: GankR
     }
     return entities
   }
+
+  private suspend fun getDay(date: String) = Repository.getDay(date)
 
   companion object {
     private const val TAG = "GankViewModule"

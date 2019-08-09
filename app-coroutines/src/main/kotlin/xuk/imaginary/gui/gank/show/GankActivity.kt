@@ -2,13 +2,12 @@ package xuk.imaginary.gui.gank.show
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.activity_gank.*
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
-import xuk.imaginary.ViewModelFactory
 import xuk.imaginary.base.BaseActivity
 import xuk.imaginary.util.GlideUtils
 import java.util.*
@@ -16,6 +15,7 @@ import java.util.*
 /**
  * @author Jie Xu
  */
+@ObsoleteCoroutinesApi
 class GankActivity : BaseActivity() {
 
   private val adapter = ExpandableItemAdapter(ArrayList())
@@ -29,7 +29,7 @@ class GankActivity : BaseActivity() {
 
     Log.d(TAG, "onCreate: data - $date, image - $imageUrl")
 
-    val viewModule = obtainViewModel(this)
+    val viewModule = ViewModelProviders.of(this).get(GankViewModule::class.java)
     GlideUtils.loadImageMeizhi(this, imageUrl!!, gkDaily)
 
     recyclerView.adapter = adapter
@@ -37,7 +37,7 @@ class GankActivity : BaseActivity() {
     recyclerView.isNestedScrollingEnabled = false
     adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
 
-    viewModule.multiItems.observe(this, androidx.lifecycle.Observer {
+    viewModule.items.observe(this, androidx.lifecycle.Observer {
       adapter.replaceData(it)
     })
 
@@ -46,10 +46,5 @@ class GankActivity : BaseActivity() {
 
   companion object {
     private const val TAG = "GankActivity"
-
-    fun obtainViewModel(activity: FragmentActivity): GankViewModule {
-      val factory = ViewModelFactory.getInstance(activity.application)
-      return ViewModelProviders.of(activity, factory).get(GankViewModule::class.java)
-    }
   }
 }

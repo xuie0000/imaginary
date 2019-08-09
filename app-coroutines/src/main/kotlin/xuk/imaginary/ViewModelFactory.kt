@@ -21,8 +21,6 @@ import android.app.Application
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import xuk.imaginary.data.Injection
-import xuk.imaginary.data.source.GankRepository
 import xuk.imaginary.gui.gank.meizhi.MeiZhiViewModule
 import xuk.imaginary.gui.gank.show.GankViewModule
 
@@ -36,12 +34,12 @@ import xuk.imaginary.gui.gank.show.GankViewModule
  * @author google
  */
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory private constructor(private val mApplication: Application, private val mGankRepository: GankRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {
 
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     return when {
-      modelClass.isAssignableFrom(MeiZhiViewModule::class.java) -> MeiZhiViewModule(mApplication, mGankRepository) as T
-      modelClass.isAssignableFrom(GankViewModule::class.java) -> GankViewModule(mApplication, mGankRepository) as T
+      modelClass.isAssignableFrom(MeiZhiViewModule::class.java) -> MeiZhiViewModule(mApplication) as T
+      modelClass.isAssignableFrom(GankViewModule::class.java) -> GankViewModule(mApplication) as T
       else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
   }
@@ -53,8 +51,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
     private var INSTANCE: ViewModelFactory? = null
 
     fun getInstance(application: Application): ViewModelFactory? {
-      return INSTANCE ?: ViewModelFactory(application,
-          Injection.provideGankRepository()).apply { INSTANCE = this }
+      return INSTANCE ?: ViewModelFactory(application).apply { INSTANCE = this }
     }
 
     @VisibleForTesting

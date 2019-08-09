@@ -1,70 +1,78 @@
 package xuk.imaginary.gui.gank.meizhi
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import xuk.imaginary.data.BaseBean
-import xuk.imaginary.data.source.GankRepository
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.actor
+import xuk.imaginary.data.Action
+import xuk.imaginary.data.GankIo
+import xuk.imaginary.data.Repository
+import xuk.imaginary.data.SelectPage
 
 /**
  * @author Jie Xu
  * @date 2019/1/28
  */
-class MeiZhiViewModule(application: Application, private val gankRepository: GankRepository) : AndroidViewModel(application) {
+@ObsoleteCoroutinesApi
+class MeiZhiViewModule : ViewModel() {
 
-  val items: MutableLiveData<List<BaseBean>> = MutableLiveData()
-  private var currentPage = 1
-  private var disposable: Disposable? = null
-  private var isRefresh = true
-  private var isRequesting = false
+  private val mutableItems: MutableLiveData<List<GankIo.BaseBean>> = MutableLiveData()
 
-  internal fun start() {
-    getList(isRefresh)
-    isRefresh = false
+  var currentPage = 1
+  private var isRefresh: MutableLiveData<Boolean> = MutableLiveData(false)
+
+  val items: LiveData<List<GankIo.BaseBean>> = mutableItems
+
+  private val actor = GlobalScope.actor<Action>(Dispatchers.Main, Channel.CONFLATED) {
+    for (action in this) when (action) {
+      is SelectPage -> {
+        currentPage = action.page
+        isRefresh.value = action.refresh
+//        try {
+//          mutableCharts.value = cache.getFreshCharts(action.city) ?: getNewCharts(action.city)
+//        } catch (e: Exception) {
+//          mutableMessage.value = e.toString()
+//        }
+        mutableItems.value = getToday()
+      }
+    }
   }
 
-  internal fun getList(isRefresh: Boolean) {
-    Log.d(TAG, "getList: ...$isRefresh, $isRequesting")
-    // get local data
-    if (isRequesting) {
-      Log.d(TAG, "getList: requesting")
-      return
+  private suspend fun getToday() = Repository.get福利(currentPage).apply {
+    if (isRefresh.value!!) {
+      mutableItems.value = null
     }
+  }
+
+  internal fun start() {
+    refresh(isRefresh.value ?: false)
+    isRefresh.value = false
+  }
+
+  internal fun refresh(isRefresh: Boolean) {
+    Log.d(TAG, "refresh: ...")
+
     if (isRefresh) {
       currentPage = 1
     } else {
       currentPage++
     }
 
-    isRequesting = true
-    clear()
-    disposable = gankRepository.get福利(currentPage)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ meiZhiList ->
-          isRequesting = false
-          if (isRefresh) {
-            items.value = null
-          }
-          items.value = meiZhiList
-        }, { throwable ->
-          isRequesting = false
-          throwable.printStackTrace()
-        })
-    // get remote data
+    action(SelectPage(currentPage, isRefresh))
   }
 
-  private fun clear() {
-    if (disposable != null) {
-      disposable!!.dispose()
-      disposable = null
-    }
+  fun action(action: Action) = actor.offer(action)
+
+  override fun onCleared() {
+    actor.close()
   }
 
   fun end() {
-    clear()
   }
 
   companion object {

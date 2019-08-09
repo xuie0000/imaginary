@@ -1,7 +1,6 @@
 package xuk.imaginary.gui.gank.show
 
 import android.content.Intent
-import android.os.Handler
 import android.text.Html
 import android.util.Log
 import android.view.View

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
@@ -17,9 +18,9 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.fragment_meizhi.*
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
-import xuk.imaginary.data.BaseBean
-import xuk.imaginary.gui.MainActivity
+import xuk.imaginary.data.GankIo
 import xuk.imaginary.gui.gank.show.GankActivity
 import xuk.imaginary.util.DateUtils
 import java.util.*
@@ -29,6 +30,7 @@ import java.util.*
  *
  * @author Jie Xu
  */
+@ObsoleteCoroutinesApi
 class MeizhiFragment : Fragment() {
 
   private lateinit var meiZhiViewModule: MeiZhiViewModule
@@ -38,14 +40,13 @@ class MeizhiFragment : Fragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    Log.d(TAG, "onCreateView")
     return inflater.inflate(R.layout.fragment_meizhi, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     Log.d(TAG, "onViewCreated")
-    meiZhiViewModule = MainActivity.obtainViewModel(activity!!)
+    meiZhiViewModule = ViewModelProviders.of(this).get(MeiZhiViewModule::class.java)
 
     val layoutManager = FlexboxLayoutManager(context).apply {
       // http://shinelw.com/2017/04/13/flexbox-layout-analysis/
@@ -71,7 +72,7 @@ class MeizhiFragment : Fragment() {
     })
 
     meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
-      val fl = adapter.data[position] as BaseBean
+      val fl = adapter.data[position] as GankIo.BaseBean
       Log.d(TAG, "position:$position, data:$fl")
       val dateString = DateUtils.getDate(fl.publishedAt)
       val intent = Intent(activity, GankActivity::class.java)
@@ -83,13 +84,13 @@ class MeizhiFragment : Fragment() {
 
     materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
       override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
-        meiZhiViewModule.getList(true)
+        meiZhiViewModule.refresh(true)
         materialRefreshLayout.postDelayed({ materialRefreshLayout.finishRefresh() }, 1000)
       }
 
       override fun onRefreshLoadMore(materialRefreshLayout: MaterialRefreshLayout?) {
         super.onRefreshLoadMore(materialRefreshLayout)
-        meiZhiViewModule.getList(false)
+        meiZhiViewModule.refresh(false)
         materialRefreshLayout?.postDelayed({ materialRefreshLayout.finishRefreshLoadMore() }, 1000)
       }
     })
