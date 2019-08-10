@@ -31,23 +31,20 @@ class MeiZhiViewModule : ViewModel() {
   private val actor = GlobalScope.actor<Action>(Dispatchers.Main, Channel.CONFLATED) {
     for (action in this) when (action) {
       is SelectPage -> {
-        currentPage = action.page
 //        try {
 //          mutableCharts.value = cache.getFreshCharts(action.city) ?: getNewCharts(action.city)
 //        } catch (e: Exception) {
 //          mutableMessage.value = e.toString()
 //        }
-        mutableItems.value = getToday()
+        if (action.refresh) {
+          mutableItems.value = null
+        }
+        mutableItems.value = getToday(action.page)
       }
     }
   }
 
-  private suspend fun getToday() = Repository.get福利(currentPage).also {
-    if (isRefresh) {
-      mutableItems.value = null
-    }
-    mutableItems.value = it
-  }
+  private suspend fun getToday(page : Int) = Repository.get福利(page)
 
   internal fun start() {
     refresh(isRefresh)
@@ -62,8 +59,9 @@ class MeiZhiViewModule : ViewModel() {
     } else {
       currentPage++
     }
+    this.isRefresh = isRefresh
 
-    action(SelectPage(currentPage, isRefresh))
+    action(SelectPage(currentPage, this.isRefresh))
   }
 
   fun action(action: Action) = actor.offer(action)
