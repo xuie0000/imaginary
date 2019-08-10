@@ -23,8 +23,8 @@ class MeiZhiViewModule : ViewModel() {
 
   private val mutableItems: MutableLiveData<List<GankIo.BaseBean>> = MutableLiveData()
 
-  var currentPage = 1
-  private var isRefresh: MutableLiveData<Boolean> = MutableLiveData(false)
+  private var currentPage = 1
+  private var isRefresh = false
 
   val items: LiveData<List<GankIo.BaseBean>> = mutableItems
 
@@ -32,7 +32,6 @@ class MeiZhiViewModule : ViewModel() {
     for (action in this) when (action) {
       is SelectPage -> {
         currentPage = action.page
-        isRefresh.value = action.refresh
 //        try {
 //          mutableCharts.value = cache.getFreshCharts(action.city) ?: getNewCharts(action.city)
 //        } catch (e: Exception) {
@@ -43,15 +42,16 @@ class MeiZhiViewModule : ViewModel() {
     }
   }
 
-  private suspend fun getToday() = Repository.get福利(currentPage).apply {
-    if (isRefresh.value!!) {
+  private suspend fun getToday() = Repository.get福利(currentPage).also {
+    if (isRefresh) {
       mutableItems.value = null
     }
+    mutableItems.value = it
   }
 
   internal fun start() {
-    refresh(isRefresh.value ?: false)
-    isRefresh.value = false
+    refresh(isRefresh)
+    isRefresh = false
   }
 
   internal fun refresh(isRefresh: Boolean) {
