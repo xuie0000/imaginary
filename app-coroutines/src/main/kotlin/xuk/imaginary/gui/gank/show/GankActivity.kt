@@ -18,7 +18,7 @@ import java.util.*
 @ObsoleteCoroutinesApi
 class GankActivity : BaseActivity() {
 
-  private val adapter = ExpandableItemAdapter(ArrayList())
+  private val expandableItemAdapter = ExpandableItemAdapter(ArrayList())
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -32,16 +32,18 @@ class GankActivity : BaseActivity() {
     val viewModule = ViewModelProviders.of(this).get(GankViewModule::class.java)
     GlideUtils.loadImageMeizhi(this, imageUrl!!, gkDaily)
 
-    recyclerView.adapter = adapter
-    recyclerView.layoutManager = LinearLayoutManager(this)
-    recyclerView.isNestedScrollingEnabled = false
-    adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
+    expandableItemAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
+    recyclerView.apply {
+      this.adapter = expandableItemAdapter
+      layoutManager = LinearLayoutManager(this@GankActivity)
+      isNestedScrollingEnabled = false
+    }
 
     viewModule.items.observe(this, androidx.lifecycle.Observer {
-      adapter.replaceData(it)
+      expandableItemAdapter.replaceData(it)
     })
 
-    viewModule.requestGank(date)
+    viewModule.requestGank(date!!)
   }
 
   companion object {
