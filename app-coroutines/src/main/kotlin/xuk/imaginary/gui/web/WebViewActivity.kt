@@ -22,14 +22,17 @@ class WebViewActivity : AppCompatActivity() {
 
     val url = intent.getStringExtra(URL)
 
-    // Configure related browser settings
-    webView.settings.loadsImagesAutomatically = true
-    webView.settings.javaScriptEnabled = true
-    webView.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
-    // Configure the client to use when opening URLs
-    webView.webViewClient = MyBrowser()
-    // Load the initial URL
-    webView.loadUrl(url)
+    webView.apply {
+      // Configure related browser settings
+      settings.loadsImagesAutomatically = true
+      settings.javaScriptEnabled = true
+      scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+      // Configure the client to use when opening URLs
+      webViewClient = MyBrowser()
+      // Load the initial URL
+      loadUrl(url)
+    }
+
   }
 
   /**
