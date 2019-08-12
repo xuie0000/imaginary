@@ -2,6 +2,7 @@ package xuk.imaginary.gui.gank.show
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -30,7 +31,7 @@ class GankActivity : BaseActivity() {
     Log.d(TAG, "onCreate: data - $date, image - $imageUrl")
 
     val viewModule = ViewModelProviders.of(this).get(GankViewModule::class.java)
-    GlideUtils.loadImageMeizhi(this, imageUrl!!, gkDaily)
+    GlideUtils.loadImageMeizhi(this, imageUrl!!, gkDaily as ImageView)
 
     expandableItemAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
     recyclerView.apply {

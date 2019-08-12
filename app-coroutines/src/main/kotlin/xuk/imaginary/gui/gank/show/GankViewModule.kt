@@ -43,35 +43,20 @@ class GankViewModule : ViewModel() {
     actor.close()
   }
 
-
   private fun generateData(gb: GankIo.GankBean): List<MulItem> {
     val entities = ArrayList<MulItem>()
-    loop@ for (s in gb.category) {
+    for (type in gb.results) {
       val lv0 = Level0Item()
-      lv0.type = s
-      var bbs = gb.results.Android
-      when (s) {
-        "Android" -> bbs = gb.results.Android
-        "瞎推荐" -> bbs = gb.results.瞎推荐
-        "iOS" -> bbs = gb.results.iOS
-        "休息视频" -> bbs = gb.results.休息视频
-        "福利" ->
-          // bbs = gb.getResults().get福利()
-          continue@loop
-        "前端" -> bbs = gb.results.前端
-        "拓展资源" -> bbs = gb.results.拓展资源
-        else -> {
-        }
-      }
-      Log.d(TAG, "V0:$s")
-      for (ab in bbs) {
+      Log.d(TAG, "V0:${type.key}")
+      lv0.type = type.key
+      for (bb in type.value) {
         val lv1 = Level1Item()
-        lv1.articleName = ab.desc
-        Log.d(TAG, "  V1: " + ab.desc)
-        lv1.articleUrl = ab.url
-        lv1.author = ab.who
-        if (ab.images != null && ab.images!!.isNotEmpty()) {
-          lv1.imageUrl = ab.images!![0]
+        lv1.articleName = bb.desc
+        Log.d(TAG, "  V1: " + bb.desc)
+        lv1.articleUrl = bb.url
+        lv1.author = bb.who
+        if (bb.images != null && bb.images!!.isNotEmpty()) {
+          lv1.imageUrl = bb.images!![0]
         }
         lv0.addSubItem(lv1)
       }

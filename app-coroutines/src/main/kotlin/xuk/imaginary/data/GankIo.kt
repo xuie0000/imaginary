@@ -15,19 +15,9 @@ object GankIo {
 
   data class GankBean(
       var isError: Boolean = false,
-      var results: ResultsBean,
+      /** key type : 'Android', 'iOS', '休息视频', '前端', '瞎推荐', '福利', '拓展资源', 'App'*/
+      var results: Map<String, List<BaseBean>>,
       var category: List<String>
-  )
-
-  data class ResultsBean(
-      var Android: List<BaseBean>,
-      var iOS: List<BaseBean>,
-      var 休息视频: List<BaseBean>,
-      var 前端: List<BaseBean>,
-      var 瞎推荐: List<BaseBean>,
-      var 福利: List<BaseBean>,
-      var 拓展资源: List<BaseBean>,
-      var App: List<BaseBean>
   )
 
   class 福利s {
