@@ -1,5 +1,6 @@
 package xuk.imaginary.data
 
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -138,8 +139,8 @@ object GkIo {
 
   private val retrofit = Retrofit.Builder()
       .baseUrl(URL)
-      .addConverterFactory(GsonConverterFactory.create(gson))
-      .addConverterFactory(MoshiConverterFactory.create())
+      .addConverterFactory(GsonConverterFactory.create(Gson()))
+//      .addConverterFactory(MoshiConverterFactory.create())
       .client(
           OkHttpClient.Builder()
 //              .readTimeout(8000, TimeUnit.MILLISECONDS)

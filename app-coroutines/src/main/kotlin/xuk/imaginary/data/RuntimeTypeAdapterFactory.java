@@ -196,8 +196,10 @@ public final class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {
                 JsonElement jsonElement = Streams.parse(in);
                 JsonElement labelJsonElement;
                 if (maintainType) {
+                    System.out.println("name:" + typeFieldName);
                     labelJsonElement = jsonElement.getAsJsonObject().get(typeFieldName);
                 } else {
+                    System.out.println("name2:" + typeFieldName);
                     labelJsonElement = jsonElement.getAsJsonObject().remove(typeFieldName);
                 }
 
