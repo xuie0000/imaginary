@@ -10,7 +10,7 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.actor
 import xuk.imaginary.data.Action
-import xuk.imaginary.data.GankIo
+import xuk.imaginary.data.GkIo
 import xuk.imaginary.data.Repository
 import xuk.imaginary.data.SelectPage
 
@@ -21,12 +21,12 @@ import xuk.imaginary.data.SelectPage
 @ObsoleteCoroutinesApi
 class MeiZhiViewModule : ViewModel() {
 
-  private val mutableItems: MutableLiveData<List<GankIo.BaseBean>> = MutableLiveData()
+  private val mutableItems: MutableLiveData<List<GkIo.BaseBean>> = MutableLiveData()
 
   private var currentPage = 1
   private var isRefresh = false
 
-  val items: LiveData<List<GankIo.BaseBean>> = mutableItems
+  val items: LiveData<List<GkIo.BaseBean>> = mutableItems
 
   private val actor = GlobalScope.actor<Action>(Dispatchers.Main, Channel.CONFLATED) {
     for (action in this) when (action) {
@@ -44,7 +44,7 @@ class MeiZhiViewModule : ViewModel() {
     }
   }
 
-  private suspend fun getToday(page : Int) = Repository.get福利(page)
+  private suspend fun getToday(page: Int) = Repository.getCategory("福利", page)
 
   internal fun start() {
     refresh(isRefresh)

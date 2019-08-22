@@ -4,12 +4,13 @@ import android.content.Intent
 import android.text.Html
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import coil.api.load
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import xuk.imaginary.R
 import xuk.imaginary.app.App
 import xuk.imaginary.gui.web.WebViewActivity
-import xuk.imaginary.util.GlideUtils
 
 /**
  * @author Jie Xu
@@ -52,17 +53,19 @@ internal constructor(data: List<MulItem>) : BaseMultiItemQuickAdapter<MulItem, B
             lv1.articleUrl, lv1.articleName)
         //helper.setText(R.id.articleName, lv1.getArticleName())
         helper.setText(R.id.articleName, Html.fromHtml(webLink))
+
         helper.getView<View>(R.id.articleName).setOnClickListener {
-          val intent = Intent(App.context, WebViewActivity::class.java)
-          intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-          intent.putExtra("url", lv1.articleUrl)
-          App.context!!.startActivity(intent)
+          val intent = Intent(App.context, WebViewActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            putExtra("url", lv1.articleUrl)
+          }
+          App.context.startActivity(intent)
         }
 
         helper.setText(R.id.author, String.format("(%s)", lv1.author))
 
         if (lv1.imageUrl != null) {
-          GlideUtils.loadImageMeizhiDetail(mContext, lv1.imageUrl!!, helper.getView(R.id.thumb))
+          helper.getView<ImageView>(R.id.thumb).load(lv1.imageUrl)
         }
       }
       else -> {

@@ -24,13 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".gui.gank.show.GankActivity"
+            android:name=".gui.gank.show.GkActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".gui.web.WebViewActivity"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".gui.nets.detail.NetsOneActivity"
             android:launchMode="singleTask" />
     </application>
 

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
@@ -20,9 +20,9 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.fragment_meizhi.*
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
-import xuk.imaginary.data.GankIo
-import xuk.imaginary.gui.gank.show.GankActivity
-import xuk.imaginary.util.DateUtils
+import xuk.imaginary.data.GkIo
+import xuk.imaginary.gui.gank.show.GkActivity
+import xuk.imaginary.util.gkSwitchDate
 import java.util.*
 
 /**
@@ -46,7 +46,8 @@ class MeizhiFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     Log.d(TAG, "onViewCreated")
-    meiZhiViewModule = ViewModelProviders.of(this).get(MeiZhiViewModule::class.java)
+    meiZhiViewModule = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application)
+        .create(MeiZhiViewModule::class.java)
 
     val flexLayoutManager = FlexboxLayoutManager(context).apply {
       // http://shinelw.com/2017/04/13/flexbox-layout-analysis/
@@ -76,12 +77,13 @@ class MeizhiFragment : Fragment() {
     })
 
     meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
-      val fl = adapter.data[position] as GankIo.BaseBean
+      val fl = adapter.data[position] as GkIo.BaseBean
       Log.d(TAG, "position:$position, data:$fl")
-      val dateString = DateUtils.getDate(fl.publishedAt)
-      val intent = Intent(activity, GankActivity::class.java)
-      intent.putExtra("date", dateString)
-      intent.putExtra("image", fl.url)
+
+      val intent = Intent(activity, GkActivity::class.java).apply {
+        putExtra("date", fl.publishedAt.gkSwitchDate())
+        putExtra("image", fl.url)
+      }
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, v, "shareObject")
       ActivityCompat.startActivity(activity!!, intent, options.toBundle())
     }

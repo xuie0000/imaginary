@@ -10,7 +10,7 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.actor
 import xuk.imaginary.data.Action
-import xuk.imaginary.data.GankIo
+import xuk.imaginary.data.GkIo
 import xuk.imaginary.data.Repository
 import xuk.imaginary.data.SelectDate
 import java.util.*
@@ -20,7 +20,7 @@ import java.util.*
  * @date 2019/1/28
  */
 @ObsoleteCoroutinesApi
-class GankViewModule : ViewModel() {
+class GkViewModule : ViewModel() {
 
   private val mutableItems: MutableLiveData<List<MulItem>> = MutableLiveData()
   val items: LiveData<List<MulItem>> = mutableItems
@@ -33,7 +33,7 @@ class GankViewModule : ViewModel() {
     }
   }
 
-  fun requestGank(date: String) {
+  fun requestGk(date: String) {
     action(SelectDate(date))
   }
 
@@ -43,7 +43,7 @@ class GankViewModule : ViewModel() {
     actor.close()
   }
 
-  private fun generateData(gb: GankIo.GankBean): List<MulItem> {
+  private fun generateData(gb: GkIo.GkBean): List<MulItem> {
     val entities = ArrayList<MulItem>()
     for (type in gb.results) {
       val lv0 = Level0Item()
@@ -65,10 +65,10 @@ class GankViewModule : ViewModel() {
     return entities
   }
 
-  private suspend fun getDay(date: String) = Repository.getDay(date)
+  private suspend fun getDay(date: String) = Repository.getDate(date)
 
   companion object {
-    private const val TAG = "GankViewModule"
+    private const val TAG = "GkViewModule"
   }
 
 }

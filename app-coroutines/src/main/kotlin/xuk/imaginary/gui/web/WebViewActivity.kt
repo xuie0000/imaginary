@@ -20,7 +20,7 @@ class WebViewActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_webview)
 
-    val url = intent.getStringExtra(URL)
+    val url = intent.getStringExtra("url")
 
     webView.apply {
       // Configure related browser settings
@@ -43,9 +43,5 @@ class WebViewActivity : AppCompatActivity() {
       view.loadUrl(request.url.toString())
       return super.shouldOverrideUrlLoading(view, request)
     }
-  }
-
-  companion object {
-    const val URL = "url"
   }
 }
