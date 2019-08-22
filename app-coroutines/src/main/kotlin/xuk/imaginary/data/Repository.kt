@@ -1,6 +1,10 @@
 package xuk.imaginary.data
 
-import retrofit2.await
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * @author Jie Xu
@@ -8,27 +12,106 @@ import retrofit2.await
  */
 object Repository {
 
-  suspend fun getToday(): GkIo.GkBean {
-    return GkIo.service.getToday().await()
+  suspend fun getToday(): LiveData<GkIo.GkBean> {
+    val liveData = MutableLiveData<GkIo.GkBean>()
+    GkIo.service.getToday().enqueue(object : Callback<GkIo.GkBean> {
+      override fun onFailure(call: Call<GkIo.GkBean>, t: Throwable) {
+        t.printStackTrace()
+      }
+
+      override fun onResponse(call: Call<GkIo.GkBean>, response: Response<GkIo.GkBean>) {
+        if (response.isSuccessful) {
+          liveData.value = response.body()
+        }
+      }
+
+    })
+
+    return liveData
   }
 
-  suspend fun getListView(type: String, countSize: Int, page: Int): List<GkIo.BaseBean> {
-    return GkIo.service.getListView(type, countSize, page).await().results
+  suspend fun getListView(type: String, countSize: Int, page: Int): LiveData<List<GkIo.BaseBean>> {
+    val liveData = MutableLiveData<List<GkIo.BaseBean>>()
+    GkIo.service.getListView(type, countSize, page).enqueue(object : Callback<GkIo.CategoryBean> {
+      override fun onFailure(call: Call<GkIo.CategoryBean>, t: Throwable) {
+        t.printStackTrace()
+      }
+
+      override fun onResponse(call: Call<GkIo.CategoryBean>, response: Response<GkIo.CategoryBean>) {
+        if (response.isSuccessful) {
+          liveData.value = response.body()?.results
+        }
+      }
+    })
+
+    return liveData
   }
 
-  suspend fun getHistory(): List<String> {
-    return GkIo.service.getHistory().await().results
+  suspend fun getHistory(): LiveData<List<String>> {
+    val liveData = MutableLiveData<List<String>>()
+    GkIo.service.getHistory().enqueue(object : Callback<GkIo.HistoryBean> {
+      override fun onFailure(call: Call<GkIo.HistoryBean>, t: Throwable) {
+        t.printStackTrace()
+      }
+
+      override fun onResponse(call: Call<GkIo.HistoryBean>, response: Response<GkIo.HistoryBean>) {
+        if (response.isSuccessful) {
+          liveData.value = response.body()?.results
+        }
+      }
+
+    })
+    return liveData
   }
 
-  suspend fun getCategory(category: String, page: Int): List<GkIo.BaseBean> {
-    return GkIo.service.getCategory(category, page).await().results
+  suspend fun getCategory(category: String, page: Int): LiveData<List<GkIo.BaseBean>> {
+    val liveData = MutableLiveData<List<GkIo.BaseBean>>()
+    GkIo.service.getCategory(category, page).enqueue(object : Callback<GkIo.CategoryBean> {
+      override fun onFailure(call: Call<GkIo.CategoryBean>, t: Throwable) {
+        t.printStackTrace()
+      }
+
+      override fun onResponse(call: Call<GkIo.CategoryBean>, response: Response<GkIo.CategoryBean>) {
+        if (response.isSuccessful) {
+          liveData.value = response.body()?.results
+        }
+      }
+
+    })
+    return liveData
   }
 
-  suspend fun getDate(date: String): GkIo.GkBean {
-    return GkIo.service.getDate(date).await()
+  suspend fun getDate(date: String): LiveData<GkIo.GkBean> {
+    val liveData = MutableLiveData<GkIo.GkBean>()
+    GkIo.service.getDate(date).enqueue(object : Callback<GkIo.GkBean> {
+      override fun onFailure(call: Call<GkIo.GkBean>, t: Throwable) {
+        t.printStackTrace()
+      }
+
+      override fun onResponse(call: Call<GkIo.GkBean>, response: Response<GkIo.GkBean>) {
+        if (response.isSuccessful) {
+          liveData.value = response.body()
+        }
+      }
+
+    })
+    return liveData
   }
 
-  suspend fun getDate(year: Int, month: Int, day: Int): GkIo.GkBean {
-    return GkIo.service.getDate(year, month, day).await()
+  suspend fun getDate(year: Int, month: Int, day: Int): LiveData<GkIo.GkBean> {
+    val liveData = MutableLiveData<GkIo.GkBean>()
+    GkIo.service.getDate(year, month, day).enqueue(object : Callback<GkIo.GkBean> {
+      override fun onFailure(call: Call<GkIo.GkBean>, t: Throwable) {
+        t.printStackTrace()
+      }
+
+      override fun onResponse(call: Call<GkIo.GkBean>, response: Response<GkIo.GkBean>) {
+        if (response.isSuccessful) {
+          liveData.value = response.body()
+        }
+      }
+
+    })
+    return liveData
   }
 }

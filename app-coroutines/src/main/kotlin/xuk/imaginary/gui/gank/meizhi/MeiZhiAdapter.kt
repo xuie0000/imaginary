@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.gui.gank.show.GkActivity
@@ -20,7 +19,6 @@ import xuk.imaginary.util.gkSwitchDate
  * @author Jie Xu
  * @date 17-7-5
  */
-@ObsoleteCoroutinesApi
 class MeiZhiAdapter : ListAdapter<GkIo.BaseBean, MeiZhiAdapter.MeiZhiViewHolder>(MeiZhiDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeiZhiViewHolder {

@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
 import kotlinx.android.synthetic.main.activity_gk.*
-import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseActivity
 import xuk.imaginary.util.convertToMei
@@ -14,7 +13,6 @@ import xuk.imaginary.util.convertToMei
 /**
  * @author Jie Xu
  */
-@ObsoleteCoroutinesApi
 class GkActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {

@@ -14,7 +14,6 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.fragment_mei_zhi.*
-import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
 
 /**
@@ -22,7 +21,6 @@ import xuk.imaginary.R
  *
  * @author Jie Xu
  */
-@ObsoleteCoroutinesApi
 class MeiZhiFragment : Fragment() {
 
   private lateinit var meiZhiViewModule: MeiZhiViewModule
