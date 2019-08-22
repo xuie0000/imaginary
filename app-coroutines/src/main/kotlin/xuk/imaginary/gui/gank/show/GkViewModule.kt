@@ -1,6 +1,5 @@
 package xuk.imaginary.gui.gank.show
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +12,6 @@ import xuk.imaginary.data.Action
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.data.Repository
 import xuk.imaginary.data.SelectDate
-import java.util.*
 
 /**
  * @author Jie Xu
@@ -22,13 +20,13 @@ import java.util.*
 @ObsoleteCoroutinesApi
 class GkViewModule : ViewModel() {
 
-  private val mutableItems: MutableLiveData<List<MulItem>> = MutableLiveData()
-  val items: LiveData<List<MulItem>> = mutableItems
+  private val mutableGk: MutableLiveData<GkIo.GkBean> = MutableLiveData()
+  val gk: LiveData<GkIo.GkBean> = mutableGk
 
   private val actor = GlobalScope.actor<Action>(Dispatchers.Main, Channel.CONFLATED) {
     for (action in this) when (action) {
       is SelectDate -> {
-        mutableItems.value = generateData(getDay(action.date))
+        mutableGk.value = getDate(action.date)
       }
     }
   }
@@ -43,32 +41,6 @@ class GkViewModule : ViewModel() {
     actor.close()
   }
 
-  private fun generateData(gb: GkIo.GkBean): List<MulItem> {
-    val entities = ArrayList<MulItem>()
-    for (type in gb.results) {
-      val lv0 = Level0Item()
-      Log.d(TAG, "V0:${type.key}")
-      lv0.type = type.key
-      for (bb in type.value) {
-        val lv1 = Level1Item()
-        lv1.articleName = bb.desc
-        Log.d(TAG, "  V1: " + bb.desc)
-        lv1.articleUrl = bb.url
-        lv1.author = bb.who
-        if (bb.images != null && bb.images!!.isNotEmpty()) {
-          lv1.imageUrl = bb.images!![0]
-        }
-        lv0.addSubItem(lv1)
-      }
-      entities.add(lv0)
-    }
-    return entities
-  }
-
-  private suspend fun getDay(date: String) = Repository.getDate(date)
-
-  companion object {
-    private const val TAG = "GkViewModule"
-  }
+  private suspend fun getDate(date: String) = Repository.getDate(date)
 
 }

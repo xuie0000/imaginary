@@ -1,29 +1,21 @@
 package xuk.imaginary.gui.gank.meizhi
 
-import android.app.ActivityOptions
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
-import kotlinx.android.synthetic.main.fragment_meizhi.*
+import kotlinx.android.synthetic.main.fragment_mei_zhi.*
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
-import xuk.imaginary.data.GkIo
-import xuk.imaginary.gui.gank.show.GkActivity
-import xuk.imaginary.util.gkSwitchDate
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -31,7 +23,7 @@ import java.util.*
  * @author Jie Xu
  */
 @ObsoleteCoroutinesApi
-class MeizhiFragment : Fragment() {
+class MeiZhiFragment : Fragment() {
 
   private lateinit var meiZhiViewModule: MeiZhiViewModule
 
@@ -40,7 +32,7 @@ class MeizhiFragment : Fragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_meizhi, container, false)
+    return inflater.inflate(R.layout.fragment_mei_zhi, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,33 +52,17 @@ class MeizhiFragment : Fragment() {
       alignItems = AlignItems.FLEX_START
     }
 
-    val meiZhiAdapter = MeiZhiAdapter(ArrayList()).apply {
-      openLoadAnimation(BaseQuickAdapter.ALPHAIN)
-      isFirstOnly(true)
-    }
+    val meiZhiAdapter = MeiZhiAdapter()
 
     recyclerView.apply {
       adapter = meiZhiAdapter
       layoutManager = flexLayoutManager
     }
-
-    meiZhiViewModule.items.observe(this, androidx.lifecycle.Observer {
-      it?.apply {
-        meiZhiAdapter.replaceData(it)
+    meiZhiViewModule.items.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+      it?.let {
+        meiZhiAdapter.submitList(it)
       }
     })
-
-    meiZhiAdapter.setOnItemClickListener { adapter, v, position ->
-      val fl = adapter.data[position] as GkIo.BaseBean
-      Log.d(TAG, "position:$position, data:$fl")
-
-      val intent = Intent(activity, GkActivity::class.java).apply {
-        putExtra("date", fl.publishedAt.gkSwitchDate())
-        putExtra("image", fl.url)
-      }
-      val options = ActivityOptions.makeSceneTransitionAnimation(activity, v, "shareObject")
-      ActivityCompat.startActivity(activity!!, intent, options.toBundle())
-    }
 
     materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
       override fun onRefresh(materialRefreshLayout: MaterialRefreshLayout) {
@@ -105,7 +81,7 @@ class MeizhiFragment : Fragment() {
   }
 
   companion object {
-    private const val TAG = "MeizhiFragment"
+    private const val TAG = "MeiZhiFragment"
   }
 
 }

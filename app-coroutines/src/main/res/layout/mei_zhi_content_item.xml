@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -17,27 +16,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:src="@mipmap/dot_16px"/>
+            android:src="@drawable/ic_dot" />
 
         <TextView
-            android:id="@+id/articleName"
+            android:id="@+id/tvArticleName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            tools:text="用户体验极佳的干货集中营 iOS App"/>
+            tools:text="用户体验极佳的干货集中营 iOS App" />
 
         <TextView
-            android:id="@+id/author"
+            android:id="@+id/tvAuthor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:maxLines="1"
             android:textSize="12sp"
-            tools:text="(Fan Ye)"/>
+            tools:text="(Fan Ye)" />
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/thumb"
+        android:id="@+id/ivThumb"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

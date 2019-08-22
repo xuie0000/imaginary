@@ -4,7 +4,7 @@ import android.os.Bundle
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseActivity
-import xuk.imaginary.gui.gank.meizhi.MeizhiFragment
+import xuk.imaginary.gui.gank.meizhi.MeiZhiFragment
 
 /**
  * @author Jie Xu
@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
     setContentView(R.layout.activity_main)
 
     supportFragmentManager.beginTransaction()
-        .add(R.id.contentFrame, MeizhiFragment())
+        .add(R.id.contentFrame, MeiZhiFragment())
         .commit()
   }
 }

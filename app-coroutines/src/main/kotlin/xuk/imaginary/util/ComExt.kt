@@ -1,5 +1,7 @@
 package xuk.imaginary.util
 
+import xuk.imaginary.data.GkIo
+import xuk.imaginary.gui.gank.show.MeiZhi
 import java.util.regex.Pattern
 
 /**
@@ -13,5 +15,17 @@ fun String.gkSwitchDate(): String {
   return if (!m.matches() || m.groupCount() < 4) {
     ""
   } else m.group(1) + "/" + m.group(2) + "/" + m.group(3)
+}
+
+fun GkIo.GkBean.convertToMei(): List<MeiZhi> {
+  val ms: MutableList<MeiZhi> = ArrayList()
+  for (gb in this.results) {
+    val title = gb.key
+    ms.add(MeiZhi(title, null, 0))
+    for (bb in gb.value) {
+      ms.add(MeiZhi(title, bb, 1))
+    }
+  }
+  return ms
 }
 

@@ -5,20 +5,17 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
-import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.activity_gk.*
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseActivity
-import java.util.*
+import xuk.imaginary.util.convertToMei
 
 /**
  * @author Jie Xu
  */
 @ObsoleteCoroutinesApi
 class GkActivity : BaseActivity() {
-
-  private val expandableItemAdapter = ExpandableItemAdapter(ArrayList())
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -34,15 +31,15 @@ class GkActivity : BaseActivity() {
 
     gkDaily.load(imageUrl)
 
-    expandableItemAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
+    val gkAdapter = GkAdapter()
     recyclerView.apply {
-      this.adapter = expandableItemAdapter
+      this.adapter = gkAdapter
       layoutManager = LinearLayoutManager(this@GkActivity)
       isNestedScrollingEnabled = false
     }
 
-    viewModule.items.observe(this, androidx.lifecycle.Observer {
-      expandableItemAdapter.replaceData(it)
+    viewModule.gk.observe(this, androidx.lifecycle.Observer {
+      gkAdapter.submitList(it.convertToMei())
     })
 
     viewModule.requestGk(date!!)
