@@ -2,9 +2,16 @@ package xuk.imaginary
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import xuk.imaginary.data.GkIo
+import xuk.imaginary.data.Repository
 import xuk.imaginary.data.RuntimeTypeAdapterFactory
 
 /**
@@ -13,6 +20,33 @@ import xuk.imaginary.data.RuntimeTypeAdapterFactory
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 class ExampleUnitTest {
+
+  @Test
+  @Throws(Exception::class)
+  fun gk_test_福利() {
+    println("gk_test_福利")
+
+//    GlobalScope.launch(Dispatchers.IO) {
+//      println("run Dispatchers.IO")
+//      val test = Repository.getCategory("福利", 1)
+//      println("test:${test.value.toString()}")
+//    }
+
+    GkIo.service.getCategoryTest("福利", 1).enqueue(object : Callback<GkIo.CategoryBean> {
+      override fun onFailure(call: Call<GkIo.CategoryBean>, t: Throwable) {
+        t.printStackTrace()
+        println("test failed")
+      }
+
+      override fun onResponse(call: Call<GkIo.CategoryBean>, response: Response<GkIo.CategoryBean>) {
+        if (response.isSuccessful) {
+          println("test successful")
+        }
+      }
+
+    })
+
+  }
 
 
   @Test
@@ -43,7 +77,7 @@ class ExampleUnitTest {
         .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
         .serializeNulls()
         .setPrettyPrinting()
-        .registerTypeAdapterFactory(adapter)
+//        .registerTypeAdapterFactory(adapter)
         .create()
 
     println("result:${gson.fromJson(test, GkIo.CategoryBean::class.java)}")
