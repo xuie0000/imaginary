@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/app-coroutines/app-coroutines.iml" filepath="$PROJECT_DIR$/app-coroutines/app-coroutines.iml" />
       <module fileurl="file://$PROJECT_DIR$/imaginary.iml" filepath="$PROJECT_DIR$/imaginary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-coroutines/imaginary-app-coroutines.iml" filepath="$PROJECT_DIR$/app-coroutines/imaginary-app-coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>
   </component>
 </project>
