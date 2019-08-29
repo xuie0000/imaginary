@@ -22,15 +22,9 @@ class MeiZhiViewModule : ViewModel() {
     mutableCurrentPage.value = 1
   }
 
-  var items: LiveData<List<GkIo.BaseBean>> = liveData(Dispatchers.IO) {
-    Log.d("MeiZhiViewModule", "1111")
-
-    mutableCurrentPage.value?.let {
-      Log.d("MeiZhiViewModule", "2222 page:$it")
-      val test = getToday(it)
-      test.value?.let { it1 -> emit(it1) }
-    }
-//    emit(test.value)
+  var items: LiveData<List<GkIo.BaseBean>?> = liveData(Dispatchers.IO) {
+    val result = Repository.getCategory("福利", 1)
+    emit(result)
   }
 
   private suspend fun getToday(page: Int) = Repository.getCategory("福利", page)

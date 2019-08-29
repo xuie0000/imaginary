@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 
 /**
  * @author Jie Xu
@@ -64,21 +65,12 @@ object Repository {
     return liveData
   }
 
-  suspend fun getCategory(category: String, page: Int): LiveData<List<GkIo.BaseBean>> {
-    val liveData = MutableLiveData<List<GkIo.BaseBean>>()
-    GkIo.service.getCategory(category, page).enqueue(object : Callback<GkIo.CategoryBean> {
-      override fun onFailure(call: Call<GkIo.CategoryBean>, t: Throwable) {
-        t.printStackTrace()
-      }
-
-      override fun onResponse(call: Call<GkIo.CategoryBean>, response: Response<GkIo.CategoryBean>) {
-        if (response.isSuccessful) {
-          liveData.value = response.body()?.results
-        }
-      }
-
-    })
-    return liveData
+  suspend fun getCategory(category: String, page: Int): List<GkIo.BaseBean>? {
+    val response = GkIo.service.getCategory(category, page)
+    if (response.isSuccessful) {
+      return response.body()?.results
+    }
+    return null
   }
 
   suspend fun getDate(date: String): LiveData<GkIo.GkBean> {
