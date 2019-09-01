@@ -27,8 +27,6 @@ class MeiZhiViewModule : ViewModel() {
     emit(result)
   }
 
-  private suspend fun getToday(page: Int) = Repository.getCategory("福利", page)
-
   internal fun start() {
     refresh(isRefresh)
   }
