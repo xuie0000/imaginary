@@ -1,5 +1,11 @@
 package xuk.imaginary.util
 
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import com.bumptech.glide.request.RequestOptions
+import xuk.imaginary.R
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.gui.gank.show.MeiZhi
 import java.util.regex.Pattern
@@ -27,5 +33,15 @@ fun GkIo.GkBean.convertToMei(): List<MeiZhi> {
     }
   }
   return ms
+}
+
+fun ImageView.loadImage(url: String) {
+  Glide.with(context)
+      .load(url)
+      .apply(RequestOptions().fitCenter()
+          .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+      )
+      .transition(withCrossFade())
+      .into(this)
 }
 

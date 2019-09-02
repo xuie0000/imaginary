@@ -1,6 +1,5 @@
 package xuk.imaginary.gui.gank.meizhi
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,32 +14,32 @@ import xuk.imaginary.data.Repository
  */
 class MeiZhiViewModule : ViewModel() {
 
-  private var mutableCurrentPage: MutableLiveData<Int> = MutableLiveData()
+  private var mutableCurrentPage: MutableLiveData<Int> = MutableLiveData(1)
   private var isRefresh = false
 
+  lateinit var items: LiveData<List<GkIo.BaseBean>>
+
   init {
-    mutableCurrentPage.value = 1
-  }
-
-  var items: LiveData<List<GkIo.BaseBean>?> = liveData(Dispatchers.IO) {
-    val result = Repository.getCategory("福利", 1)
-    emit(result)
-  }
-
-  internal fun start() {
-    refresh(isRefresh)
+    mutableCurrentPage.observeForever { page ->
+      items = liveData(Dispatchers.IO) {
+        val result = Repository.getCategory("福利", page)
+//        var originItems: List<GkIo.BaseBean> = items.value?.plus(result) as List<GkIo.BaseBean>
+        emit(result)
+      }
+    }
   }
 
   internal fun refresh(isRefresh: Boolean) {
-    Log.d("MeiZhiViewModule", "refresh: ...")
+    println("refresh: ...")
 
     this.isRefresh = isRefresh
-    if (isRefresh || mutableCurrentPage.value == null) {
+    if (isRefresh) {
+      println("2222")
       mutableCurrentPage.value = 1
     } else {
-      Log.d("MeiZhiViewModule", "3333")
+      println("3333")
       mutableCurrentPage.value?.plus(1)
-      Log.d("MeiZhiViewModule", "3333 ${mutableCurrentPage.value}")
+      println("3333 ${mutableCurrentPage.value}")
     }
   }
 

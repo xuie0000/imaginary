@@ -14,6 +14,7 @@ import xuk.imaginary.R
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.gui.gank.show.GkActivity
 import xuk.imaginary.util.gkSwitchDate
+import xuk.imaginary.util.loadImage
 
 /**
  * @author Jie Xu
@@ -38,7 +39,7 @@ class MeiZhiAdapter : ListAdapter<GkIo.BaseBean, MeiZhiAdapter.MeiZhiViewHolder>
     fun bind(bb: GkIo.BaseBean) {
       with(itemView) {
         findViewById<TextView>(R.id.date).text = bb.desc
-        findViewById<ImageView>(R.id.meizhi).load(bb.url)
+        findViewById<ImageView>(R.id.meizhi).loadImage(bb.url)
 
         setOnClickListener {
           val intent = Intent(it.context, GkActivity::class.java).apply {

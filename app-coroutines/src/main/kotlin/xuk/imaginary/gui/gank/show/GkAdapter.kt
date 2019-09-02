@@ -12,6 +12,7 @@ import coil.api.load
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseViewHolder
 import xuk.imaginary.data.GkIo
+import xuk.imaginary.util.loadImage
 
 /**
  * @author Jie Xu
@@ -55,7 +56,9 @@ class GkAdapter: ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
       itemView.findViewById<TextView>(R.id.tvArticleName).text = Html.fromHtml(webLink)
       itemView.findViewById<TextView>(R.id.tvAuthor).text = gk?.who
       gk?.images?.isNotEmpty().apply {
-        itemView.findViewById<ImageView>(R.id.ivThumb).load(gk?.images?.get(0))
+        gk?.images?.get(0)?.let {
+          itemView.findViewById<ImageView>(R.id.ivThumb).loadImage(it)
+        }
       }
     }
   }

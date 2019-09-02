@@ -57,9 +57,7 @@ class MeiZhiFragment : Fragment() {
       layoutManager = flexLayoutManager
     }
     meiZhiViewModule.items.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-      it?.let {
-        meiZhiAdapter.submitList(it)
-      }
+      meiZhiAdapter.submitList(it)
     })
 
     materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {
@@ -75,7 +73,7 @@ class MeiZhiFragment : Fragment() {
       }
     })
 
-    meiZhiViewModule.start()
+    meiZhiViewModule.refresh(false)
   }
 
   companion object {
