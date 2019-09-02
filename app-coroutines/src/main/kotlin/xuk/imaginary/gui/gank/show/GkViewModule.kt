@@ -1,9 +1,6 @@
 package xuk.imaginary.gui.gank.show
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.data.Repository
@@ -15,16 +12,15 @@ import xuk.imaginary.data.Repository
 class GkViewModule : ViewModel() {
 
   private val mutableDate: MutableLiveData<String> = MutableLiveData()
-
-  val gk: LiveData<GkIo.GkBean> = liveData(Dispatchers.IO) {
-    mutableDate.value?.let { getDate(it) }
-//    emit(test.value)
+  val gk: LiveData<GkIo.GkBean?> = Transformations.switchMap(mutableDate) { date ->
+    liveData(Dispatchers.IO) {
+      val gkItems = Repository.getDate(date)
+      emit(gkItems)
+    }
   }
 
   fun requestGk(date: String) {
     mutableDate.value = date
   }
-
-  private suspend fun getDate(date: String) = Repository.getDate(date)
 
 }

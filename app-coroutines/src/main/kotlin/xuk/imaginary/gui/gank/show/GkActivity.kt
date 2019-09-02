@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.api.load
 import kotlinx.android.synthetic.main.activity_gk.*
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseActivity
 import xuk.imaginary.util.convertToMei
+import xuk.imaginary.util.loadImage
 
 /**
  * @author Jie Xu
  */
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class GkActivity : BaseActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +28,7 @@ class GkActivity : BaseActivity() {
     val viewModule = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         .create(GkViewModule::class.java)
 
-    gkDaily.load(imageUrl)
+    gkDaily.loadImage(imageUrl)
 
     val gkAdapter = GkAdapter()
     recyclerView.apply {
@@ -37,7 +38,7 @@ class GkActivity : BaseActivity() {
     }
 
     viewModule.gk.observe(this, androidx.lifecycle.Observer {
-      gkAdapter.submitList(it.convertToMei())
+      gkAdapter.submitList(it?.convertToMei())
     })
 
     viewModule.requestGk(date!!)
