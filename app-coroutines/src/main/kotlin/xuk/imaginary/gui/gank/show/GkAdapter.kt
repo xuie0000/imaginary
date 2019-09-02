@@ -8,17 +8,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import coil.api.load
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseViewHolder
 import xuk.imaginary.data.GkIo
+import xuk.imaginary.util.isNotEmptyOrBlank
 import xuk.imaginary.util.loadImage
 
 /**
  * @author Jie Xu
  * @date 2019/8/14
  */
-class GkAdapter: ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
+class GkAdapter : ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
     return when (viewType) {
@@ -55,9 +55,9 @@ class GkAdapter: ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
       val webLink = String.format("<a href=\\'%s\\'> %s</a>", gk?.url, gk?.desc)
       itemView.findViewById<TextView>(R.id.tvArticleName).text = Html.fromHtml(webLink)
       itemView.findViewById<TextView>(R.id.tvAuthor).text = gk?.who
-      gk?.images?.isNotEmpty().apply {
-        gk?.images?.get(0)?.let {
-          itemView.findViewById<ImageView>(R.id.ivThumb).loadImage(it)
+      gk?.images?.isNotEmptyOrBlank().let {
+        if (it?.compareTo(true) == 0) {
+          itemView.findViewById<ImageView>(R.id.ivThumb).loadImage(gk?.images?.get(0)!!)
         }
       }
     }

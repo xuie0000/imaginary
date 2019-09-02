@@ -11,7 +11,7 @@ import xuk.imaginary.data.Repository
  */
 class MeiZhiViewModule : ViewModel() {
 
-  private var mutableCurrentPage: MutableLiveData<Int> = MutableLiveData()
+  private var mutableCurrentPage: MutableLiveData<Int> = MutableLiveData(1)
   private var isRefresh = false
 
   var items: LiveData<List<GkIo.BaseBean>?> = MutableLiveData(emptyList())
@@ -19,6 +19,7 @@ class MeiZhiViewModule : ViewModel() {
   init {
     items = Transformations.switchMap(mutableCurrentPage) { page ->
       liveData(Dispatchers.IO) {
+        println("111111 $page")
         val result = Repository.getCategory("福利", page)
         println("isRefresh:$isRefresh, page:$page")
         if (isRefresh) {
@@ -32,12 +33,12 @@ class MeiZhiViewModule : ViewModel() {
 
   fun refresh(isRefresh: Boolean) {
     this.isRefresh = isRefresh
-    if (isRefresh) {
+    if (isRefresh || mutableCurrentPage.value == null) {
       mutableCurrentPage.value = 1
     } else {
       mutableCurrentPage.value?.plus(1)
     }
-    println("refresh: ... page ${mutableCurrentPage.value}")
+    println("refresh: ... refresh:$isRefresh, page:${mutableCurrentPage.value}")
   }
 
 }

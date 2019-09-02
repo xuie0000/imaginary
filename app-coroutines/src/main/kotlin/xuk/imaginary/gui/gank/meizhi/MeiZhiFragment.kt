@@ -57,6 +57,7 @@ class MeiZhiFragment : Fragment() {
       layoutManager = flexLayoutManager
     }
     meiZhiViewModule.items.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+      println("size:${it?.size}")
       meiZhiAdapter.submitList(it)
     })
 

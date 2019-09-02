@@ -32,7 +32,9 @@ object Repository {
 
   suspend fun getCategory(category: String, page: Int): List<GkIo.BaseBean> {
     val response = GkIo.service.getCategory(category, page)
+    println("getCategory ${response.isSuccessful}")
     if (response.isSuccessful) {
+      println("size:${response.body()?.results?.size}")
       return response.body()?.results!!
     }
     return emptyList()

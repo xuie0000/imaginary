@@ -45,3 +45,7 @@ fun ImageView.loadImage(url: String) {
       .into(this)
 }
 
+fun List<String>.isNotEmptyOrBlank(): Boolean {
+  return this.isNotEmpty() && !this[0].isBlank()
+}
+
