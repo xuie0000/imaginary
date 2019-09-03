@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app-coroutines/app-coroutines.iml" filepath="$PROJECT_DIR$/app-coroutines/app-coroutines.iml" group="imaginary/app-coroutines" />
-      <module fileurl="file://$PROJECT_DIR$/imaginary.iml" filepath="$PROJECT_DIR$/imaginary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imaginary.iml" filepath="$PROJECT_DIR$/imaginary.iml" group="imaginary" />
       <module fileurl="file://$PROJECT_DIR$/app-coroutines/imaginary-app-coroutines.iml" filepath="$PROJECT_DIR$/app-coroutines/imaginary-app-coroutines.iml" />
     </modules>
   </component>

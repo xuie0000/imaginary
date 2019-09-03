@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gk.*
 import xuk.imaginary.R
-import xuk.imaginary.base.BaseActivity
+import xuk.imaginary.gui.BaseActivity
 import xuk.imaginary.util.convertToMei
 import xuk.imaginary.util.loadImage
 

@@ -1,4 +1,4 @@
-package xuk.imaginary.app
+package xuk.imaginary
 
 import android.annotation.SuppressLint
 import android.app.Application

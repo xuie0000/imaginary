@@ -2,7 +2,6 @@ package xuk.imaginary.gui
 
 import android.os.Bundle
 import xuk.imaginary.R
-import xuk.imaginary.base.BaseActivity
 import xuk.imaginary.gui.gank.meizhi.MeiZhiFragment
 
 /**

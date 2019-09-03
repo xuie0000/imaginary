@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import xuk.imaginary.R
-import xuk.imaginary.base.BaseViewHolder
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.util.isNotEmptyOrBlank
 import xuk.imaginary.util.loadImage

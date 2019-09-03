@@ -1,4 +1,4 @@
-package xuk.imaginary.base
+package xuk.imaginary.gui.gank.show
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

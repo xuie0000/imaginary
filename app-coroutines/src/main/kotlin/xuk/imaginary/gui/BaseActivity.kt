@@ -1,4 +1,4 @@
-package xuk.imaginary.base
+package xuk.imaginary.gui
 
 import android.os.Build
 import android.view.View

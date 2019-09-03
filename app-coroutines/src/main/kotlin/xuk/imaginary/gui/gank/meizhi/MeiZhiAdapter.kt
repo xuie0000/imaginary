@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import xuk.imaginary.R
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.gui.gank.show.GkActivity
