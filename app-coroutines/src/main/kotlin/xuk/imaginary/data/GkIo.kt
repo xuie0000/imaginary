@@ -131,7 +131,6 @@ object GkIo {
 
   private val retrofit = Retrofit.Builder()
       .baseUrl(URL)
-//      .addConverterFactory(GsonConverterFactory.create(gson))
       .addConverterFactory(GsonConverterFactory.create(Gson()))
 //      .addConverterFactory(MoshiConverterFactory.create())
       .client(
