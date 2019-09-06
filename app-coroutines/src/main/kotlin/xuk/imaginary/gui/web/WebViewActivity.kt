@@ -13,12 +13,11 @@ import xuk.imaginary.R
 /**
  * @author Jie Xu
  */
-class WebViewActivity : AppCompatActivity() {
+class WebViewActivity : AppCompatActivity(R.layout.activity_webview) {
 
   @SuppressLint("SetJavaScriptEnabled")
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_webview)
+  override fun onPostCreate(savedInstanceState: Bundle?) {
+    super.onPostCreate(savedInstanceState)
 
     val url = intent.getStringExtra("url")
 
@@ -32,7 +31,6 @@ class WebViewActivity : AppCompatActivity() {
       // Load the initial URL
       loadUrl(url)
     }
-
   }
 
   /**

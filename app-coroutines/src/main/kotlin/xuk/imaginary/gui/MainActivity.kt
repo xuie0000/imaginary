@@ -1,6 +1,7 @@
 package xuk.imaginary.gui
 
 import android.os.Bundle
+import androidx.fragment.app.commit
 import xuk.imaginary.R
 import xuk.imaginary.gui.gank.meizhi.MeiZhiFragment
 
@@ -13,8 +14,9 @@ class MainActivity : BaseActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    supportFragmentManager.beginTransaction()
-        .add(R.id.contentFrame, MeiZhiFragment())
-        .commit()
+    supportFragmentManager.commit {
+      addToBackStack("contentFrame")
+      add(R.id.contentFrame, MeiZhiFragment())
+    }
   }
 }

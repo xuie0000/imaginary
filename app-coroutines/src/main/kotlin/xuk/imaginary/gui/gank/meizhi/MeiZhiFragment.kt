@@ -2,9 +2,7 @@ package xuk.imaginary.gui.gank.meizhi
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.cjj.MaterialRefreshLayout
@@ -21,17 +19,9 @@ import xuk.imaginary.R
  *
  * @author Jie Xu
  */
-class MeiZhiFragment : Fragment() {
+class MeiZhiFragment : Fragment(R.layout.fragment_mei_zhi) {
 
   private lateinit var meiZhiViewModule: MeiZhiViewModule
-
-  override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    return inflater.inflate(R.layout.fragment_mei_zhi, container, false)
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
