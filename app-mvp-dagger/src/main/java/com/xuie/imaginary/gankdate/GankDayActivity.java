@@ -14,7 +14,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import xuk.imaginary.R;
 import xuk.imaginary.data.BaseBean;
 import xuk.imaginary.data.GankBean;
-import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.common.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static xuk.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.common.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import xuk.imaginary.R;
-import xuk.imaginary.util.ActivityUtils;
+import xuk.imaginary.common.ActivityUtils;
 
 import javax.inject.Inject;
 

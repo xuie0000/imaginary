@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package xuk.imaginary.util;
+package xuk.imaginary.common;
 
 import android.os.Handler;
 import android.os.Looper;

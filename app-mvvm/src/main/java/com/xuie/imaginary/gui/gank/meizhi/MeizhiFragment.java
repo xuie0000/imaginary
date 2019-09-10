@@ -21,7 +21,7 @@ import xuk.imaginary.data.BaseBean;
 import xuk.imaginary.databinding.FragmentMeizhiBinding;
 import xuk.imaginary.gui.MainActivity;
 import xuk.imaginary.gui.gank.show.GankActivity;
-import xuk.imaginary.util.DateUtils;
+import xuk.imaginary.common.DateUtils;
 
 import java.util.ArrayList;
 

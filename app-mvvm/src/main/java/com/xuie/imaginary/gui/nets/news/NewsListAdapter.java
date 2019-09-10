@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import xuk.imaginary.R;
 import xuk.imaginary.data.NetsSummary;
-import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.common.GlideUtils;
 
 import java.util.List;
 

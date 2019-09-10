@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gk.*
 import xuk.imaginary.R
 import xuk.imaginary.gui.BaseActivity
-import xuk.imaginary.util.convertToMei
-import xuk.imaginary.util.loadImage
+import xuk.imaginary.common.convertToMei
+import xuk.imaginary.common.loadImage
 
 /**
  * @author Jie Xu

@@ -2,12 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "xuk.imaginary"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 28
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode 1
@@ -21,6 +22,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    dataBinding {
+        enabled true
     }
 
     sourceSets {

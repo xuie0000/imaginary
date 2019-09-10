@@ -13,7 +13,7 @@ import xuk.imaginary.data.BaseBean;
 import xuk.imaginary.data.GankBean;
 import xuk.imaginary.data.source.GankRepository;
 import xuk.imaginary.gui.BaseActivity;
-import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.common.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static xuk.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.common.Utils.checkNotNull;
 
 /**
  * @author xuie

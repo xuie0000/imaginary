@@ -4,7 +4,7 @@ import xuk.imaginary.data.source.GankRepository;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-import static xuk.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.common.Utils.checkNotNull;
 
 /**
  * @author xuie

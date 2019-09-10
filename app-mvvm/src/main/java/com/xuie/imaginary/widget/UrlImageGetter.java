@@ -28,7 +28,7 @@ import xuk.imaginary.R;
 import xuk.imaginary.app.App;
 import xuk.imaginary.data.api.NETSApi;
 import xuk.imaginary.data.api.ServiceGenerator;
-import xuk.imaginary.util.HttpUtils;
+import xuk.imaginary.common.HttpUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;

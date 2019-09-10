@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import xuk.imaginary.R
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.gui.gank.show.GkActivity
-import xuk.imaginary.util.gkSwitchDate
-import xuk.imaginary.util.loadImage
+import xuk.imaginary.common.gkSwitchDate
+import xuk.imaginary.common.loadImage
 
 /**
  * @author Jie Xu

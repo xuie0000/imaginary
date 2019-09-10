@@ -26,8 +26,8 @@ import com.github.anzewei.parallaxbacklayout.ParallaxBack;
 import xuk.imaginary.R;
 import xuk.imaginary.data.NetsDetail;
 import xuk.imaginary.data.source.NetsRepository;
-import xuk.imaginary.util.GlideUtils;
-import xuk.imaginary.util.TimeUtils;
+import xuk.imaginary.common.GlideUtils;
+import xuk.imaginary.common.TimeUtils;
 import xuk.imaginary.widget.UrlImageGetter;
 
 import java.util.List;
@@ -41,7 +41,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-import static xuk.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.common.Utils.checkNotNull;
 
 /**
  * @author xuie

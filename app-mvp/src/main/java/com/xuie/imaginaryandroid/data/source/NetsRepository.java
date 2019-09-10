@@ -5,8 +5,8 @@ import xuk.imaginary.data.NetsSummary;
 import xuk.imaginary.data.VideoBean;
 import xuk.imaginary.data.api.NETSApi;
 import xuk.imaginary.data.api.ServiceGenerator;
-import xuk.imaginary.util.HttpUtils;
-import xuk.imaginary.util.TimeUtils;
+import xuk.imaginary.common.HttpUtils;
+import xuk.imaginary.common.TimeUtils;
 
 import java.util.List;
 import java.util.Map;

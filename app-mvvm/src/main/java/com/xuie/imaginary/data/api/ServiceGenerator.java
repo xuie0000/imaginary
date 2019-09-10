@@ -6,7 +6,7 @@ import android.webkit.WebSettings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import xuk.imaginary.app.App;
-import xuk.imaginary.util.NetWorkUtils;
+import xuk.imaginary.common.NetWorkUtils;
 
 import java.io.File;
 import java.io.IOException;

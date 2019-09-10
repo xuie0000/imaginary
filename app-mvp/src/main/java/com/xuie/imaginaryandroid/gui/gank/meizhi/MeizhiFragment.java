@@ -20,7 +20,7 @@ import xuk.imaginary.R;
 import xuk.imaginary.data.BaseBean;
 import xuk.imaginary.data.source.GankRepository;
 import xuk.imaginary.gui.gank.show.GankActivity;
-import xuk.imaginary.util.DateUtils;
+import xuk.imaginary.common.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static xuk.imaginary.util.Utils.checkNotNull;
+import static xuk.imaginary.common.Utils.checkNotNull;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        tools:context="xuk.imaginary.gui.MainActivity">
+        tools:context="xuk.imaginary.gui.gank.MainActivity">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"

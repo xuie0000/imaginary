@@ -11,7 +11,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import xuk.imaginary.R;
 import xuk.imaginary.app.App;
 import xuk.imaginary.gui.web.WebViewActivity;
-import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.common.GlideUtils;
 
 import java.util.List;
 

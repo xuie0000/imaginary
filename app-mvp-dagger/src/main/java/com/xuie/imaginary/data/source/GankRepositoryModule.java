@@ -1,8 +1,8 @@
 package xuk.imaginary.data.source;
 
 import xuk.imaginary.data.source.remote.GankRemoteSource;
-import xuk.imaginary.util.AppExecutors;
-import xuk.imaginary.util.DiskIOThreadExecutor;
+import xuk.imaginary.common.AppExecutors;
+import xuk.imaginary.common.DiskIOThreadExecutor;
 
 import java.util.concurrent.Executors;
 

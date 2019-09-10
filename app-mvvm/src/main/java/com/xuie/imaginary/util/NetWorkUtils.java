@@ -1,4 +1,4 @@
-package xuk.imaginary.util;
+package xuk.imaginary.common;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

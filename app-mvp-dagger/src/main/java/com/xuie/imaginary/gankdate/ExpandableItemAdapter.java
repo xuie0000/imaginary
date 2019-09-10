@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import xuk.imaginary.R;
 import xuk.imaginary.ToDoApplication;
-import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.common.GlideUtils;
 import xuk.imaginary.web.WebViewActivity;
 
 import java.util.List;

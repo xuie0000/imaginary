@@ -20,7 +20,7 @@ import xuk.imaginary.R;
 import xuk.imaginary.data.BaseBean;
 import xuk.imaginary.di.ActivityScoped;
 import xuk.imaginary.gankdate.GankDayActivity;
-import xuk.imaginary.util.DateUtils;
+import xuk.imaginary.common.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;

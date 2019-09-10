@@ -19,7 +19,7 @@ import xuk.imaginary.gui.gank.meizhi.MeiZhiAdapter;
 import xuk.imaginary.gui.gank.show.ExpandableItemAdapter;
 import xuk.imaginary.gui.nets.news.NewsListAdapter;
 import xuk.imaginary.gui.nets.video.VideosAdapter;
-import xuk.imaginary.util.GlideUtils;
+import xuk.imaginary.common.GlideUtils;
 import xuk.imaginary.widget.UrlImageGetter;
 
 import java.util.ArrayList;
