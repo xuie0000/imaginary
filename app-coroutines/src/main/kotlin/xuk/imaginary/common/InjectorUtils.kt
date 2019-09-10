@@ -19,11 +19,11 @@ object InjectorUtils {
     return UserRepository.getInstance(AppDataBase.getInstance(context).userDao())
   }
 
-  fun providerRegisterModel(context: Context): RegisterModelFactory {
+  fun providerRegisterModelFactory(context: Context): RegisterModelFactory {
     return RegisterModelFactory(providerUserRepository(context))
   }
 
-  fun providerLoginModel(context: Context): LoginModelFactory {
+  fun providerLoginModelFactory(context: Context): LoginModelFactory {
     return LoginModelFactory(providerUserRepository(context), context)
   }
 }

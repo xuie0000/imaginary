@@ -14,7 +14,6 @@ class LoginModel constructor(
 
   val n = MutableLiveData<String>("")
   val p = MutableLiveData<String>("")
-  //lateinit var lifecycleOwner: LifecycleOwner
 
   /**
    * 用户名改变回调的函数

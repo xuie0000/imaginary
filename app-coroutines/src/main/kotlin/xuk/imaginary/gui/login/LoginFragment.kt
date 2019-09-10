@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import xuk.imaginary.R
 import xuk.imaginary.common.Constants
 import xuk.imaginary.common.InjectorUtils
 import xuk.imaginary.common.putSpValue
@@ -26,7 +24,7 @@ import xuk.imaginary.gui.gank.MainActivity
 class LoginFragment : Fragment() {
 
   private val loginModel: LoginModel by viewModels {
-    InjectorUtils.providerLoginModel(requireContext())
+    InjectorUtils.providerLoginModelFactory(requireContext())
   }
   private var isEnable: Boolean = false
 
@@ -35,18 +33,18 @@ class LoginFragment : Fragment() {
       savedInstanceState: Bundle?
   ): View? {
     // TODO 研究DataBindComponent
-    val binding: LoginFragmentBinding = DataBindingUtil.inflate(
+    /*val binding: LoginFragmentBinding = DataBindingUtil.inflate(
         inflater
         , R.layout.login_fragment
         , container
         , false
-    )
+    )*/
     // 生成Binding的另外一种方式
-    /*val binding = FragmentLoginBinding.inflate(
+    val binding = LoginFragmentBinding.inflate(
         inflater
         , container
         , false
-    )*/
+    )
     onSubscribeUi(binding)
     return binding.root
   }
@@ -59,8 +57,8 @@ class LoginFragment : Fragment() {
     binding.btnLogin.setOnClickListener {
       loginModel.login()?.observe(this, Observer { user ->
         user?.let {
-          activity?.putSpValue(Constants.SP_USER_ID, it.id)
-          activity?.putSpValue(Constants.SP_USER_NAME, it.account)
+          activity!!.putSpValue(Constants.SP_USER_ID, it.id)
+          activity!!.putSpValue(Constants.SP_USER_NAME, it.account)
           val intent = Intent(context, MainActivity::class.java)
           context!!.startActivity(intent)
           Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show()

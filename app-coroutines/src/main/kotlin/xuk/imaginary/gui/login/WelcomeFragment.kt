@@ -45,7 +45,7 @@ class WelcomeFragment : Fragment() {
         }
       }
 
-      val name = activity?.getSpValue(Constants.SP_USER_NAME, Constants.USER_NAME)
+      val name = activity!!.getSpValue(Constants.SP_USER_NAME, Constants.USER_NAME)
       // Navigation 传递参数
       val bundle = Bundle()
       bundle.putString(Constants.ARGS_NAME, name)

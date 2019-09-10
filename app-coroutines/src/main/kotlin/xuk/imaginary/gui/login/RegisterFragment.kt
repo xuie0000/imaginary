@@ -1,6 +1,5 @@
 package xuk.imaginary.gui.login
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import xuk.imaginary.common.Constants
 import xuk.imaginary.common.InjectorUtils
 import xuk.imaginary.databinding.RegisterFragmentBinding
 
-
 /**
  * 注册的Fragment
  *
@@ -26,7 +24,7 @@ class RegisterFragment : Fragment() {
 
   private var isEnable: Boolean = false
   private val registerModel: RegisterModel by viewModels {
-    InjectorUtils.providerRegisterModel(requireContext())
+    InjectorUtils.providerRegisterModelFactory(requireContext())
   }
 
   override fun onCreateView(

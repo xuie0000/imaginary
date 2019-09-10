@@ -8,18 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import xuk.imaginary.R
-import java.util.*
+
+/**
+ * 获取权限
+ */
+private const val REQUEST_CODE_PERMISSIONS = 101
+
+private const val KEY_PERMISSIONS_REQUEST_COUNT = "KEY_PERMISSIONS_REQUEST_COUNT"
+private const val MAX_NUMBER_REQUEST_PERMISSIONS = 2
 
 class LoginActivity : AppCompatActivity() {
 
-  //lateinit var navController: NavController
-  // 获取权限
-  private val REQUEST_CODE_PERMISSIONS = 101
 
-  private val KEY_PERMISSIONS_REQUEST_COUNT = "KEY_PERMISSIONS_REQUEST_COUNT"
-  private val MAX_NUMBER_REQUEST_PERMISSIONS = 2
-
-  private val permissions = Arrays.asList(
+  private val permissions = listOf(
       Manifest.permission.READ_EXTERNAL_STORAGE,
       Manifest.permission.WRITE_EXTERNAL_STORAGE,
       Manifest.permission.CAMERA
