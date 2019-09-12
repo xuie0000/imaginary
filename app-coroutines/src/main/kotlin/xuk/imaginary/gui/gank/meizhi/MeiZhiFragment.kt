@@ -1,7 +1,6 @@
 package xuk.imaginary.gui.gank.meizhi
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +24,7 @@ class MeiZhiFragment : Fragment(R.layout.fragment_mei_zhi) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    Log.d(TAG, "onViewCreated")
+    println("onViewCreated")
     meiZhiViewModule = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application)
         .create(MeiZhiViewModule::class.java)
 
@@ -67,8 +66,5 @@ class MeiZhiFragment : Fragment(R.layout.fragment_mei_zhi) {
     meiZhiViewModule.refresh(false)
   }
 
-  companion object {
-    private const val TAG = "MeiZhiFragment"
-  }
 
 }

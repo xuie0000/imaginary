@@ -19,7 +19,6 @@ class MeiZhiViewModule : ViewModel() {
   init {
     items = Transformations.switchMap(mutableCurrentPage) { page ->
       liveData(Dispatchers.IO) {
-        println("111111 $page")
         val result = Repository.getCategory("福利", page)
         println("isRefresh:$isRefresh, page:$page")
         if (isRefresh) {

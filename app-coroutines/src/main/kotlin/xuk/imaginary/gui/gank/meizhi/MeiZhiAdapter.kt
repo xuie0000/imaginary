@@ -58,17 +58,11 @@ class MeiZhiAdapter : ListAdapter<GkIo.BaseBean, MeiZhiAdapter.MeiZhiViewHolder>
 
 private class MeiZhiDiffCallback : DiffUtil.ItemCallback<GkIo.BaseBean>() {
 
-  override fun areItemsTheSame(
-      oldItem: GkIo.BaseBean,
-      newItem: GkIo.BaseBean
-  ): Boolean {
+  override fun areItemsTheSame(oldItem: GkIo.BaseBean, newItem: GkIo.BaseBean): Boolean {
     return oldItem._id == newItem._id
   }
 
-  override fun areContentsTheSame(
-      oldItem: GkIo.BaseBean,
-      newItem: GkIo.BaseBean
-  ): Boolean {
+  override fun areContentsTheSame(oldItem: GkIo.BaseBean, newItem: GkIo.BaseBean): Boolean {
     return oldItem.url == newItem.url
   }
 }

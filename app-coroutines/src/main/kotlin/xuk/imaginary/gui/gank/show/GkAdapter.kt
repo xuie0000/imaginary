@@ -65,17 +65,11 @@ class GkAdapter : ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
 
 private class GkDiffCallback : DiffUtil.ItemCallback<MeiZhi>() {
 
-  override fun areItemsTheSame(
-      oldItem: MeiZhi,
-      newItem: MeiZhi
-  ): Boolean {
+  override fun areItemsTheSame(oldItem: MeiZhi, newItem: MeiZhi): Boolean {
     return oldItem.type == newItem.type
   }
 
-  override fun areContentsTheSame(
-      oldItem: MeiZhi,
-      newItem: MeiZhi
-  ): Boolean {
+  override fun areContentsTheSame(oldItem: MeiZhi, newItem: MeiZhi): Boolean {
     return oldItem.gk?._id == newItem.gk?._id
   }
 }

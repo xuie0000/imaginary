@@ -1,14 +1,13 @@
 package xuk.imaginary.gui.gank.show
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_gk.*
 import xuk.imaginary.R
-import xuk.imaginary.gui.BaseActivity
 import xuk.imaginary.common.convertToMei
 import xuk.imaginary.common.loadImage
+import xuk.imaginary.gui.BaseActivity
 
 /**
  * @author Jie Xu
@@ -23,7 +22,7 @@ class GkActivity : BaseActivity() {
     val date = intent.getStringExtra("date")
     val imageUrl = intent.getStringExtra("image")
 
-    Log.d(TAG, "onCreate: data - $date, image - $imageUrl")
+    println("onCreate: data - $date, image - $imageUrl")
 
     val viewModule = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         .create(GkViewModule::class.java)
@@ -42,9 +41,5 @@ class GkActivity : BaseActivity() {
     })
 
     viewModule.requestGk(date!!)
-  }
-
-  companion object {
-    private const val TAG = "GkActivity"
   }
 }
