@@ -56,13 +56,17 @@ class LoginFragment : Fragment() {
 
     binding.btnLogin.setOnClickListener {
       loginModel.login()?.observe(this, Observer { user ->
-        user?.let {
-          activity!!.putSpValue(Constants.SP_USER_ID, it.id)
-          activity!!.putSpValue(Constants.SP_USER_NAME, it.account)
-          val intent = Intent(context, MainActivity::class.java)
-          context!!.startActivity(intent)
-          Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show()
+        if (user == null) {
+          Toast.makeText(context, "输入账号或密码错误，请重新输入！", Toast.LENGTH_SHORT).show()
+          return@Observer
         }
+
+        activity!!.putSpValue(Constants.SP_USER_ID, user.id)
+        activity!!.putSpValue(Constants.SP_USER_NAME, user.account)
+        val intent = Intent(context, MainActivity::class.java)
+        context!!.startActivity(intent)
+        activity!!.finish()
+        Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show()
       })
     }
 
