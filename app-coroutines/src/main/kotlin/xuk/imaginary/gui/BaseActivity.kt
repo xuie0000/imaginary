@@ -1,5 +1,6 @@
 package xuk.imaginary.gui
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View
 
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
  */
 abstract class BaseActivity : AppCompatActivity() {
 
+  @SuppressLint("ObsoleteSdkInt")
   override fun onResume() {
     super.onResume()
     val decorView = window.decorView

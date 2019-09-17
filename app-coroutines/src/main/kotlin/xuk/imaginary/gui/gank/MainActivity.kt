@@ -16,7 +16,6 @@ class MainActivity : BaseActivity() {
     setContentView(R.layout.activity_main)
 
     supportFragmentManager.commit {
-      addToBackStack("contentFrame")
       add(R.id.contentFrame, MeiZhiFragment())
     }
   }

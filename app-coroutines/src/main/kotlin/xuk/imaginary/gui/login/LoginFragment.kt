@@ -61,11 +61,15 @@ class LoginFragment : Fragment() {
           return@Observer
         }
 
-        activity!!.putSpValue(Constants.SP_USER_ID, user.id)
-        activity!!.putSpValue(Constants.SP_USER_NAME, user.account)
-        val intent = Intent(context, MainActivity::class.java)
-        context!!.startActivity(intent)
-        activity!!.finish()
+        with(activity!!) {
+          putSpValue(Constants.SP_USER_ID, user.id)
+          putSpValue(Constants.SP_USER_NAME, user.account)
+
+          startActivity(Intent(this, MainActivity::class.java))
+
+          finish()
+        }
+
         Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show()
       })
     }
