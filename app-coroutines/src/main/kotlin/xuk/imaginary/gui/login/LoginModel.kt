@@ -1,9 +1,11 @@
 package xuk.imaginary.gui.login
 
+import android.content.Context
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import xuk.imaginary.common.SimpleWatcher
 import xuk.imaginary.data.UserRepository
 import xuk.imaginary.data.db.User
@@ -53,5 +55,14 @@ class LoginModel constructor(
       //p.set(s.toString())
       p.value = s.toString()
     }
+  }
+}
+
+class LoginModelFactory(
+    private val repository: UserRepository
+    , private val context: Context
+) : ViewModelProvider.NewInstanceFactory() {
+  override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    return LoginModel(repository) as T
   }
 }

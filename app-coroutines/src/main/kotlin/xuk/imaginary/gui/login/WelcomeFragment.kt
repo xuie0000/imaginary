@@ -1,40 +1,28 @@
 package xuk.imaginary.gui.login
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.welcome_fragment.*
 import xuk.imaginary.R
 import xuk.imaginary.common.Constants
 import xuk.imaginary.common.getSpValue
+import xuk.imaginary.common.putSpValue
+import xuk.imaginary.gui.gank.MainActivity
 
 /**
  *  欢迎界面
  */
-class WelcomeFragment : Fragment() {
-
-  override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?,
-      savedInstanceState: Bundle?
-  ): View? {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.welcome_fragment, container, false)
-  }
-
-  lateinit var btnLogin: Button
-  lateinit var btnRegister: Button
+class WelcomeFragment : Fragment(R.layout.welcome_fragment) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    btnLogin = view.findViewById(R.id.btn_login)
-    btnRegister = view.findViewById(R.id.btn_register)
-
-    btnLogin.setOnClickListener {
+    btn_login.setOnClickListener {
       // 设置动画参数
       val navOption = navOptions {
         anim {
@@ -52,13 +40,39 @@ class WelcomeFragment : Fragment() {
       findNavController().navigate(R.id.login, bundle, navOption)
     }
 
-    btnRegister.setOnClickListener {
+    btn_register.setOnClickListener {
       // 利用SafeArgs传递参数
       val action = WelcomeFragmentDirections
           .actionWelcomeToRegister()
-          .setEMAIL("TeaOf1995@Gamil.com")
+          .setEMAIL("xuie0000@163.com")
       findNavController().navigate(action)
     }
+
+    btnSkip.setOnClickListener {
+      with(activity!!) {
+        if (getSpValue(Constants.SP_LOGIN_TIP, Constants.SP_LOGIN_TIP_DEFAULT)) {
+          MaterialAlertDialogBuilder(this)
+              .setTitle("跳过？")
+              .setMessage("下次是否不再显示登录界面？")
+              .setPositiveButton("YES") { _, _ ->
+                putSpValue(Constants.SP_LOGIN_TIP, false)
+                jumpToMain()
+              }
+              .setNegativeButton("CANCEL") { _, _ ->
+                jumpToMain()
+              }
+              .show()
+        } else {
+          jumpToMain()
+        }
+      }
+
+    }
+  }
+
+  private fun jumpToMain() {
+    startActivity(Intent(context, MainActivity::class.java))
+    activity?.finish()
   }
 
 

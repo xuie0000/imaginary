@@ -22,6 +22,8 @@ object Constants {
    */
   const val DATABASE_NAME = "sunflower-db"
   const val PLANT_DATA_FILENAME = "plants.json"
+  const val SP_LOGIN_TIP = "SP_LOGIN_TIP"
+  const val SP_LOGIN_TIP_DEFAULT = true
 
   const val USER_NAME: String = "TeaOf"
   const val USER_PWD: String = "123456"

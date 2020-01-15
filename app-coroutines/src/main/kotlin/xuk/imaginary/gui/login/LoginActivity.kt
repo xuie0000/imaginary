@@ -1,6 +1,7 @@
 package xuk.imaginary.gui.login
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import xuk.imaginary.R
+import xuk.imaginary.common.Constants
+import xuk.imaginary.common.getSpValue
+import xuk.imaginary.gui.gank.MainActivity
 
 /**
  * 获取权限
@@ -19,11 +23,9 @@ private const val MAX_NUMBER_REQUEST_PERMISSIONS = 2
 
 class LoginActivity : AppCompatActivity() {
 
-
   private val permissions = listOf(
       Manifest.permission.READ_EXTERNAL_STORAGE,
-      Manifest.permission.WRITE_EXTERNAL_STORAGE,
-      Manifest.permission.CAMERA
+      Manifest.permission.WRITE_EXTERNAL_STORAGE
   )
 
   private var permissionRequestCount: Int = 0
@@ -32,11 +34,19 @@ class LoginActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.login_activity)
 
-    /*val host:NavHostFragment = supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
-    navController = host.navController*/
-
     savedInstanceState?.let {
       permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)
+    }
+
+    val isFromMain: Boolean =
+        if (intent == null) false else intent.getBooleanExtra("fromMain", false)
+
+    if (!isFromMain &&
+        (!getSpValue(Constants.SP_LOGIN_TIP, Constants.SP_LOGIN_TIP_DEFAULT))
+    ) {
+      startActivity(Intent(this, MainActivity::class.java))
+
+      finish()
     }
 
     // 获取权限
