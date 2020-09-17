@@ -6,8 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvp-dagger/imaginary.app-mvp-dagger.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvp-dagger/imaginary.app-mvp-dagger.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvp-kotlin/imaginary.app-mvp-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvp-kotlin/imaginary.app-mvp-kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvvm/imaginary.app-mvvm.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvvm/imaginary.app-mvvm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvvm-kodein/imaginary.app-mvvm-kodein.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvvm-kodein/imaginary.app-mvvm-kodein.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvvm-kotlin/imaginary.app-mvvm-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvvm-kotlin/imaginary.app-mvvm-kotlin.iml" />
     </modules>
   </component>
 </project>

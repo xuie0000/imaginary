@@ -8,6 +8,8 @@ import com.chad.library.adapter.base.BaseViewHolder
 import xuk.imaginary.R
 import xuk.imaginary.data.ImgextraBean
 import xuk.imaginary.data.NetsSummary
+import xuk.imaginary.data.NetsSummary.Companion.IMG_MULTI
+import xuk.imaginary.data.NetsSummary.Companion.IMG_ONE
 import xuk.imaginary.util.GlideUtils
 
 /**

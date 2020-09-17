@@ -12,6 +12,8 @@ import com.cjj.MaterialRefreshListener
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
+import xuk.imaginary.databinding.FragmentVideosBinding
+import xuk.imaginary.di.viewModel
 import java.util.*
 
 /**
@@ -25,7 +27,7 @@ class VideosFragment : Fragment(), KodeinAware {
 
   private lateinit var mVideoType: String
   private val videosAdapter = VideosAdapter(ArrayList())
-  private lateinit var mBinding: com.xuie.imaginary.databinding.FragmentVideosBinding
+  private lateinit var mBinding: FragmentVideosBinding
   private val videosViewModule: VideosViewModule by viewModel()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -36,7 +38,7 @@ class VideosFragment : Fragment(), KodeinAware {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    mVideoType = requireArguments().getString(VIDEO_TYPE_ID)
+    mVideoType = requireArguments().getString(VIDEO_TYPE_ID).toString()
     mBinding.recyclerView.layoutManager = LinearLayoutManager(context)
     mBinding.recyclerView.adapter = videosAdapter
 

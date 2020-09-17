@@ -16,11 +16,13 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
-import xuk.imaginary.databinding.FragmentMeizhiBinding
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import xuk.imaginary.data.BaseBean
+import xuk.imaginary.databinding.FragmentMeizhiBinding
+import xuk.imaginary.di.viewModel
 import xuk.imaginary.gui.gank.show.GankActivity
+import xuk.imaginary.util.DateUtils
 import java.util.*
 
 /**
@@ -32,7 +34,7 @@ class MeizhiFragment : Fragment(), KodeinAware {
 
   override val kodein by kodein()
 
-  private lateinit var binding: com.xuie.imaginary.databinding.FragmentMeizhiBinding
+  private lateinit var binding: FragmentMeizhiBinding
   private val meiZhiViewModule: MeiZhiViewModule by viewModel()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

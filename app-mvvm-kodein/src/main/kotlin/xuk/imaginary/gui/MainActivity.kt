@@ -12,6 +12,7 @@ import org.kodein.di.android.kodein
 import org.kodein.di.android.retainedSubKodein
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseActivity
+import xuk.imaginary.databinding.ActivityMainBinding
 import xuk.imaginary.gui.gank.meizhi.meiZhiModel
 import xuk.imaginary.gui.gank.show.gankModel
 import xuk.imaginary.gui.nets.detail.netsOneModel
@@ -30,7 +31,7 @@ class MainActivity : BaseActivity(), KodeinAware {
     import(netsOneModel)
   }
 
-  private lateinit var mBinding: com.xuie.imaginary.databinding.ActivityMainBinding
+  private lateinit var mBinding: ActivityMainBinding
   private var currentNavController: LiveData<NavController>? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {

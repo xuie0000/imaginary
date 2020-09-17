@@ -8,9 +8,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import org.kodein.di.Copy
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
+import org.kodein.di.android.retainedSubKodein
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseActivity
 import xuk.imaginary.databinding.ActivityGankBinding
+import xuk.imaginary.di.viewModel
 import java.util.*
 
 /**
@@ -23,7 +25,7 @@ class GankActivity : BaseActivity(), KodeinAware {
   }
 
   private val adapter = ExpandableItemAdapter(ArrayList())
-  private lateinit var mBinding: com.xuie.imaginary.databinding.ActivityGankBinding
+  private lateinit var mBinding: ActivityGankBinding
   private val gankViewModule: GankViewModule by viewModel()
 
   override fun onCreate(savedInstanceState: Bundle?) {

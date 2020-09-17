@@ -19,7 +19,7 @@ class WebViewActivity : AppCompatActivity() {
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val binding = DataBindingUtil.setContentView<com.xuie.imaginary.databinding.ActivityWebviewBinding>(this, R.layout.activity_webview)
+    val binding = DataBindingUtil.setContentView<ActivityWebviewBinding>(this, R.layout.activity_webview)
 
     val url = intent.getStringExtra(URL)
 

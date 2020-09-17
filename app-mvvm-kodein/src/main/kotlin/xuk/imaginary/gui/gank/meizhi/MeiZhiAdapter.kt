@@ -3,6 +3,7 @@ package xuk.imaginary.gui.gank.meizhi
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseDataBindingAdapter
 import xuk.imaginary.data.BaseBean
+import xuk.imaginary.databinding.ItemFragmentMeizhiBinding
 
 /**
  * @author Jie Xu

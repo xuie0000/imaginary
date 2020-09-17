@@ -9,6 +9,7 @@ import xuk.imaginary.data.VideoBean
 import xuk.imaginary.data.api.NETSApi
 import xuk.imaginary.data.api.ServiceGenerator
 import xuk.imaginary.util.HttpUtils
+import xuk.imaginary.util.TimeUtils
 
 /**
  * @author Jie Xu

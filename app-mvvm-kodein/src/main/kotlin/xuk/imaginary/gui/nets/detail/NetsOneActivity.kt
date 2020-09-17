@@ -19,6 +19,7 @@ import org.kodein.di.android.kodein
 import org.kodein.di.android.retainedSubKodein
 import xuk.imaginary.R
 import xuk.imaginary.databinding.ActivityNetsOneBinding
+import xuk.imaginary.di.viewModel
 
 /**
  * @author Jie Xu
@@ -33,7 +34,7 @@ class NetsOneActivity : AppCompatActivity(), KodeinAware {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val mBinding = DataBindingUtil.setContentView<com.xuie.imaginary.databinding.ActivityNetsOneBinding>(this, R.layout.activity_nets_one)
+    val mBinding = DataBindingUtil.setContentView<ActivityNetsOneBinding>(this, R.layout.activity_nets_one)
 
     setSupportActionBar(mBinding.toolbar)
     val postId = intent.getStringExtra(POST_ID)

@@ -43,7 +43,7 @@ object ServiceGenerator {
    */
   private val mRewriteCacheControlInterceptor = Interceptor { chain ->
     var request = chain.request()
-    val cacheControl = request.cacheControl().toString()
+    val cacheControl = request.cacheControl.toString()
     if (!NetWorkUtils.isNetConnected(App.context)) {
       request = request.newBuilder()
           .cacheControl(if (TextUtils.isEmpty(cacheControl)) CacheControl.FORCE_NETWORK else CacheControl.FORCE_CACHE)
@@ -110,20 +110,18 @@ object ServiceGenerator {
         .addNetworkInterceptor(mRewriteCacheControlInterceptor)
         .addInterceptor(headerInterceptor)
         .addInterceptor(logInterceptor)
+        .addInterceptor { chain ->
+          val original = chain.request()
+          val requestBuilder = original.newBuilder()
+              .header("Authorization", authToken ?: "")
+              .method(original.method, original.body)
+
+          val request = requestBuilder.build()
+          chain.proceed(request)
+
+        }
         .cache(cache)
         .build()
-
-    if (authToken != null) {
-      client.interceptors().add(Interceptor { chain ->
-        val original = chain.request()
-        val requestBuilder = original.newBuilder()
-            .header("Authorization", authToken)
-            .method(original.method(), original.body())
-
-        val request = requestBuilder.build()
-        chain.proceed(request)
-      })
-    }
 
     val retrofit = builder.client(client).build()
     return retrofit.create(serviceClass)

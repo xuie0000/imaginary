@@ -22,7 +22,7 @@ class VideoMainFragment : Fragment(), KodeinAware {
   override val kodein by kodein()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    val binding = com.xuie.imaginary.databinding.FragmentVideoMainBinding.inflate(inflater, container, false)
+    val binding = FragmentVideoMainBinding.inflate(inflater, container, false)
     binding.viewPager.adapter = MyPagerAdapter(childFragmentManager)
     binding.tabs.setupWithViewPager(binding.viewPager)
     return binding.root

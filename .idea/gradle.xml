@@ -13,7 +13,6 @@
             <option value="$PROJECT_DIR$/app-mvp-dagger" />
             <option value="$PROJECT_DIR$/app-mvp-kotlin" />
             <option value="$PROJECT_DIR$/app-mvvm" />
-            <option value="$PROJECT_DIR$/app-mvvm-kodein" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

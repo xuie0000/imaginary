@@ -17,6 +17,7 @@ import xuk.imaginary.R
 import xuk.imaginary.app.App
 import xuk.imaginary.data.NetsSummary
 import xuk.imaginary.databinding.FragmentNewsListBinding
+import xuk.imaginary.di.viewModel
 import xuk.imaginary.gui.nets.detail.NetsOneActivity
 import xuk.imaginary.gui.web.WebViewActivity
 import java.util.*
@@ -32,7 +33,7 @@ class NewsListFragment : Fragment(), KodeinAware {
 
   private val newsListAdapter = NewsListAdapter(ArrayList())
 
-  private lateinit var mBinding: com.xuie.imaginary.databinding.FragmentNewsListBinding
+  private lateinit var mBinding: FragmentNewsListBinding
   private val newsListViewModule: NewsListViewModule by viewModel()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
