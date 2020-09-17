@@ -714,7 +714,7 @@ class TimeUtils {
      */
     private fun toDate(sdate: String): Date? {
       return try {
-        dateFormater.get().parse(sdate)
+        dateFormater.get()?.parse(sdate)
       } catch (e: ParseException) {
         null
       }
@@ -737,8 +737,8 @@ class TimeUtils {
       val cal = Calendar.getInstance()
 
       // 判断是否是同一天
-      val curDate = dateFormater2.get().format(cal.time)
-      val paramDate = dateFormater2.get().format(time)
+      val curDate = dateFormater2.get()?.format(cal.time)
+      val paramDate = dateFormater2.get()?.format(time)
       if (curDate == paramDate) {
         val hour = ((cal.timeInMillis - time.time) / 3600000) as Int
         if (hour == 0) {
@@ -769,7 +769,7 @@ class TimeUtils {
       } else if (days in 3..10) {
         ftime = days.toString() + "天前"
       } else if (days > 10) {
-        ftime = dateFormater2.get().format(time)
+        ftime = dateFormater2.get()?.format(time)!!
       }
       return ftime
     }
@@ -846,8 +846,8 @@ class TimeUtils {
       val time = toDate(sdate)
       val today = Date()
       if (time != null) {
-        val nowDate = dateFormater2.get().format(today)
-        val timeDate = dateFormater2.get().format(time)
+        val nowDate = dateFormater2.get()?.format(today)
+        val timeDate = dateFormater2.get()?.format(time)
         if (nowDate == timeDate) {
           b = true
         }
@@ -866,8 +866,8 @@ class TimeUtils {
       val time = Date(sdate)
       val today = Date()
       if (time != null) {
-        val nowDate = dateFormater2.get().format(today)
-        val timeDate = dateFormater2.get().format(time)
+        val nowDate = dateFormater2.get()?.format(today)
+        val timeDate = dateFormater2.get()?.format(time)
         if (nowDate == timeDate) {
           b = true
         }

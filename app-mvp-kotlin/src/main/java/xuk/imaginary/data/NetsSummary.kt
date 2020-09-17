@@ -1,5 +1,7 @@
 package xuk.imaginary.data
 
+import com.chad.library.adapter.base.entity.MultiItemEntity
+
 data class NetsSummary(
     var template: String,
     var skipID: String,
@@ -33,14 +35,15 @@ data class NetsSummary(
     var cid: String,
     var imgextra: List<ImgextraBean>,
     var ads: List<AdsBean>
-//    override fun getItemType(): Int (
-//        return if (imgextra != null) IMG_MULTI else IMG_ONE
-//)
-) {
+) : MultiItemEntity {
   companion object {
     const val IMG_ONE = 1
     const val IMG_MULTI = 2
 
+  }
+
+  override fun getItemType(): Int {
+    return if (imgextra != null) IMG_MULTI else IMG_ONE
   }
 }
 

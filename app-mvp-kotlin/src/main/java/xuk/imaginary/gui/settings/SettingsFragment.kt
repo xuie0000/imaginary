@@ -7,30 +7,29 @@ import androidx.preference.*
 import xuk.imaginary.R
 
 /**
- * A simple [Fragment] subclass.
  * https://developer.android.com/guide/topics/ui/settings.html
  */
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
 
   override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-    val preference = findPreference(key)
-    if (preference is ListPreference) {
-      val listPreference = preference as ListPreference
-      val prefIndex = listPreference.findIndexOfValue(sharedPreferences.getString(key, ""))
-      if (prefIndex >= 0) {
-        preference.setSummary(listPreference.entries[prefIndex])
-      }
-    } else if (preference is EditTextPreference) {
-      preference.setSummary(sharedPreferences.getString(key, ""))
-    }
+//    val preference = findPreference<CheckBoxPreference>(key)
+//    if (preference is ListPreference) {
+//      val listPreference = preference as ListPreference
+//      val prefIndex = listPreference.findIndexOfValue(sharedPreferences.getString(key, ""))
+//      if (prefIndex >= 0) {
+//        preference.setSummary(listPreference.entries[prefIndex])
+//      }
+//    } else if (preference is EditTextPreference) {
+//      preference.setSummary(sharedPreferences.getString(key, ""))
+//    }
 
   }
 
   override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
     addPreferencesFromResource(R.xml.fragment_settings)
-    bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE))
-    bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE))
-    bindPreferenceSummaryToValue(findPreference(KEY_CACHED_PRE))
+//    bindPreferenceSummaryToValue(findPreference(KEY_LIST_PRE))
+//    bindPreferenceSummaryToValue(findPreference(KEY_PET_PRE))
+//    bindPreferenceSummaryToValue(findPreference(KEY_CACHED_PRE))
   }
 
   override fun onResume() {

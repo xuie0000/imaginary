@@ -9,6 +9,7 @@ import xuk.imaginary.data.VideoBean
 import xuk.imaginary.data.api.NETSApi
 import xuk.imaginary.data.api.ServiceGenerator
 import xuk.imaginary.util.HttpUtils
+import xuk.imaginary.util.TimeUtils
 
 /**
  * Created by xuie on 17-8-17.
@@ -22,14 +23,14 @@ class NETSRepository private constructor() : NETSSource {
         .flatMap { stringListMap ->
           Observable.fromIterable(stringListMap["T1348647853363"])
         }
-        .map({ netsSummary ->
+        .map { netsSummary ->
           netsSummary.ptime = TimeUtils.formatDate(netsSummary.ptime!!)
           netsSummary
-        })
+        }
         .distinct()
-        .toSortedList({ netsSummary, netsSummary2 ->
-          netsSummary2.ptime!!.compareTo(netsSummary.ptime!!)
-        })
+        .toSortedList { netsSummary, netsSummary2 ->
+          netsSummary2.ptime.compareTo(netsSummary.ptime)
+        }
   }
 
   override fun getNewDetail(postId: String): Observable<NetsDetail> {

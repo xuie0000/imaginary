@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import xuk.imaginary.R;
+import xuk.imaginary.databinding.ActivityWebviewBinding;
 
 /**
  * @author xuie
