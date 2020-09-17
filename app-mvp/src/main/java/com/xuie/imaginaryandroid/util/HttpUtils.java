@@ -1,6 +1,6 @@
 package xuk.imaginary.common;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import xuk.imaginary.app.App;
 

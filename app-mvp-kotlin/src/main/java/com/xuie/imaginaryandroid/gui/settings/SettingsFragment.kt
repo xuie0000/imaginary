@@ -4,7 +4,7 @@ package com.xuie.imaginaryandroid.gui.settings
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.v4.app.Fragment
+import androidx.core.app.Fragment
 import android.support.v7.preference.*
 import com.xuie.imaginaryandroid.R
 

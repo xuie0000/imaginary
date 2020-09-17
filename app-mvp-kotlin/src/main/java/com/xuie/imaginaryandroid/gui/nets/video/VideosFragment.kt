@@ -1,7 +1,7 @@
 package com.xuie.imaginaryandroid.gui.nets.video
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.core.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

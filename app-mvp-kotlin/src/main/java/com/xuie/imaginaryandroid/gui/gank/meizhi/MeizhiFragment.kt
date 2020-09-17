@@ -4,8 +4,8 @@ package com.xuie.imaginaryandroid.gui.gank.meizhi
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
+import androidx.core.app.ActivityCompat
+import androidx.core.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log

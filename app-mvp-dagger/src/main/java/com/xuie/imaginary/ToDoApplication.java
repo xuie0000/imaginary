@@ -3,7 +3,7 @@ package xuk.imaginary;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.VisibleForTesting;
 
 import xuk.imaginary.data.source.GankRepository;
 import xuk.imaginary.di.DaggerAppComponent;

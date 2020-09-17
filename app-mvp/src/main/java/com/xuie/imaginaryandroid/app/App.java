@@ -3,7 +3,7 @@ package xuk.imaginary.app;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
-import android.support.v7.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import com.github.anzewei.parallaxbacklayout.ParallaxHelper;
 import xuk.imaginary.R;

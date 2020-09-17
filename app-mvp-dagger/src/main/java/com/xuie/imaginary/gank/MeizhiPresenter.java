@@ -1,6 +1,6 @@
 package xuk.imaginary.gank;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import xuk.imaginary.data.source.GankRepository;
 import xuk.imaginary.di.ActivityScoped;
