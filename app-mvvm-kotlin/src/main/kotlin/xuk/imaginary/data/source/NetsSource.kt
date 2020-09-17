@@ -1,11 +1,10 @@
 package xuk.imaginary.data.source
 
-import com.xuie.imaginary.data.NetsDetail
-import com.xuie.imaginary.data.NetsSummary
-import com.xuie.imaginary.data.VideoBean
-
 import io.reactivex.Observable
 import io.reactivex.Single
+import xuk.imaginary.data.NetsDetail
+import xuk.imaginary.data.NetsSummary
+import xuk.imaginary.data.VideoBean
 
 /**
  * @author Jie Xu

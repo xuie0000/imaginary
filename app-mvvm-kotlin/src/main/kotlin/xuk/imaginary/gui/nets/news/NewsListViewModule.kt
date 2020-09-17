@@ -5,11 +5,10 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
 import androidx.lifecycle.AndroidViewModel
 
-import com.xuie.imaginary.data.NetsSummary
-import com.xuie.imaginary.data.source.NetsRepository
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import xuk.imaginary.data.NetsSummary
+import xuk.imaginary.data.source.NetsRepository
 
 /**
  * @author Jie Xu

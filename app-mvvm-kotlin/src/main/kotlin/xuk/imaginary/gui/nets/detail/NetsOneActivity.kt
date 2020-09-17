@@ -15,10 +15,9 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
-
-import com.xuie.imaginary.R
-import com.xuie.imaginary.ViewModelFactory
-import com.xuie.imaginary.databinding.ActivityNetsOneBinding
+import xuk.imaginary.R
+import xuk.imaginary.ViewModelFactory
+import xuk.imaginary.databinding.ActivityNetsOneBinding
 
 /**
  * @author Jie Xu

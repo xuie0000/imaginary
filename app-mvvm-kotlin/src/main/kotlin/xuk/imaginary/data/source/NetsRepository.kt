@@ -1,15 +1,15 @@
 package xuk.imaginary.data.source
 
-import com.xuie.imaginary.data.NetsDetail
-import com.xuie.imaginary.data.NetsSummary
-import com.xuie.imaginary.data.VideoBean
-import com.xuie.imaginary.data.api.NETSApi
-import com.xuie.imaginary.data.api.ServiceGenerator
-import com.xuie.imaginary.util.HttpUtils
-import com.xuie.imaginary.util.TimeUtils
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import xuk.imaginary.data.NetsDetail
+import xuk.imaginary.data.NetsSummary
+import xuk.imaginary.data.VideoBean
+import xuk.imaginary.data.api.NETSApi
+import xuk.imaginary.data.api.ServiceGenerator
+import xuk.imaginary.util.HttpUtils
+import xuk.imaginary.util.TimeUtils
 
 /**
  * @author Jie Xu

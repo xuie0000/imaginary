@@ -7,10 +7,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.xuie.imaginary.R
-import com.xuie.imaginary.ViewModelFactory
-import com.xuie.imaginary.base.BaseActivity
-import com.xuie.imaginary.databinding.ActivityGankBinding
+import xuk.imaginary.R
+import xuk.imaginary.ViewModelFactory
+import xuk.imaginary.base.BaseActivity
+import xuk.imaginary.databinding.ActivityGankBinding
 import java.util.*
 
 /**

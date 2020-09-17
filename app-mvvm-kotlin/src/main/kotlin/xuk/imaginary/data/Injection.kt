@@ -16,12 +16,12 @@
 
 package xuk.imaginary.data
 
-import com.xuie.imaginary.data.source.GankRepository
-import com.xuie.imaginary.data.source.NetsRepository
+import xuk.imaginary.data.source.GankRepository
+import xuk.imaginary.data.source.NetsRepository
 
 /**
  * Enables injection of mock implementations for
- * [com.xuie.imaginary.data.source.GankSource] at compile time. This is useful for testing, since it allows us to use
+ * [xuk.imaginary.data.source.GankSource] at compile time. This is useful for testing, since it allows us to use
  * a fake instance of the class to isolate the dependencies and run a test hermetically.
  *
  * @author Jie Xu

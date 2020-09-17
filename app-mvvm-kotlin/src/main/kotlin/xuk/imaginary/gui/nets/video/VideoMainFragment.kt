@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.xuie.imaginary.R
-import com.xuie.imaginary.databinding.FragmentVideoMainBinding
+import xuk.imaginary.R
+import xuk.imaginary.databinding.FragmentVideoMainBinding
 import java.util.*
 
 /**

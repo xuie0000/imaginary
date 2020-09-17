@@ -3,8 +3,6 @@ package xuk.imaginary.data.api
 import android.text.TextUtils
 import android.webkit.WebSettings
 import com.google.gson.GsonBuilder
-import com.xuie.imaginary.app.App
-import com.xuie.imaginary.util.NetWorkUtils
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor
@@ -13,6 +11,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import xuk.imaginary.app.App
+import xuk.imaginary.util.NetWorkUtils
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -24,6 +24,7 @@ object ServiceGenerator {
    * 读超时长，单位：毫秒
    */
   private const val READ_TIME_OUT = 7676
+
   /**
    * 连接时长，单位：毫秒
    */
@@ -42,7 +43,7 @@ object ServiceGenerator {
    */
   private val mRewriteCacheControlInterceptor = Interceptor { chain ->
     var request = chain.request()
-    val cacheControl = request.cacheControl().toString()
+    val cacheControl = request.cacheControl.toString()
     if (!NetWorkUtils.isNetConnected(App.context!!)) {
       request = request.newBuilder()
           .cacheControl(if (TextUtils.isEmpty(cacheControl)) CacheControl.FORCE_NETWORK else CacheControl.FORCE_CACHE)
@@ -109,20 +110,17 @@ object ServiceGenerator {
         .addNetworkInterceptor(mRewriteCacheControlInterceptor)
         .addInterceptor(headerInterceptor)
         .addInterceptor(logInterceptor)
+        .addInterceptor { chain ->
+          val original = chain.request()
+          val requestBuilder = original.newBuilder()
+              .header("Authorization", authToken ?: "")
+              .method(original.method, original.body)
+
+          val request = requestBuilder.build()
+          chain.proceed(request)
+        }
         .cache(cache)
         .build()
-
-    if (authToken != null) {
-      client.interceptors().add(Interceptor { chain ->
-        val original = chain.request()
-        val requestBuilder = original.newBuilder()
-            .header("Authorization", authToken)
-            .method(original.method(), original.body())
-
-        val request = requestBuilder.build()
-        chain.proceed(request)
-      })
-    }
 
     val retrofit = builder.client(client).build()
     return retrofit.create(serviceClass)

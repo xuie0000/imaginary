@@ -1,16 +1,11 @@
 package xuk.imaginary.data.api
 
-import com.xuie.imaginary.data.NetsDetail
-import com.xuie.imaginary.data.NetsSummary
-import com.xuie.imaginary.data.VideoBean
-
 import io.reactivex.Observable
 import okhttp3.ResponseBody
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import retrofit2.http.Url
+import retrofit2.http.*
+import xuk.imaginary.data.NetsDetail
+import xuk.imaginary.data.NetsSummary
+import xuk.imaginary.data.VideoBean
 
 /**
  * @author Jie Xu

@@ -10,13 +10,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app-coroutines" />
-            <option value="$PROJECT_DIR$/app-mvp" />
             <option value="$PROJECT_DIR$/app-mvp-dagger" />
             <option value="$PROJECT_DIR$/app-mvp-kotlin" />
             <option value="$PROJECT_DIR$/app-mvvm" />
             <option value="$PROJECT_DIR$/app-mvvm-kodein" />
-            <option value="$PROJECT_DIR$/app-mvvm-kotlin" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

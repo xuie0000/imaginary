@@ -5,7 +5,7 @@
 
         <variable
             name="viewmodule"
-            type="com.xuie.imaginary.gui.nets.news.NewsListViewModule" />
+            type="xuk.imaginary.gui.nets.news.NewsListViewModule" />
 
     </data>
 

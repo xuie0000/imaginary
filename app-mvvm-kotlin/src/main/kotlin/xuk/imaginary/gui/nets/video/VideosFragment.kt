@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.cjj.MaterialRefreshLayout
 import com.cjj.MaterialRefreshListener
-import com.xuie.imaginary.databinding.FragmentVideosBinding
-import com.xuie.imaginary.gui.MainActivity
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+import xuk.imaginary.databinding.FragmentVideosBinding
+import xuk.imaginary.gui.MainActivity
 import java.util.*
 
 /**
@@ -28,14 +28,14 @@ class VideosFragment : Fragment() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     mBinding = FragmentVideosBinding.inflate(inflater, container, false)
-    videosViewModule = MainActivity.obtainVideosViewModel(activity!!)
+    videosViewModule = MainActivity.obtainVideosViewModel(requireActivity())
     mBinding.viewModule = videosViewModule
     return mBinding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    mVideoType = arguments!!.getString(VIDEO_TYPE_ID)
+    mVideoType = requireArguments().getString(VIDEO_TYPE_ID).toString()
     mBinding.recyclerView.layoutManager = LinearLayoutManager(context)
     mBinding.recyclerView.adapter = videosAdapter
 

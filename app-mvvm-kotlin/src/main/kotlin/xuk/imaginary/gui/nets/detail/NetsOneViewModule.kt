@@ -4,10 +4,10 @@ import android.app.Application
 import android.text.TextUtils
 import androidx.databinding.ObservableField
 import androidx.lifecycle.AndroidViewModel
-import com.xuie.imaginary.data.NetsDetail
-import com.xuie.imaginary.data.source.NetsRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import xuk.imaginary.data.NetsDetail
+import xuk.imaginary.data.source.NetsRepository
 
 /**
  * @author Jie Xu

@@ -1,9 +1,8 @@
 package xuk.imaginary.data.source
 
-import com.xuie.imaginary.data.BaseBean
-import com.xuie.imaginary.data.GankBean
-
 import io.reactivex.Observable
+import xuk.imaginary.data.BaseBean
+import xuk.imaginary.data.GankBean
 
 /**
  * @author Jie Xu

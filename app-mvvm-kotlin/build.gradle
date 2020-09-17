@@ -22,6 +22,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
+
     dataBinding { enabled = true }
     sourceSets { main.java.srcDirs += 'src/main/kotlin' }
 }
@@ -37,7 +42,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    annotationProcessor "'androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2_version"

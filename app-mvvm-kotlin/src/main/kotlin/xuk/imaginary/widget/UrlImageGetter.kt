@@ -20,16 +20,16 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.widget.TextView
-import com.xuie.imaginary.R
-import com.xuie.imaginary.app.App
-import com.xuie.imaginary.data.api.NETSApi
-import com.xuie.imaginary.data.api.ServiceGenerator
-import com.xuie.imaginary.util.HttpUtils
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
+import xuk.imaginary.R
+import xuk.imaginary.app.App
+import xuk.imaginary.data.api.NETSApi
+import xuk.imaginary.data.api.ServiceGenerator
+import xuk.imaginary.util.HttpUtils
 import java.io.File
 import java.io.InputStream
 

@@ -7,10 +7,10 @@ import android.view.View
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.xuie.imaginary.R
-import com.xuie.imaginary.app.App
-import com.xuie.imaginary.gui.web.WebViewActivity
-import com.xuie.imaginary.util.GlideUtils
+import xuk.imaginary.R
+import xuk.imaginary.app.App
+import xuk.imaginary.gui.web.WebViewActivity
+import xuk.imaginary.util.GlideUtils
 
 /**
  * @author Jie Xu

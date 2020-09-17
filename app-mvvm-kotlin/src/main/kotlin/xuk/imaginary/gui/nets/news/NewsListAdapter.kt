@@ -5,12 +5,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.xuie.imaginary.R
-import com.xuie.imaginary.data.ImgextraBean
-import com.xuie.imaginary.data.NetsSummary
-import com.xuie.imaginary.data.NetsSummary.Companion.IMG_MULTI
-import com.xuie.imaginary.data.NetsSummary.Companion.IMG_ONE
-import com.xuie.imaginary.util.GlideUtils
+import xuk.imaginary.R
+import xuk.imaginary.data.ImgextraBean
+import xuk.imaginary.data.NetsSummary
+import xuk.imaginary.data.NetsSummary.Companion.IMG_MULTI
+import xuk.imaginary.data.NetsSummary.Companion.IMG_ONE
+import xuk.imaginary.util.GlideUtils
+
 
 /**
  * @author Jie Xu

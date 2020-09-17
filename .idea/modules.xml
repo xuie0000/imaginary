@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/imaginary.iml" filepath="$PROJECT_DIR$/.idea/imaginary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-coroutines/imaginary.app-coroutines.iml" filepath="$PROJECT_DIR$/.idea/modules/app-coroutines/imaginary.app-coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvp/imaginary.app-mvp.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvp/imaginary.app-mvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvp-dagger/imaginary.app-mvp-dagger.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvp-dagger/imaginary.app-mvp-dagger.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvp-kotlin/imaginary.app-mvp-kotlin.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvp-kotlin/imaginary.app-mvp-kotlin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvvm/imaginary.app-mvvm.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvvm/imaginary.app-mvvm.iml" />

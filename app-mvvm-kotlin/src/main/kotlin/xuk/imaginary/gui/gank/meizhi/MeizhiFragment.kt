@@ -16,11 +16,11 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.xuie.imaginary.data.BaseBean
-import com.xuie.imaginary.databinding.FragmentMeizhiBinding
-import com.xuie.imaginary.gui.MainActivity
-import com.xuie.imaginary.gui.gank.show.GankActivity
-import com.xuie.imaginary.util.DateUtils
+import xuk.imaginary.data.BaseBean
+import xuk.imaginary.databinding.FragmentMeizhiBinding
+import xuk.imaginary.gui.MainActivity
+import xuk.imaginary.gui.gank.show.GankActivity
+import xuk.imaginary.util.DateUtils
 import java.util.*
 
 /**
@@ -36,7 +36,7 @@ class MeizhiFragment : Fragment() {
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     Log.d(TAG, "onCreateView")
     binding = FragmentMeizhiBinding.inflate(inflater, container, false)
-    meiZhiViewModule = MainActivity.obtainViewModel(activity!!)
+    meiZhiViewModule = MainActivity.obtainViewModel(requireActivity())
     binding.viewmodule = meiZhiViewModule
     return binding.root
   }
@@ -70,7 +70,7 @@ class MeizhiFragment : Fragment() {
       intent.putExtra("date", dateString)
       intent.putExtra("image", fl.url)
       val options = ActivityOptions.makeSceneTransitionAnimation(activity, v, "shareObject")
-      ActivityCompat.startActivity(activity!!, intent, options.toBundle())
+      ActivityCompat.startActivity(requireContext(), intent, options.toBundle())
     }
 
     binding.materialRefresh.setMaterialRefreshListener(object : MaterialRefreshListener() {

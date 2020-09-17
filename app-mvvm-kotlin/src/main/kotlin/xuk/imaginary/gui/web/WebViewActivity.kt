@@ -8,9 +8,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-
-import com.xuie.imaginary.R
-import com.xuie.imaginary.databinding.ActivityWebviewBinding
+import xuk.imaginary.R
+import xuk.imaginary.databinding.ActivityWebviewBinding
 
 /**
  * @author Jie Xu

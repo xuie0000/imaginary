@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.xuie.imaginary.data.BaseBean" />
+            type="xuk.imaginary.data.BaseBean" />
     </data>
 
     <androidx.cardview.widget.CardView

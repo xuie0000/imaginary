@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodule"
-            type="com.xuie.imaginary.gui.gank.show.GankViewModule" />
+            type="xuk.imaginary.gui.gank.show.GankViewModule" />
     </data>
 
     <androidx.core.widget.NestedScrollView

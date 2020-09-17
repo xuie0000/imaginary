@@ -7,10 +7,10 @@ import androidx.databinding.ObservableField
 import androidx.databinding.ObservableList
 import androidx.lifecycle.AndroidViewModel
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.xuie.imaginary.data.GankBean
-import com.xuie.imaginary.data.source.GankRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import xuk.imaginary.data.GankBean
+import xuk.imaginary.data.source.GankRepository
 import java.util.*
 
 /**

@@ -7,11 +7,11 @@
 
         <variable
             name="viewmodule"
-            type="com.xuie.imaginary.gui.nets.detail.NetsOneViewModule" />
+            type="xuk.imaginary.gui.nets.detail.NetsOneViewModule" />
 
         <import
             alias="TimeUtils"
-            type="com.xuie.imaginary.util.TimeUtils" />
+            type="xuk.imaginary.util.TimeUtils" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

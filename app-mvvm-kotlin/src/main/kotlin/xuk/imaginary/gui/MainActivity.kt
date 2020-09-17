@@ -9,17 +9,17 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.xuie.imaginary.R
-import com.xuie.imaginary.ViewModelFactory
-import com.xuie.imaginary.base.BaseActivity
-import com.xuie.imaginary.databinding.ActivityMainBinding
-import com.xuie.imaginary.gui.gank.meizhi.MeiZhiViewModule
-import com.xuie.imaginary.gui.gank.meizhi.MeizhiFragment
-import com.xuie.imaginary.gui.nets.news.NewsListFragment
-import com.xuie.imaginary.gui.nets.news.NewsListViewModule
-import com.xuie.imaginary.gui.nets.video.VideoMainFragment
-import com.xuie.imaginary.gui.nets.video.VideosViewModule
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+import xuk.imaginary.R
+import xuk.imaginary.ViewModelFactory
+import xuk.imaginary.base.BaseActivity
+import xuk.imaginary.databinding.ActivityMainBinding
+import xuk.imaginary.gui.gank.meizhi.MeiZhiViewModule
+import xuk.imaginary.gui.gank.meizhi.MeizhiFragment
+import xuk.imaginary.gui.nets.news.NewsListFragment
+import xuk.imaginary.gui.nets.news.NewsListViewModule
+import xuk.imaginary.gui.nets.video.VideoMainFragment
+import xuk.imaginary.gui.nets.video.VideosViewModule
 
 /**
  * @author Jie Xu

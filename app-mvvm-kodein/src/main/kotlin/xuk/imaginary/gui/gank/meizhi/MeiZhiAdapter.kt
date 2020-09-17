@@ -1,6 +1,5 @@
 package xuk.imaginary.gui.gank.meizhi
 
-import com.xuie.imaginary.databinding.ItemFragmentMeizhiBinding
 import xuk.imaginary.R
 import xuk.imaginary.base.BaseDataBindingAdapter
 import xuk.imaginary.data.BaseBean
@@ -10,7 +9,7 @@ import xuk.imaginary.data.BaseBean
  * @date 17-7-5
  */
 class MeiZhiAdapter internal constructor(meiZhis: List<BaseBean>) :
-    BaseDataBindingAdapter<BaseBean, ItemFragmentMeizhiBinding>(R.layout.item_fragment_meizhi, meiZhis) {
+    BaseDataBindingAdapter<BaseBean, xuk.imaginary.databinding.ItemFragmentMeizhiBinding>(R.layout.item_fragment_meizhi, meiZhis) {
 
   override fun convert(binding: ItemFragmentMeizhiBinding?, item: BaseBean) {
     binding!!.data = item
