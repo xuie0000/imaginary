@@ -1,4 +1,4 @@
-include ':app-mvp'
+//include ':app-mvp'
 //include ':app-mvp-dagger'
 //include ':app-mvp-kotlin'
 //include ':app-mvvm'

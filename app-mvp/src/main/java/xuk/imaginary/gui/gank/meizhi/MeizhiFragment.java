@@ -28,11 +28,6 @@ import xuk.imaginary.gui.gank.show.GankActivity;
 import xuk.imaginary.util.DateUtils;
 import xuk.imaginary.util.Utils;
 
-/**
- * A simple {@link Fragment} subclass.
- *
- * @author xuie
- */
 public class MeizhiFragment extends Fragment implements MeizhiContract.View {
     private static final String TAG = "MeizhiFragment";
 
@@ -41,10 +36,7 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View {
     }
 
     private MeizhiContract.Presenter mPresenter;
-    private RecyclerView recyclerView;
-    private MaterialRefreshLayout materialRefresh;
-
-    private MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(null);
+    private final MeiZhiAdapter meiZhiAdapter = new MeiZhiAdapter(null);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,8 +47,8 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_meizhi, container, false);
-        recyclerView = v.findViewById(R.id.recycler_view);
-        materialRefresh = v.findViewById(R.id.material_refresh);
+        RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
+        MaterialRefreshLayout materialRefresh = v.findViewById(R.id.material_refresh);
         Log.d(TAG, "onCreateView");
 
         final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -102,8 +94,9 @@ public class MeizhiFragment extends Fragment implements MeizhiContract.View {
 
     @Override
     public void addList(boolean isRefresh, List<BaseBean> meiZhis) {
-        if (isRefresh)
+        if (isRefresh) {
             meiZhiAdapter.replaceData(new ArrayList<>());
+        }
 //        Log.d(TAG, meiZhis.toString());
         meiZhiAdapter.addData(meiZhis);
     }

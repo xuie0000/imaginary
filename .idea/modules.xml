@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/imaginary.iml" filepath="$PROJECT_DIR$/.idea/imaginary.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-coroutines/imaginary.app-coroutines.iml" filepath="$PROJECT_DIR$/.idea/modules/app-coroutines/imaginary.app-coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app-mvp/imaginary.app-mvp.iml" filepath="$PROJECT_DIR$/.idea/modules/app-mvp/imaginary.app-mvp.iml" />
     </modules>
   </component>
 </project>

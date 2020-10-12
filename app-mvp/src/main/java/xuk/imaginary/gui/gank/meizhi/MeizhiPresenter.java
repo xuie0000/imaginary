@@ -1,5 +1,7 @@
 package xuk.imaginary.gui.gank.meizhi;
 
+import android.annotation.SuppressLint;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import xuk.imaginary.data.source.GankRepository;
 import xuk.imaginary.util.Utils;
@@ -9,8 +11,8 @@ import xuk.imaginary.util.Utils;
  * @date 17-7-5
  */
 public class MeizhiPresenter implements MeizhiContract.Presenter {
-    private GankRepository gankRepository;
-    private MeizhiContract.View gankView;
+    private final GankRepository gankRepository;
+    private final MeizhiContract.View gankView;
     private int currentPage = 1;
 
     public MeizhiPresenter(GankRepository gankRepository, MeizhiContract.View gankView) {
@@ -29,6 +31,7 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
 
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void getList(boolean isRefresh) {
         // get local data
@@ -39,7 +42,10 @@ public class MeizhiPresenter implements MeizhiContract.Presenter {
         }
         gankRepository.get福利(currentPage)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(meiZhis -> gankView.addList(isRefresh, meiZhis), Throwable::printStackTrace);
+                .subscribe(
+                        meiZhis -> gankView.addList(isRefresh, meiZhis),
+                        Throwable::printStackTrace
+                );
         // get remote data
 
     }

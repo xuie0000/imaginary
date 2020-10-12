@@ -11,7 +11,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app-coroutines" />
-            <option value="$PROJECT_DIR$/app-mvp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
