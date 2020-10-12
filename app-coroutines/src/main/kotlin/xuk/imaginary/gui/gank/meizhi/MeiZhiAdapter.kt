@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import xuk.imaginary.R
-import xuk.imaginary.data.GkIo
-import xuk.imaginary.gui.gank.show.GkActivity
 import xuk.imaginary.common.gkSwitchDate
 import xuk.imaginary.common.loadImage
+import xuk.imaginary.data.GkIo
+import xuk.imaginary.gui.gank.show.GkActivity
 
 /**
  * @author Jie Xu
@@ -54,15 +54,15 @@ class MeiZhiAdapter : ListAdapter<GkIo.BaseBean, MeiZhiAdapter.MeiZhiViewHolder>
       }
     }
   }
-}
 
-private class MeiZhiDiffCallback : DiffUtil.ItemCallback<GkIo.BaseBean>() {
+  private class MeiZhiDiffCallback : DiffUtil.ItemCallback<GkIo.BaseBean>() {
 
-  override fun areItemsTheSame(oldItem: GkIo.BaseBean, newItem: GkIo.BaseBean): Boolean {
-    return oldItem._id == newItem._id
-  }
+    override fun areItemsTheSame(oldItem: GkIo.BaseBean, newItem: GkIo.BaseBean): Boolean {
+      return oldItem._id == newItem._id
+    }
 
-  override fun areContentsTheSame(oldItem: GkIo.BaseBean, newItem: GkIo.BaseBean): Boolean {
-    return oldItem.url == newItem.url
+    override fun areContentsTheSame(oldItem: GkIo.BaseBean, newItem: GkIo.BaseBean): Boolean {
+      return oldItem.url == newItem.url
+    }
   }
 }

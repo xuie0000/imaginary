@@ -12,6 +12,7 @@ import xuk.imaginary.R
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.common.isNotEmptyOrBlank
 import xuk.imaginary.common.loadImage
+import xuk.imaginary.data.MeiZhi
 
 /**
  * @author Jie Xu
@@ -21,7 +22,7 @@ class GkAdapter : ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
     return when (viewType) {
-      TYPE_TITLE -> {
+      MeiZhi.TYPE_TITLE -> {
         TitleHolder(LayoutInflater.from(parent.context).inflate(
             R.layout.mei_zhi_title_item, parent, false))
       }
@@ -61,24 +62,16 @@ class GkAdapter : ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
       }
     }
   }
-}
 
-private class GkDiffCallback : DiffUtil.ItemCallback<MeiZhi>() {
+  private class GkDiffCallback : DiffUtil.ItemCallback<MeiZhi>() {
 
-  override fun areItemsTheSame(oldItem: MeiZhi, newItem: MeiZhi): Boolean {
-    return oldItem.type == newItem.type
+    override fun areItemsTheSame(oldItem: MeiZhi, newItem: MeiZhi): Boolean {
+      return oldItem.type == newItem.type
+    }
+
+    override fun areContentsTheSame(oldItem: MeiZhi, newItem: MeiZhi): Boolean {
+      return oldItem.gk?._id == newItem.gk?._id
+    }
   }
 
-  override fun areContentsTheSame(oldItem: MeiZhi, newItem: MeiZhi): Boolean {
-    return oldItem.gk?._id == newItem.gk?._id
-  }
 }
-
-private const val TYPE_TITLE = 0
-private const val TYPE_ITEM = 1
-
-data class MeiZhi(
-    var title: String,
-    var gk: GkIo.BaseBean?,
-    var type: Int = TYPE_TITLE
-)

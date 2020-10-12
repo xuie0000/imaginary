@@ -13,11 +13,6 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import kotlinx.android.synthetic.main.fragment_mei_zhi.*
 import xuk.imaginary.R
 
-/**
- * A simple [Fragment] subclass.
- *
- * @author Jie Xu
- */
 class MeiZhiFragment : Fragment(R.layout.fragment_mei_zhi) {
 
   private lateinit var meiZhiViewModule: MeiZhiViewModule

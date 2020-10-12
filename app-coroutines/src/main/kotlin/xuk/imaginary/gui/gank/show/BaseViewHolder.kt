@@ -2,7 +2,7 @@ package xuk.imaginary.gui.gank.show
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import xuk.imaginary.gui.gank.show.MeiZhi
+import xuk.imaginary.data.MeiZhi
 
 /**
  * @author Jie Xu
