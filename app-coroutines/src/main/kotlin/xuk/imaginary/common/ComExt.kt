@@ -6,7 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import xuk.imaginary.data.GkIo
-import xuk.imaginary.gui.gank.show.MeiZhi
+import xuk.imaginary.data.MeiZhi
 import java.util.regex.Pattern
 
 /**

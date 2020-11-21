@@ -14,8 +14,8 @@ class LoginModel constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 
-  val n = MutableLiveData<String>("")
-  val p = MutableLiveData<String>("")
+  val n = MutableLiveData("")
+  val p = MutableLiveData("")
 
   /**
    * 用户名改变回调的函数

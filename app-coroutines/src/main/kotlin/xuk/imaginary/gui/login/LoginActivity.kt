@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -13,14 +12,6 @@ import xuk.imaginary.common.Constants
 import xuk.imaginary.common.getSpValue
 import xuk.imaginary.gui.gank.MainActivity
 
-/**
- * 获取权限
- */
-private const val REQUEST_CODE_PERMISSIONS = 101
-
-private const val KEY_PERMISSIONS_REQUEST_COUNT = "KEY_PERMISSIONS_REQUEST_COUNT"
-private const val MAX_NUMBER_REQUEST_PERMISSIONS = 2
-
 class LoginActivity : AppCompatActivity() {
 
   private val permissions = listOf(
@@ -28,15 +19,9 @@ class LoginActivity : AppCompatActivity() {
       Manifest.permission.WRITE_EXTERNAL_STORAGE
   )
 
-  private var permissionRequestCount: Int = 0
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.login_activity)
-
-    savedInstanceState?.let {
-      permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)
-    }
 
     val isFromMain: Boolean =
         if (intent == null) false else intent.getBooleanExtra("fromMain", false)
@@ -49,59 +34,41 @@ class LoginActivity : AppCompatActivity() {
       finish()
     }
 
-    // 获取权限
-    requestPermissionsIfNecessary()
+    if (checkSelfPermission()) {
+      // do something
+    }
 
   }
 
-  /**
-   * Request permissions twice - if the user denies twice then show a toast about how to update
-   * the permission for storage. Also disable the button if we don't have access to pictures on
-   * the device.
-   */
-  private fun requestPermissionsIfNecessary() {
-    if (!checkAllPermissions()) {
-      if (permissionRequestCount < MAX_NUMBER_REQUEST_PERMISSIONS) {
-        permissionRequestCount += 1
-        ActivityCompat.requestPermissions(
-            this,
-            permissions.toTypedArray(),
-            REQUEST_CODE_PERMISSIONS
-        )
-      } else {
-        Toast.makeText(
-            this,
-            R.string.set_permissions_in_settings,
-            Toast.LENGTH_LONG
-        ).show()
-        // TODO 解决权限问题
+  private fun checkSelfPermission(): Boolean {
+    val permissionList: MutableList<String> = ArrayList()
+    for (permission in permissions) {
+      if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+        permissionList.add(permission)
+      }
+    }
+    if (permissionList.isNotEmpty()) {
+      val permissionsArr = permissionList.toTypedArray()
+      ActivityCompat.requestPermissions(this, permissionsArr, 101)
+      return false
+    }
+    return true
+  }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (requestCode == REQUEST_CODE_PERMISSIONS) {
+      grantResults.forEach {
+        if (it != PackageManager.PERMISSION_GRANTED) {
+          // Permission Denied
+          finish()
+        }
       }
     }
   }
 
-  /** Permission Checking  */
-  private fun checkAllPermissions(): Boolean {
-    var hasPermissions = true
-    for (permission in permissions) {
-      hasPermissions = hasPermissions and isPermissionGranted(permission)
-    }
-    return hasPermissions
-  }
-
-  private fun isPermissionGranted(permission: String) =
-      ContextCompat.checkSelfPermission(this, permission) ==
-          PackageManager.PERMISSION_GRANTED
-
-  override fun onRequestPermissionsResult(
-      requestCode: Int,
-      permissions: Array<String>,
-      grantResults: IntArray
-  ) {
-
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    if (requestCode == REQUEST_CODE_PERMISSIONS) {
-      requestPermissionsIfNecessary() // no-op if permissions are granted already.
-    }
+  companion object {
+    private const val REQUEST_CODE_PERMISSIONS = 101
   }
 
 

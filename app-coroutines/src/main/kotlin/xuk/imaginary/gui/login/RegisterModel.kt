@@ -11,9 +11,9 @@ class RegisterModel constructor(
     private val repository: UserRepository
 ) : ViewModel() {
 
-  val n = MutableLiveData<String>("")
-  val p = MutableLiveData<String>("")
-  val mail = MutableLiveData<String>("")
+  val n = MutableLiveData("")
+  val p = MutableLiveData("")
+  val mail = MutableLiveData("")
 
   /**
    * 用户名改变回调的函数
