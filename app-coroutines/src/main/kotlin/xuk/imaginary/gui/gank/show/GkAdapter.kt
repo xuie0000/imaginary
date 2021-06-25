@@ -14,10 +14,6 @@ import xuk.imaginary.common.isNotEmptyOrBlank
 import xuk.imaginary.common.loadImage
 import xuk.imaginary.data.MeiZhi
 
-/**
- * @author Jie Xu
- * @date 2019/8/14
- */
 class GkAdapter : ListAdapter<MeiZhi, BaseViewHolder>(GkDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {

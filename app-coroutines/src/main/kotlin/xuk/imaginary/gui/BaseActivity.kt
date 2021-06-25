@@ -6,9 +6,6 @@ import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
 
-/**
- * @author Jie Xu
- */
 abstract class BaseActivity : AppCompatActivity() {
 
   @SuppressLint("ObsoleteSdkInt")

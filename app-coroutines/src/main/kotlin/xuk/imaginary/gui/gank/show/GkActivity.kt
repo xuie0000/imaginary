@@ -36,7 +36,7 @@ class GkActivity : BaseActivity() {
       isNestedScrollingEnabled = false
     }
 
-    viewModule.gk.observe(this, androidx.lifecycle.Observer {
+    viewModule.gk.observe(this, {
       gkAdapter.submitList(it?.convertToMei())
     })
 

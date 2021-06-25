@@ -15,10 +15,6 @@ import xuk.imaginary.common.loadImage
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.gui.gank.show.GkActivity
 
-/**
- * @author Jie Xu
- * @date 17-7-5
- */
 class MeiZhiAdapter : ListAdapter<GkIo.BaseBean, MeiZhiAdapter.MeiZhiViewHolder>(MeiZhiDiffCallback()) {
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MeiZhiViewHolder {

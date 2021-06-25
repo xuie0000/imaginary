@@ -5,10 +5,6 @@ import kotlinx.coroutines.Dispatchers
 import xuk.imaginary.data.GkIo
 import xuk.imaginary.data.Repository
 
-/**
- * @author Jie Xu
- * @date 2019/1/28
- */
 class GkViewModule : ViewModel() {
 
   private val mutableDate: MutableLiveData<String> = MutableLiveData()

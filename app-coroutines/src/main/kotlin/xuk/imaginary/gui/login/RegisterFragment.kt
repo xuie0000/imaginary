@@ -17,8 +17,6 @@ import xuk.imaginary.databinding.RegisterFragmentBinding
 
 /**
  * 注册的Fragment
- *
- * A simple [Fragment] subclass.
  */
 class RegisterFragment : Fragment() {
 

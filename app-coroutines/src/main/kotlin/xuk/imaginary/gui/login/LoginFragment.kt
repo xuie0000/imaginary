@@ -18,8 +18,6 @@ import xuk.imaginary.gui.gank.MainActivity
 
 /**
  * 登录的Fragment
- *
- * A simple [Fragment] subclass.
  */
 class LoginFragment : Fragment() {
 

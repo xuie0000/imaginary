@@ -11,7 +11,7 @@ import xuk.imaginary.data.UserRepository
 import xuk.imaginary.data.db.User
 
 class LoginModel constructor(
-    private val repository: UserRepository
+  private val repository: UserRepository
 ) : ViewModel() {
 
   val n = MutableLiveData("")
@@ -59,8 +59,7 @@ class LoginModel constructor(
 }
 
 class LoginModelFactory(
-    private val repository: UserRepository
-    , private val context: Context
+  private val repository: UserRepository, private val context: Context
 ) : ViewModelProvider.NewInstanceFactory() {
   override fun <T : ViewModel?> create(modelClass: Class<T>): T {
     return LoginModel(repository) as T

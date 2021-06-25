@@ -15,7 +15,7 @@ import xuk.imaginary.common.putSpValue
 import xuk.imaginary.gui.gank.MainActivity
 
 /**
- *  欢迎界面
+ * 欢迎界面
  */
 class WelcomeFragment : Fragment(R.layout.welcome_fragment) {
 

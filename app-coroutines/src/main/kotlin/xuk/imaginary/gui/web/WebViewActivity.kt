@@ -10,16 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_webview.*
 import xuk.imaginary.R
 
-/**
- * @author Jie Xu
- */
 class WebViewActivity : AppCompatActivity(R.layout.activity_webview) {
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onPostCreate(savedInstanceState: Bundle?) {
     super.onPostCreate(savedInstanceState)
 
-    val url = intent.getStringExtra("url")
+    val url = intent.getStringExtra("url") ?: ""
 
     webView.apply {
       // Configure related browser settings

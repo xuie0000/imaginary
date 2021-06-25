@@ -34,14 +34,15 @@ fun GkIo.GkBean.convertToMei(): List<MeiZhi> {
   return ms
 }
 
-fun ImageView.loadImage(url: String) {
+fun ImageView.loadImage(url: String?) {
   Glide.with(context)
-      .load(url)
-      .apply(RequestOptions().fitCenter()
-          .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-      )
-      .transition(withCrossFade())
-      .into(this)
+    .load(url)
+    .apply(
+      RequestOptions().fitCenter()
+        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+    )
+    .transition(withCrossFade())
+    .into(this)
 }
 
 fun List<String>.isNotEmptyOrBlank(): Boolean {
